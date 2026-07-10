@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html lang="my">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Review - စာအုပ်နှင့် အဆောင်းပုံများ ပর်လှေ့</title>
+    <style>
+        @font-face {
+            font-family: 'PyidaungsuMM';
+            src: url('https://raw.githubusercontent.com/WoWepub/Font/main/subset-Pyidaungsu.woff2') format('woff2');
+            font-display: swap;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'PyidaungsuMM', sans-serif;
+            background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+            color: #2c3e50;
+            line-height: 1.8;
+            min-height: 100vh;
+            padding: 20px;
+        }
+
+        header {
+            text-align: center;
+            padding: 40px 20px;
+            background: white;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            margin-bottom: 40px;
+            max-width: 1200px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        header h1 {
+            font-size: 2.5rem;
+            color: #d84315;
+            margin-bottom: 10px;
+            font-weight: 800;
+        }
+
+        header p {
+            font-size: 1.1rem;
+            color: #666;
+            font-style: italic;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .posts-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 25px;
+            margin-bottom: 40px;
+        }
+
+        .post-card {
+            background: white;
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 8px 20px rgba(0,0,0,0.1);
+            transition: all 0.3s ease;
+            cursor: pointer;
+            border-left: 5px solid #d84315;
+        }
+
+        .post-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 15px 40px rgba(0,0,0,0.15);
+        }
+
+        .post-image {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+            background: #f0f0f0;
+        }
+
+        .post-content {
+            padding: 20px;
+        }
+
+        .post-title {
+            font-size: 1.3rem;
+            font-weight: 700;
+            color: #2c3e50;
+            margin-bottom: 8px;
+            line-height: 1.4;
+        }
+
+        .post-meta {
+            font-size: 0.9rem;
+            color: #999;
+            margin-bottom: 10px;
+        }
+
+        .post-excerpt {
+            font-size: 0.95rem;
+            color: #555;
+            line-height: 1.6;
+            margin-bottom: 15px;
+            text-align: justify;
+        }
+
+        .read-more {
+            display: inline-block;
+            padding: 8px 16px;
+            background: #d84315;
+            color: white;
+            text-decoration: none;
+            border-radius: 5px;
+            font-weight: 600;
+            transition: background 0.3s ease;
+            font-size: 0.9rem;
+        }
+
+        .read-more:hover {
+            background: #bf360c;
+        }
+
+        footer {
+            text-align: center;
+            padding: 30px;
+            color: #666;
+            font-size: 0.9rem;
+            margin-top: 50px;
+        }
+
+        @media (max-width: 768px) {
+            header h1 {
+                font-size: 1.8rem;
+            }
+
+            .posts-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>📚 Review</h1>
+        <p>စာအုပ်များ၊ အဆောင်းပုံများ နှင့် အခြားသော အကြောင်းအရာများ ပြန်လည်သုံးသပ်ခြင်း</p>
+    </header>
+
+    <div class="container">
+        <div class="posts-grid" id="postsGrid">
+            <!-- Posts will be loaded here -->
+        </div>
+    </div>
+
+    <footer>
+        <p>&copy; 2026 Review. All rights reserved.</p>
+    </footer>
+
+    <script>
+        // Posts data will be loaded from posts.json
+        async function loadPosts() {
+            try {
+                const response = await fetch('posts.json');
+                const posts = await response.json();
+                displayPosts(posts);
+            } catch (error) {
+                console.error('Error loading posts:', error);
+                document.getElementById('postsGrid').innerHTML = '<p>အဆောင်းပုံများ ဖွင့်လည်းနိုင်ခြင်းမရှိပါ။</p>';
+            }
+        }
+
+        function displayPosts(posts) {
+            const grid = document.getElementById('postsGrid');
+            grid.innerHTML = '';
+
+            posts.forEach(post => {
+                const card = document.createElement('div');
+                card.className = 'post-card';
+                card.innerHTML = `
+                    <img src="${post.image}" alt="${post.title}" class="post-image" onerror="this.src='https://via.placeholder.com/300x200?text=No+Image'">
+                    <div class="post-content">
+                        <div class="post-title">${post.title}</div>
+                        <div class="post-meta">${post.date} • ${post.category}</div>
+                        <div class="post-excerpt">${post.excerpt}</div>
+                        <a href="${post.link}" class="read-more">ပြည့်စုံဖတ်ရှုမည်</a>
+                    </div>
+                `;
+                grid.appendChild(card);
+            });
+        }
+
+        // Load posts on page load
+        loadPosts();
+    </script>
+</body>
+</html>
