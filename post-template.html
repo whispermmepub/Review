@@ -11,11 +11,7 @@
             font-display: swap;
         }
 
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
 
         body {
             font-family: 'PyidaungsuMM', sans-serif;
@@ -26,7 +22,7 @@
         }
 
         .container {
-            max-width: 1200px;
+            max-width: 1100px;
             margin: 0 auto;
             background: white;
             border-radius: 15px;
@@ -42,136 +38,60 @@
         }
 
         header h1 {
-            font-size: 2rem;
-            margin-bottom: 15px;
+            font-size: 1.8rem;
+            margin-bottom: 10px;
             font-weight: 800;
-            line-height: 1.4;
         }
 
         .post-meta {
-            font-size: 0.95rem;
+            font-size: 0.9rem;
             opacity: 0.9;
-            margin-bottom: 10px;
-        }
-
-        .post-meta span {
-            margin-right: 20px;
         }
 
         .post-image {
             width: 100%;
             height: auto;
-            max-height: 500px;
-            object-fit: cover;
+            display: block;
+            max-height: 600px;
+            object-fit: contain;
+            background: #f9f9f9;
         }
 
         .post-body {
-            padding: 40px 30px;
+            padding: 40px 35px;
         }
 
         .post-body p {
-            margin-bottom: 1.2rem;
-            text-align: justify;
-            line-height: 1.6;
-            font-size: 1.05rem;
-            color: #333;
-            word-spacing: -0.05em;
-        }
-
-        .post-body h2 {
-            font-size: 1.5rem;
-            color: #d84315;
-            margin-top: 30px;
-            margin-bottom: 15px;
-            font-weight: 700;
-        }
-
-        .post-body h3 {
-            font-size: 1.2rem;
-            color: #555;
-            margin-top: 20px;
-            margin-bottom: 10px;
-            font-weight: 700;
-        }
-
-        .post-body ul, .post-body ol {
-            margin-left: 30px;
             margin-bottom: 20px;
-        }
-
-        .post-body li {
-            margin-bottom: 10px;
             text-align: justify;
-        }
-
-        .post-body blockquote {
-            border-left: 4px solid #d84315;
-            padding-left: 20px;
-            margin: 20px 0;
-            font-style: italic;
-            color: #666;
-            background: #f9f9f9;
-            padding: 15px 20px;
-            border-radius: 5px;
-        }
-
-        .post-body img {
-            max-width: 100%;
-            height: auto;
-            margin: 20px 0;
-            border-radius: 8px;
-            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
-        }
-
-        .post-footer {
-            border-top: 2px solid #eee;
-            padding-top: 20px;
-            margin-top: 40px;
-            text-align: center;
+            letter-spacing: 0.01em;
+            word-spacing: 0.01em;
+            font-size: 1.05rem;
         }
 
         .back-link {
             display: inline-block;
+            margin-top: 30px;
             padding: 10px 20px;
             background: #d84315;
             color: white;
             text-decoration: none;
             border-radius: 5px;
             font-weight: 600;
-            transition: background 0.3s ease;
         }
 
-        .back-link:hover {
-            background: #bf360c;
+        .reviewer-credit {
+            margin-top: 30px;
+            padding-top: 20px;
+            border-top: 2px solid #eee;
+            text-align: center;
+            color: #888;
+            font-style: italic;
         }
 
-        .tags {
-            margin-top: 20px;
-        }
-
-        .tag {
-            display: inline-block;
-            padding: 5px 12px;
-            background: #f0f0f0;
-            color: #d84315;
-            border-radius: 20px;
-            font-size: 0.85rem;
-            margin-right: 8px;
-            margin-bottom: 8px;
-        }
-
-        @media (max-width: 768px) {
-            header h1 {
-                font-size: 1.5rem;
-            }
-
-            .post-body {
-                padding: 20px;
-            }
-
-            .post-body p {
-                font-size: 0.95rem;
-            }
+        @media (max-width: 600px) {
+            header h1 { font-size: 1.4rem; }
+            .post-body { padding: 20px; }
         }
     </style>
 </head>
@@ -179,24 +99,22 @@
     <div class="container">
         <header>
             <h1>{{POST_TITLE}}</h1>
-            <div class="post-meta">
-                <span>📅 {{POST_DATE}}</span>
-                <span>📂 {{POST_CATEGORY}}</span>
-                <span>✍️ {{POST_AUTHOR}}</span>
-            </div>
+            <div class="post-meta">📅 {{POST_DATE}} • ✍️ {{POST_AUTHOR}}</div>
         </header>
 
         <img src="{{POST_IMAGE}}" alt="{{POST_TITLE}}" class="post-image">
 
         <div class="post-body">
-            {{POST_CONTENT}}
-
-            <div class="post-footer">
-                <a href="../index.html" class="back-link">← ပင်မစာမျက်နှာသို့</a>
-                <div class="tags">
-                    {{POST_TAGS}}
-                </div>
+            <div class="post-content">
+                {{POST_CONTENT}}
             </div>
+
+            <div class="reviewer-credit">
+                <p>Review By {{POST_AUTHOR}}</p>
+                <p><a href="{{SOURCE_URL}}" target="_blank" style="color: #d84315;">မူရင်းကို ဖတ်ရန် →</a></p>
+            </div>
+
+            <a href="../index.html" class="back-link">← ပင်မစာမျက်နှာသို့</a>
         </div>
     </div>
 </body>

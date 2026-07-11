@@ -99,11 +99,19 @@ def is_book_review(title, description, excerpt):
     return True
 
 def clean_text(text):
-    """Remove HTML tags and clean up text."""
-    text = re.sub(r'<[^>]+>', '', text)
-    text = re.sub(r'&nbsp;', ' ', text)
-    text = re.sub(r'&#\d+;', '', text)
-    text = re.sub(r'\s+', ' ', text)
+    """Remove HTML tags and clean up text, preserving paragraph breaks."""
+    # Convert <br> and <p> to newlines before stripping other tags
+    text = re.sub(r"""<br\s*/?>""", "\n", text, flags=re.IGNORECASE)
+    text = re.sub(r"""<p[^>]*>""", "\n", text, flags=re.IGNORECASE)
+    text = re.sub(r"""</p>""", "\n", text, flags=re.IGNORECASE)
+    text = re.sub(r"""<[^>]+>""", "", text)
+    text = re.sub(r"""&nbsp;""", " ", text)
+    text = re.sub(r"""&#\d+;""", "", text)
+    # Collapse multiple newlines but keep paragraph breaks
+    text = re.sub(r"""\n{3,}""", "\n\n", text)
+    text = re.sub(r"""[ \t]+""", " ", text)
+    text = re.sub(r""" \n""", "\n", text)
+    text = re.sub(r"""\n """, "\n", text)
     return text.strip()
 
 def generate_post_html(post):
