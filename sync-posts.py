@@ -117,9 +117,10 @@ def is_book_review(title, description, excerpt):
 
 def bold_quotes(text):
     """Wrap text inside quotation marks with <strong> tags."""
-    # Match " " (straight quotes) and " " (curly quotes)
-    text = re.sub(r'"([^"]+)"', r'<strong>""</strong>', text)
-    text = re.sub(r'“([^”]+)”', r'<strong>“”</strong>', text)
+    # Match “ ” (curly quotes)
+    text = re.sub(r'“([^”]+)”', lambda m: '<strong>“' + m.group(1) + '”</strong>', text)
+    # Match " " (straight double quotes) - only multi-char content
+    text = re.sub(r'"([^"]{2,})"', lambda m: '<strong>"' + m.group(1) + '"</strong>', text)
     return text
 
 def clean_text(text):
