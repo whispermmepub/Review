@@ -213,12 +213,12 @@ def generate_post_html(post):
             font-size: 1.0rem;
             line-height: 1.85;
             color: #d0d0d0;
-            text-indent: 1.5em;
+
             text-rendering: optimizeLegibility;
         }}
 
         .post-body p + p {{
-            text-indent: 1.5em;
+
         }}
 
         .post-body p:first-child {{
