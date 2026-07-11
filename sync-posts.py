@@ -198,33 +198,23 @@ def generate_post_html(post):
 
         .post-body {{
             padding: 40px 60px;
-            max-width: 800px;
-            margin: 0 auto;
-            text-align: justify;
-            text-justify: inter-word;
-            word-break: break-word;
+            text-align: left;
+            word-break: keep-all;
             overflow-wrap: break-word;
-            hyphens: auto;
-            -webkit-hyphens: auto;
-            -ms-hyphens: auto;
-            -moz-text-align-last: justify;
-            text-align-last: justify;
             font-kerning: normal;
             -webkit-font-smoothing: antialiased;
-            -moz-osx-font-smoothing: grayscale;
         }}
 
         .post-body p {{
             margin-bottom: 0.8em;
             padding: 0;
             letter-spacing: 0;
-            word-spacing: 0.03em;
-            font-size: 1.05rem;
-            line-height: 1.9;
+            word-spacing: 0.02em;
+            font-size: 1.0rem;
+            line-height: 1.85;
             color: #d0d0d0;
             text-indent: 1.5em;
             text-rendering: optimizeLegibility;
-            font-feature-settings: "kern" 1;
         }}
 
         .post-body p + p {{
