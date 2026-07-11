@@ -124,12 +124,15 @@ def bold_quotes(text):
     return text
 
 def clean_text(text):
-    """Remove HTML tags and clean up text, preserving paragraph breaks."""
+    """Remove HTML tags and clean up text, preserving paragraph breaks and links."""
     # Convert <br> and <p> to newlines before stripping other tags
     text = re.sub(r"""<br\s*/?>""", "\n", text, flags=re.IGNORECASE)
     text = re.sub(r"""<p[^>]*>""", "\n", text, flags=re.IGNORECASE)
     text = re.sub(r"""</p>""", "\n", text, flags=re.IGNORECASE)
-    text = re.sub(r"""<[^>]+>""", "", text)
+    # Convert <a> tags to clickable links before stripping other tags
+    text = re.sub(r"""<a[^>]+href=["\']([^"\']+)["\'][^>]*>(.*?)</a>""", r"""<a href="\1" target="_blank" rel="noopener">\2</a>""", text, flags=re.IGNORECASE)
+    # Strip remaining HTML tags except <a> links
+    text = re.sub(r"""</?((?!a|/a)[^>]+)>""", "", text)
     text = re.sub(r"""&nbsp;""", " ", text)
     text = re.sub(r"""&#\d+;""", "", text)
     # Collapse multiple newlines but keep paragraph breaks
@@ -231,6 +234,18 @@ def generate_post_html(post):
 
         .post-body p:first-child {{
             text-indent: 0;
+        }}
+
+        .post-body a {{
+            color: #ff8a65;
+            text-decoration: underline;
+            text-decoration-color: rgba(255, 138, 101, 0.4);
+            transition: all 0.2s ease;
+        }}
+
+        .post-body a:hover {{
+            color: #ffab91;
+            text-decoration-color: #ffab91;
         }}
 
         .back-link {{
