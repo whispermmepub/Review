@@ -334,6 +334,30 @@ def generate_post_html(post):
             border-top: 1px solid #333;
             margin-top: 30px;
         }}
+        .telegram-btn {{
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            background: #0088cc;
+            color: #fff;
+            padding: 8px 18px;
+            border-radius: 6px;
+            text-decoration: none;
+            font-size: 0.9rem;
+            font-weight: 600;
+            font-family: 'PyidaungsuMM', sans-serif;
+            transition: all 0.25s ease;
+        }}
+        .telegram-btn:hover {{
+            background: #006da3;
+            box-shadow: 0 2px 10px rgba(0, 136, 204, 0.35);
+        }}
+        .telegram-icon {{
+            width: 14px;
+            height: 14px;
+            fill: currentColor;
+            flex: 0 0 auto;
+        }}
         .love-btn {{
             background: none;
             border: 2px solid #e74c3c;
