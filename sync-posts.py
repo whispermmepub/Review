@@ -535,7 +535,7 @@ def generate_post_html(post):
             data-category-id="DIC_kwDOTUX16c4DA9__"
             data-mapping="pathname"
             data-strict="0"
-            data-reactions-enabled="1"
+            data-reactions-enabled="0"
             data-emit-metadata="0"
             data-input-position="bottom"
             data-theme="preferred_color_scheme"
