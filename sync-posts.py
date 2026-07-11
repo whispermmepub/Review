@@ -208,7 +208,7 @@ def generate_post_html(post):
         }}
 
         .post-body p {{
-            margin-bottom: 0;
+            margin-bottom: 0.8em;
             padding: 0;
             letter-spacing: 0;
             word-spacing: 0.02em;
