@@ -115,6 +115,13 @@ def is_book_review(title, description, excerpt):
         return False
     return True
 
+def bold_quotes(text):
+    """Wrap text inside quotation marks with <strong> tags."""
+    # Match " " (straight quotes) and " " (curly quotes)
+    text = re.sub(r'"([^"]+)"', r'<strong>""</strong>', text)
+    text = re.sub(r'“([^”]+)”', r'<strong>“”</strong>', text)
+    return text
+
 def clean_text(text):
     """Remove HTML tags and clean up text, preserving paragraph breaks."""
     # Convert <br> and <p> to newlines before stripping other tags
@@ -374,7 +381,7 @@ def main():
 
             image_url = extract_image(description)
             reviewer = extract_reviewer(description, blog_name)
-            clean_desc = clean_text(description)
+            clean_desc = bold_quotes(clean_text(description))
             excerpt = clean_desc[:200] + "..." if len(clean_desc) > 200 else clean_desc
 
             try:
