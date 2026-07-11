@@ -178,7 +178,7 @@ def generate_post_html(post):
     """Generate a static HTML file for a blog post."""
     image_html = ''
     if post['image']:
-        image_html = f'\n        <img src="{post["image"]}" alt="{post["title"]}" class="post-image" loading="eager" fetchpriority="high">'
+        image_html = f'\n        <img src="{post["image"]}" alt="{post["title"]}" class="post-image">'
     preview_image = post['image'] or 'https://blogger.googleusercontent.com/img/a/AVvXsEiz-kPEUW-4PhZ-CEATRgvFzmaJfZ6mL3BQ8kXuRmav6CborPuAv7wTt4FaWY9pLZoluFx6_BqZMdtmsbnNswQleuyADOrI0l4t5hEGhzlFO4Vn9zvL20KrYPiyoGA8IBS52gKKsXx_TD5AtEj9Nmr7mWLLNgIdB1SkFZiWxOz_XMGiov2BBDi9tm9zhIA=rw'
     page_url = f'https://whispermmepub.github.io/Review/{post["link"]}'
     meta_title = html_lib.escape(f'{post["title"]} - 𝐖𝐡𝐢𝐬𝐩𝐞𝐫 𝐎𝐟 𝐖𝐨𝐫𝐝𝐬 - 𝐦𝐦 𝐄𝐩𝐮𝐛')
@@ -214,14 +214,10 @@ def generate_post_html(post):
     <meta name="twitter:image:alt" content="{html_lib.escape(post['title'])}">
     <meta itemprop="image" content="{preview_image_html}">
     <link rel="image_src" href="{preview_image_html}">
-    <link rel="preconnect" href="https://raw.githubusercontent.com" crossorigin>
-    <link rel="preconnect" href="https://blogger.googleusercontent.com" crossorigin>
-    <link rel="preload" href="../assets/subset-A10_YoeShin-Regular.woff2" as="font" type="font/woff2" crossorigin>
     <style>
         @font-face {{
             font-family: 'PyidaungsuMM';
-            src: url('../assets/subset-A10_YoeShin-Regular.woff2') format('woff2'),
-             url('https://raw.githubusercontent.com/WoWepub/Font/main/subset-Pyidaungsu.woff2') format('woff2');
+            src: url('https://raw.githubusercontent.com/WoWepub/Font/main/subset-Pyidaungsu.woff2') format('woff2');
             font-display: swap;
         }}
 
@@ -538,7 +534,6 @@ def generate_post_html(post):
         localStorage.setItem(viewKey, views);
         document.getElementById('viewCount').innerHTML = '👁️ <span>' + views + '</span>';
     </script>
-    <script>if('serviceWorker' in navigator)navigator.serviceWorker.register('../sw.js').catch(()=>{{}});</script>
 </body>
 </html>'''
     return html
@@ -665,33 +660,9 @@ def main():
         except:
             pass
 
-    # Clean excerpts — remove newlines that break inline JSON
-    for p in posts_json:
-        if p.get('excerpt'):
-            p['excerpt'] = p['excerpt'].replace('\n', ' ').replace('\r', '')
-
     with open(posts_json_path, 'w', encoding='utf-8') as f:
         json.dump(posts_json, f, ensure_ascii=False, indent=2)
     print(f"Saved posts.json ({len(posts_json)} posts)")
-
-    # Update inline JSON in index.html for instant loading
-    index_path = os.path.join(REPO_DIR, 'index.html')
-    if os.path.exists(index_path):
-        with open(index_path, 'r', encoding='utf-8') as f:
-            index_html = f.read()
-        import re
-        inline_json = json.dumps(posts_json, ensure_ascii=False)
-        new_index = re.sub(
-            r'allPosts = \[.*?\];\s*\n\s*renderPosts\(allPosts\);',
-            f'allPosts = {inline_json};\n                renderPosts(allPosts);',
-            index_html,
-            count=1,
-            flags=re.DOTALL
-        )
-        if new_index != index_html:
-            with open(index_path, 'w', encoding='utf-8') as f:
-                f.write(new_index)
-            print(f"Updated index.html inline JSON ({len(posts_json)} posts)")
 
     # Generate individual post HTML files
     for post in posts:
