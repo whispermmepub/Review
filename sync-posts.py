@@ -18,7 +18,7 @@ from urllib.parse import quote
 
 SCRIPT_DIR = os.path.dirname(os.path.abspath(__file__))
 REPO_DIR = SCRIPT_DIR
-FEED_URL = 'https://whisper1of.blogspot.com/feeds/posts/default?alt=rss'
+FEED_URL = 'https://whisper1of.blogspot.com/feeds/posts/default?alt=rss&max-results=100'
 BLOG_URL = 'https://whisper1of.blogspot.com'
 
 # Known non-review posts to exclude (catalogs, lists)
