@@ -648,5 +648,19 @@
     "tags": [
       "စာအုပ်အညွှန်း"
     ]
+  },
+  {
+    "id": "about-us",
+    "title": "ℹ️ ကျွန်ုပ်တို့ အကြောင်း",
+    "date": "2026-01-14",
+    "category": "အကြောင်းအရာ",
+    "author": "Whisper Of Words Admin",
+    "image": "https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEj_DZjS62GdjDD8grhuwODTqovHwU4_9Ec1dtgpIkwvjnQUN4I_lH8edR7SZ7CJBv6DUTCWoa1ayJDSy0TiZsWcsoxqD4bIZFlWfWEgUr33g3uiDlu8AyV7Vx9Y3BFc_JRxr6oAfPqXTKr1Ye1pmmEl4j9G0Ly1Oh23d9u2qOUOsJsdemn57WlDl8xY0oI/w1200-h630-p-k-no-nu/about%20us%20.png",
+    "excerpt": "About Us - Whisper Of Words",
+    "link": "about-us/index.html",
+    "tags": [
+      "about",
+      "whisper-of-words"
+    ]
   }
 ]
