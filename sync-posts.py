@@ -196,7 +196,12 @@ def generate_post_html(post):
     <meta property="og:title" content="{meta_title}">
     <meta property="og:description" content="{meta_description}">
     <meta property="og:url" content="{page_url}">
+    <meta property="og:site_name" content="Whisper Of Words - mm Epub">
     <meta property="og:image" content="{preview_image}">
+    <meta property="og:image:secure_url" content="{preview_image}">
+    <meta property="og:image:type" content="image/jpeg">
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="630">
     <meta property="og:image:alt" content="{html_lib.escape(post['title'])}">
     <meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:title" content="{meta_title}">
