@@ -187,7 +187,7 @@ def generate_post_html(post):
         }}
 
         .container {{
-            max-width: 1600px;
+            max-width: 1900px;
             margin: 0 auto;
             background: #1a1830;
             border-radius: 15px;
@@ -223,7 +223,7 @@ def generate_post_html(post):
         }}
 
         .post-body {{
-            padding: 40px 60px;
+            padding: 40px 40px;
             text-align: left;
             word-break: keep-all;
             overflow-wrap: break-word;
