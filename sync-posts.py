@@ -669,6 +669,25 @@ def main():
         json.dump(posts_json, f, ensure_ascii=False, indent=2)
     print(f"Saved posts.json ({len(posts_json)} posts)")
 
+    # Update inline JSON in index.html for instant loading
+    index_path = os.path.join(REPO_DIR, 'index.html')
+    if os.path.exists(index_path):
+        with open(index_path, 'r', encoding='utf-8') as f:
+            index_html = f.read()
+        import re
+        inline_json = json.dumps(posts_json, ensure_ascii=False)
+        new_index = re.sub(
+            r'allPosts = \[.*?\];\s*\n\s*renderPosts\(allPosts\);',
+            f'allPosts = {inline_json};\n                renderPosts(allPosts);',
+            index_html,
+            count=1,
+            flags=re.DOTALL
+        )
+        if new_index != index_html:
+            with open(index_path, 'w', encoding='utf-8') as f:
+                f.write(new_index)
+            print(f"Updated index.html inline JSON ({len(posts_json)} posts)")
+
     # Generate individual post HTML files
     for post in posts:
         post_dir = os.path.join(REPO_DIR, post['id'])
