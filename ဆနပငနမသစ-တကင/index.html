@@ -382,7 +382,6 @@
     <script>
         var postSlug = 'ဆနပငနမသစ-တကင';
 
-        // Love button
         function toggleLove() {
             var liked = localStorage.getItem('love_' + postSlug);
             var count = parseInt(localStorage.getItem('love_count_' + postSlug) || '0');
@@ -394,53 +393,47 @@
                 count++;
             }
             localStorage.setItem('love_count_' + postSlug, count);
-            updateLoveUI();
-        }
-        function updateLoveUI() {
-            var liked = localStorage.getItem('love_' + postSlug);
-            var count = localStorage.getItem('love_count_' + postSlug) || '0';
+            document.getElementById('loveCount').textContent = count;
             var btn = document.querySelector('.love-btn');
-            var label = document.getElementById('loveCount');
-            if (liked) { btn.classList.add('liked'); } else { btn.classList.remove('liked'); }
-            label.textContent = count + ' ဦး ချစ်ကြတယ်';
+            if (localStorage.getItem('love_' + postSlug)) btn.classList.add('liked');
+            else btn.classList.remove('liked');
         }
 
-        // Comments
         function addComment() {
             var name = document.getElementById('commentName').value.trim();
             var text = document.getElementById('commentText').value.trim();
-            if (!name || !text) { alert('နာမည်နဲ့ မှတ်ချက် ဖြည့်ပါ'); return; }
+            if (!name || !text) { alert('Name and comment required'); return; }
             var comments = JSON.parse(localStorage.getItem('comments_' + postSlug) || '[]');
-            comments.push({ name: name, text: text, date: new Date().toLocaleString('my-MM') });
+            comments.push({ name: name, text: text, date: new Date().toLocaleDateString() });
             localStorage.setItem('comments_' + postSlug, JSON.stringify(comments));
             document.getElementById('commentName').value = '';
             document.getElementById('commentText').value = '';
             renderComments();
         }
+
         function renderComments() {
             var comments = JSON.parse(localStorage.getItem('comments_' + postSlug) || '[]');
             var list = document.getElementById('commentList');
-            if (comments.length === 0) { list.innerHTML = ''; return; }
+            if (comments.length === 0) { list.innerHTML = '<p style="color:#666;font-size:0.9rem">No comments yet</p>'; return; }
             list.innerHTML = comments.map(function(c) {
                 return '<div class="comment-item"><span class="comment-author">' + c.name + '</span><span class="comment-date">' + c.date + '</span><div class="comment-text">' + c.text + '</div></div>';
             }).reverse().join('');
         }
 
-        // Back to top
         window.addEventListener('scroll', function() {
             var btn = document.getElementById('backToTop');
             if (window.scrollY > 300) { btn.style.display = 'flex'; } else { btn.style.display = 'none'; }
         });
         function scrollToTop() { window.scrollTo({ top: 0, behavior: 'smooth' }); }
 
-        // View Count
+        // Init
+        var loveCount = parseInt(localStorage.getItem('love_count_' + postSlug) || '0');
+        document.getElementById('loveCount').textContent = loveCount;
+        if (localStorage.getItem('love_' + postSlug)) document.querySelector('.love-btn').classList.add('liked');
         var viewKey = 'views_' + postSlug;
         var views = parseInt(localStorage.getItem(viewKey) || '0') + 1;
         localStorage.setItem(viewKey, views);
-        document.getElementById('viewCount').innerHTML = '👁️ <span>' + views + '</span> ဦး ဖတ်ရှုပြီးပါပြီ';
-
-        // Init
-        updateLoveUI();
+        document.getElementById('viewCount').innerHTML = '👁️ <span>' + views + '</span>';
         renderComments();
     </script>
 </body>
