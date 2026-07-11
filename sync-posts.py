@@ -145,12 +145,6 @@ def generate_post_html(post):
     <title>{post["title"]} - 𝐖𝐡𝐢𝐬𝐩𝐞𝐫 𝐎𝐟 𝐖𝐨𝐫𝐝𝐬 - 𝐦𝐦 𝐄𝐩𝐮𝐛</title>
     <style>
         @font-face {{
-            font-family: 'A10YoeShin';
-            src: url('assets/subset-A10_YoeShin-Regular.woff2') format('woff2');
-            font-display: swap;
-        }}
-
-        @font-face {{
             font-family: 'PyidaungsuMM';
             src: url('https://raw.githubusercontent.com/WoWepub/Font/main/subset-Pyidaungsu.woff2') format('woff2');
             font-display: swap;
@@ -159,7 +153,7 @@ def generate_post_html(post):
         * {{ margin: 0; padding: 0; box-sizing: border-box; }}
 
         body {{
-            font-family: 'A10YoeShin', 'PyidaungsuMM', sans-serif;
+            font-family: 'PyidaungsuMM', sans-serif;
             background: linear-gradient(135deg, #0d0b1e 0%, #151328 100%);
             color: #e0e0e0;
             line-height: 2;
