@@ -526,7 +526,7 @@ def generate_post_html(post):
             return (current || 0) + 1;
         }});
         viewRef.on('value', function(snap) {{
-            document.getElementById('viewCount').innerHTML = '\ud83d\udc41\ufe0f <span>' + (snap.val() || 0) + '</span>';
+            document.getElementById('viewCount').innerHTML = '👁️ <span>' + (snap.val() || 0) + '</span>';
         }});
 
         var commentsRef = db.ref('posts/' + postSlug + '/comments');
