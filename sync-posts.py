@@ -158,6 +158,22 @@ def clean_text(text):
     text = re.sub(r"""\n """, "\n", text)
     return text.strip()
 
+def build_preview_description(text, limit=140):
+    """Build a short preview snippet for social sharing."""
+    text = re.sub(r'\s+', ' ', text).strip()
+    if not text:
+        return 'စာအုပ်အညွှန်းများစုစည်းမှု'
+    for separator in ['။', '.', '!', '?']:
+        if separator in text:
+            first_sentence = text.split(separator, 1)[0].strip()
+            if len(first_sentence) >= 40:
+                text = first_sentence + separator
+                break
+    if len(text) > limit:
+        text = text[:limit].rsplit(' ', 1)[0].rstrip()
+        text = text + '...'
+    return text
+
 def generate_post_html(post):
     """Generate a static HTML file for a blog post."""
     image_html = ''
@@ -166,7 +182,7 @@ def generate_post_html(post):
     preview_image = post['image'] or 'https://blogger.googleusercontent.com/img/a/AVvXsEiz-kPEUW-4PhZ-CEATRgvFzmaJfZ6mL3BQ8kXuRmav6CborPuAv7wTt4FaWY9pLZoluFx6_BqZMdtmsbnNswQleuyADOrI0l4t5hEGhzlFO4Vn9zvL20KrYPiyoGA8IBS52gKKsXx_TD5AtEj9Nmr7mWLLNgIdB1SkFZiWxOz_XMGiov2BBDi9tm9zhIA=rw'
     page_url = f'https://whispermmepub.github.io/Review/{post["link"]}'
     meta_title = html_lib.escape(f'{post["title"]} - 𝐖𝐡𝐢𝐬𝐩𝐞𝐫 𝐎𝐟 𝐖𝐨𝐫𝐝𝐬 - 𝐦𝐦 𝐄𝐩𝐮𝐛')
-    meta_description = html_lib.escape(re.sub(r'\s+', ' ', re.sub(r'<[^>]+>', '', post.get("excerpt", ""))).strip())
+    meta_description = html_lib.escape(build_preview_description(re.sub(r'<[^>]+>', '', post.get("excerpt", ""))))
 
     html = f'''<!DOCTYPE html>
 <html lang="my">
