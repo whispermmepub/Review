@@ -155,7 +155,14 @@
             .post-body { padding: 20px; }
         }
 
-        /* Love Button */
+        /* View Count & Love Button */
+        .view-count {
+            text-align: center;
+            padding: 15px 0 0;
+            color: #888;
+            font-size: 0.85rem;
+        }
+        .view-count span { color: #4a9eff; font-weight: 700; }
         .love-section {
             text-align: center;
             padding: 30px 0;
@@ -166,8 +173,8 @@
             background: none;
             border: 2px solid #e74c3c;
             color: #e74c3c;
-            font-size: 1.2rem;
-            padding: 10px 30px;
+            font-size: 0.9rem;
+            padding: 8px 20px;
             border-radius: 30px;
             cursor: pointer;
             transition: all 0.3s;
@@ -334,8 +341,10 @@
 
             <a href="../index.html" class="back-link">← ပင်မစာမျက်နှာသို့</a>
 
+            <div class="view-count" id="viewCount"></div>
+
             <div class="love-section">
-                <button class="love-btn" onclick="toggleLove()">❤️ ချစ်တယ်</button>
+                <button class="love-btn" onclick="toggleLove()">❤️ Like</button>
                 <div class="love-count" id="loveCount"></div>
             </div>
 
@@ -406,6 +415,12 @@
             if (window.scrollY > 300) { btn.style.display = 'flex'; } else { btn.style.display = 'none'; }
         });
         function scrollToTop() { window.scrollTo({ top: 0, behavior: 'smooth' }); }
+
+        // View Count
+        var viewKey = 'views_' + postSlug;
+        var views = parseInt(localStorage.getItem(viewKey) || '0') + 1;
+        localStorage.setItem(viewKey, views);
+        document.getElementById('viewCount').innerHTML = '👁️ <span>' + views + '</span> ဦး ဖတ်ရှုပြီးပါပြီ';
 
         // Init
         updateLoveUI();
