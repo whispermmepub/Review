@@ -665,6 +665,11 @@ def main():
         except:
             pass
 
+    # Clean excerpts — remove newlines that break inline JSON
+    for p in posts_json:
+        if p.get('excerpt'):
+            p['excerpt'] = p['excerpt'].replace('\n', ' ').replace('\r', '')
+
     with open(posts_json_path, 'w', encoding='utf-8') as f:
         json.dump(posts_json, f, ensure_ascii=False, indent=2)
     print(f"Saved posts.json ({len(posts_json)} posts)")
