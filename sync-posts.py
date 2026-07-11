@@ -18,8 +18,20 @@ from urllib.parse import quote
 
 SCRIPT_DIR = os.path.dirname(os.path.abspath(__file__))
 REPO_DIR = SCRIPT_DIR
-FEED_URL = 'https://whisper1of.blogspot.com/feeds/posts/default?alt=rss&max-results=100'
-BLOG_URL = 'https://whisper1of.blogspot.com'
+# Multiple blog sources - add more feeds here
+FEEDS = [
+    {
+        'feed_url': 'https://whisper1of.blogspot.com/feeds/posts/default?alt=rss&max-results=100',
+        'blog_url': 'https://whisper1of.blogspot.com',
+        'name': 'Whisper Of Words',
+    },
+    # ဘလော့အသစ်ထည့်ချင်ရင် ဒီမှာ ထည့်ပါ:
+    # {
+    #     'feed_url': 'https://your-blog.blogspot.com/feeds/posts/default?alt=rss&max-results=100',
+    #     'blog_url': 'https://your-blog.blogspot.com',
+    #     'name': 'Blog Name',
+    # },
+]
 
 # Known non-review posts to exclude (catalogs, lists)
 EXCLUDE_TITLES = [
@@ -293,80 +305,89 @@ def main():
     import subprocess
 
     print("=== Sync Blog Posts ===")
-    print("Fetching Blogspot RSS feed...")
-
-    feed_path = os.path.join('/tmp', 'feeds.xml')
-    result = subprocess.run(['curl', '-s', '-o', feed_path, '-L', '--max-time', '30', FEED_URL],
-                            capture_output=True, text=True)
-    if result.returncode != 0:
-        print(f"ERROR: Failed to fetch feed: {result.stderr}")
-        exit(1)
-
-    if not os.path.exists(feed_path) or os.path.getsize(feed_path) < 1000:
-        print("ERROR: Feed file is too small or missing")
-        exit(1)
-
-    print(f"Feed downloaded ({os.path.getsize(feed_path)} bytes)")
-
-    tree = ET.parse(feed_path)
-    root = tree.getroot()
-    channel = root.find('channel')
-    items = channel.findall('item')
-
-    print(f"Found {len(items)} total posts in feed")
 
     posts = []
-    for item in items:
-        title = item.find('title').text or ''
-        link = item.find('link').text or ''
-        pub_date = item.find('pubDate').text or ''
-        description = item.find('description').text or ''
+    seen_slugs = set()
 
-        title = re.sub(r'&\w+;', '', title).strip()
+    for feed_info in FEEDS:
+        feed_url = feed_info['feed_url']
+        blog_name = feed_info['name']
+        print(f"\nFetching: {blog_name}...")
 
-        if not is_book_review(title, description, clean_text(description)):
-            print(f"  SKIP: {title[:50]}")
+        feed_path = os.path.join('/tmp', f'feeds_{blog_name.replace(" ", "_")}.xml')
+        result = subprocess.run(['curl', '-s', '-o', feed_path, '-L', '--max-time', '30', feed_url],
+                                capture_output=True, text=True)
+        if result.returncode != 0:
+            print(f"  ERROR: Failed to fetch feed: {result.stderr}")
             continue
 
-        image_url = extract_image(description)
-        reviewer = extract_reviewer(description)
-        clean_desc = clean_text(description)
-        excerpt = clean_desc[:200] + "..." if len(clean_desc) > 200 else clean_desc
+        if not os.path.exists(feed_path) or os.path.getsize(feed_path) < 1000:
+            print(f"  ERROR: Feed file is too small or missing")
+            continue
 
-        try:
-            dt = datetime.strptime(pub_date, '%a, %d %b %Y %H:%M:%S %z')
-            date_str = dt.strftime('%Y-%m-%d')
-        except:
-            date_str = pub_date
+        print(f"  Feed downloaded ({os.path.getsize(feed_path)} bytes)")
 
-        slug = get_slug_from_title(title)
+        tree = ET.parse(feed_path)
+        root = tree.getroot()
+        channel = root.find('channel')
+        items = channel.findall('item')
 
-        # Build content paragraphs
-        content_blocks = re.split(r'\n+', clean_desc)
-        content_html = ''
-        for block in content_blocks:
-            block = block.strip()
-            if len(block) > 10:
-                # Remove extra spaces inside the block
-                block = re.sub(r'\s+', ' ', block)
-                content_html += f'            <p>{block}</p>\n'
+        print(f"  Found {len(items)} total posts in feed")
 
-        post = {
-            'id': slug,
-            'title': title,
-            'date': date_str,
-            'category': 'စာအုပ်အညွှန်း',
-            'author': reviewer,
-            'image': image_url,
-            'excerpt': excerpt,
-            'link': f"{slug}/index.html",
-            'source_url': link,
-            'content': content_html
-        }
-        posts.append(post)
-        print(f"  OK: {slug} -> {title[:60]}")
+        for item in items:
+            title = item.find('title').text or ''
+            link = item.find('link').text or ''
+            pub_date = item.find('pubDate').text or ''
+            description = item.find('description').text or ''
 
-    print(f"\nIdentified {len(posts)} book review posts")
+            title = re.sub(r'&\w+;', '', title).strip()
+
+            if not is_book_review(title, description, clean_text(description)):
+                print(f"  SKIP: {title[:50]}")
+                continue
+
+            slug = get_slug_from_title(title)
+            if slug in seen_slugs:
+                print(f"  DUPLICATE: {title[:50]} (already from another blog)")
+                continue
+            seen_slugs.add(slug)
+
+            image_url = extract_image(description)
+            reviewer = extract_reviewer(description)
+            clean_desc = clean_text(description)
+            excerpt = clean_desc[:200] + "..." if len(clean_desc) > 200 else clean_desc
+
+            try:
+                dt = datetime.strptime(pub_date, '%a, %d %b %Y %H:%M:%S %z')
+                date_str = dt.strftime('%Y-%m-%d')
+            except:
+                date_str = pub_date
+
+            # Build content paragraphs
+            content_blocks = re.split(r'\n+', clean_desc)
+            content_html = ''
+            for block in content_blocks:
+                block = block.strip()
+                if len(block) > 10:
+                    block = re.sub(r'\s+', ' ', block)
+                    content_html += f'            <p>{block}</p>\n'
+
+            post = {
+                'id': slug,
+                'title': title,
+                'date': date_str,
+                'category': 'စာအုပ်အညွှန်း',
+                'author': reviewer,
+                'image': image_url,
+                'excerpt': excerpt,
+                'link': f"{slug}/index.html",
+                'source_url': link,
+                'content': content_html
+            }
+            posts.append(post)
+            print(f"  OK: {slug} -> {title[:60]}")
+
+    print(f"\nIdentified {len(posts)} book review posts (from {len(FEEDS)} blog(s))")
 
     # Save posts.json - preserve manual posts not from feed
     posts_json = []
