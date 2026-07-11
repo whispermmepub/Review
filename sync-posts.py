@@ -140,7 +140,7 @@ def generate_post_html(post):
             background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
             color: #2c3e50;
             line-height: 2;
-            padding: 20px;
+            padding: 10px;
         }}
 
         .container {{
@@ -180,7 +180,7 @@ def generate_post_html(post):
         }}
 
         .post-body {{
-            padding: 40px 50px;
+            padding: 40px 60px;
         }}
 
         .post-body p {{
@@ -214,7 +214,7 @@ def generate_post_html(post):
 
         @media (max-width: 600px) {{
             header h1 {{ font-size: 1.4rem; }}
-            .post-body {{ padding: 25px; }}
+            .post-body {{ padding: 20px; }}
         }}
     </style>
 </head>
