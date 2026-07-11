@@ -115,22 +115,37 @@ def is_book_review(title, description, excerpt):
         return False
     return True
 
-def bold_quotes(text):
-    """Wrap text inside quotation marks with <strong> tags."""
-    # Match “ ” (curly quotes)
+def bold_quotes_skip_links(text):
+    """Wrap text inside quotation marks with bold, but skip <a> tag content."""
+    # Protect real <a> tags with placeholders
+    links = []
+    def save_link(m):
+        links.append(m.group(0))
+        return f'__LINK{len(links)-1}__'
+    text = re.sub(r'<a [^>]*>.*?</a>', save_link, text, flags=re.DOTALL)
+    # Match curly quotes
     text = re.sub(r'“([^”]+)”', lambda m: '<strong>“' + m.group(1) + '”</strong>', text)
-    # Match " " (straight double quotes) - only multi-char content
+    # Match straight double quotes - only multi-char content
     text = re.sub(r'"([^"]{2,})"', lambda m: '<strong>"' + m.group(1) + '"</strong>', text)
+    # Restore <a> tags
+    for i, link in enumerate(links):
+        text = text.replace(f'__LINK{i}__', link)
     return text
 
 def clean_text(text):
-    """Remove HTML tags and clean up text, preserving paragraph breaks and links."""
+    """Remove HTML tags and clean up text, preserving paragraph breaks and content links."""
     # Convert <br> and <p> to newlines before stripping other tags
     text = re.sub(r"""<br\s*/?>""", "\n", text, flags=re.IGNORECASE)
     text = re.sub(r"""<p[^>]*>""", "\n", text, flags=re.IGNORECASE)
     text = re.sub(r"""</p>""", "\n", text, flags=re.IGNORECASE)
-    # Convert <a> tags to clickable links before stripping other tags
-    text = re.sub(r"""<a[^>]+href=["\']([^"\']+)["\'][^>]*>(.*?)</a>""", r"""<a href="\1" target="_blank" rel="noopener">\2</a>""", text, flags=re.IGNORECASE)
+    # Remove <a> tags wrapping images (blogger image links)
+    text = re.sub(r"""<a[^>]+href=["\'][^"\']*(blogger\.googleusercontent|googleusercontent)[^"\']*>\s*<img[^>]*>\s*</a>""", "", text, flags=re.IGNORECASE|re.DOTALL)
+    # Remove <a> tags wrapping just images with no text
+    text = re.sub(r"""<a[^>]+>\s*<img[^>]*>\s*</a>""", "", text, flags=re.IGNORECASE|re.DOTALL)
+    # Remove <a name= anchors
+    text = re.sub(r"""<a\s+name=["\'][^"\']*["\']\s*>\s*</a>""", "", text, flags=re.IGNORECASE)
+    # Convert real <a> tags to clickable links
+    text = re.sub(r"""<a[^>]+href=["\']([^"\']+)["\'][^>]*>(.*?)</a>""", r"""<a href="\1" target="_blank" rel="noopener">\2</a>""", text, flags=re.IGNORECASE|re.DOTALL)
     # Strip remaining HTML tags except <a> links
     text = re.sub(r"""</?((?!a|/a)[^>]+)>""", "", text)
     text = re.sub(r"""&nbsp;""", " ", text)
@@ -397,7 +412,9 @@ def main():
 
             image_url = extract_image(description)
             reviewer = extract_reviewer(description, blog_name)
-            clean_desc = bold_quotes(clean_text(description))
+            clean_desc = clean_text(description)
+            # Bold quotes but skip <a> tags
+            clean_desc = bold_quotes_skip_links(clean_desc)
             excerpt = clean_desc[:200] + "..." if len(clean_desc) > 200 else clean_desc
 
             try:
