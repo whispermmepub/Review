@@ -25,12 +25,11 @@ FEEDS = [
         'blog_url': 'https://whisper1of.blogspot.com',
         'name': 'Whisper Of Words',
     },
-    # ဘလော့အသစ်ထည့်ချင်ရင် ဒီမှာ ထည့်ပါ:
-    # {
-    #     'feed_url': 'https://your-blog.blogspot.com/feeds/posts/default?alt=rss&max-results=100',
-    #     'blog_url': 'https://your-blog.blogspot.com',
-    #     'name': 'Blog Name',
-    # },
+    {
+        'feed_url': 'https://youthsbookreflections.blogspot.com/feeds/posts/default?alt=rss&max-results=100',
+        'blog_url': 'https://youthsbookreflections.blogspot.com',
+        'name': 'Youths Book Reflections',
+    },
 ]
 
 # Known non-review posts to exclude (catalogs, lists)
