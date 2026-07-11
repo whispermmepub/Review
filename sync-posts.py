@@ -125,7 +125,7 @@ def generate_post_html(post):
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>{post["title"]} - Whisper Of Words Book Reviews</title>
+    <title>{post["title"]} - 𝐖𝐡𝐢𝐬𝐩𝐞𝐫 𝐎𝐟 𝐖𝐨𝐫𝐝𝐬 - 𝐦𝐦 𝐄𝐩𝐮𝐛</title>
     <style>
         @font-face {{
             font-family: 'PyidaungsuMM';
