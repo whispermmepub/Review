@@ -139,12 +139,12 @@ def generate_post_html(post):
             font-family: 'PyidaungsuMM', sans-serif;
             background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
             color: #2c3e50;
-            line-height: 1.8;
+            line-height: 2;
             padding: 20px;
         }}
 
         .container {{
-            max-width: 1100px;
+            max-width: 1400px;
             margin: 0 auto;
             background: white;
             border-radius: 15px;
@@ -180,15 +180,16 @@ def generate_post_html(post):
         }}
 
         .post-body {{
-            padding: 40px 35px;
+            padding: 40px 50px;
         }}
 
         .post-body p {{
-            margin-bottom: 20px;
+            margin-bottom: 1.5em;
             text-align: justify;
-            letter-spacing: 0.01em;
-            word-spacing: 0.01em;
-            font-size: 1.05rem;
+            letter-spacing: 0.02em;
+            word-spacing: 0.02em;
+            font-size: 1.1rem;
+            line-height: 2;
         }}
 
         .back-link {{
@@ -213,7 +214,7 @@ def generate_post_html(post):
 
         @media (max-width: 600px) {{
             header h1 {{ font-size: 1.4rem; }}
-            .post-body {{ padding: 20px; }}
+            .post-body {{ padding: 25px; }}
         }}
     </style>
 </head>
