@@ -154,6 +154,137 @@
             header h1 { font-size: 1.4rem; }
             .post-body { padding: 20px; }
         }
+
+        /* Love Button */
+        .love-section {
+            text-align: center;
+            padding: 30px 0;
+            border-top: 1px solid #333;
+            margin-top: 30px;
+        }
+        .love-btn {
+            background: none;
+            border: 2px solid #e74c3c;
+            color: #e74c3c;
+            font-size: 1.2rem;
+            padding: 10px 30px;
+            border-radius: 30px;
+            cursor: pointer;
+            transition: all 0.3s;
+            font-family: 'PyidaungsuMM', sans-serif;
+        }
+        .love-btn:hover, .love-btn.liked {
+            background: #e74c3c;
+            color: #fff;
+            transform: scale(1.05);
+            box-shadow: 0 4px 15px rgba(231, 76, 60, 0.4);
+        }
+        .love-count {
+            color: #e74c3c;
+            font-size: 0.9rem;
+            margin-top: 8px;
+        }
+
+        /* Comment Section */
+        .comment-section {
+            margin-top: 30px;
+            padding-top: 20px;
+            border-top: 1px solid #333;
+        }
+        .comment-section h3 {
+            color: #ccc;
+            font-size: 1.1rem;
+            margin-bottom: 15px;
+        }
+        .comment-form {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+        .comment-form input, .comment-form textarea {
+            width: 100%;
+            padding: 12px 15px;
+            background: #151328;
+            border: 1px solid #333;
+            border-radius: 8px;
+            color: #e0e0e0;
+            font-family: 'PyidaungsuMM', sans-serif;
+            font-size: 0.95rem;
+            outline: none;
+            transition: border-color 0.3s;
+        }
+        .comment-form input:focus, .comment-form textarea:focus {
+            border-color: #4a9eff;
+        }
+        .comment-form textarea {
+            min-height: 80px;
+            resize: vertical;
+        }
+        .comment-submit {
+            background: #4a9eff;
+            color: #fff;
+            border: none;
+            padding: 10px 25px;
+            border-radius: 8px;
+            cursor: pointer;
+            font-family: 'PyidaungsuMM', sans-serif;
+            font-size: 0.95rem;
+            font-weight: 600;
+            transition: background 0.2s;
+            align-self: flex-start;
+        }
+        .comment-submit:hover { background: #357abd; }
+        .comment-list {
+            margin-top: 20px;
+        }
+        .comment-item {
+            background: #151328;
+            border-radius: 8px;
+            padding: 12px 15px;
+            margin-bottom: 10px;
+            border-left: 3px solid #4a9eff;
+        }
+        .comment-author {
+            color: #4a9eff;
+            font-weight: 700;
+            font-size: 0.9rem;
+        }
+        .comment-date {
+            color: #666;
+            font-size: 0.8rem;
+            margin-left: 10px;
+        }
+        .comment-text {
+            color: #ccc;
+            margin-top: 5px;
+            line-height: 1.6;
+            font-size: 0.95rem;
+        }
+
+        /* Back to Top */
+        .back-to-top {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            background: #4a9eff;
+            color: #fff;
+            border: none;
+            width: 45px;
+            height: 45px;
+            border-radius: 50%;
+            font-size: 1.4rem;
+            cursor: pointer;
+            display: none;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 4px 12px rgba(74, 158, 255, 0.4);
+            transition: all 0.3s;
+            z-index: 999;
+        }
+        .back-to-top:hover {
+            background: #357abd;
+            transform: translateY(-3px);
+        }
     </style>
 </head>
 <body>
@@ -204,7 +335,83 @@
             </div>
 
             <a href="../index.html" class="back-link">← ပင်မစာမျက်နှာသို့</a>
+
+            <div class="love-section">
+                <button class="love-btn" onclick="toggleLove()">❤️ ချစ်တယ်</button>
+                <div class="love-count" id="loveCount"></div>
+            </div>
+
+            <div class="comment-section">
+                <h3>💬 မှတ်ချက်ရေးရန်</h3>
+                <div class="comment-form">
+                    <input type="text" id="commentName" placeholder="သင့်နာမည်">
+                    <textarea id="commentText" placeholder="မှတ်ချက်ရေးပါ..."></textarea>
+                    <button class="comment-submit" onclick="addComment()">ပေးပို့ရန်</button>
+                </div>
+                <div class="comment-list" id="commentList"></div>
+            </div>
         </div>
     </div>
+
+    <button class="back-to-top" id="backToTop" onclick="scrollToTop()">↑</button>
+
+    <script>
+        var postSlug = 'daughter-of-the-opposite';
+
+        // Love button
+        function toggleLove() {
+            var liked = localStorage.getItem('love_' + postSlug);
+            var count = parseInt(localStorage.getItem('love_count_' + postSlug) || '0');
+            if (liked) {
+                localStorage.removeItem('love_' + postSlug);
+                count = Math.max(0, count - 1);
+            } else {
+                localStorage.setItem('love_' + postSlug, '1');
+                count++;
+            }
+            localStorage.setItem('love_count_' + postSlug, count);
+            updateLoveUI();
+        }
+        function updateLoveUI() {
+            var liked = localStorage.getItem('love_' + postSlug);
+            var count = localStorage.getItem('love_count_' + postSlug) || '0';
+            var btn = document.querySelector('.love-btn');
+            var label = document.getElementById('loveCount');
+            if (liked) { btn.classList.add('liked'); } else { btn.classList.remove('liked'); }
+            label.textContent = count + ' ဦး ချစ်ကြတယ်';
+        }
+
+        // Comments
+        function addComment() {
+            var name = document.getElementById('commentName').value.trim();
+            var text = document.getElementById('commentText').value.trim();
+            if (!name || !text) { alert('နာမည်နဲ့ မှတ်ချက် ဖြည့်ပါ'); return; }
+            var comments = JSON.parse(localStorage.getItem('comments_' + postSlug) || '[]');
+            comments.push({ name: name, text: text, date: new Date().toLocaleString('my-MM') });
+            localStorage.setItem('comments_' + postSlug, JSON.stringify(comments));
+            document.getElementById('commentName').value = '';
+            document.getElementById('commentText').value = '';
+            renderComments();
+        }
+        function renderComments() {
+            var comments = JSON.parse(localStorage.getItem('comments_' + postSlug) || '[]');
+            var list = document.getElementById('commentList');
+            if (comments.length === 0) { list.innerHTML = ''; return; }
+            list.innerHTML = comments.map(function(c) {
+                return '<div class="comment-item"><span class="comment-author">' + c.name + '</span><span class="comment-date">' + c.date + '</span><div class="comment-text">' + c.text + '</div></div>';
+            }).reverse().join('');
+        }
+
+        // Back to top
+        window.addEventListener('scroll', function() {
+            var btn = document.getElementById('backToTop');
+            if (window.scrollY > 300) { btn.style.display = 'flex'; } else { btn.style.display = 'none'; }
+        });
+        function scrollToTop() { window.scrollTo({ top: 0, behavior: 'smooth' }); }
+
+        // Init
+        updateLoveUI();
+        renderComments();
+    </script>
 </body>
 </html>
