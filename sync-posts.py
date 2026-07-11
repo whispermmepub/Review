@@ -88,8 +88,11 @@ def extract_image(description):
         return img_match.group(1)
     return ''
 
-def extract_reviewer(description):
+def extract_reviewer(description, blog_name=''):
     """Extract reviewer name from the post content."""
+    # For Youths Book Reflections blog, always use blog name as reviewer
+    if blog_name == 'Youths Book Reflections':
+        return blog_name
     patterns = [
         r'Review\s+By\s+([^\n<]+)',
         r'ပြန်လည်သုံးသပ်သူ[.:]?\s*([^\n<]+)',
@@ -98,6 +101,9 @@ def extract_reviewer(description):
         match = re.search(pattern, description, re.IGNORECASE)
         if match:
             return match.group(1).strip()
+    # Default: use blog name if available
+    if blog_name:
+        return blog_name
     return 'Whisper Of Words'
 
 def is_book_review(title, description, excerpt):
@@ -352,7 +358,7 @@ def main():
             seen_slugs.add(slug)
 
             image_url = extract_image(description)
-            reviewer = extract_reviewer(description)
+            reviewer = extract_reviewer(description, blog_name)
             clean_desc = clean_text(description)
             excerpt = clean_desc[:200] + "..." if len(clean_desc) > 200 else clean_desc
 
