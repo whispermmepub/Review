@@ -179,13 +179,6 @@
         }
 
         /* View Count & Love Button */
-        .view-count {
-            text-align: center;
-            padding: 15px 0 0;
-            color: #888;
-            font-size: 0.85rem;
-        }
-        .view-count span { color: #4a9eff; font-weight: 700; }
         .love-section {
             text-align: center;
             padding: 30px 0;
@@ -258,21 +251,6 @@
             margin-top: 8px;
         }
 
-        /* Comment Section */
-        .comment-section {
-            margin-top: 30px;
-            padding-top: 20px;
-            border-top: 1px solid #333;
-        }
-        .comment-section h3 {
-            color: #ccc;
-            font-size: 1.1rem;
-            margin-bottom: 15px;
-        }
-        .giscus {
-            margin-top: 12px;
-        }
-
         /* Back to Top */
         .back-to-top {
             position: fixed;
@@ -336,8 +314,6 @@
 
             <a href="../index.html" class="back-link">← ပင်မစာမျက်နှာသို့</a>
 
-            <div class="view-count" id="viewCount"></div>
-
             <div class="love-section">
                 <a href="https://t.me/+q4jx63Zt5LBiMmI1" target="_blank" class="telegram-btn">
                     <svg class="telegram-icon" viewBox="0 0 24 24"><path d="M11.944 0A12 12 0 0 0 0 12a12 12 0 0 0 12 12 12 12 0 0 0 12-12A12 12 0 0 0 12 0a12 12 0 0 0-.056 0zm4.962 7.224c.1-.002.321.023.465.14a.506.506 0 0 1 .171.325c.016.093.036.306.02.472-.18 1.898-.962 6.502-1.36 8.627-.168.9-.499 1.201-.82 1.23-.696.065-1.225-.46-1.9-.902-1.056-.693-1.653-1.124-2.678-1.8-1.185-.78-.417-1.21.258-1.91.177-.184 3.247-2.977 3.307-3.23.007-.032.014-.15-.056-.212s-.174-.041-.249-.024c-.106.024-1.793 1.14-5.061 3.345-.479.33-.913.49-1.302.48-.428-.008-1.252-.241-1.865-.44-.752-.245-1.349-.374-1.297-.789.027-.216.325-.437.893-.663 3.498-1.524 5.83-2.529 6.998-3.014 3.332-1.386 4.025-1.627 4.476-1.635z"/></svg>
@@ -348,31 +324,11 @@
             <div class="help-blink">
                 <a href="https://t.me/+q4jx63Zt5LBiMmI1" target="_blank">🔔 အကူအညီရယူရန် Discussion Group သို့ ဝင်ရောက်ပါ</a>
             </div>
-
-            <div class="comment-section">
-                <h3>💬 မှတ်ချက်များ</h3>
-                <div class="giscus"></div>
-            </div>
         </div>
     </div>
 
     <button class="back-to-top" id="backToTop" onclick="scrollToTop()">↑</button>
 
-    <script src="https://giscus.app/client.js"
-            data-repo="whispermmepub/Review"
-            data-repo-id="R_kgDOTUX16Q"
-            data-category="Announcements"
-            data-category-id="DIC_kwDOTUX16c4DA9__"
-            data-mapping="pathname"
-            data-strict="0"
-            data-reactions-enabled="0"
-            data-emit-metadata="0"
-            data-input-position="bottom"
-            data-theme="preferred_color_scheme"
-            data-lang="en"
-            crossorigin="anonymous"
-            async>
-    </script>
     <script>
         var postSlug = 'မနနငအဃတ-တငတယဘသပန';
 
@@ -382,10 +338,6 @@
         });
         function scrollToTop() { window.scrollTo({ top: 0, behavior: 'smooth' }); }
 
-        var viewKey = 'views_' + postSlug;
-        var views = parseInt(localStorage.getItem(viewKey) || '0') + 1;
-        localStorage.setItem(viewKey, views);
-        document.getElementById('viewCount').innerHTML = '👁️ <span>' + views + '</span>';
     </script>
 </body>
 </html>
