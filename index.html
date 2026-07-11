@@ -33,12 +33,13 @@
         }
 
         header h1 { color: #d84315; font-size: 2.2rem; margin-bottom: 10px; }
+        header p { color: #666; font-size: 1.1rem; }
 
         .container {
             max-width: 1200px;
             margin: 0 auto;
             display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
             gap: 20px;
         }
 
@@ -55,15 +56,64 @@
 
         .post-card:hover { transform: translateY(-5px); }
 
-        .card-img { width: 100%; height: 180px; object-fit: cover; }
+        .card-img {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+            background: #f5f5f5;
+        }
+
+        .card-img-placeholder {
+            width: 100%;
+            height: 200px;
+            background: linear-gradient(135deg, #d84315, #bf360c);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 1.5rem;
+        }
 
         .card-content { padding: 20px; }
 
-        .card-title { font-size: 1.2rem; font-weight: 700; margin-bottom: 10px; color: #2c3e50; }
+        .card-title {
+            font-size: 1.15rem;
+            font-weight: 700;
+            margin-bottom: 8px;
+            color: #2c3e50;
+            line-height: 1.5;
+        }
 
-        .card-excerpt { font-size: 0.95rem; color: #65676b; text-align: justify; line-height: 1.6; }
+        .card-meta {
+            font-size: 0.85rem;
+            color: #d84315;
+            margin-bottom: 10px;
+        }
+
+        .card-excerpt {
+            font-size: 0.95rem;
+            color: #65676b;
+            text-align: justify;
+            line-height: 1.6;
+            display: -webkit-box;
+            -webkit-line-clamp: 3;
+            -webkit-box-orient: vertical;
+            overflow: hidden;
+        }
+
+        .loading {
+            text-align: center;
+            padding: 60px;
+            color: #999;
+            font-size: 1.2rem;
+        }
 
         footer { text-align: center; padding: 40px; color: #666; }
+
+        @media (max-width: 600px) {
+            .container { grid-template-columns: 1fr; }
+            header h1 { font-size: 1.5rem; }
+        }
     </style>
 </head>
 <body>
@@ -72,28 +122,58 @@
         <p>📚 စာအုပ်အညွှန်းများနှင့် အဆောင်းပုံများ စုစည်းမှု</p>
     </header>
 
-    <div class="container">
-        <!-- ပို့စ် ၁ -->
-        <a href="min-lu-laughing-collection/" class="post-card">
-            <img src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEjdWPKrAwH8iDxgw2qjhZejGm2mOphoBinONcs7kS_lVHkZvMAxdaS3-M0Y91ttlfgCeQTste00xrRdiZMIa9v1Iy_kkpznB5liOaM3ZxrBdk0GdGfOK1bbzVlmi5QwpWF07JpbVF-XRT0d-UDcF-fadLE1VrxhWMITyuzQhRNI03FEUKMVauV_V8_rqRg/s1600-rw/7596cd40-7604-11f1-b47b-57c796812a38.png" class="card-img">
-            <div class="card-content">
-                <div class="card-title">ရယ်မောခြင်းပေါင်းချုပ် - မင်းလူ</div>
-                <div class="card-excerpt">မင်းလူ ၏ ရယ်မောခြင်းပေါင်းချုပ် စာအုပ်အညွှန်း။ စာသားများကို မကြာမီ ဖော်ပြပေးပါမည်။</div>
-            </div>
-        </a>
-
-        <!-- ပထမဆုံး ပို့စ် -->
-        <a href="post-001/" class="post-card">
-            <img src="https://via.placeholder.com/400x200?text=Post+001" class="card-img">
-            <div class="card-content">
-                <div class="card-title">ပထမဆုံး အဆောင်းပုံ</div>
-                <div class="card-excerpt">ဤသည်မှာ ပထမဆုံး စမ်းသပ်တင်ထားသော အဆောင်းပုံ ဖြစ်ပါသည်။ သီးခြား Unique URL ဖြင့် ဖော်ပြပေးထားပါသည်။</div>
-            </div>
-        </a>
+    <div class="container" id="posts-container">
+        <div class="loading">📖 ပို့စ်များကို ရယူနေပါသည်...</div>
     </div>
 
     <footer>
         <p>&copy; 2026 Whisper Of Words Book Reviews</p>
     </footer>
+
+    <script>
+        // Auto-render posts from posts.json
+        async function loadPosts() {
+            try {
+                const response = await fetch('assets/posts.json');
+                const posts = await response.json();
+                renderPosts(posts);
+            } catch (err) {
+                document.getElementById('posts-container').innerHTML =
+                    '<div class="loading">ပို့စ်များကို ဖတ်၍မရပါ။ <a href="https://whisper1of.blogspot.com" target="_blank">Blog မှာ ဖတ်ပါ</a></div>';
+            }
+        }
+
+        function renderPosts(posts) {
+            const container = document.getElementById('posts-container');
+            container.innerHTML = '';
+
+            posts.forEach(post => {
+                const card = document.createElement('a');
+                card.className = 'post-card';
+                card.href = post.link;
+
+                // Image or placeholder
+                let imgHtml = '';
+                if (post.image) {
+                    imgHtml = `<img src="${post.image}" class="card-img" alt="${post.title}" loading="lazy">`;
+                } else {
+                    imgHtml = `<div class="card-img-placeholder">📖</div>`;
+                }
+
+                card.innerHTML = `
+                    ${imgHtml}
+                    <div class="card-content">
+                        <div class="card-meta">📅 ${post.date} • ✍️ ${post.author}</div>
+                        <div class="card-title">${post.title}</div>
+                        <div class="card-excerpt">${post.excerpt}</div>
+                    </div>
+                `;
+
+                container.appendChild(card);
+            });
+        }
+
+        loadPosts();
+    </script>
 </body>
 </html>
