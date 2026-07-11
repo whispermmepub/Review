@@ -185,11 +185,11 @@ def generate_post_html(post):
 
         .post-body p {{
             margin-bottom: 1.5em;
-            text-align: justify;
-            letter-spacing: 0.02em;
-            word-spacing: 0.02em;
-            font-size: 1.02rem;
-            line-height: 2;
+            text-align: left;
+            letter-spacing: 0.03em;
+            word-spacing: 0.03em;
+            font-size: 0.95rem;
+            line-height: 2.1;
         }}
 
         .back-link {{
