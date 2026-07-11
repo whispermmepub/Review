@@ -195,7 +195,7 @@ def generate_post_html(post):
         header {{
             background: linear-gradient(135deg, #d84315 0%, #bf360c 100%);
             color: white;
-            padding: 40px 30px;
+            padding: 30px 12px;
             text-align: center;
         }}
 
@@ -220,7 +220,7 @@ def generate_post_html(post):
         }}
 
         .post-body {{
-            padding: 40px 60px;
+            padding: 30px 12px;
             text-align: left;
             word-break: keep-all;
             overflow-wrap: break-word;
