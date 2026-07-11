@@ -183,15 +183,12 @@ def generate_post_html(post):
             background: linear-gradient(135deg, #0d0b1e 0%, #151328 100%);
             color: #e0e0e0;
             line-height: 2;
-            padding: 10px;
+            padding: 0;
         }}
 
         .container {{
-            max-width: 1900px;
-            margin: 0 auto;
+            width: 100%;
             background: #1a1830;
-            border-radius: 15px;
-            box-shadow: 0 10px 40px rgba(0,0,0,0.4);
             overflow: hidden;
         }}
 
@@ -223,7 +220,7 @@ def generate_post_html(post):
         }}
 
         .post-body {{
-            padding: 40px 40px;
+            padding: 40px 60px;
             text-align: left;
             word-break: keep-all;
             overflow-wrap: break-word;
