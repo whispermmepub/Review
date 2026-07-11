@@ -4,10 +4,14 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>{{POST_TITLE}} - 𝐖𝐡𝐢𝐬𝐩𝐞𝐫 𝐎𝐟 𝐖𝐨𝐫𝐝𝐬 - 𝐦𝐦 𝐄𝐩𝐮𝐛</title>
+    <link rel="preconnect" href="https://raw.githubusercontent.com" crossorigin>
+    <link rel="preconnect" href="https://blogger.googleusercontent.com" crossorigin>
+    <link rel="preload" href="../assets/subset-A10_YoeShin-Regular.woff2" as="font" type="font/woff2" crossorigin>
     <style>
         @font-face {
             font-family: 'PyidaungsuMM';
-            src: url('https://raw.githubusercontent.com/WoWepub/Font/main/subset-Pyidaungsu.woff2') format('woff2');
+            src: url('../assets/subset-A10_YoeShin-Regular.woff2') format('woff2'),
+             url('https://raw.githubusercontent.com/WoWepub/Font/main/subset-Pyidaungsu.woff2') format('woff2');
             font-display: swap;
         }
 
@@ -150,7 +154,7 @@
             </div>
         </header>
 
-        <img src="{{POST_IMAGE}}" alt="{{POST_TITLE}}" class="post-image">
+        <img src="{{POST_IMAGE}}" alt="{{POST_TITLE}}" class="post-image" loading="eager" fetchpriority="high">
 
         <div class="post-body">
             <div class="post-content">
@@ -165,5 +169,11 @@
             <a href="../index.html" class="back-link">← ပင်မစာမျက်နှာသို့</a>
         </div>
     </div>
+
+    <script>
+        if ('serviceWorker' in navigator) {
+            navigator.serviceWorker.register('../sw.js').catch(() => {});
+        }
+    </script>
 </body>
 </html>
