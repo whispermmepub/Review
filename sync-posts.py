@@ -264,11 +264,18 @@ def generate_post_html(post):
             display: inline-block;
             margin-top: 30px;
             padding: 10px 20px;
-            background: #ff8a65;
-            color: #0d0b1e;
+            background: #1a1830;
+            color: #4a9eff;
             text-decoration: none;
             border-radius: 5px;
-            font-weight: 600;
+            font-weight: 700;
+            border: 1px solid #4a9eff;
+            transition: all 0.2s ease;
+        }}
+
+        .back-link:hover {{
+            background: #4a9eff;
+            color: #fff;
         }}
 
         .reviewer-credit {{
