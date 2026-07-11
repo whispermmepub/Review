@@ -183,6 +183,7 @@ def generate_post_html(post):
     page_url = f'https://whispermmepub.github.io/Review/{post["link"]}'
     meta_title = html_lib.escape(f'{post["title"]} - 𝐖𝐡𝐢𝐬𝐩𝐞𝐫 𝐎𝐟 𝐖𝐨𝐫𝐝𝐬 - 𝐦𝐦 𝐄𝐩𝐮𝐛')
     meta_description = html_lib.escape(build_preview_description(re.sub(r'<[^>]+>', '', post.get("excerpt", ""))))
+    preview_image_html = html_lib.escape(preview_image, quote=True)
 
     html = f'''<!DOCTYPE html>
 <html lang="my">
@@ -198,15 +199,21 @@ def generate_post_html(post):
     <meta property="og:url" content="{page_url}">
     <meta property="og:site_name" content="Whisper Of Words - mm Epub">
     <meta property="og:image" content="{preview_image}">
+    <meta property="og:image:url" content="{preview_image_html}">
     <meta property="og:image:secure_url" content="{preview_image}">
     <meta property="og:image:type" content="image/jpeg">
     <meta property="og:image:width" content="1200">
     <meta property="og:image:height" content="630">
     <meta property="og:image:alt" content="{html_lib.escape(post['title'])}">
+    <meta property="og:locale" content="my_MM">
     <meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:title" content="{meta_title}">
     <meta name="twitter:description" content="{meta_description}">
     <meta name="twitter:image" content="{preview_image}">
+    <meta name="twitter:image:src" content="{preview_image_html}">
+    <meta name="twitter:image:alt" content="{html_lib.escape(post['title'])}">
+    <meta itemprop="image" content="{preview_image_html}">
+    <link rel="image_src" href="{preview_image_html}">
     <style>
         @font-face {{
             font-family: 'PyidaungsuMM';
