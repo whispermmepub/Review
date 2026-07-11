@@ -1,10 +1,8 @@
 name: Sync Blog Posts
 
 on:
-  # Run every 6 hours to check for new blog posts
   schedule:
     - cron: '0 */6 * * *'
-  # Also allow manual trigger
   workflow_dispatch:
 
 jobs:
@@ -44,8 +42,5 @@ jobs:
           git config user.name "GitHub Actions"
           git config user.email "actions@github.com"
           git add -A
-          git commit -m "🔄 Auto-sync: Update blog posts from Blogspot feed
-  
-  Synced on: $(date -u '+%Y-%m-%d %H:%M UTC')
-  Source: https://whisper1of.blogspot.com"
+          git commit -m "Auto-sync: Update blog posts from Blogspot feeds"
           git push origin main
