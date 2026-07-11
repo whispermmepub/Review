@@ -1,0 +1,51 @@
+name: Sync Blog Posts
+
+on:
+  # Run every 6 hours to check for new blog posts
+  schedule:
+    - cron: '0 */6 * * *'
+  # Also allow manual trigger
+  workflow_dispatch:
+
+jobs:
+  sync:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+
+      - name: Run sync script
+        run: python3 sync-posts.py
+
+      - name: Check for changes
+        id: git-check
+        run: |
+          git add -A
+          if git diff --staged --quiet; then
+            echo "changed=false" >> $GITHUB_OUTPUT
+            echo "No changes detected"
+          else
+            echo "changed=true" >> $GITHUB_OUTPUT
+            echo "Changes detected"
+            git status --short
+          fi
+
+      - name: Commit and push changes
+        if: steps.git-check.outputs.changed == 'true'
+        run: |
+          git config user.name "GitHub Actions"
+          git config user.email "actions@github.com"
+          git add -A
+          git commit -m "🔄 Auto-sync: Update blog posts from Blogspot feed
+  
+  Synced on: $(date -u '+%Y-%m-%d %H:%M UTC')
+  Source: https://whisper1of.blogspot.com"
+          git push origin main

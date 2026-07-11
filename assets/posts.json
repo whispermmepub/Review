@@ -1,13 +1,288 @@
 [
   {
-    "id": "post-001",
-    "title": "ပထမဆုံး အဆောင်းပုံ",
-    "date": "2026-07-10",
-    "category": "စာအုပ်",
-    "author": "ပြန်လည်သုံးသပ်သူ",
-    "image": "https://via.placeholder.com/900x500?text=Post+1",
-    "excerpt": "ဤသည်မှာ ပထမဆုံး အဆောင်းပုံ ဖြစ်ပါသည်။ သင်၏ ပုံလင့်ခ်နှင့် စာသားများကို ထည့်သွင်းပြီး ဤနေရာတွင် ပြည့်စုံဖတ်ရှုနိုင်ပါသည်။",
-    "link": "posts/post-001.html",
-    "tags": ["စာအုပ်", "ပြန်လည်သုံးသပ်ခြင်း"]
+    "id": "daughter-of-the-opposite",
+    "title": "ဆန့်ကျင်ဘက်၏ သမီးပျို",
+    "date": "2026-07-03",
+    "category": "စာအုပ်အညွှန်း",
+    "author": "ဝဿန်အေးချမ်း၊ ဆန့်ကျင်ဘက်၏ သမီးပျို၊ ဗန်းမောင်တင်အောင်",
+    "image": "https://blogger.googleusercontent.com/img/a/AVvXsEh7Hf8RSRmKEhoQ4hOwqn1JTjzgLGWIa7AmUqELyhzcyHKdFBtoaf7xQ2gkXGqFZcQIQzapoEncLQCcP-XexEIVav1uwlgyRelb4tjq6exYk5GwL6gxA4vfg1TcQmRh8uKgFKA4zP6cUPh7anUurKk_zYmBqK9EBLI__ZDFMlDAzRJWcj4mPdIzDmqDbxg",
+    "excerpt": "မြန်မာနိုင်ငံကြီး လွတ်လပ်ရေးမရမီက ဒုက္ခမျိုးစုံ ကြုံတွေ့ရပုံအကြောင်းတွေကို ရှေ့လူတွေက အမျိုးမျိုး ပုံဖော်ရေးသားခဲ့ကြလို့ ခုခေတ်လူငယ်တွေ သိခွင့်ရ၊ လေ့လာခွင့်ရတာ ဖြစ်ပါတယ်။ဆရာ ဗန်းမော်တင်အောင်ရဲ့ ဒီစာအု...",
+    "link": "daughter-of-the-opposite/index.html",
+    "tags": [
+      "စာအုပ်အညွှန်း"
+    ]
+  },
+  {
+    "id": "percy-jackson-curse-killer",
+    "title": "ပါစီဂျက်ဆန်နှင့် အိုလံပစ်နတ်ဘုရားများ - ကျိန်စာသင့်ဓား - ကောင်းမြတ်လွန်းသော်",
+    "date": "2026-06-28",
+    "category": "စာအုပ်အညွှန်း",
+    "author": "Whisper Of Words",
+    "image": "https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEgyy9jhuoeUd8_LQ7BD5jCjOWOsl_bgmHPgeukPsssAfypchdkCt_MgxZVBmj1fMBkFxCneGV9ekz3Vb3c2F7mGbSk-4CSAZZt3k-QkTECNd-OII_ytNRw_JLfx9H_FqpEQElKbj-Fuc_rMqRJFB5YS9qpexOQ-DnHCxMRR_EIz9RVrfCR_J6rwoUFQeB8/s16000/IMG_20260628_191325_141.png",
+    "excerpt": "ဂရိဒဏ္ဍာရီထဲက နတ်ဘုရားတွေ အခုခေတ်ကြီးထဲမှာ အမှန်တကယ်ရှိနေရင် ဘာတွေဖြစ်လာမလဲဆိုတဲ့ စိတ်ကူးက အမြဲတမ်း ဆွဲဆောင်မှုရှိပါတယ်။ Rick Riordan ရေးသားတဲ့ \"ပါစီဂျက်ဆန်နင့် အိုလံပစ် နတ်ဘုရားများ\" စာအုပ်တွဲတွေထဲက ...",
+    "link": "percy-jackson-curse-killer/index.html",
+    "tags": [
+      "စာအုပ်အညွှန်း"
+    ]
+  },
+  {
+    "id": "kafka-on-the-shore",
+    "title": "ကမ်းခြေပေါ်မှာ ကက်ဖကာ - မိုးသက်ဟန်",
+    "date": "2026-06-23",
+    "category": "စာအုပ်အညွှန်း",
+    "author": "Whisper Of Words",
+    "image": "https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEg_2LI1axxwIbQHyuH_L9R4MuhDRiVbn5oYsMQzlOcHWZE8O5_KOtFn1iNGy51cD1BXfGwHsGP8JeetCKzVNK2sfS9thq63aRVe-4QZC_rQsuOwl1c0RYWAdWjwhjykDvLhgVK88Wf6-Sk0ajGXXfk_5kPxIBwqQ6iquW3UMqBNV6u52xSn0kkFfc4iH3I/s16000/IMG_20260623_093812_895.png",
+    "excerpt": "“တစ်ခါတလေမှာ ကံကြမ္မာဆိုတာက အသေးစား သဲမုန်တိုင်း တစ်ခုလိုပဲ လမ်းကြောင်းတွေကို ဆက်တိုက် ပြောင်းစေနိုင်တယ်” “မုန်တိုင်းကြီး ပြီးသွားတဲ့အခါမှာ မင်း ဘယ်လို ဖြတ်သန်းခဲ့သလဲ၊ မင်း ဘယ်လိုရှင်သန်အောင် လုပ်ခဲ့သ...",
+    "link": "kafka-on-the-shore/index.html",
+    "tags": [
+      "စာအုပ်အညွှန်း"
+    ]
+  },
+  {
+    "id": "selected-works-albert-camus",
+    "title": "အလ်ဘတ်ကမူး၏အရေးအသားများ - မြင့်သန်း",
+    "date": "2026-06-22",
+    "category": "စာအုပ်အညွှန်း",
+    "author": "Whisper Of Words",
+    "image": "https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEi2bd0pMR-Q0obPwbDJhxaJ8FC9QYvS_If_P6iJpSidvkEkpjgj6wHsLvAshWbqnjUGH4oYBuUcAzJqgE56XHs8eJhOjkBdUHSHPLcRlHBhlz52fy-ndh9B1mcqfPNNJk57jPjgMjLbe7Tf1v3WJ5k0diUwyxp8PQFFz2rBs2KnH-JrZCBUI9Ds8XTxAk8/s16000/IMG_20260623_055642_095.png",
+    "excerpt": "တစ်ခါတလေ ကျယ်လောင်လွန်းတဲ့ လောကကြီးထဲမှာ ကိုယ့်ကိုယ်ကိုယ် ဘယ်သူမှန်းမသိတော့တဲ့ ခံစားချက်မျိုး ကြုံဖူးကြမှာပါ။ အဲဒီလို ‘အပြင်လူ’ ဆန်ဆန် ခံစားချက်မျိုးကို စာပေနဲ့ အနုပညာမှာ အလှပဆုံး ပုံဖော်ခဲ့သူကတော့ အလ...",
+    "link": "selected-works-albert-camus/index.html",
+    "tags": [
+      "စာအုပ်အညွှန်း"
+    ]
+  },
+  {
+    "id": "forest-princess-king-kin",
+    "title": "တောမင်းသမီး - ခင်ခင်ထူး",
+    "date": "2026-05-11",
+    "category": "စာအုပ်အညွှန်း",
+    "author": "whisper of words",
+    "image": "https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEje4xRKAItbjLl-jPzgyjhRIuuZgoynyUzvQIQUFFOFqzyibBfqlcNI3YokdyWkSs5W-_9sOLRlABtCer3PNMewFtJ9ou8B5zTdx9g_0AaIJzBmcZuSbgrQJhWrnHcj0wgYM02Z9iMob7T9g0gaB2rQGEOlfQQymEwNsKbzYnPQhSYmwAKGkKfizdgKFv8/s16000/IMG_20260511_170753_999.jpg",
+    "excerpt": "တောမင်းသမီး - ခင်ခင်ထူးခင်ခင်ထူးရဲ့ စာတွေကို ဖတ်ဖူးသူတိုင်း သိကြမှာပါ။ သူက အညာမြေရဲ့ ရနံ့ကို စာမျက်နှာပေါ် သယ်ဆောင်လာနိုင်သူ။ ဒီတစ်ခါတော့ “တောမင်းသမီး” ဆိုတဲ့ ဝတ္ထုနဲ့အတူ ဇာတ်သဘင်လောကရဲ့ နောက်ကွယ်က ဘဝ...",
+    "link": "forest-princess-king-kin/index.html",
+    "tags": [
+      "စာအုပ်အညွှန်း"
+    ]
+  },
+  {
+    "id": "dubliners-joyce",
+    "title": "ဒဗ္ဗလင်မြို့ကလူများ - မြင့်သန်း",
+    "date": "2026-05-11",
+    "category": "စာအုပ်အညွှန်း",
+    "author": "Whisper Of Words",
+    "image": "https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEg80CbLmpmFxLSflGsjDCgwcmrpTtYUYv0-CjONhq68pZ12nyszUTt5PCDUnXBqB7q4C5_OsGo5Aoz5VgpHgCr9FF527u4pee0Jwystwoxyg2OvX4K3kgAznvXLf-Qr3VDpT0kc3xcox5kUvII0MME5D9GIUAA9TuwFejDNZDXDZGsodsDldD-BaoPS9yM/s16000/FB_IMG_1778491979194.jpg",
+    "excerpt": "အမှာ ကနဦးက ဂျိမ်းဂျွိုက်(စ)၏ ဒဗ္ဗလင်မြို့ကလူများ အမည်ဖြင့် စာအုပ်ထုတ်ရန် လည်းကောင်း၊ ဘတ်ကက်၏ ပြဇာတ်များ အမည်ဖြင့် စာအုပ်ထုတ်ရန် လည်းကောင်း ဟူသော ရည်ရွယ်ချက်ဖြင့် ဘာသာပြန်ခဲ့ပါသည်။ စိတ်တိုင်းမကျသဖြင့် ...",
+    "link": "dubliners-joyce/index.html",
+    "tags": [
+      "စာအုပ်အညွှန်း"
+    ]
+  },
+  {
+    "id": "pride-and-prejudice-tint-te",
+    "title": "မာနနဲ့ အာဃာတ - တင့်တယ်",
+    "date": "2026-04-24",
+    "category": "စာအုပ်အညွှန်း",
+    "author": "Whisper Of Words",
+    "image": "https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEi6n5kCIQFXVx8qtLgLax85vejhmJxkutDehYigsQ-lKOYBuBrPhjO-R8vghx-zdRTGyqgYk5J0XcAgY5_TIbBEmCm0I0YFsmhhaY6Zg-Nd1T7iX68OzipMUfZbwEucMas8hnCDx7dBFzyBNBS_518bMnsJWxK9YD2SR5qBp-MHysHJsGifL38SH0qOdYg/s16000/1000001235.jpg",
+    "excerpt": "ဂျိန်းအော်စတင်ရဲ့ လက်ရာမွန်ကို တင့်တယ်ရဲ့ ဘာသာပြန် - မာနနဲ့ အာဃာတ\"ပိုက်ဆံချမ်းသာတဲ့ လူပျိုတစ်ယောက်ဟာ ဇနီးတစ်ယောက်တော့ အလိုရှိနေမှာပဲ\" ဆိုတဲ့ စကားက ကမ္ဘာဦးကတည်းက မှန်ကန်နေတဲ့ စကားတစ်ခွန်းလို့ ဆိုရပါလိမ...",
+    "link": "pride-and-prejudice-tint-te/index.html",
+    "tags": [
+      "စာအုပ်အညွှန်း"
+    ]
+  },
+  {
+    "id": "percy-jackson-magic-battle",
+    "title": "ပါစီဂျက်ဆန်နှင့် အိုလံပစ်နတ်ဘုရားများ - မှော်ဝင်္ကပါတိုက်ပွဲ - ကောင်းမြတ်လွန်းသော်",
+    "date": "2026-04-23",
+    "category": "စာအုပ်အညွှန်း",
+    "author": "Whisper Of Words",
+    "image": "https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEglA3kXepisgwMt9kvc8dul-Oj4csnfTp6WckfaUMYluSa7Q3I8clmEW3-8RRG0YkgedruY9PUkvjJhXUsLvw3QGbCJQPGRKRQs46yV5srQfjJJEE2MvQe-HHEzm3LoXas2Ok7onZZtR-5t0E3fxQZdsIcw6YLWnbZKhBbtv79NdirQ5Nzo902U2wit3OY/s16000/cover.jpeg",
+    "excerpt": "ဒီတစ်ခါတော့ လူငယ်တွေကြားမှာတင်မက လူကြီးတွေပါ စွဲစွဲလန်းလန်း ဖတ်ကြတဲ့ Rick Riordan ရဲ့ ပါစီဂျက်ဆန် (Percy Jackson) စာအုပ်တွဲထဲက စတုတ္ထမြောက်ဇာတ်လမ်းဖြစ်တဲ့ \"မှော်ဝင်္ကပါတိုက်ပွဲ\" အကြောင်း နည်းနည်း ပြော...",
+    "link": "percy-jackson-magic-battle/index.html",
+    "tags": [
+      "စာအုပ်အညွှန်း"
+    ]
+  },
+  {
+    "id": "days-with-few-tears-laughs",
+    "title": "အငို အရယ် နည်းသော ရက်များ - သန်းတင့် - book review",
+    "date": "2026-04-15",
+    "category": "စာအုပ်အညွှန်း",
+    "author": "ဝဿန်အေးချမ်း",
+    "image": "https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEiEbPoaEvKDtJ-7yuEgkE56bvb2aTt6GiUHvRr7kbREPhW7DYj6t0HlLGncveFAfsdfIHvFWvp0pMNmOdY5mv8iKrA2C4A7EWundHxWCvIowUubHnwoC-SSzmPukThEcSeNCRcdXeOjgJO-MjxO5iRBJ1JY9wPEXMm25xERZ6YD2OT5AcSZ1HcXDaDYqWY/s16000/image.jpg",
+    "excerpt": "အငိုအရယ်နည်းသော ရက်များ“အငိုအရယ်နည်းသော ရက်များ” လို့စဖတ်မိတုန်းက ဝမ်းနည်း၊ဝမ်းသာ မရှိ သာမန်နေ့ရက်များ ပေါ့ ဆိုပြီး တွေးမိတယ်။ ဘာအကြောင်းများ ရေးထားမလဲ။ ကဗျာလေးတွေရော ဖတ်ရဦးမလား ဆိုပြီး စိတ်ဝင်တစားနဲ့...",
+    "link": "days-with-few-tears-laughs/index.html",
+    "tags": [
+      "စာအုပ်အညွှန်း"
+    ]
+  },
+  {
+    "id": "and-quiet-flows-the-don",
+    "title": "တသိမ့်သိမ့်ဒွန် - တက္ကသိုလ် နန္ဒမိတ် ၊ မြတ်ငြိမ်း၊  တင်မောင်မြင့်",
+    "date": "2026-04-11",
+    "category": "စာအုပ်အညွှန်း",
+    "author": "Whisper Of Words",
+    "image": "https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEgZZWH3dfCrGiYbeCOY__Au_3h12WaTYWc2j31yED4022RTcn5x_piMkMg_AAncpmg8RtWG_c0LrRbC7BB6doGbua_WhMSkmx4zj4htNmOUteSoIOMAcDX4ExxMW6UuzD6hzV451VNxRLrGMJ_wdvzbz9nj_nAOEl1r8TQgJjHTPbLgofv5RMj3ZWAr-qU/s16000/Du.jpeg",
+    "excerpt": "အမြွှာညီနောင်စာအုပ် (၂) တသိမ့်သိမ့်ဒွန် AND QUIET FLOWS THE DONMIKHAIL SHOLOKHOV တက္ကသိုလ် နန္ဒမိတ် ၊ မြတ်ငြိမ်းတင်မောင်မြင့်(ဘာသာပြန်)Download Epub Kfx ရုရှားစာပေဆိုရင် \"စစ်နှင့် ငြိမ်းချမ်းရေး\" တို့...",
+    "link": "and-quiet-flows-the-don/index.html",
+    "tags": [
+      "စာအုပ်အညွှန်း"
+    ]
+  },
+  {
+    "id": "swans-soaring-high",
+    "title": "ဟင်္သာငှက်တို့ အမြင့်ပျံကြရာ အရပ်ဝယ် - သန်းတင့်",
+    "date": "2026-04-09",
+    "category": "စာအုပ်အညွှန်း",
+    "author": "Whisper Of Words",
+    "image": "https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEhI5CTcK9rrl5gU7EbCDU3HxDLAdzevC4jz2CJQsz-qN0DhcOI3GgRHNRgw7tcYmW8mn27HGIjAFA-r6qc88kBFMZKv_mwaFe3F0uqdJcnLq0-WndKpYSVeRxpUWYmef93QaobQsUDVWclVKI0RSdfikdomCRW6_jWm8YTeQFb4VlpRtHY2vYYnOPGuVUA/s16000/IMG_1775536810529.webp",
+    "excerpt": "ဟင်္သာငှက်တို့ အမြင့်ပျံကြရာ အရပ်ဝယ် စစ်ပွဲတွေဆီကနေပြီးတော့ နှစ်လိုဖွယ် ပြန်ပြောင်း ပြောပြစရာတွေ ကျန်ခဲ့တယ်ဆိုတာမျိုးဟာ အတော်ကို ကမောက်ကမနိုင်တဲ့ ကိစ္စတစ်ခုပါ။ သတ်ကြသေကြ၊ လုကြယက်ကြ၊ သိမ်းပိုက်ကြ၊ စတေး...",
+    "link": "swans-soaring-high/index.html",
+    "tags": [
+      "စာအုပ်အညွှန်း"
+    ]
+  },
+  {
+    "id": "eat-half-myan",
+    "title": "ထက်ဝက်စား_သန်းတင့်",
+    "date": "2026-04-09",
+    "category": "စာအုပ်အညွှန်း",
+    "author": "Whisper Of Words",
+    "image": "https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEg5H7t_woYhjFBJMz0NiYCxcYXj1qJ1CLmR2B29MYeTsqnldtxUQoq3wQX4dxZ1F5eQ2f-E0t8cYL0BSIlNteF_inNwrjDBHbjeGQyaNbubIoP30pec6O7GOJ8bAhzozK7AEZBaEh_gONKUhQiZh2zQd7BdvYA2_bcqj0z_VK0vqkgx0VxCk5-78eHpDIE/s16000/FB_IMG_1774990508974.jpg",
+    "excerpt": "ထက်ဝက်စား ငါ သယောစေး သက်တော့ ဖြူဝင်းက ရယ်နေတယ်။ ရေနံဆီတို့ ဓာတ်ဆီတို့ ထိမိရင်လည်း ငါက သက်တတ်သေးတယ်။ လည်ပင်းတွေ ကျောကုန်းတွေမှာဆို အနီဖုတွေ တစ်ပြင်လုံးပဲ။ ရဲရဲကို တောက်နေတာပဲ။ သယောပင်တို့ သယောသားတို့ ဆ...",
+    "link": "eat-half-myan/index.html",
+    "tags": [
+      "စာအုပ်အညွှန်း"
+    ]
+  },
+  {
+    "id": "annomars-timeline",
+    "title": "အနော်မာရှင်းတမ်း - သန်းတင့်",
+    "date": "2026-04-09",
+    "category": "စာအုပ်အညွှန်း",
+    "author": "Whisper Of Words",
+    "image": "https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEhaSiRgGoeAueattA5nRspUbDSliU4jcGX-dC90OBkqwOL-O6ADh6EacOaKkxywpoJjQEFWNIHvlAFNigdqrlkNnw0MdY-OnflEg_t-RzdcLWa68U2Cpt5W4vfaQcGzIslAy-_uc2pDIV-HtCP86ZTR4Pyz7hMJMr8lHIUEQ7ATOmQTM7_7cDF6huigPrA/s16000/FB_IMG_1774990008857.jpg",
+    "excerpt": "အနော်မာရှင်းတမ်း ကိုရုဆိုးရေသကျတွေထဲမှာမှ သာကီအနွယ်တော်တွေဟာ အင်မတန်မှ မာန ကြီး မြင့်မြတ် အဆင့်အတန်း မြင့်ကြတယ်လို့ ဆိုပါတယ်။ သူများနဲ့ သွေး နှောမခံဘူး။ သူတို့ အမျိုးချင်း ပြန်ယူတဲ့အထိ မျိုးရိုးဂုဏ်သိ...",
+    "link": "annomars-timeline/index.html",
+    "tags": [
+      "စာအုပ်အညွှန်း"
+    ]
+  },
+  {
+    "id": "little-rooster-crows",
+    "title": "ကြက်တွန်သံလေးတွေ - သန်းတင့်",
+    "date": "2026-04-09",
+    "category": "စာအုပ်အညွှန်း",
+    "author": "Whisper Of Words",
+    "image": "https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEgBnwF3nqHza1UThrMcQ6xSwUBih-qVbOWWKVoWpax3LihcfEg013-eufz-T_xHO1ve5vsZO9XQyuWh5zXlm2CJvDmhdne1OUFnnhE6s1wmnJ537D_yIm68zcS0rVFIWIKVfdosMcvhXHCvTAVYCmvzCeI1ZrGzql9K-bnTY3Pr4NBXqfZruGFmhUX0YFY/s16000/IMG_1774691391934.jpg",
+    "excerpt": "ကြက်တွန်သံလေးတွေသံလွင်တောင်မှနေ၍ ဂေသရှမန်အရပ်သို့ သွားသည့် လမ်းမှာဟု တမန်တော်ရှင်မဿဲနှင့် ရှင်လုကာတို့ လူစုက မှတ်တမ်းတင်ထားပါသည်။ သံလွင်တောင်ကိုတော့ ဂျေရုစလင်မြို့ အနီးအနား ဖြစ်ကြောင်းကိုသာ ကြား ဖူး၍ ...",
+    "link": "little-rooster-crows/index.html",
+    "tags": [
+      "စာအုပ်အညွှန်း"
+    ]
+  },
+  {
+    "id": "you-me-and-rain",
+    "title": "မင်းရယ် သူရယ် မိုးပြေးလေးတွေရယ် - သန်းတင့်",
+    "date": "2026-04-09",
+    "category": "စာအုပ်အညွှန်း",
+    "author": "Whisper Of Words",
+    "image": "https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEjZ8rfvZRe3V3TOHAHN24MKFr6cKTUt-S9A030_f22ekulwVb72lwFIH5cpEcCJZSphEjdTKWCTy7EmL42N3xn362awbkQ2B1hg36mvaDNMVOhs3VU6LDAwpoX6s4AKmKwvxF-IbZTg90hiC_Tkml97qMPmkASvmuSypsdufv8fCCI8lkUZVgT4EbdmKls/s16000/FB_IMG_1774989542281.jpg",
+    "excerpt": "မင်းရယ် သူရယ် မိုးပြေးလေးတွေရယ် ကျွန်တော် တစ်ခုခုလုပ်ချင်သည်။ လုပ်ပေးချင်သည်။ တစ်ခုခု ထိထိရောက်ရောက် လုပ်လိုက်ချင်သည်။ လုပ်ပစ်လိုက်ချင်သည်။ ဒီမှာ သွေး၊ ဒီမှာ မျက်ရည်၊ ဒီမှာ မီးလောင်ပြင်ဟု မိုးအဆုံး မြ...",
+    "link": "you-me-and-rain/index.html",
+    "tags": [
+      "စာအုပ်အညွှန်း"
+    ]
+  },
+  {
+    "id": "the-liar-myan",
+    "title": "လူလိမ် - သန်းတင့်",
+    "date": "2026-04-09",
+    "category": "စာအုပ်အညွှန်း",
+    "author": "Whisper Of Words",
+    "image": "https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEjBYMqqNivygOj7UnDkkZQH43BLm56gpBxIjGrO_S4HPz4Q7RUui16QmKeqkFKFpd4t6LE2U8gzcdhQJZqrF0-GxNvjIitCruFGQ5j0-t-hqq1VEPPk-NUDvgiUIXrqnc-WKZr4-93JxQu_JKN82qgZLMaHkS5b1vLcismd_qbLvlrBYzHxtFOgYBEAbJs/s16000/IMG_1775716421604.webp",
+    "excerpt": "လူလိမ် ထိုသို့ဖြင့် ငါးနှစ်တစ်ခါ ခြောက်နှစ်တစ်ခါ ကျွန်တော် ခဏ ခဏ အလိမ်ခံခဲ့ရဖူးသည်။ အလိမ်ခံရပြီးကာစ သတိထားမှပါလေဟု အသိသတိကြိုးလေး တင်းနေသမျှတော့ ပွတ်ကာသီကာ ရှောင်၍ လွတ်ခဲ့တာတွေလည်း ရှိသည်။ ကြာသွားတော့...",
+    "link": "the-liar-myan/index.html",
+    "tags": [
+      "စာအုပ်အညွှန်း"
+    ]
+  },
+  {
+    "id": "few-tears-laughs-thant",
+    "title": "အငိုအရယ်နည်းသော ရက်များ/ သန်းတင့်",
+    "date": "2026-04-09",
+    "category": "စာအုပ်အညွှန်း",
+    "author": "Whisper Of Words",
+    "image": "https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEgxmUc0capVdwRkBjUjDR5RpbCbhAOHquxL4F-FYjQdZf54kaqpSfON66CVsPVMR55aJV1dKiqNpN2Qf3ZGnBPk7sMSj8M2tr9BWcieGKrT-bAHIl0Ao0v0-VaC_cBWDg2dxfahhYRbIJYAPPChcqINz0VkRvXwg_oZOeKtISd4a9RLsxHEo-Nk1dU5yp0/s16000/IMG_20260409_075031_610.webp",
+    "excerpt": "ဆရာသန်းတင့်ရဲ့ အငိုအရယ်နည်းသောရက်များ စာအုပ်အသစ် ထွက်လာပါတယ်။ ကဗျာကနေ အက်ဆေးဖက်ရောက်လာတဲ့ ဆရာသန်းတင့်ရဲ့ရေဒီယိုကို နားထောင်ပြီးတဲ့နောက် ခုတခါတော့ အငိုအရယ်နည်းတဲ့ ရက်တွေထဲ ကူးခတ်ရတော့တယ်။အားလုံးကို စွန...",
+    "link": "few-tears-laughs-thant/index.html",
+    "tags": [
+      "စာအုပ်အညွှန်း"
+    ]
+  },
+  {
+    "id": "the-reader-myanmar",
+    "title": "The Reader - စာဖတ်သူ - သူရိန်ဝင်း(မြန်မာပြန်)",
+    "date": "2026-04-05",
+    "category": "စာအုပ်အညွှန်း",
+    "author": "Whisper Of Words",
+    "image": "https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEgGkZkS5ihgmHu7KbCalVJklHGVqzsdIXlW1F12W1UEKDhsiGxDrn6kR300Rbjkpf8ppt9lSuwvYhpplS-eV2ZkE0OX5q-WKvJshj8hHSjsvXz3sGtSlU2PmeirLgU9ImJIRAnFcyLuEZPbqd4H_2ECQCT9EZESPHVKDKvHFKwiJHaF93Evka23njHhyphenhyphen8c/s16000/IMG_20260405_124526_101.webp",
+    "excerpt": "ဒါရိုက်တာ Stephen Daldry ရိုက်ကူးပြီး Kate Winslet သရုပ်ဆောင်ထားတဲ့ \"The Reader\" ရုပ်ရှင်ကို ကြည့်ဖူးသူတွေ တော်တော်များမှာပါ။ ဒါပေမဲ့ Bernhard Schlink ရဲ့ မူရင်းဝတ္ထုကတော့ ရုပ်ရှင်ကြည့်ပြီးသားသူတွေတော...",
+    "link": "the-reader-myanmar/index.html",
+    "tags": [
+      "စာအုပ်အညွှန်း"
+    ]
+  },
+  {
+    "id": "souls-of-the-deceased",
+    "title": "ကွယ်လွန်သူတို့ ဝိညာဉ် - သတိုးတေဇ",
+    "date": "2026-04-04",
+    "category": "စာအုပ်အညွှန်း",
+    "author": "Whisper Of Words",
+    "image": "https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEgjlniBgwVJnhxF_8voWPWQnbM7uBMZJD0Pj4D95Uy30Rq2Bg1-3RAdEPR_9aG2HVGWlCapguu7wKBzJNOUnX_LzKOyI2J6Oeuxlq6JDWY7HqRjcTqCf0y0007bdWe6IBAaoXBBjdOkE_GRupCHJSV89FjzS_vmF_oGFHSJqI4YkTMtfzWipSMei1iANE4/w427-h640/cover.webp",
+    "excerpt": "ဆေးကျောင်းနောက်ခံ သည်းထိတ်ရင်ဖို ဝတ္ထုတွေကိုမှ စွဲစွဲမြဲမြဲ ဖတ်တတ်တဲ့သူတွေအတွက် သတိုးတေဇ ရေးထားတဲ့ “ကွယ်လွန်သူတို့ ဝိညာဉ်” ဆိုတဲ့ စာအုပ်က လက်မလွှတ်သင့်တဲ့ စာအုပ်တစ်အုပ်ပါ၊။ စာရေးသူကိုယ်တိုင်က ဆေးကျောင...",
+    "link": "souls-of-the-deceased/index.html",
+    "tags": [
+      "စာအုပ်အညွှန်း"
+    ]
+  },
+  {
+    "id": "kabul-bookshop-owner",
+    "title": "ကဘူးလ်မြို့က စာအုပ်ဆိုင်ပိုင်ရှင် - စိန်ဝင်းစိန်",
+    "date": "2026-04-04",
+    "category": "စာအုပ်အညွှန်း",
+    "author": "Whisper Of Words",
+    "image": "https://blogger.googleusercontent.com/img/a/AVvXsEghoW3N9nK9Yu26mRfNTLGzQbbeoiOFAlF_JTkS5kBOu8A-EBsij1hHHuyhVWwMLf_yKwCwQfMqOx_e-VaiIttKXePQwbw677Jgwj14N7uPPRZzevNmsQI2_9f07H1MMKNx1EBE8HXFXhZ1rRUQ20Du1uoKwKN1q3EndVwX6juV_ZKgZL37NG8xO7f9G2s=s16000",
+    "excerpt": "(ဘာသာပေါင်း၁၃ခုဖြင့်ပြန်ဆိုပြီး ဖြစ်သည့်စာအုပ်)ကဘူးလ်မြို့ကစာအုပ်ဆိုင်ပိုင်ရှင်\"စူလတန်\"ကိုဗဟိုပြုပြီး အာဖဂန်နိုင်ငံ၏ နိုင်ငံရေး.လူမှုရေး.ယဉ်ကျေးမှုနောက်ခံတွင် `လူ့အခွင့်အရေး ဆုံးရှုံးနေကြရရှာသည့် အာဖဂ...",
+    "link": "kabul-bookshop-owner/index.html",
+    "tags": [
+      "စာအုပ်အညွှန်း"
+    ]
+  },
+  {
+    "id": "pan-pan-lyak-par",
+    "title": "ပန်းပန်လျှက်ပါ - ခင်နှင်းယု",
+    "date": "2026-04-04",
+    "category": "စာအုပ်အညွှန်း",
+    "author": "Whisper Of Words",
+    "image": "https://blogger.googleusercontent.com/img/a/AVvXsEgVpBDAsVzzZ4WaDU7K2A6917y9rN-deAqb_2cS8RpS5x-G_QDchZc7tT-4gMFqiy1I_csAFl-HuA8mNVJ_TVLgNdcskgx0C53C4EGYHvHM3AMRwCFFKcAQA3O3N9QbugcaAHOOW3ydNUv5MnLncwyKFldcD5hCmwnGwMV0xhgDau-oTSM2ajCWd9pczqU=s16000",
+    "excerpt": "Download Epub Kfx “ပန်းပန်လျက်ပါ” ရုပ်ရှင်သည် ဆရာမကြီး (ဒေါ်) ခင်နှင်းယု၏ ပန်းပန်လျက်ပါ ၀တ္ထုကို ဒါရိုက်တာ ဦးချစ်ခင်က (၁၉၆၀)ခုနှစ်ဝန်းကျင်များမှာ အငြိမ့်သမ မဗေဒါအဖြစ် (ဒေါ်)ကြည်ကြည်ဋ္ဌေး၊ နယ်ပိုင်လေး ...",
+    "link": "pan-pan-lyak-par/index.html",
+    "tags": [
+      "စာအုပ်အညွှန်း"
+    ]
+  },
+  {
+    "id": "fragrant-merit-fate",
+    "title": "မွှေး၊ ကုသိုလ်ကြမ္မာ မမီပါခဲ့၊ အတွတ်ရေ… ကျွန်တော် တင်အောင်ထွန်း - ခင်နှင်းယု",
+    "date": "2026-04-04",
+    "category": "စာအုပ်အညွှန်း",
+    "author": "Youths_book_reflections👇Page link👇",
+    "image": "https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEjQ1xlI8bystjHRBTDEbId24z0TuR8mD8pME1T-Hx3OV6utFvHGt_3HWy8C3JF0Am0YN0PF4mYQST0kTERAMX1HUG23-jz7ehqlyCSLKl3BM2k0-cD_p6bwXUJr27pCaF1Gqqgr3nNARFM-9SbPPC1tiFYxJ00fWtI6m0BBtAByu3xA6kQPVgVnWiKgTxI/s16000/image.webp",
+    "excerpt": "Download Epub Kfx မွှေး“အသက်ရှင်နေသေးသရွေ့တော့ လူ့လောက တွင် အများကြီး အလုပ် လုပ်နိုင်သေးသည်။ တန်ဖိုးရှိသေးသည် မဟုတ်ပါလား။”~Pg.201“သူများ မိန်းကလေးဘဝကို စကြတယ် ဆိုတာက သုညက စရတာ။ မွှေးက သုညမှာ နောက် အနု...",
+    "link": "fragrant-merit-fate/index.html",
+    "tags": [
+      "စာအုပ်အညွှန်း"
+    ]
   }
 ]
