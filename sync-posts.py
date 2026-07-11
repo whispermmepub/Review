@@ -571,6 +571,10 @@ def main():
                 continue
             seen_slugs.add(slug)
 
+            # Use numeric ID for short URLs
+            next_id[0] += 1
+            numeric_id = str(next_id[0])
+
             image_url = extract_image(description)
             reviewer = extract_reviewer(description, blog_name)
             clean_desc = clean_text(description)
@@ -594,19 +598,19 @@ def main():
                     content_html += f'            <p>{block}</p>\n'
 
             post = {
-                'id': slug,
+                'id': numeric_id,
                 'title': title,
                 'date': date_str,
                 'category': 'စာအုပ်အညွှန်း',
                 'author': reviewer,
                 'image': image_url,
                 'excerpt': excerpt,
-                'link': f"{slug}/index.html",
+                'link': f"{numeric_id}/index.html",
                 'source_url': link,
                 'content': content_html
             }
             posts.append(post)
-            print(f"  OK: {slug} -> {title[:60]}")
+            print(f"  OK: {numeric_id} -> {title[:60]}")
 
     print(f"\nIdentified {len(posts)} book review posts (from {len(FEEDS)} blog(s))")
 
@@ -628,6 +632,7 @@ def main():
         })
 
     # Load existing posts.json and keep manual posts (not from feed)
+    next_id = [0]
     assets_dir = os.path.join(REPO_DIR, 'assets')
     os.makedirs(assets_dir, exist_ok=True)
     posts_json_path = os.path.join(assets_dir, 'posts.json')
@@ -640,6 +645,15 @@ def main():
                     posts_json.append(ep)
                     print(f"  PRESERVED: {ep.get('title', '?')[:40]}")
         except:
+            pass
+
+    # Find highest existing numeric ID
+    for ep in posts_json:
+        try:
+            num = int(ep.get('id', '0'))
+            if num > next_id[0]:
+                next_id[0] = num
+        except (ValueError, TypeError):
             pass
 
     with open(posts_json_path, 'w', encoding='utf-8') as f:
