@@ -144,7 +144,7 @@ def generate_post_html(post):
         }}
 
         .container {{
-            max-width: 1400px;
+            max-width: 1600px;
             margin: 0 auto;
             background: white;
             border-radius: 15px;
@@ -188,7 +188,7 @@ def generate_post_html(post):
             text-align: justify;
             letter-spacing: 0.02em;
             word-spacing: 0.02em;
-            font-size: 1.1rem;
+            font-size: 1.02rem;
             line-height: 2;
         }}
 
