@@ -23,20 +23,37 @@
         header {
             text-align: center;
             padding: 40px 20px;
-            background: rgba(255, 255, 255, 0.72);
-            backdrop-filter: blur(20px);
-            -webkit-backdrop-filter: blur(20px);
-            border: 1px solid rgba(255, 255, 255, 0.4);
-            border-radius: 15px;
-            box-shadow: 0 4px 30px rgba(0, 0, 0, 0.08);
+            border-radius: 16px;
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border: 1px solid rgba(255,255,255,0.1);
+            position: relative;
+            overflow: hidden;
+            background: linear-gradient(135deg, rgba(10,8,30,0.9), rgba(20,15,50,0.85)),
+                        url('https://blogger.googleusercontent.com/img/a/AVvXsEiz-kPEUW-4PhZ-CEATRgvFzmaJfZ6mL3BQ8kXuRmav6CborPuAv7wTt4FaWY9pLZoluFx6_BqZMdtmsbnNswQleuyADOrI0l4t5hEGhzlFO4Vn9zvL20KrYPiyoGA8IBS52gKKsXx_TD5AtEj9Nmr7mWLLNgIdB1SkFZiWxOz_XMGiov2BBDi9tm9zhIA=rw') center/cover no-repeat;
             margin-bottom: 25px;
             max-width: 1600px;
             margin-left: auto;
             margin-right: auto;
+            box-shadow: 0 4px 30px rgba(0, 0, 0, 0.3);
         }
 
-        header h1 { color: #d84315; font-size: 2.2rem; margin-bottom: 10px; }
-        header p { color: #666; font-size: 1.1rem; }
+        header::before {
+            content: '';
+            position: absolute;
+            top: 0; left: 0; width: 100%; height: 100%;
+            background: radial-gradient(ellipse at center, rgba(124,140,245,0.08) 0%, transparent 70%);
+            pointer-events: none;
+            z-index: 0;
+        }
+
+        header > * {
+            position: relative;
+            z-index: 1;
+        }
+
+        header h1 { color: #ffffff; font-size: 2.2rem; margin-bottom: 10px; }
+        header p { color: #ccc; font-size: 1.1rem; }
 
         .social-links {
             display: flex;
@@ -61,8 +78,8 @@
         .social-link.facebook:hover { background: #1877f2; box-shadow: 0 4px 12px rgba(24,119,242,0.4); transform: translateY(-2px); }
         .social-link.youtube { color: #ffffff; background: #ff0000; border: 1px solid #ff0000; }
         .social-link.youtube:hover { background: #ff0000; box-shadow: 0 4px 12px rgba(255,0,0,0.4); transform: translateY(-2px); }
-        .social-link.twitter { color: #000000; background: #ffffff; border: 1px solid #ffffff; }
-        .social-link.twitter:hover { background: #ffffff; color: #000000; box-shadow: 0 4px 12px rgba(255,255,255,0.2); transform: translateY(-2px); }
+        .social-link.twitter { color: #ffffff; background: rgba(255,255,255,0.15); border: 1px solid rgba(255,255,255,0.2); }
+        .social-link.twitter:hover { background: #ffffff; color: #000000; box-shadow: 0 4px 12px rgba(255,255,255,0.3); transform: translateY(-2px); }
         .social-link.telegram { color: #ffffff; background: #0088cc; border: 1px solid #0088cc; }
         .social-link.telegram:hover { background: #0088cc; box-shadow: 0 4px 12px rgba(0,136,204,0.4); transform: translateY(-2px); }
         .social-icon { width: 18px; height: 18px; fill: currentColor; }
@@ -76,7 +93,7 @@
         .search-label {
             font-size: 1rem;
             font-weight: 700;
-            color: #2c3e50;
+            color: #333;
             margin-bottom: 10px;
         }
 
