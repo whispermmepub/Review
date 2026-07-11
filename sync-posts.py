@@ -12,6 +12,7 @@ import xml.etree.ElementTree as ET
 import json
 import re
 import os
+import html as html_lib
 import hashlib
 from datetime import datetime
 from urllib.parse import quote
@@ -162,13 +163,29 @@ def generate_post_html(post):
     image_html = ''
     if post['image']:
         image_html = f'\n        <img src="{post["image"]}" alt="{post["title"]}" class="post-image">'
+    preview_image = post['image'] or 'https://blogger.googleusercontent.com/img/a/AVvXsEiz-kPEUW-4PhZ-CEATRgvFzmaJfZ6mL3BQ8kXuRmav6CborPuAv7wTt4FaWY9pLZoluFx6_BqZMdtmsbnNswQleuyADOrI0l4t5hEGhzlFO4Vn9zvL20KrYPiyoGA8IBS52gKKsXx_TD5AtEj9Nmr7mWLLNgIdB1SkFZiWxOz_XMGiov2BBDi9tm9zhIA=rw'
+    page_url = f'https://whispermmepub.github.io/Review/{post["link"]}'
+    meta_title = html_lib.escape(f'{post["title"]} - 𝐖𝐡𝐢𝐬𝐩𝐞𝐫 𝐎𝐟 𝐖𝐨𝐫𝐝𝐬 - 𝐦𝐦 𝐄𝐩𝐮𝐛')
+    meta_description = html_lib.escape(re.sub(r'\s+', ' ', re.sub(r'<[^>]+>', '', post.get("excerpt", ""))).strip())
 
     html = f'''<!DOCTYPE html>
 <html lang="my">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>{post["title"]} - 𝐖𝐡𝐢𝐬𝐩𝐞𝐫 𝐎𝐟 𝐖𝐨𝐫𝐝𝐬 - 𝐦𝐦 𝐄𝐩𝐮𝐛</title>
+    <title>{meta_title}</title>
+    <meta name="description" content="{meta_description}">
+    <link rel="canonical" href="{page_url}">
+    <meta property="og:type" content="article">
+    <meta property="og:title" content="{meta_title}">
+    <meta property="og:description" content="{meta_description}">
+    <meta property="og:url" content="{page_url}">
+    <meta property="og:image" content="{preview_image}">
+    <meta property="og:image:alt" content="{html_lib.escape(post['title'])}">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="{meta_title}">
+    <meta name="twitter:description" content="{meta_description}">
+    <meta name="twitter:image" content="{preview_image}">
     <style>
         @font-face {{
             font-family: 'PyidaungsuMM';
