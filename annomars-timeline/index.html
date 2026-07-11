@@ -227,69 +227,8 @@
             font-size: 1.1rem;
             margin-bottom: 15px;
         }
-        .comment-form {
-            display: flex;
-            flex-direction: column;
-            gap: 10px;
-        }
-        .comment-form input, .comment-form textarea {
-            width: 100%;
-            padding: 12px 15px;
-            background: #151328;
-            border: 1px solid #333;
-            border-radius: 8px;
-            color: #e0e0e0;
-            font-family: 'PyidaungsuMM', sans-serif;
-            font-size: 0.95rem;
-            outline: none;
-            transition: border-color 0.3s;
-        }
-        .comment-form input:focus, .comment-form textarea:focus {
-            border-color: #4a9eff;
-        }
-        .comment-form textarea {
-            min-height: 80px;
-            resize: vertical;
-        }
-        .comment-submit {
-            background: #4a9eff;
-            color: #fff;
-            border: none;
-            padding: 10px 25px;
-            border-radius: 8px;
-            cursor: pointer;
-            font-family: 'PyidaungsuMM', sans-serif;
-            font-size: 0.95rem;
-            font-weight: 600;
-            transition: background 0.2s;
-            align-self: flex-start;
-        }
-        .comment-submit:hover { background: #357abd; }
-        .comment-list {
-            margin-top: 20px;
-        }
-        .comment-item {
-            background: #151328;
-            border-radius: 8px;
-            padding: 12px 15px;
-            margin-bottom: 10px;
-            border-left: 3px solid #4a9eff;
-        }
-        .comment-author {
-            color: #4a9eff;
-            font-weight: 700;
-            font-size: 0.9rem;
-        }
-        .comment-date {
-            color: #666;
-            font-size: 0.8rem;
-            margin-left: 10px;
-        }
-        .comment-text {
-            color: #ccc;
-            margin-top: 5px;
-            line-height: 1.6;
-            font-size: 0.95rem;
+        .giscus {
+            margin-top: 12px;
         }
 
         /* Back to Top */
@@ -394,81 +333,31 @@
             </div>
 
             <div class="comment-section">
-                <h3>💬 မှတ်ချက်ရေးရန်</h3>
-                <div class="comment-form">
-                    <input type="text" id="commentName" placeholder="သင့်နာမည်">
-                    <textarea id="commentText" placeholder="မှတ်ချက်ရေးပါ..."></textarea>
-                    <button class="comment-submit" onclick="addComment()">ပေးပို့ရန်</button>
-                </div>
-                <div class="comment-list" id="commentList"></div>
+                <h3>💬 မှတ်ချက်များ</h3>
+                <div class="giscus"></div>
             </div>
         </div>
     </div>
 
     <button class="back-to-top" id="backToTop" onclick="scrollToTop()">↑</button>
 
+    <script src="https://giscus.app/client.js"
+            data-repo="whispermmepub/Review"
+            data-repo-id="R_kgDOTUX16Q"
+            data-category="Announcements"
+            data-category-id="DIC_kwDOTUX16c4DA9__"
+            data-mapping="pathname"
+            data-strict="0"
+            data-reactions-enabled="1"
+            data-emit-metadata="0"
+            data-input-position="bottom"
+            data-theme="preferred_color_scheme"
+            data-lang="en"
+            crossorigin="anonymous"
+            async>
+    </script>
     <script>
         var postSlug = 'annomars-timeline';
-
-        function readData() {
-            try {
-                return JSON.parse(localStorage.getItem('post_data_' + postSlug) || '{}');
-            } catch (error) {
-                return {};
-            }
-        }
-
-        function writeData(data) {
-            localStorage.setItem('post_data_' + postSlug, JSON.stringify(data));
-        }
-
-        function getState() {
-            var data = readData();
-            return {
-                views: data.views || 0,
-                comments: data.comments || []
-            };
-        }
-
-        function renderState() {
-            var state = getState();
-            document.getElementById('viewCount').innerHTML = '👁️ <span>' + state.views + '</span>';
-            var list = document.getElementById('commentList');
-            if (!state.comments.length) {
-                list.innerHTML = '<p style="color:#666;font-size:0.9rem">မှတ်ချက် မရှိသေးပါ</p>';
-                return;
-            }
-            list.innerHTML = state.comments.map(function(comment) {
-                return '<div class="comment-item"><span class="comment-author">' + comment.name + '</span><span class="comment-date">' + comment.date + '</span><div class="comment-text">' + comment.text + '</div></div>';
-            }).reverse().join('');
-        }
-
-        function incrementView() {
-            var data = readData();
-            data.views = (data.views || 0) + 1;
-            writeData(data);
-            renderState();
-        }
-
-        function addComment() {
-            var name = document.getElementById('commentName').value.trim();
-            var text = document.getElementById('commentText').value.trim();
-            if (!name || !text) {
-                alert('နာမည်နဲ့ မှတ်ချက် ဖြည့်ပါ');
-                return;
-            }
-            var data = readData();
-            if (!data.comments) data.comments = [];
-            data.comments.push({
-                name: name,
-                text: text,
-                date: new Date().toLocaleDateString()
-            });
-            writeData(data);
-            document.getElementById('commentName').value = '';
-            document.getElementById('commentText').value = '';
-            renderState();
-        }
 
         window.addEventListener('scroll', function() {
             var btn = document.getElementById('backToTop');
@@ -476,7 +365,10 @@
         });
         function scrollToTop() { window.scrollTo({ top: 0, behavior: 'smooth' }); }
 
-        incrementView();
+        var viewKey = 'views_' + postSlug;
+        var views = parseInt(localStorage.getItem(viewKey) || '0') + 1;
+        localStorage.setItem(viewKey, views);
+        document.getElementById('viewCount').innerHTML = '👁️ <span>' + views + '</span>';
     </script>
 </body>
 </html>
