@@ -26,7 +26,7 @@
             background: white;
             border-radius: 15px;
             box-shadow: 0 2px 10px rgba(0,0,0,0.05);
-            margin-bottom: 30px;
+            margin-bottom: 25px;
             max-width: 1600px;
             margin-left: auto;
             margin-right: auto;
@@ -63,6 +63,36 @@
         .social-link.telegram { color: #ffffff; background: #0088cc; border: 1px solid #0088cc; }
         .social-link.telegram:hover { background: #0088cc; box-shadow: 0 4px 12px rgba(0,136,204,0.4); transform: translateY(-2px); }
         .social-icon { width: 18px; height: 18px; fill: currentColor; }
+
+        .search-section {
+            max-width: 1600px;
+            margin: 0 auto 25px;
+            text-align: center;
+        }
+
+        .search-label {
+            font-size: 1rem;
+            font-weight: 700;
+            color: #2c3e50;
+            margin-bottom: 10px;
+        }
+
+        .search-bar {
+            width: 100%;
+            max-width: 600px;
+            padding: 12px 20px;
+            font-size: 1rem;
+            font-family: 'PyidaungsuMM', sans-serif;
+            border: 2px solid #ddd;
+            border-radius: 12px;
+            outline: none;
+            transition: border-color 0.3s, box-shadow 0.3s;
+        }
+
+        .search-bar:focus {
+            border-color: #d84315;
+            box-shadow: 0 0 0 3px rgba(216, 67, 21, 0.15);
+        }
 
         .container {
             max-width: 1600px;
@@ -129,6 +159,14 @@
             overflow: hidden;
         }
 
+        .no-results {
+            text-align: center;
+            padding: 60px;
+            color: #999;
+            font-size: 1.1rem;
+            grid-column: 1 / -1;
+        }
+
         .loading {
             text-align: center;
             padding: 60px;
@@ -141,6 +179,7 @@
         @media (max-width: 600px) {
             .container { grid-template-columns: 1fr; }
             header h1 { font-size: 1.5rem; }
+            .search-bar { max-width: 100%; }
         }
     </style>
 </head>
@@ -168,6 +207,11 @@
         </div>
     </header>
 
+    <div class="search-section">
+        <div class="search-label">🔍 စာအုပ်အညွှန်း ရှာဖွေရန်</div>
+        <input type="text" class="search-bar" id="search-input" placeholder="စာအုပ်အမည် သို့မဟုတ် စာရေးဆရာအမည် ရိုက်ထည့်ပါ...">
+    </div>
+
     <div class="container" id="posts-container">
         <div class="loading">📖 ပို့စ်များကို ရယူနေပါသည်...</div>
     </div>
@@ -177,10 +221,13 @@
     </footer>
 
     <script>
+        let allPosts = [];
+
         async function loadPosts() {
             try {
                 const response = await fetch('assets/posts.json');
                 const posts = await response.json();
+                allPosts = posts;
                 renderPosts(posts);
             } catch (err) {
                 document.getElementById('posts-container').innerHTML =
@@ -191,6 +238,11 @@
         function renderPosts(posts) {
             const container = document.getElementById('posts-container');
             container.innerHTML = '';
+
+            if (posts.length === 0) {
+                container.innerHTML = '<div class="no-results">🔍 ရှာဖွေချက်နှင့် ကိုက်ညီသည့် ပို့စ် မတွေ့ပါ။</div>';
+                return;
+            }
 
             posts.forEach(post => {
                 const card = document.createElement('a');
@@ -216,6 +268,20 @@
                 container.appendChild(card);
             });
         }
+
+        document.getElementById('search-input').addEventListener('input', function() {
+            const query = this.value.toLowerCase().trim();
+            if (!query) {
+                renderPosts(allPosts);
+                return;
+            }
+            const filtered = allPosts.filter(p =>
+                (p.title && p.title.toLowerCase().includes(query)) ||
+                (p.author && p.author.toLowerCase().includes(query)) ||
+                (p.excerpt && p.excerpt.toLowerCase().includes(query))
+            );
+            renderPosts(filtered);
+        });
 
         loadPosts();
     </script>
