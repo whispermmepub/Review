@@ -52,7 +52,8 @@ SLUG_MAP = {
     'ကဘူးလ်မြို့က စာအုပ်ဆိုင်ပိုင်ရှင် - စိန်ဝင်းစိန်': 'kabul-bookshop-owner',
     'ပန်းပန်လျှက်ပါ - ခင်နှင်းယု': 'pan-pan-lyak-par',
     'မွှေး၊ ကုသိုလ်ကြမ္မာ မမီပါခဲ့၊ အတွတ်ရေ… ကျွန်တော် တင်အောင်ထွန်း - ခင်နှင်းယု': 'fragrant-merit-fate',
-    'ရယ်မောခြင်းပေါင်းချုပ် - မင်းလူ': 'min-lu-laughing-collection',
+        'ရယ်မောခြင်းပေါင်းချုပ် - မင်းလူ': 'min-lu-laughing-collection',
+        'မင်းလူ ၏ ရယ်မောခြင်းပေါင်းချုပ် စာအုပ်အညွှန်း': 'min-lu-laughing-collection',
 }
 
 def get_slug_from_title(title):
@@ -130,12 +131,12 @@ def generate_post_html(post):
             font-family: 'PyidaungsuMM', sans-serif;
             background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
             color: #2c3e50;
-            line-height: 2;
+            line-height: 1.8;
             padding: 20px;
         }}
 
         .container {{
-            max-width: 950px;
+            max-width: 1100px;
             margin: 0 auto;
             background: white;
             border-radius: 15px;
@@ -177,6 +178,8 @@ def generate_post_html(post):
         .post-body p {{
             margin-bottom: 20px;
             text-align: justify;
+            letter-spacing: 0.01em;
+            word-spacing: 0.01em;
             font-size: 1.05rem;
         }}
 
@@ -283,11 +286,13 @@ def main():
         slug = get_slug_from_title(title)
 
         # Build content paragraphs
-        content_blocks = re.split(r'\n{2,}', clean_desc)
+        content_blocks = re.split(r'\n+', clean_desc)
         content_html = ''
         for block in content_blocks:
             block = block.strip()
             if len(block) > 10:
+                # Remove extra spaces inside the block
+                block = re.sub(r'\s+', ' ', block)
                 content_html += f'            <p>{block}</p>\n'
 
         post = {
