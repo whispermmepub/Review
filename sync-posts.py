@@ -321,9 +321,11 @@ def main():
 
     print(f"\nIdentified {len(posts)} book review posts")
 
-    # Save posts.json
+    # Save posts.json - preserve manual posts not from feed
     posts_json = []
+    feed_ids = set()
     for p in posts:
+        feed_ids.add(p['id'])
         posts_json.append({
             'id': p['id'],
             'title': p['title'],
@@ -336,9 +338,21 @@ def main():
             'tags': [p['category']]
         })
 
+    # Load existing posts.json and keep manual posts (not from feed)
     assets_dir = os.path.join(REPO_DIR, 'assets')
     os.makedirs(assets_dir, exist_ok=True)
     posts_json_path = os.path.join(assets_dir, 'posts.json')
+    if os.path.exists(posts_json_path):
+        try:
+            with open(posts_json_path, 'r', encoding='utf-8') as f:
+                existing = json.load(f)
+            for ep in existing:
+                if ep.get('id') not in feed_ids:
+                    posts_json.append(ep)
+                    print(f"  PRESERVED: {ep.get('title', '?')[:40]}")
+        except:
+            pass
+
     with open(posts_json_path, 'w', encoding='utf-8') as f:
         json.dump(posts_json, f, ensure_ascii=False, indent=2)
     print(f"Saved posts.json ({len(posts_json)} posts)")
