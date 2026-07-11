@@ -504,11 +504,12 @@ def generate_post_html(post):
 
     <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-app.js"></script>
     <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-database.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-database.js"></script>
     <script>
         var postSlug = '{post["id"]}';
 
-        // Firebase config - replace with your own
-        var firebaseConfig = {
+        var firebaseConfig = {{
             apiKey: "AIzaSyD_PLACEHOLDER_REPLACE_ME",
             authDomain: "book-review-comments.firebaseapp.com",
             databaseURL: "https://book-review-comments-default-rtdb.firebaseio.com",
@@ -516,48 +517,43 @@ def generate_post_html(post):
             storageBucket: "book-review-comments.appspot.com",
             messagingSenderId: "000000000000",
             appId: "1:000000000000:web:placeholder"
-        };
+        }};
         firebase.initializeApp(firebaseConfig);
         var db = firebase.database();
 
-        // View count
         var viewRef = db.ref('posts/' + postSlug + '/views');
-        viewRef.transaction(function(current) {
+        viewRef.transaction(function(current) {{
             return (current || 0) + 1;
-        });
-        viewRef.on('value', function(snap) {
+        }});
+        viewRef.on('value', function(snap) {{
             document.getElementById('viewCount').innerHTML = '\ud83d\udc41\ufe0f <span>' + (snap.val() || 0) + '</span>';
-        });
+        }});
 
-        // Telegram button (no love button needed)
-
-        // Comments
         var commentsRef = db.ref('posts/' + postSlug + '/comments');
-        commentsRef.on('value', function(snap) {
+        commentsRef.on('value', function(snap) {{
             var data = snap.val() || [];
             var list = document.getElementById('commentList');
             var arr = Object.values(data);
-            if (arr.length === 0) { list.innerHTML = ''; return; }
-            list.innerHTML = arr.map(function(c) {
+            if (arr.length === 0) {{ list.innerHTML = ''; return; }}
+            list.innerHTML = arr.map(function(c) {{
                 return '<div class="comment-item"><span class="comment-author">' + c.name + '</span><span class="comment-date">' + c.date + '</span><div class="comment-text">' + c.text + '</div></div>';
-            }).reverse().join('');
-        });
+            }}).reverse().join('');
+        }});
 
-        function addComment() {
+        function addComment() {{
             var name = document.getElementById('commentName').value.trim();
             var text = document.getElementById('commentText').value.trim();
-            if (!name || !text) { alert('Name and comment required'); return; }
-            commentsRef.push({ name: name, text: text, date: new Date().toLocaleDateString() });
+            if (!name || !text) {{ alert('Name and comment required'); return; }}
+            commentsRef.push({{ name: name, text: text, date: new Date().toLocaleDateString() }});
             document.getElementById('commentName').value = '';
             document.getElementById('commentText').value = '';
-        }
+        }}
 
-        // Back to top
-        window.addEventListener('scroll', function() {
+        window.addEventListener('scroll', function() {{
             var btn = document.getElementById('backToTop');
-            if (window.scrollY > 300) { btn.style.display = 'flex'; } else { btn.style.display = 'none'; }
-        });
-        function scrollToTop() { window.scrollTo({ top: 0, behavior: 'smooth' }); }
+            if (window.scrollY > 300) {{ btn.style.display = 'flex'; }} else {{ btn.style.display = 'none'; }}
+        }});
+        function scrollToTop() {{ window.scrollTo({{ top: 0, behavior: 'smooth' }}); }}
     </script>
 </body>
 </html>'''
