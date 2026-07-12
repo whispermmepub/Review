@@ -677,6 +677,9 @@ def main():
             'tags': [p.get('category', '')]
         })
 
+    # Sort posts by date descending (newest first) for homepage display
+    posts_json.sort(key=lambda p: p.get('date', ''), reverse=True)
+
     with open(posts_json_path, 'w', encoding='utf-8') as f:
         json.dump(posts_json, f, ensure_ascii=False, indent=2)
     print(f"\nSaved posts.json ({len(posts_json)} posts) — {updated_count} updated, {new_count} new, {preserved_count} preserved")
