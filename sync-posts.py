@@ -481,7 +481,7 @@ def generate_post_html(post):
 {image_html}
         <div class="post-body">
             <div class="post-content">
-{post["content"]}
+{post.get("content", "")}
             </div>
 
             <div class="reviewer-credit">
@@ -528,6 +528,36 @@ def main():
     posts = []
     seen_slugs = set()
 
+    # Load existing posts.json to build title→post map and find highest ID
+    assets_dir = os.path.join(REPO_DIR, 'assets')
+    os.makedirs(assets_dir, exist_ok=True)
+    posts_json_path = os.path.join(assets_dir, 'posts.json')
+    existing_by_title = {}
+    next_id = [0]
+    if os.path.exists(posts_json_path):
+        try:
+            with open(posts_json_path, 'r', encoding='utf-8') as f:
+                existing_posts = json.load(f)
+            for ep in existing_posts:
+                t = ep.get('title', '')
+                if t:
+                    existing_by_title[t] = ep
+                try:
+                    num = int(ep.get('id', '0'))
+                    if num > next_id[0]:
+                        next_id[0] = num
+                except (ValueError, TypeError):
+                    pass
+            print(f"  Loaded existing posts.json: {len(existing_posts)} posts, highest ID = {next_id[0]}")
+        except:
+            pass
+
+    # Build final posts list: update existing posts in-place, assign new IDs only for new posts
+    posts_json = []
+    updated_count = 0
+    new_count = 0
+    preserved_count = 0
+
     for feed_info in FEEDS:
         feed_url = feed_info['feed_url']
         blog_name = feed_info['name']
@@ -571,14 +601,9 @@ def main():
                 continue
             seen_slugs.add(slug)
 
-            # Use numeric ID for short URLs
-            next_id[0] += 1
-            numeric_id = str(next_id[0])
-
             image_url = extract_image(description)
             reviewer = extract_reviewer(description, blog_name)
             clean_desc = clean_text(description)
-            # Bold quotes but skip <a> tags
             clean_desc = bold_quotes_skip_links(clean_desc)
             excerpt = clean_desc[:200] + "..." if len(clean_desc) > 200 else clean_desc
 
@@ -588,7 +613,6 @@ def main():
             except:
                 date_str = pub_date
 
-            # Build content paragraphs
             content_blocks = re.split(r'\n+', clean_desc)
             content_html = ''
             for block in content_blocks:
@@ -597,7 +621,21 @@ def main():
                     block = re.sub(r'\s+', ' ', block)
                     content_html += f'            <p>{block}</p>\n'
 
-            post = {
+            # Check if post already exists by title — reuse its ID
+            if title in existing_by_title:
+                old = existing_by_title[title]
+                numeric_id = old['id']
+                print(f"  UPDATE: {numeric_id} -> {title[:60]}")
+                updated_count += 1
+                # Remove from existing so we don't double-add
+                del existing_by_title[title]
+            else:
+                next_id[0] += 1
+                numeric_id = str(next_id[0])
+                new_count += 1
+                print(f"  NEW: {numeric_id} -> {title[:60]}")
+
+            posts.append({
                 'id': numeric_id,
                 'title': title,
                 'date': date_str,
@@ -608,57 +646,40 @@ def main():
                 'link': f"{numeric_id}/index.html",
                 'source_url': link,
                 'content': content_html
-            }
-            posts.append(post)
-            print(f"  OK: {numeric_id} -> {title[:60]}")
+            })
 
-    print(f"\nIdentified {len(posts)} book review posts (from {len(FEEDS)} blog(s))")
+    # Merge: updated/new feed posts + remaining existing posts (manual/not-from-feed)
+    seen_ids = {p['id'] for p in posts}
+    for title, ep in existing_by_title.items():
+        if ep.get('id') not in seen_ids:
+            # Ensure preserved posts have all required fields for HTML generation
+            ep.setdefault('content', f'            <p>{ep.get("excerpt", "")}</p>')
+            ep.setdefault('source_url', '')
+            ep.setdefault('author', '')
+            ep.setdefault('image', '')
+            posts.append(ep)
+            seen_ids.add(ep['id'])
+            preserved_count += 1
+            print(f"  PRESERVED: {ep.get('title', '?')[:40]}")
 
-    # Save posts.json - preserve manual posts not from feed
+    # Build posts_json for saving
     posts_json = []
-    feed_ids = set()
     for p in posts:
-        feed_ids.add(p['id'])
         posts_json.append({
             'id': p['id'],
             'title': p['title'],
             'date': p['date'],
-            'category': p['category'],
-            'author': p['author'],
-            'image': p['image'],
-            'excerpt': p['excerpt'],
-            'link': p['link'],
-            'tags': [p['category']]
+            'category': p.get('category', ''),
+            'author': p.get('author', ''),
+            'image': p.get('image', ''),
+            'excerpt': p.get('excerpt', ''),
+            'link': p.get('link', ''),
+            'tags': [p.get('category', '')]
         })
-
-    # Load existing posts.json and keep manual posts (not from feed)
-    next_id = [0]
-    assets_dir = os.path.join(REPO_DIR, 'assets')
-    os.makedirs(assets_dir, exist_ok=True)
-    posts_json_path = os.path.join(assets_dir, 'posts.json')
-    if os.path.exists(posts_json_path):
-        try:
-            with open(posts_json_path, 'r', encoding='utf-8') as f:
-                existing = json.load(f)
-            for ep in existing:
-                if ep.get('id') not in feed_ids:
-                    posts_json.append(ep)
-                    print(f"  PRESERVED: {ep.get('title', '?')[:40]}")
-        except:
-            pass
-
-    # Find highest existing numeric ID
-    for ep in posts_json:
-        try:
-            num = int(ep.get('id', '0'))
-            if num > next_id[0]:
-                next_id[0] = num
-        except (ValueError, TypeError):
-            pass
 
     with open(posts_json_path, 'w', encoding='utf-8') as f:
         json.dump(posts_json, f, ensure_ascii=False, indent=2)
-    print(f"Saved posts.json ({len(posts_json)} posts)")
+    print(f"\nSaved posts.json ({len(posts_json)} posts) — {updated_count} updated, {new_count} new, {preserved_count} preserved")
 
     # Generate individual post HTML files
     for post in posts:
