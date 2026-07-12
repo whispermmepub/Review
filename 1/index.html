@@ -179,6 +179,13 @@
         }
 
         /* View Count & Love Button */
+        .view-count {
+            text-align: center;
+            padding: 15px 0 0;
+            color: #888;
+            font-size: 0.85rem;
+        }
+        .view-count span { color: #4a9eff; font-weight: 700; }
         .love-section {
             text-align: center;
             padding: 30px 0;
@@ -202,6 +209,25 @@
         .telegram-btn:hover {
             background: #006da3;
             box-shadow: 0 2px 10px rgba(0, 136, 204, 0.35);
+        }
+        .help-blink {
+            text-align: center;
+            margin: 18px 0 8px;
+        }
+        .help-blink a {
+            display: inline-block;
+            color: #00e676;
+            font-weight: 700;
+            font-size: 1rem;
+            text-decoration: none;
+            animation: blink-green 1.2s ease-in-out infinite;
+        }
+        .help-blink a:hover {
+            text-shadow: 0 0 12px #00e676;
+        }
+        @keyframes blink-green {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.3; }
         }
         .telegram-icon {
             width: 14px;
@@ -293,13 +319,17 @@
                     Bookish Discussion
                 </a>
             </div>
+
+            <div class="help-blink">
+                <a href="https://t.me/+q4jx63Zt5LBiMmI1" target="_blank">🔔 အကူအညီရယူရန် Discussion Group သို့ ဝင်ရောက်ပါ</a>
+            </div>
         </div>
     </div>
 
     <button class="back-to-top" id="backToTop" onclick="scrollToTop()">↑</button>
 
     <script>
-        var postSlug = 'မဆဟငခ---သငလ';
+
 
         window.addEventListener('scroll', function() {
             var btn = document.getElementById('backToTop');
