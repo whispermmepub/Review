@@ -216,12 +216,6 @@ def generate_post_html(post):
     <link rel="image_src" href="{preview_image_html}">
     <style>
         @font-face {{
-            font-family: 'PyidaungsuMM';
-            src: url('https://raw.githubusercontent.com/WoWepub/Font/main/subset-Pyidaungsu.woff2') format('woff2');
-            font-display: swap;
-        }}
-
-        @font-face {{
             font-family: 'MyanmarAyar';
             src: url('/Review/assets/MyanmarAyarTyepwriter.ttf') format('truetype');
             font-display: swap;
