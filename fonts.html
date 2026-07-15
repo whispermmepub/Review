@@ -1,0 +1,442 @@
+<!DOCTYPE html>
+<html lang="my">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ဖွန့်များ - အရေး Typewriter - 𝐖𝐡𝐢𝐬𝐩𝐞𝐫 𝐎𝐟 𝐖𝐨𝐫𝐝𝐬 - 𝐦𝐦 𝐄𝐩𝐮𝐛</title>
+    <meta name="description" content="Myanmar Ayar Typewriter font ဖြင့် ရေးထားသည့် demo - Whisper Of Words">
+    <link rel="canonical" href="https://whispermmepub.github.io/Review/fonts.html">
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="ဖွန့်များ - အရေး Typewriter - 𝐖𝐡𝐢𝐬𝐩𝐞𝐫 𝐎𝐟 𝐖𝐨𝐫𝐝𝐬 - 𝐦𝐦 𝐄𝐩𝐮𝐛">
+    <meta property="og:description" content="Myanmar Ayar Typewriter font ဖြင့် ရေးထားသည့် demo">
+    <meta property="og:url" content="https://whispermmepub.github.io/Review/fonts.html">
+    <meta property="og:image" content="https://blogger.googleusercontent.com/img/a/AVvXsEiz-kPEUW-4PhZ-CEATRgvFzmaJfZ6mL3BQ8kXuRmav6CborPuAv7wTt4FaWY9pLZoluFx6_BqZMdtmsbnNswQleuyADOrI0l4t5hEGhzlFO4Vn9zvL20KrYPiyoGA8IBS52gKKsXx_TD5AtEj9Nmr7mWLLNgIdB1SkFZiWxOz_XMGiov2BBDi9tm9zhIA=rw">
+    <meta property="og:locale" content="my_MM">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="ဖွန့်များ - အရေး Typewriter">
+    <meta name="twitter:description" content="Myanmar Ayar Typewriter font ဖြင့် ရေးထားသည့် demo">
+    <style>
+        @font-face {
+            font-family: 'PyidaungsuMM';
+            src: url('https://raw.githubusercontent.com/WoWepub/Font/main/subset-Pyidaungsu.woff2') format('woff2');
+            font-display: swap;
+        }
+
+        @font-face {
+            font-family: 'MyanmarAyar';
+            src: url('assets/MyanmarAyarTyepwriter.ttf') format('truetype');
+            font-display: swap;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        body {
+            font-family: 'PyidaungsuMM', sans-serif;
+            background: linear-gradient(135deg, #0d0b1e 0%, #151328 100%);
+            color: #e0e0e0;
+            line-height: 2;
+            padding: 10px;
+        }
+
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        header {
+            background: linear-gradient(135deg, #d84315 0%, #bf360c 100%);
+            color: white;
+            padding: 40px 30px;
+            text-align: center;
+            border-radius: 16px;
+            margin-bottom: 25px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        header::before {
+            content: '';
+            position: absolute;
+            top: 0; left: 0; width: 100%; height: 100%;
+            background: radial-gradient(ellipse at center, rgba(255,255,255,0.08) 0%, transparent 70%);
+            pointer-events: none;
+        }
+
+        header > * { position: relative; z-index: 1; }
+
+        header h1 { font-size: 2rem; margin-bottom: 8px; font-weight: 800; }
+        header p { opacity: 0.9; font-size: 1.05rem; }
+
+        .nav-link {
+            display: inline-block;
+            padding: 8px 16px;
+            background: rgba(255,255,255,0.15);
+            color: white;
+            text-decoration: none;
+            border-radius: 8px;
+            margin: 5px;
+            font-size: 0.9em;
+            transition: all 0.3s;
+            border: 1px solid rgba(255,255,255,0.2);
+        }
+        .nav-link:hover { background: rgba(255,255,255,0.25); transform: translateY(-2px); }
+        .nav-link.active { background: rgba(255,255,255,0.3); font-weight: 700; }
+
+        .font-showcase {
+            background: #1a1830;
+            border-radius: 16px;
+            padding: 30px;
+            margin-bottom: 20px;
+            border: 1px solid rgba(255,255,255,0.08);
+        }
+
+        .font-showcase h2 {
+            color: #8b5cf6;
+            font-size: 1.3rem;
+            margin-bottom: 15px;
+            padding-bottom: 10px;
+            border-bottom: 2px solid rgba(139,92,246,0.3);
+        }
+
+        .font-sample {
+            font-family: 'MyanmarAyar', monospace;
+            padding: 20px;
+            background: rgba(0,0,0,0.3);
+            border-radius: 12px;
+            margin-bottom: 15px;
+            border-left: 4px solid #8b5cf6;
+        }
+
+        .font-sample-lg {
+            font-size: 1.6em;
+            line-height: 2.2;
+        }
+
+        .font-sample-md {
+            font-size: 1.2em;
+            line-height: 2;
+        }
+
+        .font-sample-sm {
+            font-size: 1em;
+            line-height: 1.8;
+        }
+
+        .label {
+            display: inline-block;
+            padding: 3px 10px;
+            border-radius: 20px;
+            font-size: 0.75em;
+            margin-bottom: 10px;
+            font-weight: 600;
+        }
+        .label-purple { background: rgba(139,92,246,0.2); color: #a78bfa; }
+        .label-green { background: rgba(34,197,94,0.2); color: #4ade80; }
+        .label-orange { background: rgba(249,115,22,0.2); color: #fb923c; }
+
+        .alphabet-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(45px, 1fr));
+            gap: 8px;
+            margin: 15px 0;
+        }
+
+        .char-box {
+            font-family: 'MyanmarAyar', monospace;
+            background: rgba(139,92,246,0.1);
+            border: 1px solid rgba(139,92,246,0.2);
+            border-radius: 8px;
+            padding: 8px 4px;
+            text-align: center;
+            font-size: 1.3em;
+            transition: all 0.2s;
+        }
+        .char-box:hover {
+            background: rgba(139,92,246,0.25);
+            transform: scale(1.1);
+        }
+
+        .comparison-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 15px;
+            margin: 15px 0;
+        }
+
+        .comparison-box {
+            padding: 15px;
+            border-radius: 10px;
+            background: rgba(0,0,0,0.2);
+        }
+
+        .comparison-box .font-label {
+            font-size: 0.8em;
+            color: #888;
+            margin-bottom: 8px;
+        }
+
+        .comparison-box.pyidaungsu {
+            font-family: 'PyidaungsuMM', sans-serif;
+        }
+
+        .comparison-box.ayar {
+            font-family: 'MyanmarAyar', monospace;
+        }
+
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 12px;
+            margin: 15px 0;
+        }
+
+        .stat-box {
+            text-align: center;
+            padding: 15px;
+            background: rgba(139,92,246,0.1);
+            border-radius: 10px;
+            border: 1px solid rgba(139,92,246,0.2);
+        }
+
+        .stat-box .number {
+            font-size: 1.8em;
+            font-weight: 700;
+            color: #8b5cf6;
+            font-family: 'MyanmarAyar', monospace;
+        }
+
+        .stat-box .label-text {
+            font-size: 0.85em;
+            color: #999;
+            margin-top: 5px;
+        }
+
+        .code-block {
+            background: #0d0b1e;
+            border: 1px solid rgba(139,92,246,0.3);
+            border-radius: 10px;
+            padding: 15px;
+            font-family: 'Fira Code', 'Consolas', monospace;
+            font-size: 0.85em;
+            overflow-x: auto;
+            color: #a78bfa;
+            margin: 10px 0;
+        }
+
+        .text-ayar {
+            font-family: 'MyanmarAyar', monospace;
+        }
+
+        footer {
+            text-align: center;
+            padding: 30px;
+            color: #666;
+            font-size: 0.9em;
+        }
+        footer a { color: #8b5cf6; text-decoration: none; }
+
+        @media (max-width: 600px) {
+            .comparison-row { grid-template-columns: 1fr; }
+            .stats-grid { grid-template-columns: repeat(2, 1fr); }
+            header h1 { font-size: 1.5rem; }
+            .alphabet-grid { grid-template-columns: repeat(6, 1fr); }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>Myanmar Ayar Typewriter</h1>
+            <p>မြန်မာ အရေး စာတိုက်ပုံ ဖွန့် Demo</p>
+            <div style="margin-top: 15px;">
+                <a href="index.html" class="nav-link">📚 စာအုပ်များ</a>
+                <a href="fonts.html" class="nav-link active">🔤 ဖွန့်များ</a>
+            </div>
+        </header>
+
+        <!-- Font Info -->
+        <div class="font-showcase">
+            <h2>📋 ဖွန့်အကြောင်း အကျဉ်းချုပ်</h2>
+            <div class="stats-grid">
+                <div class="stat-box">
+                    <div class="number">220</div>
+                    <div class="label-text">KB အရွယ်</div>
+                </div>
+                <div class="stat-box">
+                    <div class="number">750</div>
+                    <div class="label-text">Glyphs</div>
+                </div>
+                <div class="stat-box">
+                    <div class="number">160</div>
+                    <div class="label-text">Myanmar chars</div>
+                </div>
+            </div>
+            <div class="font-sample font-sample-sm">
+                <span class="label label-green">Info</span><br>
+                Font Name: Myanmar Ayar3 | Version: 3.30 | Style: Regular<br>
+                Digital Signed: Yes | Author: FontCreator 12.0<br>
+                Unicode Range: U+1000 - U+109F (Myanmar)
+            </div>
+        </div>
+
+        <!-- Large Sample -->
+        <div class="font-showcase">
+            <h2>📖 စာသား အကြီး</h2>
+            <span class="label label-purple">Large</span>
+            <div class="font-sample font-sample-lg">
+                Whisper Of Words - Mm Epub
+            </div>
+            <div class="font-sample font-sample-lg">
+                မြန်မာစာအုပ်များကို epub/kfx format ဖြင့် အခမဲ့ဖြန့်ဝေပါသည်။
+            </div>
+            <div class="font-sample font-sample-lg">
+                သင့်ဖုန်းတွင် epub reader app ဖြင့် ဖတ်ရှုနိုင်ပါသည်။
+            </div>
+        </div>
+
+        <!-- Medium Sample -->
+        <div class="font-showcase">
+            <h2>📝 စာပိုဒ်များ</h2>
+            <span class="label label-purple">Medium</span>
+            <div class="font-sample font-sample-md">
+                မြန်မာနိုင်ငံသည် အရှေ့တောင်အာရှတွင် တည်ရှိပါသည်။
+                မြန်မာနိုင်ငံ၏ မြို့တော်မှာ နေပြည်တော် ဖြစ်ပါသည်။
+                ရန်ကုန်မြို့သည် အကြီးဆုံးမြို့ ဖြစ်ပါသည်။
+            </div>
+            <div class="font-sample font-sample-md">
+                စာဖတ်ခြင်းသည် ဗဟုသုတ တိုးပွားစေပါသည်။
+                နေ့စဉ် မိနစ် ၃၀ ဖတ်ပါ - တစ်နှစ်အတွင်း စာအုပ် ၁၈ အုပ်ဖြင့် ညီမျှပါသည်။
+                စာဖတ်ခြင်းက စိတ်ဖိစီးမှုကို လျှော့ချပေးပါသည်။
+            </div>
+        </div>
+
+        <!-- Small Sample -->
+        <div class="font-showcase">
+            <h2>📄 စာသားအသေး</h2>
+            <span class="label label-purple">Small</span>
+            <div class="font-sample font-sample-sm">
+                က ခ ဂ ဃ င | စ ဆ ဇ ဈ ည | ဋ ဋ္ဌ ဎ ဏ တ | ထ ဒ ဓ န ပ
+            </div>
+            <div class="font-sample font-sample-sm">
+                ဗျည်း = {က, ခ, ဂ, ဃ, င, စ, ဆ, ဇ, ဈ, ည, ဋ, ဋ္ဌ, ဎ, ဏ, တ, ထ, ဒ, ဓ, န, ပ, ဖ, ဗ, ဘ, မ, ယ, ရ, လ, ဝ, သ, ဟ, ဠ, အ}
+            </div>
+            <div class="font-sample font-sample-sm">
+                သရဖူ = {ာ, ိ, ီ, ု, ူ, ေ, ဲ, ံ, ့, း} | ခေါင်းလောင်း = {က်, ခ်, ဂ်, င်, စ်, ...}
+            </div>
+        </div>
+
+        <!-- Alphabet Grid -->
+        <div class="font-showcase">
+            <h2>🔤 အက္ခရာများ</h2>
+            <span class="label label-green">Alphabet</span>
+            <div class="alphabet-grid">
+                <div class="char-box">က</div>
+                <div class="char-box">ခ</div>
+                <div class="char-box">ဂ</div>
+                <div class="char-box">ဃ</div>
+                <div class="char-box">င</div>
+                <div class="char-box">စ</div>
+                <div class="char-box">ဆ</div>
+                <div class="char-box">ဇ</div>
+                <div class="char-box">ဈ</div>
+                <div class="char-box">ည</div>
+                <div class="char-box">ဋ</div>
+                <div class="char-box">ဋ္ဌ</div>
+                <div class="char-box">ဎ</div>
+                <div class="char-box">ဏ</div>
+                <div class="char-box">တ</div>
+                <div class="char-box">ထ</div>
+                <div class="char-box">ဒ</div>
+                <div class="char-box">ဓ</div>
+                <div class="char-box">န</div>
+                <div class="char-box">ပ</div>
+                <div class="char-box">ဖ</div>
+                <div class="char-box">ဗ</div>
+                <div class="char-box">ဘ</div>
+                <div class="char-box">မ</div>
+                <div class="char-box">ယ</div>
+                <div class="char-box">ရ</div>
+                <div class="char-box">လ</div>
+                <div class="char-box">ဝ</div>
+                <div class="char-box">သ</div>
+                <div class="char-box">ဟ</div>
+                <div class="char-box">ဠ</div>
+                <div class="char-box">အ</div>
+            </div>
+        </div>
+
+        <!-- Numbers -->
+        <div class="font-showcase">
+            <h2>🔢 ကိန်းဂဏန်းများ</h2>
+            <span class="label label-orange">Numbers</span>
+            <div class="font-sample font-sample-lg">
+                ၀ ၁ ၂ ၃ ၄ ၅ ၆ ၇ ၈ ၉
+            </div>
+            <div class="font-sample font-sample-md">
+                ကျပ် ၁,၀၀၀  |  ကျပ် ၁၀,၀၀၀  |  ကျပ် ၁၀၀,၀၀၀  |  ကျပ် ၁,၀၀၀,၀၀၀
+            </div>
+        </div>
+
+        <!-- Comparison -->
+        <div class="font-showcase">
+            <h2>⚖️ Pyidaungsu vs MyanmarAyar</h2>
+            <div class="comparison-row">
+                <div class="comparison-box pyidaungsu">
+                    <div class="font-label">PyidaungsuMM (default)</div>
+                    မြန်မာစာအုပ်များကို epub/kfx format ဖြင့် အခမဲ့ဖြန့်ဝေပါသည်။
+                </div>
+                <div class="comparison-box ayar">
+                    <div class="font-label">MyanmarAyar (typewriter)</div>
+                    မြန်မာစာအုပ်များကို epub/kfx format ဖြင့် အခမဲ့ဖြန့်ဝေပါသည်။
+                </div>
+            </div>
+            <div class="comparison-row">
+                <div class="comparison-box pyidaungsu">
+                    <div class="font-label">PyidaungsuMM</div>
+                    Whisper Of Words - Mm Epub
+                </div>
+                <div class="comparison-box ayar">
+                    <div class="font-label">MyanmarAyar</div>
+                    Whisper Of Words - Mm Epub
+                </div>
+            </div>
+        </div>
+
+        <!-- Usage Code -->
+        <div class="font-showcase">
+            <h2>💻 ဘယ်လိုသုံးရမလဲ</h2>
+            <div class="code-block">
+/* HTML/CSS */<br>
+@font-face {<br>
+&nbsp;&nbsp;font-family: 'MyanmarAyar';<br>
+&nbsp;&nbsp;src: url('assets/MyanmarAyarTyepwriter.ttf') format('truetype');<br>
+&nbsp;&nbsp;font-display: swap;<br>
+}<br>
+<br>
+/* Class ဖြင့်သုံး */<br>
+&lt;p class="text-ayar"&gt;မြန်မာစာ ရေးပါ&lt;/p&gt;
+            </div>
+        </div>
+
+        <!-- Book Quotes -->
+        <div class="font-showcase">
+            <h2>📚 စာအုပ် ကောက်နုတ်ချက်များ</h2>
+            <div class="font-sample font-sample-md" style="border-left-color: #f59e0b;">
+                "လူတိုင်းမှာ ဖတ်စရာ စာအုပ်တစ်အုပ် ရှိတယ်။ ဒါပေမယ့် လူတိုင်းက ဖတ်တတ်တာ မဟုတ်ဘူး"
+            </div>
+            <div class="font-sample font-sample-md" style="border-left-color: #10b981;">
+                "စာဖတ်ခြင်းသည် ကမ္ဘာတစ်ခုလုံးကို လှည့်ပတ်နိုင်သည့် လက်နက် ဖြစ်ပါသည်"
+            </div>
+            <div class="font-sample font-sample-md" style="border-left-color: #3b82f6;">
+                "စာအုပ်တစ်အုပ်ဖတ်ခြင်းသည် ဘဝတစ်ခုကို ရှင်သန်ခြင်း ဖြစ်ပါသည်"
+            </div>
+        </div>
+
+        <footer>
+            <p>Myanmar Ayar Typewriter Font Demo</p>
+            <p><a href="index.html">📚 စာအုပ်များ</a> | <a href="https://github.com/whispermmepub/myanmar-yoe-shin-fonts">GitHub Font Repo</a></p>
+            <p style="margin-top: 10px; color: #555;">© 2026 Whisper Of Words - Mm Epub | Bangkok</p>
+        </footer>
+    </div>
+</body>
+</html>
