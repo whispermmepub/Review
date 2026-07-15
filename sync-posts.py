@@ -221,11 +221,17 @@ def generate_post_html(post):
             font-display: swap;
         }}
 
+        @font-face {{
+            font-family: 'MyanmarAyar';
+            src: url('/Review/assets/MyanmarAyarTyepwriter.ttf') format('truetype');
+            font-display: swap;
+        }}
+
         * {{ margin: 0; padding: 0; box-sizing: border-box; }}
 
         body {{
-            font-family: 'PyidaungsuMM', sans-serif;
-            background: linear-gradient(135deg, #0d0b1e 0%, #151328 100%);
+            font-family: 'MyanmarAyar', monospace;
+            background: linear-gradient(135deg, #141228 0%, #1a1530 100%);
             color: #e0e0e0;
             line-height: 2;
             padding: 0;
@@ -233,7 +239,7 @@ def generate_post_html(post):
 
         .container {{
             width: 100%;
-            background: #1a1830;
+            background: #1e1a35;
             overflow: hidden;
         }}
 
@@ -274,9 +280,9 @@ def generate_post_html(post):
         }}
 
         .post-body p {{
-            margin-bottom: 0.8em;
+            margin-bottom: 1.2em;
             padding: 0;
-            letter-spacing: 0;
+            letter-spacing: 0.02em;
             word-spacing: 0.02em;
             font-size: 1.0rem;
             line-height: 1.85;
@@ -309,7 +315,7 @@ def generate_post_html(post):
             display: inline-block;
             margin-top: 30px;
             padding: 10px 20px;
-            background: #1a1830;
+            background: #1e1a35;
             color: #4a9eff;
             text-decoration: none;
             border-radius: 5px;
@@ -390,7 +396,7 @@ def generate_post_html(post):
             text-decoration: none;
             font-size: 0.9rem;
             font-weight: 600;
-            font-family: 'PyidaungsuMM', sans-serif;
+            font-family: 'MyanmarAyar', monospace;
             transition: all 0.25s ease;
         }}
         .telegram-btn:hover {{
@@ -431,7 +437,7 @@ def generate_post_html(post):
             border-radius: 30px;
             cursor: pointer;
             transition: all 0.3s;
-            font-family: 'PyidaungsuMM', sans-serif;
+            font-family: 'MyanmarAyar', monospace;
         }}
         .love-btn:hover, .love-btn.liked {{
             background: #e74c3c;
