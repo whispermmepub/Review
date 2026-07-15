@@ -232,7 +232,7 @@ def generate_post_html(post):
         body {{
             font-family: 'MyanmarAyar', monospace;
             background: linear-gradient(135deg, #141228 0%, #1a1530 100%);
-            color: #e0e0e0;
+            color: #d0d0d0;
             line-height: 2;
             padding: 0;
         }}
@@ -284,7 +284,7 @@ def generate_post_html(post):
             padding: 0;
             letter-spacing: 0.02em;
             word-spacing: 0.02em;
-            font-size: 1.0rem;
+            font-size: 1.2rem;
             line-height: 1.85;
             color: #d0d0d0;
 
