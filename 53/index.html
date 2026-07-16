@@ -20,6 +20,9 @@
     <meta property="og:image:alt" content="အမေ့အိမ်က ငရဲခန်း">
     <meta property="og:locale" content="my_MM">
     <meta name="twitter:card" content="summary_large_image">
+    <link rel="manifest" href="/Review/manifest.json">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="theme-color" content="#141228">
     <meta name="twitter:title" content="အမေ့အိမ်က ငရဲခန်း - 𝐖𝐡𝐢𝐬𝐩𝐞𝐫 𝐎𝐟 𝐖𝐨𝐫𝐝𝐬 - 𝐦𝐦 𝐄𝐩𝐮𝐛">
     <meta name="twitter:description" content="&quot;အိမ်&quot; ဆိုတဲ့ စကားလုံးကို ကြားလိုက်ရင် ခင်ဗျားတို့ စိတ်ထဲမှာ ဘာကို အရင်မြင်ယောင်မိသလဲ။">
     <meta name="twitter:image" content="https://blogger.googleusercontent.com/img/a/AVvXsEg-bHEg_4J9FgLedBrHrfwWvhnjooFbtuwgyNiC_CV4VtZVBpjUBslhViEtSqz94cRW2K75mb8DuP59hfuaON1CyLsgEhtbY8l-KjXQGQHandFAb9EwS5Kj6LnZ44m0dm14xmy1OueLROevIYqWdI67JkT1OR32pBC91Z4O7c6UZFj1fq3ScBSTIv8bfWw">
@@ -486,6 +489,13 @@
         }
 
         updateBtn();
+    </script>
+    <script>
+        if ('serviceWorker' in navigator) {
+            navigator.serviceWorker.register('/Review/sw.js')
+            .then(function() { console.log('SW registered'); })
+            .catch(function(e) { console.log('SW failed:', e); });
+        }
     </script>
 </body>
 </html>

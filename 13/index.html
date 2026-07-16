@@ -20,6 +20,9 @@
     <meta property="og:image:alt" content="🍷လူ့အသားချိုသည်-ရဲလွင်အောင်🥩 (Tender Is The Flesh-Agustina Bazterrica)">
     <meta property="og:locale" content="my_MM">
     <meta name="twitter:card" content="summary_large_image">
+    <link rel="manifest" href="/Review/manifest.json">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="theme-color" content="#141228">
     <meta name="twitter:title" content="🍷လူ့အသားချိုသည်-ရဲလွင်အောင်🥩 (Tender Is The Flesh-Agustina Bazterrica) - 𝐖𝐡𝐢𝐬𝐩𝐞𝐫 𝐎𝐟 𝐖𝐨𝐫𝐝𝐬 - 𝐦𝐦 𝐄𝐩𝐮𝐛">
     <meta name="twitter:description" content="ကျွန်တော်တို့နိုင်ငံမှာ လူသိပ်မသိကြသေးတဲ့ ရွက်ပုန်းသီးစာအုပ်လေးတစ်အုပ်အကြောင်း၊ ကမ္ဘာကျော်ပေမယ့် မြန်မာမကျော်သော စာအုပ်လို့ပဲ ဆိုချင်ဆို။">
     <meta name="twitter:image" content="https://blogger.googleusercontent.com/img/a/AVvXsEgCrGaw7URP-v-_4UwxNicmB5KjKNrg-JYDhaEisLhyKI3qUbdGfS0eUsWGUUkVHBy24brP6-koxVz_x1epgFgg6_ZNQaTGarLN51tcSeXfUMd8ziyGWHNmwzUZsLoJMgb-rozEvinv1wMZ1bW2NBtkHXgc9CgSAKG1ggd4veJq8JtDY3qfWr_UQoONTuY=w285-h400">
@@ -489,6 +492,13 @@
         }
 
         updateBtn();
+    </script>
+    <script>
+        if ('serviceWorker' in navigator) {
+            navigator.serviceWorker.register('/Review/sw.js')
+            .then(function() { console.log('SW registered'); })
+            .catch(function(e) { console.log('SW failed:', e); });
+        }
     </script>
 </body>
 </html>

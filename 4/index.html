@@ -20,6 +20,9 @@
     <meta property="og:image:alt" content="ကမ္မဖလ-တင့်တယ်✍️">
     <meta property="og:locale" content="my_MM">
     <meta name="twitter:card" content="summary_large_image">
+    <link rel="manifest" href="/Review/manifest.json">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="theme-color" content="#141228">
     <meta name="twitter:title" content="ကမ္မဖလ-တင့်တယ်✍️ - 𝐖𝐡𝐢𝐬𝐩𝐞𝐫 𝐎𝐟 𝐖𝐨𝐫𝐝𝐬 - 𝐦𝐦 𝐄𝐩𝐮𝐛">
     <meta name="twitter:description" content="ကမ္မဖလ-တင့်တယ်✍️ ဗုဒ္ဓဘာသာဝင်တွေမှာ ကံကံ၏အကျိုးကို ယုံကြည်ခြင်းဆိုတာ လက်ကိုင်ထားရမယ့်တရားတစ်ခုပါ။">
     <meta name="twitter:image" content="https://blogger.googleusercontent.com/img/a/AVvXsEjSGzp3U-GeF_7_EqleRt0SJy_ka7XdohkiZ5WEN_PgrwCYxyq3BixEBpE7wOe_hEwYJ2ABg9ngcnjSbZ2xafhkFGIwmUvo8BD__hCXHDs_b5UmiBUQ3J9_uXCRaLh-MsEadESbQWW5msQEhTstqofaHlmp4iEesVEGvaS5eFCaudso8eofJrHKv4GtuSY=w293-h400">
@@ -497,6 +500,13 @@
         }
 
         updateBtn();
+    </script>
+    <script>
+        if ('serviceWorker' in navigator) {
+            navigator.serviceWorker.register('/Review/sw.js')
+            .then(function() { console.log('SW registered'); })
+            .catch(function(e) { console.log('SW failed:', e); });
+        }
     </script>
 </body>
 </html>

@@ -207,6 +207,9 @@ def generate_post_html(post):
     <meta property="og:image:alt" content="{html_lib.escape(post['title'])}">
     <meta property="og:locale" content="my_MM">
     <meta name="twitter:card" content="summary_large_image">
+    <link rel="manifest" href="/Review/manifest.json">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="theme-color" content="#141228">
     <meta name="twitter:title" content="{meta_title}">
     <meta name="twitter:description" content="{meta_description}">
     <meta name="twitter:image" content="{preview_image}">
@@ -664,6 +667,13 @@ def generate_post_html(post):
         }}
 
         updateBtn();
+    </script>
+    <script>
+        if ('serviceWorker' in navigator) {{
+            navigator.serviceWorker.register('/Review/sw.js')
+            .then(function() {{ console.log('SW registered'); }})
+            .catch(function(e) {{ console.log('SW failed:', e); }});
+        }}
     </script>
 </body>
 </html>'''

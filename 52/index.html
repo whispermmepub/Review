@@ -20,6 +20,9 @@
     <meta property="og:image:alt" content="တို့လူလေးများဆိုသလေး-ခင်မျိုးချစ်🔍">
     <meta property="og:locale" content="my_MM">
     <meta name="twitter:card" content="summary_large_image">
+    <link rel="manifest" href="/Review/manifest.json">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="theme-color" content="#141228">
     <meta name="twitter:title" content="တို့လူလေးများဆိုသလေး-ခင်မျိုးချစ်🔍 - 𝐖𝐡𝐢𝐬𝐩𝐞𝐫 𝐎𝐟 𝐖𝐨𝐫𝐝𝐬 - 𝐦𝐦 𝐄𝐩𝐮𝐛">
     <meta name="twitter:description" content="ကလေးစာပေတွေဆိုရင် အများအားဖြင့် စိတ်ကူးယဉ် ဇာတ်ကောင်တွေ၊အံ့ဖွယ်ဆန်းကြယ်တွေနဲ့ပဲ ပြည့်လို့နေတယ်။">
     <meta name="twitter:image" content="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEjOrN5aisg9PnHm2DBNeCoOQhQAlLyNF4jMFRxr6-NRoxuCQkB-E_hdQyzZ-9A_fxiHClHtX_ePHeMV_nlkxzz6K_irrk3BB-Dt5TQfjIJTqDQdgivHcEjZjnN_8LGxN2QKHPP1WOYOxc6WUdoi3sbn9IQqYyL6lFapgy4MX148GvqbTD2m_Dx7qssHpN4/s1600/IMG_0159.png">
@@ -487,6 +490,13 @@
         }
 
         updateBtn();
+    </script>
+    <script>
+        if ('serviceWorker' in navigator) {
+            navigator.serviceWorker.register('/Review/sw.js')
+            .then(function() { console.log('SW registered'); })
+            .catch(function(e) { console.log('SW failed:', e); });
+        }
     </script>
 </body>
 </html>

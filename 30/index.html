@@ -20,6 +20,9 @@
     <meta property="og:image:alt" content="🙏🏻ညီတော်အာနန္ဒာ၏တစ်သက်တာမှတ်တမ်း-ဝဏ္ဏသီရိ">
     <meta property="og:locale" content="my_MM">
     <meta name="twitter:card" content="summary_large_image">
+    <link rel="manifest" href="/Review/manifest.json">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="theme-color" content="#141228">
     <meta name="twitter:title" content="🙏🏻ညီတော်အာနန္ဒာ၏တစ်သက်တာမှတ်တမ်း-ဝဏ္ဏသီရိ - 𝐖𝐡𝐢𝐬𝐩𝐞𝐫 𝐎𝐟 𝐖𝐨𝐫𝐝𝐬 - 𝐦𝐦 𝐄𝐩𝐮𝐛">
     <meta name="twitter:description" content="ဗုဒ္ဓဘာသာကို မိရိုးဖလာကိုးကွယ်မှုကနေ အဆင့်တက်ချင်ရင် ဒီစာအုပ်ကိုဖတ်သင့်တယ်။">
     <meta name="twitter:image" content="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEiWvuBqGg4H9iD3DiUrbgUdY7GpUePVz2Y_m_dLpvo3dD6nU2LJFU1gv8HGkNX2Xwax7jz6t9K8BYAxDq96QuZwhwB-k06SiM3v71WdPMzvGaicoEvDTLovcTmaLWxHG2pf-S-lblH_QtmMAVIw5QBIFDvju20RBZVUzhpNRm1hZqcBMWcu3NuLcIF9FS8/w354-h400/IMG_1748.jpeg">
@@ -489,6 +492,13 @@
         }
 
         updateBtn();
+    </script>
+    <script>
+        if ('serviceWorker' in navigator) {
+            navigator.serviceWorker.register('/Review/sw.js')
+            .then(function() { console.log('SW registered'); })
+            .catch(function(e) { console.log('SW failed:', e); });
+        }
     </script>
 </body>
 </html>

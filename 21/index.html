@@ -20,6 +20,9 @@
     <meta property="og:image:alt" content="သိဒ္ဓတ္ထ-ပါရဂူ☸️">
     <meta property="og:locale" content="my_MM">
     <meta name="twitter:card" content="summary_large_image">
+    <link rel="manifest" href="/Review/manifest.json">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="theme-color" content="#141228">
     <meta name="twitter:title" content="သိဒ္ဓတ္ထ-ပါရဂူ☸️ - 𝐖𝐡𝐢𝐬𝐩𝐞𝐫 𝐎𝐟 𝐖𝐨𝐫𝐝𝐬 - 𝐦𝐦 𝐄𝐩𝐮𝐛">
     <meta name="twitter:description" content="စာအုပ်နာမည်အတိုင်းဆို စာဖတ်သူတိုင်းလိုလိုက ဗုဒ္ဓအကြောင်းမဟုတ်ပါဘူး ဘယ်လောက်ပြောထားပါစေ ဗုဒ္ဓအကြောင်းရေးထားတာပဲမလား...">
     <meta name="twitter:image" content="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEhMBeDRay6mDZPUl5nOxQ284ZgvcDo7IC3UQHyGhLYAymqap4VK8SWlWvVDAaDQ_YWYNMdcE0jOxqZ6sPgLPRalXLE0G97m0GbSOjgwGZXY1bH2XxYiqUj39iVcFXT6XuuIa1t5SRQDXHRav3C3kk9n40FW4t11P3-oIR9yWPSVITW-JyGFYszsrjfReno/w309-h400/IMG_1509.jpeg">
@@ -494,6 +497,13 @@
         }
 
         updateBtn();
+    </script>
+    <script>
+        if ('serviceWorker' in navigator) {
+            navigator.serviceWorker.register('/Review/sw.js')
+            .then(function() { console.log('SW registered'); })
+            .catch(function(e) { console.log('SW failed:', e); });
+        }
     </script>
 </body>
 </html>

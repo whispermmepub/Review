@@ -20,6 +20,9 @@
     <meta property="og:image:alt" content="မာနနှင့်အာဃာတ-တင့်တယ်(ဘာသာပြန်)">
     <meta property="og:locale" content="my_MM">
     <meta name="twitter:card" content="summary_large_image">
+    <link rel="manifest" href="/Review/manifest.json">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="theme-color" content="#141228">
     <meta name="twitter:title" content="မာနနှင့်အာဃာတ-တင့်တယ်(ဘာသာပြန်) - 𝐖𝐡𝐢𝐬𝐩𝐞𝐫 𝐎𝐟 𝐖𝐨𝐫𝐝𝐬 - 𝐦𝐦 𝐄𝐩𝐮𝐛">
     <meta name="twitter:description" content="“ပိုက်ဆံချမ်းသာသောလူပျိုတစ်ယောက်သည် အိမ်သူဇနီးတစ်ယောက် အလိုရှိ၍နေရမည်ဟူသောစကားသည် အမြဲမှန်ကန်သောစကားတစ်ခွန်းဟူ၍ လူတိုင်းကပင်...">
     <meta name="twitter:image" content="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEjgrPrD2CKdv_msPZR5cIK7Ypja6ZY8b4eDNYfPa1QKpHwTNWScb0wBK8DNc5FqSPOwER5MflpnvTKzZ46sNv91uQZBhTTPfDrIPvksJfkwv3T3QtjraynGwK9zsJQpi7PB8MI7qPKqyvxHW1t_LWlww-fa0DSyb39JfbOHxwt9Cr_dmZG_T68JluZJEvY/w280-h400/IMG_9014.jpeg">
@@ -494,6 +497,13 @@
         }
 
         updateBtn();
+    </script>
+    <script>
+        if ('serviceWorker' in navigator) {
+            navigator.serviceWorker.register('/Review/sw.js')
+            .then(function() { console.log('SW registered'); })
+            .catch(function(e) { console.log('SW failed:', e); });
+        }
     </script>
 </body>
 </html>
