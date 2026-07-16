@@ -20,6 +20,9 @@
     <meta property="og:image:alt" content="💼ဖောရက်စ်ဂမ့်-လင်းခန့်(ဘာသာပြန်)🪶">
     <meta property="og:locale" content="my_MM">
     <meta name="twitter:card" content="summary_large_image">
+    <link rel="manifest" href="/Review/manifest.json">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="theme-color" content="#141228">
     <meta name="twitter:title" content="💼ဖောရက်စ်ဂမ့်-လင်းခန့်(ဘာသာပြန်)🪶 - 𝐖𝐡𝐢𝐬𝐩𝐞𝐫 𝐎𝐟 𝐖𝐨𝐫𝐝𝐬 - 𝐦𝐦 𝐄𝐩𝐮𝐛">
     <meta name="twitter:description" content="💼ဖောရက်စ်ဂမ့်-လင်းခန့်(ဘာသာပြန်)🪶(FORREST GUMP-WINSTON GROOM)&lt;a href=&quot;https://blogger.">
     <meta name="twitter:image" content="https://blogger.googleusercontent.com/img/a/AVvXsEggpCL6NmpREq7FRwebQ-j5hbq82bcOk8ZzeWF5Lyiq9WX8o_3NjYL47nGSmXH3Zo58gV-DaHvYXrbSktC-y-gu9h5hOfLZquqGzyg5Kh6ZEQZN2mlF0yrWIrJ9qIPHrJmCgWIvGNhL8HvjQN9uDrzc6vo9vSpJ_873ecH2rYIGePEy4T1uHolERAEKE0U=w267-h400">
@@ -496,6 +499,13 @@
         }
 
         updateBtn();
+    </script>
+    <script>
+        if ('serviceWorker' in navigator) {
+            navigator.serviceWorker.register('/Review/sw.js')
+            .then(function() { console.log('SW registered'); })
+            .catch(function(e) { console.log('SW failed:', e); });
+        }
     </script>
 </body>
 </html>

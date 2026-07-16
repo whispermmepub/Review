@@ -20,6 +20,9 @@
     <meta property="og:image:alt" content="အမှောင်-ချမ်းမြေ့ဝင်း">
     <meta property="og:locale" content="my_MM">
     <meta name="twitter:card" content="summary_large_image">
+    <link rel="manifest" href="/Review/manifest.json">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="theme-color" content="#141228">
     <meta name="twitter:title" content="အမှောင်-ချမ်းမြေ့ဝင်း - 𝐖𝐡𝐢𝐬𝐩𝐞𝐫 𝐎𝐟 𝐖𝐨𝐫𝐝𝐬 - 𝐦𝐦 𝐄𝐩𝐮𝐛">
     <meta name="twitter:description" content="“တကယ်လို့များ”တွေ၊ “ဒါပေမယ့်”တွေကိုသာ ချောကလက်တွေ၊ မြေပဲတွေလို တကြွပ်ကြွပ်ဝါးလို့ရရင် ငါတို့အားလုံး ပါးစပ်တောင် အားမှာမဟုတ်ဘူး.. တဲ့။">
     <meta name="twitter:image" content="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEhEZgLgZKs4tWivCGNSap0kIk2SCiE1OlPthUT7hMxefsQp-XJLfA_MjUMsaFTE2r67g2GdLymfQYNRT9KlyZQJnqeONK5XlF4sF9jthN5195adMCmrvMZnGbT2ppc2uLrGGStghxBFvuLyADUDdu4l6sf5EyO_F40UdbM5BNVHl9V1KD4HwZXIFFVijEg/w289-h400/IMG_2357.jpeg">
@@ -489,6 +492,13 @@
         }
 
         updateBtn();
+    </script>
+    <script>
+        if ('serviceWorker' in navigator) {
+            navigator.serviceWorker.register('/Review/sw.js')
+            .then(function() { console.log('SW registered'); })
+            .catch(function(e) { console.log('SW failed:', e); });
+        }
     </script>
 </body>
 </html>

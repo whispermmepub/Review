@@ -20,6 +20,9 @@
     <meta property="og:image:alt" content="The Reader - စာဖတ်သူ - သူရိန်ဝင်း(မြန်မာပြန်)">
     <meta property="og:locale" content="my_MM">
     <meta name="twitter:card" content="summary_large_image">
+    <link rel="manifest" href="/Review/manifest.json">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="theme-color" content="#141228">
     <meta name="twitter:title" content="The Reader - စာဖတ်သူ - သူရိန်ဝင်း(မြန်မာပြန်) - 𝐖𝐡𝐢𝐬𝐩𝐞𝐫 𝐎𝐟 𝐖𝐨𝐫𝐝𝐬 - 𝐦𝐦 𝐄𝐩𝐮𝐛">
     <meta name="twitter:description" content="&lt;a...">
     <meta name="twitter:image" content="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEgGkZkS5ihgmHu7KbCalVJklHGVqzsdIXlW1F12W1UEKDhsiGxDrn6kR300Rbjkpf8ppt9lSuwvYhpplS-eV2ZkE0OX5q-WKvJshj8hHSjsvXz3sGtSlU2PmeirLgU9ImJIRAnFcyLuEZPbqd4H_2ECQCT9EZESPHVKDKvHFKwiJHaF93Evka23njHhyphenhyphen8c/s16000/IMG_20260405_124526_101.webp">
@@ -485,6 +488,13 @@
         }
 
         updateBtn();
+    </script>
+    <script>
+        if ('serviceWorker' in navigator) {
+            navigator.serviceWorker.register('/Review/sw.js')
+            .then(function() { console.log('SW registered'); })
+            .catch(function(e) { console.log('SW failed:', e); });
+        }
     </script>
 </body>
 </html>

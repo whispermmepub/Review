@@ -20,6 +20,9 @@
     <meta property="og:image:alt" content="ခန်းဆောင်နီအိပ်မက် - မြသန်းတင့်🏯🎋">
     <meta property="og:locale" content="my_MM">
     <meta name="twitter:card" content="summary_large_image">
+    <link rel="manifest" href="/Review/manifest.json">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="theme-color" content="#141228">
     <meta name="twitter:title" content="ခန်းဆောင်နီအိပ်မက် - မြသန်းတင့်🏯🎋 - 𝐖𝐡𝐢𝐬𝐩𝐞𝐫 𝐎𝐟 𝐖𝐨𝐫𝐝𝐬 - 𝐦𝐦 𝐄𝐩𝐮𝐛">
     <meta name="twitter:description" content="ဒီစာအုပ်ကို စဖတ်ဖို့ ကြိုးစားနေတဲ့သူတွေကို စိတ်ထိခိုက်လွယ်မလွယ် အရင် မေးရလိမ့်မယ်ထင်တယ်။">
     <meta name="twitter:image" content="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEjozcmifO4Y11DCOMbOxrRokDSr0izwnrxgdsEA3ZdfZ08qY6fu-c6PoDbRL6ag_Qaer6wY_J-jK8d8n1jPlArTgs-0LhLRQf9mWvBVyZ5bpPd8xM0s3LWIqDaHhWyONGAz5CygKuJSMsvR0nUBTeo7odsJ7LfOUx2uwOiT7wnTdqsjGMR7PuwRsigGcNM/w280-h400/IMG_3049.jpeg">
@@ -518,6 +521,13 @@
         }
 
         updateBtn();
+    </script>
+    <script>
+        if ('serviceWorker' in navigator) {
+            navigator.serviceWorker.register('/Review/sw.js')
+            .then(function() { console.log('SW registered'); })
+            .catch(function(e) { console.log('SW failed:', e); });
+        }
     </script>
 </body>
 </html>

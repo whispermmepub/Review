@@ -20,6 +20,9 @@
     <meta property="og:image:alt" content="လူလိမ် - သန်းတင့်">
     <meta property="og:locale" content="my_MM">
     <meta name="twitter:card" content="summary_large_image">
+    <link rel="manifest" href="/Review/manifest.json">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="theme-color" content="#141228">
     <meta name="twitter:title" content="လူလိမ် - သန်းတင့် - 𝐖𝐡𝐢𝐬𝐩𝐞𝐫 𝐎𝐟 𝐖𝐨𝐫𝐝𝐬 - 𝐦𝐦 𝐄𝐩𝐮𝐛">
     <meta name="twitter:description" content="&lt;a...">
     <meta name="twitter:image" content="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEjBYMqqNivygOj7UnDkkZQH43BLm56gpBxIjGrO_S4HPz4Q7RUui16QmKeqkFKFpd4t6LE2U8gzcdhQJZqrF0-GxNvjIitCruFGQ5j0-t-hqq1VEPPk-NUDvgiUIXrqnc-WKZr4-93JxQu_JKN82qgZLMaHkS5b1vLcismd_qbLvlrBYzHxtFOgYBEAbJs/s16000/IMG_1775716421604.webp">
@@ -500,6 +503,13 @@
         }
 
         updateBtn();
+    </script>
+    <script>
+        if ('serviceWorker' in navigator) {
+            navigator.serviceWorker.register('/Review/sw.js')
+            .then(function() { console.log('SW registered'); })
+            .catch(function(e) { console.log('SW failed:', e); });
+        }
     </script>
 </body>
 </html>

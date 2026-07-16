@@ -1,0 +1,22 @@
+{
+  "name": "Whisper Of Words - Myanmar Book Reviews",
+  "short_name": "WoW Books",
+  "description": "Myanmar book review collection - epub/kfx format",
+  "start_url": "/Review/",
+  "display": "standalone",
+  "background_color": "#141228",
+  "theme_color": "#8b5cf6",
+  "orientation": "portrait",
+  "icons": [
+    {
+      "src": "assets/icon-192.png",
+      "sizes": "192x192",
+      "type": "image/png"
+    },
+    {
+      "src": "assets/icon-512.png",
+      "sizes": "512x512",
+      "type": "image/png"
+    }
+  ]
+}

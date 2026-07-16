@@ -20,6 +20,9 @@
     <meta property="og:image:alt" content="ရှန်ဟိုင်းဂျင်-တော်ကောင်းမင်း🎓">
     <meta property="og:locale" content="my_MM">
     <meta name="twitter:card" content="summary_large_image">
+    <link rel="manifest" href="/Review/manifest.json">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="theme-color" content="#141228">
     <meta name="twitter:title" content="ရှန်ဟိုင်းဂျင်-တော်ကောင်းမင်း🎓 - 𝐖𝐡𝐢𝐬𝐩𝐞𝐫 𝐎𝐟 𝐖𝐨𝐫𝐝𝐬 - 𝐦𝐦 𝐄𝐩𝐮𝐛">
     <meta name="twitter:description" content="ဘာကြောင့်များ ဒီစာအုပ်ကို ပြန်မထုတ်ကြတော့တာလဲမသိဘူး။">
     <meta name="twitter:image" content="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEh8i8T3vIibk-f8AsSVL5Z1B3253cnIqqBhg4coAeeUxvDlfcw9lPQHbf8dxLkhNNSsPVXRSoSRnJKEe0zTvdip7n3Aav8kvELAGOTOyxKiw6khtrslHXWjaSxSDkuK2CcQwWUrpnm7xAAwyXLUKGSAVKcO4GVyWkt5CAND9VOGqpOOmoUDXHXzLTn5-6Y/w266-h400/IMG_0145.jpeg">
@@ -494,6 +497,13 @@
         }
 
         updateBtn();
+    </script>
+    <script>
+        if ('serviceWorker' in navigator) {
+            navigator.serviceWorker.register('/Review/sw.js')
+            .then(function() { console.log('SW registered'); })
+            .catch(function(e) { console.log('SW failed:', e); });
+        }
     </script>
 </body>
 </html>
