@@ -227,7 +227,7 @@ def generate_post_html(post):
         * {{ margin: 0; padding: 0; box-sizing: border-box; }}
 
         body {{
-            font-family: 'MyanmarAyar', monospace;
+            font-family: 'PuPuBold', monospace;
             background: linear-gradient(135deg, #141228 0%, #1a1530 100%);
             color: #d0d0d0;
             line-height: 2;
@@ -393,7 +393,7 @@ def generate_post_html(post):
             text-decoration: none;
             font-size: 0.9rem;
             font-weight: 600;
-            font-family: 'MyanmarAyar', monospace;
+            font-family: 'PuPuBold', monospace;
             transition: all 0.25s ease;
         }}
         .telegram-btn:hover {{
@@ -434,7 +434,7 @@ def generate_post_html(post):
             border-radius: 30px;
             cursor: pointer;
             transition: all 0.3s;
-            font-family: 'MyanmarAyar', monospace;
+            font-family: 'PuPuBold', monospace;
         }}
         .love-btn:hover, .love-btn.liked {{
             background: #e74c3c;
@@ -535,7 +535,7 @@ def generate_post_html(post):
             font-weight: 600;
             cursor: pointer;
             transition: all 0.3s;
-            font-family: 'MyanmarAyar', monospace;
+            font-family: 'PuPuBold', monospace;
         }}
         .bookmark-btn:hover, .bookmark-btn.saved {{
             background: #f59e0b;
