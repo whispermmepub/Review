@@ -282,15 +282,93 @@
             background: #357abd;
             transform: translateY(-3px);
         }
+
+        /* Reading Progress Bar */
+        .reading-progress {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 0%;
+            height: 3px;
+            background: linear-gradient(90deg, #8b5cf6, #ec4899);
+            z-index: 9999;
+            transition: width 0.1s ease;
+        }
+
+        /* Reading Time */
+        .reading-time {
+            text-align: center;
+            color: #888;
+            font-size: 0.85rem;
+            padding: 8px 0;
+        }
+        .reading-time span { color: #8b5cf6; font-weight: 700; }
+
+        /* Share Buttons */
+        .share-section {
+            display: flex;
+            justify-content: center;
+            gap: 10px;
+            flex-wrap: wrap;
+            padding: 15px 0;
+        }
+        .share-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            padding: 8px 16px;
+            border-radius: 8px;
+            font-size: 0.85rem;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s;
+            color: #fff;
+        }
+        .share-btn.tg { background: #0088cc; }
+        .share-btn.tg:hover { background: #006da3; box-shadow: 0 4px 12px rgba(0,136,204,0.4); }
+        .share-btn.fb { background: #1877f2; }
+        .share-btn.fb:hover { background: #0d6efd; box-shadow: 0 4px 12px rgba(24,119,242,0.4); }
+        .share-btn.viber { background: #7360f2; }
+        .share-btn.viber:hover { background: #5a48d4; box-shadow: 0 4px 12px rgba(115,96,242,0.4); }
+
+        /* Bookmark */
+        .bookmark-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            padding: 8px 18px;
+            border: 2px solid #f59e0b;
+            background: transparent;
+            color: #f59e0b;
+            border-radius: 8px;
+            font-size: 0.9rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s;
+            font-family: 'MyanmarAyar', monospace;
+        }
+        .bookmark-btn:hover, .bookmark-btn.saved {
+            background: #f59e0b;
+            color: #000;
+            box-shadow: 0 4px 12px rgba(245,158,11,0.4);
+        }
+        .bookmark-bar {
+            text-align: center;
+            padding: 10px 0;
+        }
     </style>
 </head>
 <body>
+    <div class="reading-progress" id="readingProgress"></div>
     <div class="container">
         <header>
             <h1>အငို အရယ် နည်းသော ရက်များ - သန်းတင့် - book review</h1>
             <div class="post-meta">📅 2026-04-15 • ✍️ ဝဿန်အေးချမ်း</div>
 
         </header>
+
+        <div class="reading-time" id="readingTime">📖 <span id="readTime"></span> ဖတ်ရန်အချိန်</div>
+
 
         <img src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEiEbPoaEvKDtJ-7yuEgkE56bvb2aTt6GiUHvRr7kbREPhW7DYj6t0HlLGncveFAfsdfIHvFWvp0pMNmOdY5mv8iKrA2C4A7EWundHxWCvIowUubHnwoC-SSzmPukThEcSeNCRcdXeOjgJO-MjxO5iRBJ1JY9wPEXMm25xERZ6YD2OT5AcSZ1HcXDaDYqWY/s16000/image.jpg" alt="အငို အရယ် နည်းသော ရက်များ - သန်းတင့် - book review" class="post-image">
         <div class="post-body">
@@ -318,6 +396,24 @@
 
             <a href="../index.html" class="back-link">← ပင်မစာမျက်နှာသို့</a>
 
+            <div class="share-section">
+                <a class="share-btn tg" id="shareTg" href="#" target="_blank">
+                    📤 Telegram
+                </a>
+                <a class="share-btn fb" id="shareFb" href="#" target="_blank">
+                    📤 Facebook
+                </a>
+                <a class="share-btn viber" id="shareViber" href="#" target="_blank">
+                    📤 Viber
+                </a>
+            </div>
+
+            <div class="bookmark-bar">
+                <button class="bookmark-btn" id="bookmarkBtn" onclick="toggleBookmark()">
+                    🔖 Save for Later
+                </button>
+            </div>
+
             <div class="love-section">
                 <a href="https://t.me/+q4jx63Zt5LBiMmI1" target="_blank" class="telegram-btn">
                     <svg class="telegram-icon" viewBox="0 0 24 24"><path d="M11.944 0A12 12 0 0 0 0 12a12 12 0 0 0 12 12 12 12 0 0 0 12-12A12 12 0 0 0 12 0a12 12 0 0 0-.056 0zm4.962 7.224c.1-.002.321.023.465.14a.506.506 0 0 1 .171.325c.016.093.036.306.02.472-.18 1.898-.962 6.502-1.36 8.627-.168.9-.499 1.201-.82 1.23-.696.065-1.225-.46-1.9-.902-1.056-.693-1.653-1.124-2.678-1.8-1.185-.78-.417-1.21.258-1.91.177-.184 3.247-2.977 3.307-3.23.007-.032.014-.15-.056-.212s-.174-.041-.249-.024c-.106.024-1.793 1.14-5.061 3.345-.479.33-.913.49-1.302.48-.428-.008-1.252-.241-1.865-.44-.752-.245-1.349-.374-1.297-.789.027-.216.325-.437.893-.663 3.498-1.524 5.83-2.529 6.998-3.014 3.332-1.386 4.025-1.627 4.476-1.635z"/></svg>
@@ -342,6 +438,59 @@
         });
         function scrollToTop() { window.scrollTo({ top: 0, behavior: 'smooth' }); }
 
+        // Reading Progress
+        window.addEventListener('scroll', function() {
+            var scrollTop = document.documentElement.scrollTop || document.body.scrollTop;
+            var scrollHeight = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+            var progress = (scrollTop / scrollHeight) * 100;
+            document.getElementById('readingProgress').style.width = progress + '%';
+        });
+
+        // Reading Time
+        (function() {
+            var text = document.querySelector('.post-body').innerText;
+            var words = text.split(/\s+/).length;
+            var minutes = Math.ceil(words / 200);
+            document.getElementById('readTime').textContent = minutes + ' min';
+        })();
+
+        // Share URLs
+        (function() {
+            var url = encodeURIComponent(window.location.href);
+            var title = encodeURIComponent(document.title);
+            document.getElementById('shareTg').href = 'https://t.me/share/url?url=' + url + '&text=' + title;
+            document.getElementById('shareFb').href = 'https://www.facebook.com/sharer/sharer.php?u=' + url;
+            document.getElementById('shareViber').href = 'viber://forward?text=' + title + '%20' + url;
+        })();
+
+        // Bookmark
+        var postId = window.location.pathname.match(/\/(\d+)\//);
+        var pid = postId ? postId[1] : 'unknown';
+        var bookmarks = JSON.parse(localStorage.getItem('bookmarks') || '[]');
+
+        function updateBtn() {
+            var btn = document.getElementById('bookmarkBtn');
+            if (bookmarks.indexOf(pid) > -1) {
+                btn.textContent = '🔖 Saved!';
+                btn.classList.add('saved');
+            } else {
+                btn.textContent = '🔖 Save for Later';
+                btn.classList.remove('saved');
+            }
+        }
+
+        function toggleBookmark() {
+            var idx = bookmarks.indexOf(pid);
+            if (idx > -1) {
+                bookmarks.splice(idx, 1);
+            } else {
+                bookmarks.push(pid);
+            }
+            localStorage.setItem('bookmarks', JSON.stringify(bookmarks));
+            updateBtn();
+        }
+
+        updateBtn();
     </script>
 </body>
 </html>
