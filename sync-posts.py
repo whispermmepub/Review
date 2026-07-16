@@ -219,8 +219,8 @@ def generate_post_html(post):
     <link rel="image_src" href="{preview_image_html}">
     <style>
         @font-face {{
-            font-family: 'MyanmarAyar';
-            src: url('/Review/assets/MyanmarAyarTyepwriter.ttf') format('truetype');
+            font-family: 'PuPuBold';
+            src: url('/Review/assets/M01-PuPu-Bold.ttf') format('truetype');
             font-display: swap;
         }}
 
