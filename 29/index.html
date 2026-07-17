@@ -305,7 +305,11 @@
             font-size: 0.85rem;
             padding: 8px 0;
         }
-        .reading-time span { color: #8b5cf6; font-weight: 700; }
+        .reading-time span { color: #8b5cf6; font-weight: 700; animation: blink-reading 1.5s ease-in-out infinite; }
+        @keyframes blink-reading {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.3; }
+        }
 
         /* Share Buttons */
         .share-section {
