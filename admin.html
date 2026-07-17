@@ -109,9 +109,9 @@
 const OWNER = 'whispermmepub';
 const REPO = 'Review';
 const TOKEN_KEY = 'admin_token';
-const PASS_HASH = '240be518fabd2724ddb6f04eeb1da5967448d7e831c08c8fa822809f74c720a9'; // password: admin123
+const PASS_HASH = 'a2229194863161e5884d0707fd7c7355f8becaae305bd2e66e8032da1e80f494'; // password: WoW#Secure2026!
 
-let token = localStorage.getItem(TOKEN_KEY) || '';
+let token = sessionStorage.getItem(TOKEN_KEY) || '';
 let posts = [];
 let editingId = null;
 
@@ -133,7 +133,7 @@ async function doLogin() {
         sessionStorage.setItem('admin_logged_in', 'yes');
         if (!token) {
             token = prompt('GitHub Token ထည့်ပါ:');
-            if (token) localStorage.setItem(TOKEN_KEY, token);
+            if (token) sessionStorage.setItem(TOKEN_KEY, token);
         }
         loadPosts();
     } else {
@@ -143,7 +143,7 @@ async function doLogin() {
 
 function doLogout() {
     sessionStorage.removeItem('admin_logged_in');
-    localStorage.removeItem(TOKEN_KEY);
+    sessionStorage.removeItem(TOKEN_KEY);
     location.reload();
 }
 
