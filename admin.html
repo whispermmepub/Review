@@ -109,15 +109,15 @@
 const OWNER = 'whispermmepub';
 const REPO = 'Review';
 const TOKEN_KEY = 'admin_token';
-const PASS_HASH = '5e884898da28047151d0e56f8dc6292773603d0d6aabbdd62a11ef721d1542d8'; // password: admin123
+const PASS_HASH = '240be518fabd2724ddb6f04eeb1da5967448d7e831c08c8fa822809f74c720a9'; // password: admin123
 
 let token = localStorage.getItem(TOKEN_KEY) || '';
 let posts = [];
 let editingId = null;
 
-function doLogin() {
+async function doLogin() {
     var pw = document.getElementById('password').value;
-    var hash = sha256(pw);
+    var hash = await sha256(pw);
     if (hash === PASS_HASH) {
         document.getElementById('loginPage').classList.add('hidden');
         document.getElementById('app').classList.remove('hidden');
