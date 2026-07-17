@@ -281,7 +281,7 @@ def generate_post_html(post):
             padding: 0;
             letter-spacing: 0.02em;
             word-spacing: 0.02em;
-            font-size: 1.05rem;
+            font-size: 1.15rem;
             line-height: 1.85;
             color: #d0d0d0;
 
