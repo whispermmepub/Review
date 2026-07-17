@@ -219,15 +219,15 @@ def generate_post_html(post):
     <link rel="image_src" href="{preview_image_html}">
     <style>
         @font-face {{
-            font-family: 'PuPuBold';
-            src: url('/Review/assets/M01-PuPu-Bold.ttf') format('truetype');
+            font-family: 'PhanteeHW';
+            src: url('/Review/assets/Phantee-Hand-Written.ttf') format('truetype');
             font-display: swap;
         }}
 
         * {{ margin: 0; padding: 0; box-sizing: border-box; }}
 
         body {{
-            font-family: 'PuPuBold', monospace;
+            font-family: 'PhanteeHW', cursive;
             background: linear-gradient(135deg, #141228 0%, #1a1530 100%);
             color: #d0d0d0;
             line-height: 2;
@@ -393,7 +393,7 @@ def generate_post_html(post):
             text-decoration: none;
             font-size: 0.9rem;
             font-weight: 600;
-            font-family: 'PuPuBold', monospace;
+            font-family: 'PhanteeHW', cursive;
             transition: all 0.25s ease;
         }}
         .telegram-btn:hover {{
@@ -434,7 +434,7 @@ def generate_post_html(post):
             border-radius: 30px;
             cursor: pointer;
             transition: all 0.3s;
-            font-family: 'PuPuBold', monospace;
+            font-family: 'PhanteeHW', cursive;
         }}
         .love-btn:hover, .love-btn.liked {{
             background: #e74c3c;
@@ -535,7 +535,7 @@ def generate_post_html(post):
             font-weight: 600;
             cursor: pointer;
             transition: all 0.3s;
-            font-family: 'PuPuBold', monospace;
+            font-family: 'PhanteeHW', cursive;
         }}
         .bookmark-btn:hover, .bookmark-btn.saved {{
             background: #f59e0b;
