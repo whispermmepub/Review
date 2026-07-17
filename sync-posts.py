@@ -309,8 +309,9 @@ def generate_post_html(post):
         }}
 
         .back-link {{
-            display: inline-block;
-            margin-top: 30px;
+            display: block;
+            width: fit-content;
+            margin: 30px auto 0;
             padding: 10px 20px;
             background: #1e1a35;
             color: #4a9eff;
@@ -345,10 +346,10 @@ def generate_post_html(post):
         .social-link {{
             display: inline-flex;
             align-items: center;
-            gap: 6px;
-            padding: 8px 16px;
-            border-radius: 10px;
-            font-size: 0.85em;
+            gap: 4px;
+            padding: 5px 10px;
+            border-radius: 6px;
+            font-size: 0.72em;
             text-decoration: none;
             transition: all 0.3s;
             font-weight: 500;
@@ -361,7 +362,7 @@ def generate_post_html(post):
         .social-link.twitter:hover {{ background: #e0e0e0; box-shadow: 0 4px 12px rgba(255,255,255,0.3); transform: translateY(-2px); }}
         .social-link.telegram {{ color: #fff; background: #0088cc; border: 1px solid #0088cc; }}
         .social-link.telegram:hover {{ background: #006da3; box-shadow: 0 4px 12px rgba(0,136,204,0.5); transform: translateY(-2px); }}
-        .social-icon {{ width: 18px; height: 18px; fill: currentColor; }}
+        .social-icon {{ width: 14px; height: 14px; fill: currentColor; }}
 
         @media (max-width: 600px) {{
             header h1 {{ font-size: 1.2rem; }}
@@ -509,10 +510,10 @@ def generate_post_html(post):
         .share-btn {{
             display: inline-flex;
             align-items: center;
-            gap: 6px;
-            padding: 8px 16px;
-            border-radius: 8px;
-            font-size: 0.85rem;
+            gap: 4px;
+            padding: 5px 10px;
+            border-radius: 6px;
+            font-size: 0.72rem;
             text-decoration: none;
             font-weight: 600;
             transition: all 0.3s;
