@@ -211,6 +211,7 @@ def generate_post_html(post):
     <link rel="manifest" href="/Review/manifest.json">
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="theme-color" content="#141228">
+    <meta name="google-site-verification" content="YOUR_GOOGLE_VERIFICATION_CODE">
     <meta name="twitter:title" content="{meta_title}">
     <meta name="twitter:description" content="{meta_description}">
     <meta name="twitter:image" content="{preview_image}">
