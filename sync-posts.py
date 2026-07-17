@@ -548,6 +548,7 @@ def generate_post_html(post):
             box-shadow: 0 4px 12px rgba(76,175,80,0.4);
         }}
     </style>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.2/jspdf.umd.min.js"></script>
 </head>
 <body>
     <div class="reading-progress" id="readingProgress"></div>
