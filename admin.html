@@ -1,0 +1,366 @@
+<!DOCTYPE html>
+<html lang="my">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Panel - Whisper Of Words</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+Myanmar:wght@300;400;500;600;700&display=swap');
+        *{margin:0;padding:0;box-sizing:border-box}
+        body{font-family:'Noto Sans Myanmar',sans-serif;background:#0d0b1e;color:#e0e0e0;min-height:100vh}
+        .login-box{max-width:400px;margin:100px auto;background:#1e1b3a;padding:40px;border-radius:16px;border:1px solid rgba(255,255,255,0.08)}
+        .login-box h1{text-align:center;color:#d84315;margin-bottom:20px;font-size:1.4rem}
+        .login-box input{width:100%;padding:14px;background:#0d0b1e;border:1px solid #333;border-radius:10px;color:#e0e0e0;font-size:1rem;margin-bottom:12px;font-family:inherit}
+        .login-box input:focus{outline:none;border-color:#d84315}
+        .login-box button{width:100%;padding:14px;background:#d84315;color:#fff;border:none;border-radius:10px;font-size:1.1rem;font-weight:700;cursor:pointer;font-family:inherit}
+        .login-box button:hover{background:#bf360c}
+        .login-box .error{color:#e74c3c;text-align:center;margin-top:10px;display:none}
+        .hidden{display:none!important}
+        .top-bar{background:linear-gradient(135deg,#d84315,#bf360c);padding:14px 20px;display:flex;justify-content:space-between;align-items:center;position:sticky;top:0;z-index:100}
+        .top-bar h1{color:#fff;font-size:1.1rem}
+        .top-bar .actions{display:flex;gap:8px}
+        .top-bar button{padding:6px 14px;border-radius:6px;border:none;cursor:pointer;font-family:inherit;font-size:0.85rem;font-weight:600}
+        .btn-new{background:#4caf50;color:#fff}
+        .btn-logout{background:rgba(255,255,255,0.2);color:#fff}
+        .btn-back{background:rgba(255,255,255,0.2);color:#fff;text-decoration:none;padding:6px 14px;border-radius:6px;font-size:0.85rem}
+        .main{max-width:900px;margin:20px auto;padding:0 16px}
+        .post-list .post-item{background:#1e1b3a;border-radius:12px;padding:16px 20px;margin-bottom:10px;border:1px solid rgba(255,255,255,0.06);display:flex;justify-content:space-between;align-items:center;gap:12px;transition:border-color 0.2s}
+        .post-list .post-item:hover{border-color:rgba(255,255,255,0.15)}
+        .post-item .info{flex:1;min-width:0}
+        .post-item .title{font-weight:600;color:#fff;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+        .post-item .meta{font-size:0.8rem;color:#888;margin-top:4px}
+        .post-item .btns{display:flex;gap:6px;flex-shrink:0}
+        .post-item .btns button{padding:6px 12px;border:none;border-radius:6px;cursor:pointer;font-family:inherit;font-size:0.8rem;font-weight:600}
+        .btn-edit{background:#4a9eff;color:#fff}
+        .btn-edit:hover{background:#357abd}
+        .btn-delete{background:#e74c3c;color:#fff}
+        .btn-delete:hover{background:#c0392b}
+        .btn-view{background:#333;color:#ccc}
+        .editor{background:#1e1b3a;border-radius:16px;padding:30px;border:1px solid rgba(255,255,255,0.08)}
+        .editor h2{color:#d84315;margin-bottom:20px;font-size:1.2rem}
+        .field{margin-bottom:16px}
+        .field label{display:block;color:#ff8a65;font-weight:600;margin-bottom:6px;font-size:0.9rem}
+        .field input,.field textarea,.field select{width:100%;padding:12px;background:#0d0b1e;border:1px solid #333;border-radius:8px;color:#e0e0e0;font-size:0.95rem;font-family:inherit}
+        .field input:focus,.field textarea:focus{outline:none;border-color:#d84315}
+        .field textarea{min-height:300px;resize:vertical;line-height:2}
+        .editor .btn-row{display:flex;gap:10px;margin-top:16px}
+        .editor .btn-row button{padding:12px 24px;border:none;border-radius:8px;cursor:pointer;font-family:inherit;font-size:0.95rem;font-weight:700}
+        .btn-save{background:#4caf50;color:#fff}
+        .btn-save:hover{background:#388e3c}
+        .btn-cancel{background:#555;color:#fff}
+        .status{position:fixed;bottom:20px;left:50%;transform:translateX(-50%);padding:12px 24px;border-radius:10px;z-index:1000;font-size:0.9rem;display:none;box-shadow:0 4px 20px rgba(0,0,0,0.5)}
+        .status.ok{background:#1b5e20;color:#a5d6a7;display:block}
+        .status.err{background:#b71c1c;color:#ef9a9a;display:block}
+        .status.loading{background:#333;color:#ccc;display:block}
+        .search{margin-bottom:16px}
+        .search input{width:100%;padding:12px 16px;background:#1e1b3a;border:1px solid #333;border-radius:10px;color:#e0e0e0;font-size:0.95rem;font-family:inherit}
+        .search input:focus{outline:none;border-color:#d84315}
+        .count{text-align:center;color:#666;padding:10px;font-size:0.85rem}
+        @media(max-width:600px){.post-item{flex-direction:column;align-items:stretch}.post-item .btns{justify-content:flex-end}}
+    </style>
+</head>
+<body>
+    <!-- Login -->
+    <div id="loginPage" class="login-box">
+        <h1>🔒 Admin Panel</h1>
+        <input type="password" id="password" placeholder="Password ထည့်ပါ" onkeydown="if(event.key==='Enter')doLogin()">
+        <button onclick="doLogin()">ဝင်ရန်</button>
+        <div class="error" id="loginError">Password မှားနေပါတယ်</div>
+    </div>
+
+    <!-- Main App -->
+    <div id="app" class="hidden">
+        <div class="top-bar">
+            <h1>📝 Admin Panel</h1>
+            <div class="actions">
+                <a href="index.html" class="btn-back">← Site</a>
+                <button class="btn-new" onclick="showEditor()">+ Post အသစ်</button>
+                <button class="btn-logout" onclick="doLogout()">ထွက်ရန်</button>
+            </div>
+        </div>
+        <div class="main">
+            <!-- Post List -->
+            <div id="postList">
+                <div class="search"><input type="text" id="searchInput" placeholder="🔍 ပို့စ်ရှာရန်..." oninput="filterPosts()"></div>
+                <div class="count" id="postCount"></div>
+                <div id="postsContainer"></div>
+            </div>
+            <!-- Editor -->
+            <div id="editor" class="hidden">
+                <div class="editor">
+                    <h2 id="editorTitle">Post အသစ်</h2>
+                    <div class="field"><label>ခေါင်းစဉ် *</label><input type="text" id="editTitle" placeholder="စာအုပ်ခေါင်းစဉ်"></div>
+                    <div class="field"><label>ပို့စ်စာသား *</label><textarea id="editContent" placeholder="ပို့စ်အကြောင်းအရာ..."></textarea></div>
+                    <div class="field"><label>ပုံ URL</label><input type="url" id="editImage" placeholder="https://example.com/image.jpg"></div>
+                    <div class="field"><label>Review By</label><input type="text" id="editAuthor" placeholder="စာဖတ်သူအမည်"></div>
+                    <div class="field"><label>မူရင်း URL</label><input type="url" id="editSource" placeholder="https://blogspot.com/..."></div>
+                    <div class="btn-row">
+                        <button class="btn-save" onclick="savePost()">💾 သိမ်းရန်</button>
+                        <button class="btn-cancel" onclick="hideEditor()">ပယ်ဖျက်</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="status" id="toast"></div>
+
+<script>
+// ====== CONFIG ======
+const OWNER = 'whispermmepub';
+const REPO = 'Review';
+const TOKEN_KEY = 'admin_token';
+const PASS_HASH = '5e884898da28047151d0e56f8dc6292773603d0d6aabbdd62a11ef721d1542d8'; // password: admin123
+
+let token = localStorage.getItem(TOKEN_KEY) || '';
+let posts = [];
+let editingId = null;
+
+function doLogin() {
+    var pw = document.getElementById('password').value;
+    var hash = sha256(pw);
+    if (hash === PASS_HASH) {
+        document.getElementById('loginPage').classList.add('hidden');
+        document.getElementById('app').classList.remove('hidden');
+        if (!token) {
+            token = prompt('GitHub Token ထည့်ပါ:');
+            if (token) localStorage.setItem(TOKEN_KEY, token);
+        }
+        loadPosts();
+    } else {
+        document.getElementById('loginError').style.display = 'block';
+    }
+}
+
+function doLogout() {
+    localStorage.removeItem(TOKEN_KEY);
+    location.reload();
+}
+
+// Simple SHA-256
+function sha256(str) {
+    var buf = new TextEncoder().encode(str);
+    return crypto.subtle.digest('SHA-256', buf).then(function(hash) {
+        return Array.from(new Uint8Array(hash)).map(function(b) { return b.toString(16).padStart(2,'0'); }).join('');
+    });
+}
+
+async function apiGet(path) {
+    var res = await fetch('https://api.github.com/repos/' + OWNER + '/' + REPO + '/contents/' + path, {
+        headers: { 'Authorization': 'token ' + token, 'Accept': 'application/vnd.github.v3+json' }
+    });
+    return await res.json();
+}
+
+async function apiPut(path, content, message, sha) {
+    var body = { message: message, content: btoa(unescape(encodeURIComponent(content))), sha: sha };
+    var res = await fetch('https://api.github.com/repos/' + OWNER + '/' + REPO + '/contents/' + path, {
+        method: 'PUT',
+        headers: { 'Authorization': 'token ' + token, 'Content-Type': 'application/json', 'Accept': 'application/vnd.github.v3+json' },
+        body: JSON.stringify(body)
+    });
+    return await res.json();
+}
+
+async function loadPosts() {
+    showStatus('Loading...', 'loading');
+    try {
+        var data = await apiGet('assets/posts.json');
+        if (data.content) {
+            var decoded = decodeURIComponent(escape(atob(data.content)));
+            posts = JSON.parse(decoded);
+            renderPosts(posts);
+            hideStatus();
+        } else {
+            showStatus('Error: ' + (data.message || 'Cannot load posts'), 'err');
+        }
+    } catch(e) {
+        showStatus('Error: ' + e.message, 'err');
+    }
+}
+
+function renderPosts(list) {
+    var c = document.getElementById('postsContainer');
+    document.getElementById('postCount').textContent = list.length + ' posts';
+    if (list.length === 0) { c.innerHTML = '<div style="text-align:center;color:#666;padding:40px">No posts found</div>'; return; }
+    c.innerHTML = '<div class="post-list">' + list.map(function(p) {
+        return '<div class="post-item" data-title="' + esc(p.title) + '" data-author="' + esc(p.author) + '">'
+            + '<div class="info"><div class="title">' + esc(p.title) + '</div>'
+            + '<div class="meta">📅 ' + (p.date||'') + ' • ✍️ ' + esc(p.author||'') + ' • ID: ' + p.id + '</div></div>'
+            + '<div class="btns">'
+            + '<button class="btn-view" onclick="window.open(\'' + p.link + '\',\'_blank\')">👁</button>'
+            + '<button class="btn-edit" onclick="editPost(\'' + p.id + '\')">✏️</button>'
+            + '<button class="btn-delete" onclick="deletePost(\'' + p.id + '\',\'' + esc(p.title) + '\')">🗑</button>'
+            + '</div></div>';
+    }).join('') + '</div>';
+}
+
+function filterPosts() {
+    var q = document.getElementById('searchInput').value.toLowerCase();
+    if (!q) { renderPosts(posts); return; }
+    var filtered = posts.filter(function(p) { return (p.title||'').toLowerCase().includes(q) || (p.author||'').toLowerCase().includes(q); });
+    renderPosts(filtered);
+}
+
+function showEditor(id) {
+    editingId = id;
+    document.getElementById('postList').classList.add('hidden');
+    document.getElementById('editor').classList.remove('hidden');
+    if (id) {
+        document.getElementById('editorTitle').textContent = '✏️ Post ပြင်ရန်';
+        var p = posts.find(function(x) { return x.id == id; });
+        if (p) {
+            document.getElementById('editTitle').value = p.title || '';
+            document.getElementById('editImage').value = p.image || '';
+            document.getElementById('editAuthor').value = p.author || '';
+            document.getElementById('editSource').value = p.source_url || '';
+        }
+        // Load content from HTML file
+        loadPostContent(id);
+    } else {
+        document.getElementById('editorTitle').textContent = '📝 Post အသစ်';
+        document.getElementById('editTitle').value = '';
+        document.getElementById('editContent').value = '';
+        document.getElementById('editImage').value = '';
+        document.getElementById('editAuthor').value = '';
+        document.getElementById('editSource').value = '';
+    }
+}
+
+function hideEditor() {
+    document.getElementById('editor').classList.add('hidden');
+    document.getElementById('postList').classList.remove('hidden');
+    editingId = null;
+}
+
+async function loadPostContent(id) {
+    try {
+        var data = await apiGet(id + '/index.html');
+        if (data.content) {
+            var html = decodeURIComponent(escape(atob(data.content)));
+            var match = html.match(/<div class="post-content">([\s\S]*?)<\/div>/);
+            if (match) {
+                var tmp = document.createElement('div');
+                tmp.innerHTML = match[1];
+                document.getElementById('editContent').value = tmp.textContent.trim();
+            }
+        }
+    } catch(e) {}
+}
+
+function editPost(id) { showEditor(id); }
+
+async function savePost() {
+    var title = document.getElementById('editTitle').value.trim();
+    var content = document.getElementById('editContent').value.trim();
+    var image = document.getElementById('editImage').value.trim();
+    var author = document.getElementById('editAuthor').value.trim();
+    var source = document.getElementById('editSource').value.trim();
+
+    if (!title || !content) { showStatus('ခေါင်းစဉ်နဲ့ ပို့စ်စာသား ဖြည့်ပါ', 'err'); return; }
+
+    showStatus('💾 သိမ်းနေပါသည်...', 'loading');
+
+    try {
+        var now = new Date().toISOString().split('T')[0];
+
+        if (editingId) {
+            // Update existing post
+            var p = posts.find(function(x) { return x.id == editingId; });
+            var contentHtml = content.split('\n\n').map(function(b) { return '            <p>' + esc(b) + '</p>'; }).join('\n');
+            var imageHtml = image ? '\n        <img src="' + image + '" alt="' + esc(title) + '" class="post-image">' : '';
+            var pageUrl = 'https://whispermmepub.github.io/Review/' + editingId + '/index.html';
+
+            var postHtml = buildPostHtml(title, contentHtml, imageHtml, author || p.author, image || p.image, now, pageUrl, source || p.source_url);
+
+            // Update post HTML
+            var htmlData = await apiGet(editingId + '/index.html');
+            if (htmlData.sha) {
+                await apiPut(editingId + '/index.html', postHtml, 'Update: ' + title, htmlData.sha);
+            }
+
+            // Update posts.json
+            p.title = title;
+            p.image = image || p.image;
+            p.author = author || p.author;
+            p.source_url = source || p.source_url;
+            p.date = now;
+            p.excerpt = content.substring(0, 150) + '...';
+
+            var pjData = await apiGet('assets/posts.json');
+            if (pjData.sha) {
+                var sorted = posts.sort(function(a,b) { return (b.date||'').localeCompare(a.date||''); });
+                await apiPut('assets/posts.json', JSON.stringify(sorted, null, 2), 'Update post: ' + title, pjData.sha);
+            }
+
+            showStatus('✅ ပြင်ပြီးပါပြီ!', 'ok');
+        } else {
+            // New post - find next ID
+            var maxId = posts.reduce(function(max, p) { return Math.max(max, parseInt(p.id) || 0); }, 0);
+            var newId = String(maxId + 1);
+            var slug = title.replace(/[^\u1000-\u109FA-Za-z0-9 ]/g, '').replace(/\s+/g, '-').substring(0, 30).toLowerCase() || 'post-' + newId;
+
+            var contentHtml = content.split('\n\n').map(function(b) { return '            <p>' + esc(b) + '</p>'; }).join('\n');
+            var imageHtml = image ? '\n        <img src="' + image + '" alt="' + esc(title) + '" class="post-image">' : '';
+            var pageUrl = 'https://whispermmepub.github.io/Review/' + newId + '/index.html';
+
+            var postHtml = buildPostHtml(title, contentHtml, imageHtml, author, image, now, pageUrl, source);
+
+            // Create post HTML
+            await apiPut(newId + '/index.html', postHtml, 'New post: ' + title, null);
+
+            // Update posts.json
+            posts.push({ id: newId, title: title, date: now, category: 'စာအုပ်အညွှန်း', author: author, image: image, excerpt: content.substring(0, 150) + '...', link: newId + '/index.html', source_url: source, tags: ['စာအုပ်အညွှန်း'] });
+
+            var pjData = await apiGet('assets/posts.json');
+            if (pjData.sha) {
+                var sorted = posts.sort(function(a,b) { return (b.date||'').localeCompare(a.date||''); });
+                await apiPut('assets/posts.json', JSON.stringify(sorted, null, 2), 'Add post: ' + title, pjData.sha);
+            }
+
+            showStatus('✅ Post အသစ် ဖန်တီးပြီးပါပြီ!', 'ok');
+        }
+
+        hideEditor();
+        await loadPosts();
+    } catch(e) {
+        showStatus('❌ Error: ' + e.message, 'err');
+    }
+}
+
+async function deletePost(id, title) {
+    if (!confirm('"' + title + '" ကို ဖျက်မှာ သေချာလား?')) return;
+    showStatus('🗑 ဖျက်နေပါသည်...', 'loading');
+    try {
+        posts = posts.filter(function(p) { return p.id != id; });
+        var pjData = await apiGet('assets/posts.json');
+        if (pjData.sha) {
+            await apiPut('assets/posts.json', JSON.stringify(posts, null, 2), 'Delete post: ' + title, pjData.sha);
+        }
+        // Delete post HTML
+        var htmlData = await apiGet(id + '/index.html');
+        if (htmlData.sha) {
+            await fetch('https://api.github.com/repos/' + OWNER + '/' + REPO + '/contents/' + id + '/index.html', {
+                method: 'DELETE',
+                headers: { 'Authorization': 'token ' + token, 'Content-Type': 'application/json' },
+                body: JSON.stringify({ message: 'Delete: ' + title, sha: htmlData.sha })
+            });
+        }
+        showStatus('✅ ဖျက်ပြီးပါပြီ', 'ok');
+        await loadPosts();
+    } catch(e) {
+        showStatus('❌ Error: ' + e.message, 'err');
+    }
+}
+
+function buildPostHtml(title, contentHtml, imageHtml, author, image, date, pageUrl, sourceUrl) {
+    var metaDesc = title + ' - Whisper Of Words';
+    var imgTag = image || '';
+    return '<!DOCTYPE html>\n<html lang="my">\n<head>\n    <meta charset="UTF-8">\n    <meta name="viewport" content="width=device-width, initial-scale=1.0">\n    <title>' + esc(title) + ' - Whisper Of Words - mm Epub</title>\n    <meta name="description" content="' + esc(metaDesc) + '">\n    <link rel="canonical" href="' + pageUrl + '">\n    <meta property="og:type" content="article">\n    <meta property="og:title" content="' + esc(title) + ' - Whisper Of Words">\n    <meta property="og:image" content="' + imgTag + '">\n    <meta name="theme-color" content="#d84315">\n    <link rel="manifest" href="/Review/manifest.json">\n    <style>\n        @import url("https://fonts.googleapis.com/css2?family=Noto+Sans+Myanmar:wght@300;400;500;600;700&display=swap");\n        @font-face{font-family:"Burma001";src:url("/Review/assets/Burma001-Regular.ttf") format("truetype");font-weight:normal;font-style:normal;font-display:swap}\n        *{margin:0;padding:0;box-sizing:border-box}\n        body{font-family:"Burma001",sans-serif;background:#141228;color:#d0d0d0;padding:12px;line-height:2}\n        .container{max-width:900px;margin:0 auto;background:#1e1b3a;border-radius:16px;overflow:hidden}\n        header{background:linear-gradient(135deg,#d84315,#bf360c);color:#fff;padding:30px 16px;text-align:center}\n        header h1{font-size:1.5rem;margin-bottom:8px}\n        .post-meta{font-size:0.85rem;opacity:0.9}\n        .post-image{width:100%;height:auto;max-height:500px;object-fit:cover;display:block}\n        .post-body{padding:24px 16px}\n        .post-content p{margin-bottom:1.2em;font-size:1.25rem;line-height:2;color:#d0d0d0}\n        .post-content a{color:#ff8a65;text-decoration:underline}\n        .back-link{display:block;width:fit-content;margin:24px auto 0;padding:8px 20px;color:#4a9eff;text-decoration:none;border:1px solid #4a9eff;border-radius:6px;font-weight:700}\n        .share-section{display:flex;justify-content:center;gap:6px;flex-wrap:wrap;padding:12px 0}\n        .share-btn{display:inline-flex;align-items:center;gap:4px;padding:5px 10px;border-radius:6px;font-size:0.72rem;text-decoration:none;font-weight:600;color:#fff}\n        .share-btn.tg{background:#0088cc}\n        .share-btn.fb{background:#1877f2}\n        .share-btn.vb{background:#7360f2}\n        footer{text-align:center;padding:20px;color:#666;font-size:0.8rem;border-top:1px solid #333}\n    </style>\n</head>\n<body>\n    <div class="container">\n        <header>\n            <h1>' + esc(title) + '</h1>\n            <div class="post-meta">📅 ' + date + ' • ✍️ ' + esc(author) + '</div>\n        </header>\n' + imageHtml + '\n        <div class="post-body">\n            <div class="post-content">\n' + contentHtml + '\n            </div>\n' + (sourceUrl ? '            <p style="text-align:center;margin-top:20px"><a href="' + sourceUrl + '" target="_blank" style="color:#ff8a65">မူရင်းကို ဖတ်ရန် →</a></p>\n' : '') + '            <a href="../index.html" class="back-link">← ပင်မစာမျက်နှာသို့</a>\n            <div class="share-section">\n                <a class="share-btn tg" href="https://t.me/share?url=' + pageUrl + '&text=' + encodeURIComponent(title) + '" target="_blank">📤 Telegram</a>\n                <a class="share-btn fb" href="https://www.facebook.com/sharer/sharer.php?u=' + pageUrl + '" target="_blank">📤 Facebook</a>\n                <a class="share-btn vb" href="viber://forward?text=' + encodeURIComponent(title + ' ' + pageUrl) + '" target="_blank">📤 Viber</a>\n            </div>\n        </div>\n        <footer>© 2026 Whisper Of Words - mm Epub</footer>\n    </div>\n</body>\n</html>';
+}
+
+function esc(s) { var d = document.createElement("div"); d.textContent = s; return d.innerHTML; }
+function showStatus(msg, type) { var t = document.getElementById("toast"); t.textContent = msg; t.className = "status " + type; }
+function hideStatus() { document.getElementById("toast").className = "status"; }
+</script>
+</body>
+</html>
