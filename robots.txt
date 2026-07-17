@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://whispermmepub.github.io/Review/sitemap.xml
