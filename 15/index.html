@@ -339,15 +339,15 @@
         .share-btn.viber { background: #7360f2; }
         .share-btn.viber:hover { background: #5a48d4; box-shadow: 0 4px 12px rgba(115,96,242,0.4); }
 
-        /* Bookmark */
-        .bookmark-btn {
+        /* PDF Download */
+        .pdf-btn {
             display: inline-flex;
             align-items: center;
             gap: 6px;
             padding: 8px 18px;
-            border: 2px solid #f59e0b;
+            border: 2px solid #4caf50;
             background: transparent;
-            color: #f59e0b;
+            color: #4caf50;
             border-radius: 8px;
             font-size: 0.9rem;
             font-weight: 600;
@@ -355,14 +355,10 @@
             transition: all 0.3s;
             font-family: 'Burma001', sans-serif;
         }
-        .bookmark-btn:hover, .bookmark-btn.saved {
-            background: #f59e0b;
-            color: #000;
-            box-shadow: 0 4px 12px rgba(245,158,11,0.4);
-        }
-        .bookmark-bar {
-            text-align: center;
-            padding: 10px 0;
+        .pdf-btn:hover {
+            background: #4caf50;
+            color: #fff;
+            box-shadow: 0 4px 12px rgba(76,175,80,0.4);
         }
     </style>
 </head>
@@ -1087,9 +1083,9 @@
                 </a>
             </div>
 
-            <div class="bookmark-bar">
-                <button class="bookmark-btn" id="bookmarkBtn" onclick="toggleBookmark()">
-                    🔖 Save for Later
+            <div style="text-align:center; padding:10px 0;">
+                <button class="pdf-btn" onclick="downloadPDF()">
+                    📄 PDF ဒေါင်းလုဒ်
                 </button>
             </div>
 
