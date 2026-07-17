@@ -8,12 +8,13 @@ This script is designed to be run by GitHub Actions workflow on a schedule
 or on push events to keep the Review site in sync with the Blogspot blog.
 """
 
-import xml.etree.ElementTree as ET
+
 import json
 import re
 import os
 import html as html_lib
 import hashlib
+import xml.etree.ElementTree as ET
 from datetime import datetime
 from urllib.parse import quote
 
@@ -829,6 +830,27 @@ def main():
             f.write(html)
 
     print(f"Generated {len(posts)} post HTML files")
+
+    # Generate sitemap.xml
+    
+    from xml.dom import minidom
+    urlset = ET.Element('urlset')
+    urlset.set('xmlns', 'http://www.sitemaps.org/schemas/sitemap/0.9')
+    url = ET.SubElement(urlset, 'url')
+    ET.SubElement(url, 'loc').text = 'https://whispermmepub.github.io/Review/'
+    ET.SubElement(url, 'lastmod').text = datetime.now().strftime('%Y-%m-%d')
+    ET.SubElement(url, 'changefreq').text = 'daily'
+    ET.SubElement(url, 'priority').text = '1.0'
+    for p in posts_json:
+        url = ET.SubElement(urlset, 'url')
+        ET.SubElement(url, 'loc').text = 'https://whispermmepub.github.io/Review/' + p['link']
+        ET.SubElement(url, 'lastmod').text = p.get('date', datetime.now().strftime('%Y-%m-%d'))
+        ET.SubElement(url, 'changefreq').text = 'monthly'
+        ET.SubElement(url, 'priority').text = '0.8'
+    sitemap_path = os.path.join(REPO_DIR, 'sitemap.xml')
+    with open(sitemap_path, 'w', encoding='utf-8') as f:
+        f.write(minidom.parseString(ET.tostring(urlset)).toprettyxml(indent='  '))
+    print(f"Generated sitemap.xml ({len(posts_json) + 1} URLs)")
     print("=== Sync Complete ===")
 
 if __name__ == '__main__':
