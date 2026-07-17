@@ -115,12 +115,22 @@ let token = localStorage.getItem(TOKEN_KEY) || '';
 let posts = [];
 let editingId = null;
 
+// Check saved session on load
+(function() {
+    if (sessionStorage.getItem('admin_logged_in') === 'yes') {
+        document.getElementById('loginPage').classList.add('hidden');
+        document.getElementById('app').classList.remove('hidden');
+        loadPosts();
+    }
+})();
+
 async function doLogin() {
     var pw = document.getElementById('password').value;
     var hash = await sha256(pw);
     if (hash === PASS_HASH) {
         document.getElementById('loginPage').classList.add('hidden');
         document.getElementById('app').classList.remove('hidden');
+        sessionStorage.setItem('admin_logged_in', 'yes');
         if (!token) {
             token = prompt('GitHub Token ထည့်ပါ:');
             if (token) localStorage.setItem(TOKEN_KEY, token);
@@ -132,6 +142,7 @@ async function doLogin() {
 }
 
 function doLogout() {
+    sessionStorage.removeItem('admin_logged_in');
     localStorage.removeItem(TOKEN_KEY);
     location.reload();
 }
