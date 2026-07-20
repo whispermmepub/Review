@@ -1,13 +1,6 @@
-const CACHE_NAME = 'wow-books-v1';
-const ASSETS = [
-  '/Review/',
-  '/Review/manifest.json',
-  '/Review/assets/MyanmarAyarTyepwriter.ttf',
-  '/Review/assets/posts.json'
-];
+const CACHE_NAME = 'wow-books-v2';
 
 self.addEventListener('install', e => {
-  e.waitUntil(caches.open(CACHE_NAME).then(c => c.addAll(ASSETS)));
   self.skipWaiting();
 });
 
@@ -19,6 +12,21 @@ self.addEventListener('activate', e => {
 });
 
 self.addEventListener('fetch', e => {
+  const url = new URL(e.request.url);
+
+  // Network-first for posts.json and posts.json only
+  if (url.pathname.includes('posts.json')) {
+    e.respondWith(
+      fetch(e.request).then(resp => {
+        const clone = resp.clone();
+        caches.open(CACHE_NAME).then(c => c.put(e.request, clone));
+        return resp;
+      }).catch(() => caches.match(e.request))
+    );
+    return;
+  }
+
+  // Cache-first for everything else (fonts, images, etc.)
   e.respondWith(
     caches.match(e.request).then(r => r || fetch(e.request).then(resp => {
       const clone = resp.clone();
