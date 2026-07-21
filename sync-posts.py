@@ -762,6 +762,11 @@ def main():
             if title in existing_by_title:
                 old = existing_by_title[title]
                 numeric_id = old['id']
+                # Skip if manually edited via admin page
+                if old.get('manually_edited'):
+                    print(f"  SKIP (manually edited): {numeric_id} -> {title[:60]}")
+                    del existing_by_title[title]
+                    continue
                 print(f"  UPDATE: {numeric_id} -> {title[:60]}")
                 updated_count += 1
                 # Remove from existing so we don't double-add
