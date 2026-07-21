@@ -296,6 +296,7 @@ async function savePost() {
             p.source_url = source || p.source_url;
             p.date = now;
             p.excerpt = content.substring(0, 150) + '...';
+            p.manually_edited = true;
 
             var pjData = await apiGet('assets/posts.json');
             if (pjData.sha) {
