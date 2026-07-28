@@ -252,7 +252,15 @@ def generate_post_html(post):
         header h1 {{
             font-size: 1.5rem;
             margin-bottom: 10px;
-            font-weight: 800;
+            font-weight: 900;
+            letter-spacing: 0.02em;
+            line-height: 1.25;
+            color: #fff7f2;
+            text-shadow:
+                0 1px 0 rgba(0, 0, 0, 0.45),
+                0 2px 0 rgba(0, 0, 0, 0.35),
+                0 4px 8px rgba(0, 0, 0, 0.35),
+                0 0 18px rgba(255, 255, 255, 0.12);
         }}
 
         .post-meta {{
