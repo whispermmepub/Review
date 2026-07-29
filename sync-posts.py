@@ -17,6 +17,8 @@ import hashlib
 import xml.etree.ElementTree as ET
 from datetime import datetime
 from urllib.parse import quote
+import urllib.request
+import urllib.error
 
 SCRIPT_DIR = os.path.dirname(os.path.abspath(__file__))
 REPO_DIR = SCRIPT_DIR
@@ -33,6 +35,13 @@ FEEDS = [
         'name': 'Youths Book Reflections',
     },
 ]
+
+
+# Facebook Page sources (optional - only used if FB_PAGE_TOKEN env var is set)
+# To enable: set FB_PAGE_ID and FB_PAGE_TOKEN as GitHub Actions secrets
+FB_PAGE_ID = os.environ.get('FB_PAGE_ID', '')
+FB_PAGE_TOKEN = os.environ.get('FB_PAGE_TOKEN', '')
+USE_FACEBOOK = bool(FB_PAGE_ID and FB_PAGE_TOKEN)
 
 # Known non-review posts to exclude (catalogs, lists)
 EXCLUDE_TITLES = [
@@ -116,6 +125,75 @@ def is_book_review(title, description, excerpt):
     if 'စာအုပ်အရေအတွက်' in excerpt or 'Books (' in excerpt:
         return False
     return True
+
+
+
+def fetch_facebook_posts():
+    """Fetch posts from Facebook Page using Graph API v18.0."""
+    import json as json_lib
+    
+    all_posts = []
+    if not USE_FACEBOOK:
+        return all_posts
+    
+    url = f'https://graph.facebook.com/v18.0/{FB_PAGE_ID}/posts?fields=message,created_time,full_picture,permalink_url,id&limit=50&access_token={FB_PAGE_TOKEN}'
+    
+    try:
+        req = urllib.request.Request(url)
+        with urllib.request.urlopen(req, timeout=30) as response:
+            data = json_lib.loads(response.read().decode())
+        
+        posts_data = data.get('data', [])
+        print(f"  Found {len(posts_data)} Facebook posts")
+        
+        for post in posts_data:
+            message = post.get('message', '')
+            if not message:
+                continue
+            
+            # First line as title
+            title = message.split('\n')[0].strip()[:80]
+            if not title:
+                continue
+            
+            created_time = post.get('created_time', '')
+            date_str = created_time[:10] if created_time else ''
+            
+            image_url = post.get('full_picture', '')
+            permalink = post.get('permalink_url', '')
+            
+            # Build HTML content from message text
+            content_blocks = message.split('\n')
+            content_html = ''
+            for block in content_blocks:
+                block = block.strip()
+                if block:
+                    block = re.sub(r'\s+', ' ', block)
+                    content_html += f'            <p>{block}</p>\n'
+            
+            # Excerpt from first 200 chars
+            clean_msg = re.sub(r'\s+', ' ', message).strip()
+            excerpt = clean_msg[:200] + '...' if len(clean_msg) > 200 else clean_msg
+            
+            all_posts.append({
+                'title': title,
+                'date': date_str,
+                'image_url': image_url,
+                'link': permalink,
+                'content': content_html,
+                'excerpt': excerpt,
+                'reviewer': 'Facebook Page',
+                'source_name': 'Facebook',
+            })
+            
+    except urllib.error.HTTPError as e:
+        print(f"  ERROR: Facebook Graph API HTTP {e.code}: {e.reason}")
+        if e.code == 400:
+            print("  Make sure FB_PAGE_ID and FB_PAGE_TOKEN are valid")
+    except Exception as e:
+        print(f"  ERROR fetching Facebook posts: {e}")
+    
+    return all_posts
 
 def bold_quotes_skip_links(text):
     """Wrap text inside quotation marks with bold, but skip <a> tag content."""
@@ -702,6 +780,60 @@ def main():
     updated_count = 0
     new_count = 0
     preserved_count = 0
+
+    # Fetch Facebook Page posts if configured
+    fb_posts = fetch_facebook_posts()
+    if fb_posts:
+        print(f"  Processing {len(fb_posts)} Facebook posts...")
+        for fb_post in fb_posts:
+            title = fb_post['title']
+            
+            # Generate slug for dedup
+            slug = get_slug_from_title(title)
+            if slug in seen_slugs:
+                print(f"  DUPLICATE (Facebook): {title[:50]}")
+                continue
+            seen_slugs.add(slug)
+            
+            # Build content HTML if not already set
+            content_html = fb_post['content']
+            date_str = fb_post['date']
+            image_url = fb_post['image_url']
+            link = fb_post['link']
+            excerpt = fb_post['excerpt']
+            reviewer = fb_post['reviewer']
+            
+            # Check if post already exists by title — reuse its ID
+            if title in existing_by_title:
+                old = existing_by_title[title]
+                numeric_id = old['id']
+                if old.get('manually_edited'):
+                    print(f"  SKIP (manually edited, Facebook): {numeric_id} -> {title[:60]}")
+                    del existing_by_title[title]
+                    continue
+                print(f"  UPDATE (Facebook): {numeric_id} -> {title[:60]}")
+                updated_count += 1
+                del existing_by_title[title]
+            else:
+                next_id[0] += 1
+                numeric_id = str(next_id[0])
+                new_count += 1
+                print(f"  NEW (Facebook): {numeric_id} -> {title[:60]}")
+            
+            posts.append({
+                'id': numeric_id,
+                'title': title,
+                'date': date_str,
+                'category': 'စာအုပ်စာပေ',
+                'author': reviewer,
+                'image': image_url,
+                'excerpt': excerpt,
+                'link': f"{numeric_id}/index.html",
+                'source_url': link,
+                'content': content_html
+            })
+    else:
+        print("  No Facebook posts fetched (not configured or no new posts)")
 
     for feed_info in FEEDS:
         feed_url = feed_info['feed_url']
