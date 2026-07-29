@@ -11,6 +11,10 @@ jobs:
     permissions:
       contents: write
 
+    env:
+      FB_PAGE_ID: ${{ secrets.FB_PAGE_ID }}
+      FB_PAGE_TOKEN: ${{ secrets.FB_PAGE_TOKEN }}
+
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
