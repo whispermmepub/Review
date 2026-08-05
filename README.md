@@ -15,6 +15,7 @@
 [![GitHub Pages](https://img.shields.io/badge/%F0%9F%8C%90_LIVE_SITE-Whisper_Of_Words-0ea5e9?style=for-the-badge&logo=githubpages&logoColor=white&labelColor=0c4a6e)](https://whispermmepub.github.io/Review/)
 [![Blogspot](https://img.shields.io/badge/%F0%9F%93%9D_BLOG-Whisper1OF-f97316?style=for-the-badge&logo=blogger&logoColor=white&labelColor=c2410c)](https://whisper1of.blogspot.com)
 [![Youths Book](https://img.shields.io/badge/%F0%9F%93%96_YOUTHS_BOOKS-Reflections-ef4444?style=for-the-badge&logo=blogger&logoColor=white&labelColor=dc2626)](https://youthsbookreflections.blogspot.com)
+[![Thet Paing](https://img.shields.io/badge/%E2%9C%8D%EF%B8%8F_THET_PAING_WRITES-374151?style=for-the-badge&logo=blogger&logoColor=white&labelColor=111827)](https://thetpaingwrites.blogspot.com)
 
 <br/>
 
@@ -23,7 +24,7 @@
 [![Python](https://img.shields.io/badge/%F0%9F%90%8D+PYTHON-3.11-3776AB?style=flat-square&logo=python&logoColor=white)](https://www.python.org)
 [![HTML5](https://img.shields.io/badge/%F0%9F%8C%90+HTML5-CSS3-E34F26?style=flat-square&logo=html5&logoColor=white)](https://developer.mozilla.org/en-US/docs/Glossary/HTML5)
 [![License](https://img.shields.io/badge/%F0%9F%93%9C+LICENSE-MIT-blue?style=flat-square&logo=gitbook&logoColor=white)](LICENSE)
-[![Posts](https://img.shields.io/badge/%F0%9F%93%96+POSTS-48+-9b59b6?style=flat-square&logo=bookstack&logoColor=white)](#-posts)
+[![Posts](https://img.shields.io/badge/%F0%9F%93%96+POSTS-100+-9b59b6?style=flat-square&logo=bookstack&logoColor=white)](#-posts)
 
 <br/>
 
@@ -142,7 +143,7 @@
 | Step | Action | Detail |
 |:----:|:-------|:-------|
 | **①** | **⏰ Schedule** | GitHub Actions cron — `0 */6 * * *` |
-| **②** | **📡 RSS Fetch** | Pulls from [Whisper1OF](https://whisper1of.blogspot.com) + [Youths Book](https://youthsbookreflections.blogspot.com) |
+| **②** | **📡 RSS Fetch** | Pulls from [Whisper1OF](https://whisper1of.blogspot.com) + [Youths Book](https://youthsbookreflections.blogspot.com) + [Thet Paing](https://thetpaingwrites.blogspot.com) |
 | **③** | **🐍 Parse** | Python 3.11 — XML → JSON metadata + HTML pages |
 | **④** | **📄 Generate** | Pyidaungsu font, justify layout, responsive design |
 | **⑤** | **🚀 Deploy** | Auto-commit to `main` → GitHub Pages live |
