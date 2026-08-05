@@ -38,6 +38,7 @@ FEEDS = [
         'feed_url': 'https://thetpaingwrites.blogspot.com/feeds/posts/default?alt=rss&max-results=100',
         'blog_url': 'https://thetpaingwrites.blogspot.com',
         'name': 'Thet Paing Writes',
+        'sentence_breaks': True,
     },
 ]
 
@@ -260,6 +261,35 @@ def build_preview_description(text, limit=140):
         text = text[:limit].rsplit(' ', 1)[0].rstrip()
         text = text + '...'
     return text
+
+def build_sentence_paragraphs(text, min_len=10):
+    """Split flowed text into paragraphs at sentence endings only.
+
+    Blogger posts pasted from Word often break lines mid-sentence, so
+    consecutive fragments are merged until a sentence-ending mark appears.
+    Decorative separator lines (e.g. =====) stay as standalone paragraphs.
+    """
+    paragraphs = []
+    buf = ''
+    for line in re.split(r'\n+', text):
+        line = line.strip()
+        if not line:
+            continue
+        if re.fullmatch(r'[=\-_~*#\u2014\u2022\u00b7]+', line):
+            if buf.strip():
+                paragraphs.append(buf.strip())
+                buf = ''
+            paragraphs.append(line)
+            continue
+        line = re.sub(r'\s+', ' ', line)
+        buf = (buf + ' ' + line).strip() if buf else line
+        if re.search(r'[\u104b.!?\u2026]["\u201d\'\u2019]?$', buf):
+            paragraphs.append(buf)
+            buf = ''
+    if buf.strip():
+        paragraphs.append(buf.strip())
+    return [p for p in paragraphs if len(p) >= min_len]
+
 
 def generate_post_html(post):
     """Generate a static HTML file for a blog post."""
@@ -890,21 +920,28 @@ def main():
             reviewer = extract_reviewer(description, blog_name)
             clean_desc = clean_text(description)
             clean_desc = bold_quotes_skip_links(clean_desc)
-            excerpt = clean_desc[:200] + "..." if len(clean_desc) > 200 else clean_desc
+
+            if feed_info.get('sentence_breaks'):
+                flat_desc = re.sub(r'\s+', ' ', clean_desc).strip()
+                excerpt = flat_desc[:200] + "..." if len(flat_desc) > 200 else flat_desc
+                content_html = ''
+                for block in build_sentence_paragraphs(clean_desc):
+                    content_html += f'            <p>{block}</p>\n'
+            else:
+                excerpt = clean_desc[:200] + "..." if len(clean_desc) > 200 else clean_desc
+                content_blocks = re.split(r'\n+', clean_desc)
+                content_html = ''
+                for block in content_blocks:
+                    block = block.strip()
+                    if len(block) > 10:
+                        block = re.sub(r'\s+', ' ', block)
+                        content_html += f'            <p>{block}</p>\n'
 
             try:
                 dt = datetime.strptime(pub_date, '%a, %d %b %Y %H:%M:%S %z')
                 date_str = dt.strftime('%Y-%m-%d')
             except:
                 date_str = pub_date
-
-            content_blocks = re.split(r'\n+', clean_desc)
-            content_html = ''
-            for block in content_blocks:
-                block = block.strip()
-                if len(block) > 10:
-                    block = re.sub(r'\s+', ' ', block)
-                    content_html += f'            <p>{block}</p>\n'
 
             # Check if post already exists by title — reuse its ID
             if title in existing_by_title:
