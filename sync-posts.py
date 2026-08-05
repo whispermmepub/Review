@@ -34,6 +34,11 @@ FEEDS = [
         'blog_url': 'https://youthsbookreflections.blogspot.com',
         'name': 'Youths Book Reflections',
     },
+    {
+        'feed_url': 'https://thetpaingwrites.blogspot.com/feeds/posts/default?alt=rss&max-results=100',
+        'blog_url': 'https://thetpaingwrites.blogspot.com',
+        'name': 'Thet Paing Writes',
+    },
 ]
 
 
@@ -48,6 +53,7 @@ EXCLUDE_TITLES = [
     'WoW',
     'Whisper Of Words epub',
     'Epub Kfx အဖြစ် ရှိပြီး စာအုပ်များ',
+    '၂၀၂၆ ခုနှစ်အတွင်း ထွက်ရှိထားသော စာအုပ်များ',
 ]
 
 # Manual mapping of blog posts to clean English slugs based on known book titles
@@ -120,6 +126,8 @@ def extract_reviewer(description, blog_name=''):
 def is_book_review(title, description, excerpt):
     """Determine if a post is a book review (not a catalog/list)."""
     clean_title = re.sub(r'&\w+;', '', title).strip()
+    if not clean_title:
+        return False
     if clean_title in EXCLUDE_TITLES:
         return False
     if 'စာအုပ်အရေအတွက်' in excerpt or 'Books (' in excerpt:
