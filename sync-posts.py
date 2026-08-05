@@ -223,7 +223,9 @@ def bold_quotes_skip_links(text):
 
 def clean_text(text):
     """Remove HTML tags and clean up text, preserving paragraph breaks and content links."""
-    # Convert <br> and <p> to newlines before stripping other tags
+    # Convert <div>, <br>, <p> to newlines before stripping other tags
+    text = re.sub(r"""<div[^>]*>""", "\n", text, flags=re.IGNORECASE)
+    text = re.sub(r"""</div>""", "\n", text, flags=re.IGNORECASE)
     text = re.sub(r"""<br\s*/?>""", "\n", text, flags=re.IGNORECASE)
     text = re.sub(r"""<p[^>]*>""", "\n", text, flags=re.IGNORECASE)
     text = re.sub(r"""</p>""", "\n", text, flags=re.IGNORECASE)
@@ -919,13 +921,19 @@ def main():
             image_url = extract_image(description)
             reviewer = extract_reviewer(description, blog_name)
             clean_desc = clean_text(description)
-            clean_desc = bold_quotes_skip_links(clean_desc)
+            # NOTE: bold_quotes_skip_links is applied AFTER build_sentence_paragraphs
+            # in the sentence_breaks path, to avoid <strong> tags interfering
+            # with sentence-ending detection.
 
             if feed_info.get('sentence_breaks'):
+                paragraphs = build_sentence_paragraphs(clean_desc)
+                # Apply bold_quotes AFTER sentence splitting so <strong> tags
+                # don't interfere with sentence-ending detection
+                paragraphs = [bold_quotes_skip_links(p) for p in paragraphs]
                 flat_desc = re.sub(r'\s+', ' ', clean_desc).strip()
                 excerpt = flat_desc[:200] + "..." if len(flat_desc) > 200 else flat_desc
                 content_html = ''
-                for block in build_sentence_paragraphs(clean_desc):
+                for block in paragraphs:
                     content_html += f'            <p>{block}</p>\n'
             else:
                 excerpt = clean_desc[:200] + "..." if len(clean_desc) > 200 else clean_desc
