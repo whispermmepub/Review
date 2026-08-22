@@ -4,6 +4,7 @@
 from pathlib import Path
 import re
 
+PATCH_VERSION = 1
 ROOT = Path(__file__).resolve().parent
 
 
