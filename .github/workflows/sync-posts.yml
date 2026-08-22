@@ -1,6 +1,12 @@
 name: Sync Blog Posts
 
 on:
+  push:
+    branches:
+      - main
+    paths:
+      - '.github/workflows/sync-posts.yml'
+      - 'apply-glass-header.py'
   schedule:
     - cron: '0 * * * *'
   workflow_dispatch:
@@ -24,6 +30,9 @@ jobs:
         with:
           python-version: '3.11'
 
+      - name: Apply iOS glass header patch
+        run: python3 apply-glass-header.py
+
       - name: Run sync script
         run: python3 sync-posts.py
 
@@ -46,5 +55,5 @@ jobs:
           git config user.name "GitHub Actions"
           git config user.email "actions@github.com"
           git add -A
-          git commit -m "Auto-sync: Update blog posts from Blogspot feeds"
+          git commit -m "Auto-sync: Apply iOS glass post header"
           git push origin main
