@@ -1,23 +1,24 @@
 #!/usr/bin/env python3
-"""One-time/idempotent patch for the generated post header glass style."""
+"""Idempotently keep the generated post pages on the approved glass visual style."""
 
 from pathlib import Path
 import re
 
 path = Path(__file__).with_name("sync-posts.py")
 text = path.read_text(encoding="utf-8")
+changed = False
 
-marker = "/* iOS Glass Header */"
-if marker in text:
-    print("Glass header patch already applied")
-    raise SystemExit(0)
+# ---------------------------------------------------------------------------
+# iOS glass header (kept here so older copies of sync-posts.py can self-heal)
+# ---------------------------------------------------------------------------
+glass_marker = "/* iOS Glass Header */"
+if glass_marker not in text:
+    pattern = re.compile(
+        r"        \.container \{\{.*?        \.post-image \{\{",
+        re.DOTALL,
+    )
 
-pattern = re.compile(
-    r"        \.container \{\{.*?        \.post-image \{\{",
-    re.DOTALL,
-)
-
-replacement = r'''        .container {{
+    replacement = r'''        .container {{
             width: 100%;
             background:
                 radial-gradient(circle at 100% 5%, rgba(251, 146, 60, 0.09), transparent 24%),
@@ -115,23 +116,77 @@ replacement = r'''        .container {{
 
         .post-image {{'''
 
-new_text, count = pattern.subn(replacement, text, count=1)
-if count != 1:
-    raise SystemExit("Could not find the post header CSS block; no changes made")
+    new_text, count = pattern.subn(replacement, text, count=1)
+    if count != 1:
+        raise SystemExit("Could not find the post header CSS block; no changes made")
+    text = new_text
+    text = text.replace(
+        "            header h1 {{ font-size: 1.2rem; }}",
+        "            header {{ margin: 14px 10px 12px; padding: 32px 16px 26px; border-radius: 23px; }}\n            header h1 {{ font-size: 1.32rem; margin-bottom: 12px; }}\n            .post-meta {{ font-size: 0.88rem; }}",
+        1,
+    )
+    text = text.replace(
+        '<meta name="theme-color" content="#141228">',
+        '<meta name="theme-color" content="#17142d">',
+        1,
+    )
+    changed = True
+    print("Applied iOS glass header patch")
 
-# Keep the mobile title readable and closer to the approved mockup.
-new_text = new_text.replace(
-    "            header h1 {{ font-size: 1.2rem; }}",
-    "            header {{ margin: 14px 10px 12px; padding: 32px 16px 26px; border-radius: 23px; }}\n            header h1 {{ font-size: 1.32rem; margin-bottom: 12px; }}\n            .post-meta {{ font-size: 0.88rem; }}",
-    1,
-)
+# ---------------------------------------------------------------------------
+# Floating image card — preserve image ratio, add spacing and a subtle glow.
+# ---------------------------------------------------------------------------
+image_marker = "/* Floating Image Card */"
+if image_marker not in text:
+    old_image = '''        .post-image {{
+            width: 100%;
+            height: auto;
+            display: block;
+            max-height: 600px;
+            object-fit: contain;
+            background: #151328;
+        }}'''
 
-# Match browser/PWA chrome with the new header family.
-new_text = new_text.replace(
-    '<meta name="theme-color" content="#141228">',
-    '<meta name="theme-color" content="#17142d">',
-    1,
-)
+    new_image = '''        /* Floating Image Card */
+        .post-image {{
+            display: block;
+            width: calc(100% - 24px);
+            max-width: 760px;
+            height: auto;
+            max-height: min(72vh, 720px);
+            object-fit: contain;
+            margin: 14px auto 26px;
+            border-radius: 20px;
+            background: rgba(20, 18, 40, 0.58);
+            border: 1px solid rgba(255,255,255,0.13);
+            box-shadow:
+                0 16px 38px rgba(0,0,0,0.30),
+                0 0 30px rgba(124,58,237,0.11),
+                14px 12px 38px rgba(251,146,60,0.07);
+            -webkit-filter: saturate(1.02);
+            filter: saturate(1.02);
+        }}
 
-path.write_text(new_text, encoding="utf-8")
-print("Applied iOS glass header patch to sync-posts.py")
+        .post-content img {{
+            display: block;
+            width: min(100%, 760px);
+            height: auto;
+            margin: 20px auto;
+            border-radius: 18px;
+            border: 1px solid rgba(255,255,255,0.11);
+            box-shadow:
+                0 14px 34px rgba(0,0,0,0.26),
+                0 0 24px rgba(124,58,237,0.08);
+        }}'''
+
+    if old_image not in text:
+        raise SystemExit("Could not find the current post-image CSS block; no image changes made")
+    text = text.replace(old_image, new_image, 1)
+    changed = True
+    print("Applied floating image card style")
+
+if changed:
+    path.write_text(text, encoding="utf-8")
+    print("Updated sync-posts.py")
+else:
+    print("Glass header and floating image card are already applied")
