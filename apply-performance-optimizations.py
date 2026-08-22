@@ -136,23 +136,23 @@ def patch_homepage():
         const searchInput = document.getElementById('search-input');
         let searchTimer = null;
 
-        searchInput.addEventListener('input', function() {{
+        searchInput.addEventListener('input', function() {
             const value = this.value;
             clearTimeout(searchTimer);
-            searchTimer = setTimeout(function() {{
+            searchTimer = setTimeout(function() {
                 const query = value.toLowerCase().trim();
-                if (!query) {{
+                if (!query) {
                     renderPosts(allPosts);
                     return;
-                }}
+                }
                 const filtered = allPosts.filter(p =>
                     (p.title && p.title.toLowerCase().includes(query)) ||
                     (p.author && p.author.toLowerCase().includes(query)) ||
                     (p.excerpt && p.excerpt.toLowerCase().includes(query))
                 );
                 renderPosts(filtered);
-            }}, 120);
-        }});
+            }, 120);
+        });
 
         loadPosts();'''
         text, count = pattern.subn(replacement, text, count=1)
