@@ -22,7 +22,7 @@
     <meta name="twitter:card" content="summary_large_image">
     <link rel="manifest" href="/Review/manifest.json">
     <meta name="apple-mobile-web-app-capable" content="yes">
-    <meta name="theme-color" content="#141228">
+    <meta name="theme-color" content="#17142d">
     <meta name="google-site-verification" content="mss3y_pAIUpxusAJrt61me9Uy3G1PqsSe_WH_JP4SMA">
     <meta name="twitter:title" content="အစ္ဆရိယရကန် စကားပြေ ၁ - 𝐖𝐡𝐢𝐬𝐩𝐞𝐫 𝐎𝐟 𝐖𝐨𝐫𝐝𝐬 - 𝐦𝐦 𝐄𝐩𝐮𝐛">
     <meta name="twitter:description" content="ဒန္တေအယ်လီဂီရယ်ရီ ရေးသားပြီး အန်သနီ အက်စ် ကလိုင်းမှ အင်္ဂလိပ် ဘာသာသို့ ပြန်ဆိုသော အစ္ဆရိကရကန်ကဗျာအား စကားပြေအဖြစ် ပြန်လည် ပြန်ဆိုထားပါသည်။">
@@ -50,34 +50,98 @@
 
         .container {
             width: 100%;
-            background: #1e1a35;
+            background:
+                radial-gradient(circle at 100% 5%, rgba(251, 146, 60, 0.09), transparent 24%),
+                radial-gradient(circle at 0% 8%, rgba(236, 72, 153, 0.07), transparent 22%),
+                #17142d;
             overflow: hidden;
         }
 
+        /* iOS Glass Header */
         header {
-            background: linear-gradient(135deg, #d84315 0%, #bf360c 100%);
-            color: white;
-            padding: 30px 12px;
+            position: relative;
+            isolation: isolate;
+            overflow: hidden;
+            margin: 18px 14px 14px;
+            padding: 36px 20px 30px;
             text-align: center;
+            color: #ffffff;
+            border-radius: 26px;
+            background:
+                linear-gradient(135deg, rgba(255,255,255,0.13), rgba(255,255,255,0.045)),
+                rgba(24, 21, 52, 0.72);
+            border: 1px solid rgba(255,255,255,0.25);
+            -webkit-backdrop-filter: blur(26px) saturate(150%);
+            backdrop-filter: blur(26px) saturate(150%);
+            box-shadow:
+                inset 0 1px 0 rgba(255,255,255,0.20),
+                inset 0 -1px 0 rgba(255,255,255,0.05),
+                0 18px 45px rgba(0,0,0,0.28),
+                0 0 34px rgba(124, 58, 237, 0.10);
+        }
+
+        header::before {
+            content: '';
+            position: absolute;
+            inset: -38%;
+            z-index: -2;
+            pointer-events: none;
+            background:
+                radial-gradient(circle at 19% 24%, rgba(236,72,153,0.18), transparent 31%),
+                radial-gradient(circle at 84% 76%, rgba(251,146,60,0.38), transparent 29%),
+                radial-gradient(circle at 52% 43%, rgba(99,102,241,0.30), transparent 39%);
+            filter: blur(34px);
+            transform: scale(1.08);
+        }
+
+        header::after {
+            content: '';
+            position: absolute;
+            inset: 0;
+            z-index: -1;
+            pointer-events: none;
+            border-radius: inherit;
+            background:
+                linear-gradient(180deg, rgba(255,255,255,0.09), transparent 34%),
+                radial-gradient(circle at 92% 92%, rgba(255,183,94,0.14), transparent 28%);
         }
 
         header h1 {
+            position: relative;
+            z-index: 1;
             font-size: 1.5rem;
-            margin-bottom: 10px;
+            margin-bottom: 14px;
             font-weight: 900;
             letter-spacing: 0.02em;
-            line-height: 1.25;
-            color: #fff7f2;
+            line-height: 1.35;
+            color: #ffffff;
+            opacity: 1;
+            -webkit-font-smoothing: antialiased;
+            text-rendering: optimizeLegibility;
             text-shadow:
-                0 1px 0 rgba(0, 0, 0, 0.45),
-                0 2px 0 rgba(0, 0, 0, 0.35),
-                0 4px 8px rgba(0, 0, 0, 0.35),
-                0 0 18px rgba(255, 255, 255, 0.12);
+                0 1px 1px rgba(0,0,0,0.78),
+                0 3px 10px rgba(0,0,0,0.42),
+                0 0 1px rgba(255,255,255,0.50);
         }
 
         .post-meta {
-            font-size: 0.9rem;
-            opacity: 0.9;
+            position: relative;
+            z-index: 1;
+            font-size: 0.92rem;
+            line-height: 1.55;
+            color: rgba(255,255,255,0.96);
+            opacity: 1;
+            font-weight: 600;
+            letter-spacing: 0.01em;
+            -webkit-font-smoothing: antialiased;
+            text-shadow: 0 1px 5px rgba(0,0,0,0.55);
+        }
+
+        @supports not ((-webkit-backdrop-filter: blur(1px)) or (backdrop-filter: blur(1px))) {
+            header {
+                background:
+                    linear-gradient(135deg, rgba(52,47,82,0.98), rgba(25,22,51,0.98));
+            }
         }
 
         .post-image {
@@ -187,7 +251,9 @@
         .social-icon { width: 14px; height: 14px; fill: currentColor; }
 
         @media (max-width: 600px) {
-            header h1 { font-size: 1.2rem; }
+            header { margin: 14px 10px 12px; padding: 32px 16px 26px; border-radius: 23px; }
+            header h1 { font-size: 1.32rem; margin-bottom: 12px; }
+            .post-meta { font-size: 0.88rem; }
             .post-body { padding: 20px; }
         }
 
