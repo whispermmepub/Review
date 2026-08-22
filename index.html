@@ -290,6 +290,9 @@
                 return;
             }
 
+            // Performance: batch DOM insertion
+            const fragment = document.createDocumentFragment();
+
             posts.forEach(post => {
                 const card = document.createElement('a');
                 card.className = 'post-card';
@@ -297,7 +300,7 @@
 
                 let imgHtml = '';
                 if (post.image) {
-                    imgHtml = `<img src="${post.image}" class="card-img" alt="${post.title}" loading="lazy">`;
+                    imgHtml = `<img src="${post.image}" class="card-img" alt="${post.title}" loading="lazy" decoding="async" fetchpriority="low">`;
                 } else {
                     imgHtml = `<div class="card-img-placeholder">📖</div>`;
                 }
@@ -311,22 +314,31 @@
                     </div>
                 `;
 
-                container.appendChild(card);
+                fragment.appendChild(card);
             });
+            container.appendChild(fragment);
         }
 
-        document.getElementById('search-input').addEventListener('input', function() {
-            const query = this.value.toLowerCase().trim();
-            if (!query) {
-                renderPosts(allPosts);
-                return;
-            }
-            const filtered = allPosts.filter(p =>
-                (p.title && p.title.toLowerCase().includes(query)) ||
-                (p.author && p.author.toLowerCase().includes(query)) ||
-                (p.excerpt && p.excerpt.toLowerCase().includes(query))
-            );
-            renderPosts(filtered);
+        // Performance: debounced search
+        const searchInput = document.getElementById('search-input');
+        let searchTimer = null;
+
+        searchInput.addEventListener('input', function() {
+            const value = this.value;
+            clearTimeout(searchTimer);
+            searchTimer = setTimeout(function() {
+                const query = value.toLowerCase().trim();
+                if (!query) {
+                    renderPosts(allPosts);
+                    return;
+                }
+                const filtered = allPosts.filter(p =>
+                    (p.title && p.title.toLowerCase().includes(query)) ||
+                    (p.author && p.author.toLowerCase().includes(query)) ||
+                    (p.excerpt && p.excerpt.toLowerCase().includes(query))
+                );
+                renderPosts(filtered);
+            }, 120);
         });
 
         loadPosts();

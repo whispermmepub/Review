@@ -386,15 +386,18 @@
         }
 
         /* Reading Progress Bar */
+        /* Performance: GPU reading progress */
         .reading-progress {
             position: fixed;
             top: 0;
             left: 0;
-            width: 0%;
+            width: 100%;
             height: 3px;
             background: linear-gradient(90deg, #8b5cf6, #ec4899);
             z-index: 9999;
-            transition: width 0.1s ease;
+            transform: scaleX(0);
+            transform-origin: left center;
+            will-change: transform;
         }
 
         /* Reading Time */
@@ -516,19 +519,34 @@
     <script>
 
 
-        window.addEventListener('scroll', function() {
-            var btn = document.getElementById('backToTop');
-            if (window.scrollY > 300) { btn.style.display = 'flex'; } else { btn.style.display = 'none'; }
-        });
-        function scrollToTop() { window.scrollTo({ top: 0, behavior: 'smooth' }); }
+        // Performance: one passive RAF scroll handler
+        var backToTopBtn = document.getElementById('backToTop');
+        var readingProgress = document.getElementById('readingProgress');
+        var scrollTicking = false;
 
-        // Reading Progress
+        function updateScrollUI() {
+            var scrollTop = window.pageYOffset || document.documentElement.scrollTop || 0;
+            if (backToTopBtn) {
+                backToTopBtn.style.display = scrollTop > 300 ? 'flex' : 'none';
+            }
+
+            var scrollHeight = document.documentElement.scrollHeight - window.innerHeight;
+            var progress = scrollHeight > 0 ? Math.min(scrollTop / scrollHeight, 1) : 0;
+            if (readingProgress) {
+                readingProgress.style.transform = 'scaleX(' + progress + ')';
+            }
+            scrollTicking = false;
+        }
+
         window.addEventListener('scroll', function() {
-            var scrollTop = document.documentElement.scrollTop || document.body.scrollTop;
-            var scrollHeight = document.documentElement.scrollHeight - document.documentElement.clientHeight;
-            var progress = (scrollTop / scrollHeight) * 100;
-            document.getElementById('readingProgress').style.width = progress + '%';
-        });
+            if (!scrollTicking) {
+                scrollTicking = true;
+                requestAnimationFrame(updateScrollUI);
+            }
+        }, { passive: true });
+
+        function scrollToTop() { window.scrollTo({ top: 0, behavior: 'smooth' }); }
+        updateScrollUI();
 
         // Reading Time
         (function() {
@@ -554,6 +572,7 @@
 
         function updateBtn() {
             var btn = document.getElementById('bookmarkBtn');
+            if (!btn) return;
             if (bookmarks.indexOf(pid) > -1) {
                 btn.textContent = '🔖 Saved!';
                 btn.classList.add('saved');
