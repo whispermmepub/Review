@@ -450,13 +450,36 @@ def generate_post_html(post):
             }}
         }}
 
+        /* Floating Image Card */
         .post-image {{
-            width: 100%;
-            height: auto;
             display: block;
-            max-height: 600px;
+            width: calc(100% - 24px);
+            max-width: 760px;
+            height: auto;
+            max-height: min(72vh, 720px);
             object-fit: contain;
-            background: #151328;
+            margin: 14px auto 26px;
+            border-radius: 20px;
+            background: rgba(20, 18, 40, 0.58);
+            border: 1px solid rgba(255,255,255,0.13);
+            box-shadow:
+                0 16px 38px rgba(0,0,0,0.30),
+                0 0 30px rgba(124,58,237,0.11),
+                14px 12px 38px rgba(251,146,60,0.07);
+            -webkit-filter: saturate(1.02);
+            filter: saturate(1.02);
+        }}
+
+        .post-content img {{
+            display: block;
+            width: min(100%, 760px);
+            height: auto;
+            margin: 20px auto;
+            border-radius: 18px;
+            border: 1px solid rgba(255,255,255,0.11);
+            box-shadow:
+                0 14px 34px rgba(0,0,0,0.26),
+                0 0 24px rgba(124,58,237,0.08);
         }}
 
         .post-body {{
