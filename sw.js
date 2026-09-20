@@ -36,6 +36,8 @@ self.addEventListener('fetch', e => {
               const transformed = html
                 .replace(/Burma001/g, 'Walone')
                 .replace(/\/Review\/assets\/Burma001-Regular\.ttf/g, waloneUrl);
+              const hidePostControls = '<style id="wow-hide-post-controls">.share-section{display:none!important}.reviewer-credit p a[href]{display:none!important}</style>';
+              const finalHtml = transformed.includes('</head>') ? transformed.replace('</head>', hidePostControls + '</head>') : transformed + hidePostControls;
               const headers = new Headers(resp.headers);
               headers.set('Content-Type', 'text/html; charset=utf-8');
               return new Response(finalHtml, { status: resp.status, statusText: resp.statusText, headers });
