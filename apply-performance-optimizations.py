@@ -159,9 +159,10 @@ def patch_homepage():
 
         loadPosts();'''
         text, count = pattern.subn(replacement, text, count=1)
-        if count != 1:
-            raise SystemExit("Could not patch homepage search handler")
-        changed = True
+        if count == 1:
+            changed = True
+        else:
+            print("Homepage search handler not found; performance patch already applied or structure changed. Skipping this patch.")
 
     if changed:
         path.write_text(text, encoding="utf-8")
