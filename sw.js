@@ -32,7 +32,7 @@ self.addEventListener('fetch', e => {
             caches.open(CACHE_NAME).then(c => c.put(e.request, clone));
           }
           return resp.text().then(html => {
-              const waloneUrl = 'https://raw.githubusercontent.com/whispermmepub/myanmar-yoe-shin-fonts/main/fonts/Z06_Walone%20Regular-s.p.03us02_90_za5.ttf';
+              const waloneUrl = 'https://raw.githubusercontent.com/whispermmepub/myanmar-yoe-shin-fonts/main/fonts/Walone-Regular.ttf';
               const transformed = html
                 .replace(/Burma001/g, 'Walone')
                 .replace(/\/Review\/assets\/Burma001-Regular\.ttf/g, waloneUrl);
