@@ -107,6 +107,9 @@
         .social-link.telegram:hover { background: #0088cc; box-shadow: 0 4px 12px rgba(0,136,204,0.4); transform: translateY(-2px); }
         .social-icon { width: 18px; height: 18px; fill: currentColor; }
 
+        .reading-stats{max-width:1600px;margin:0 auto 25px;padding:18px;border:1px solid rgba(255,255,255,.08);border-radius:16px;background:linear-gradient(135deg,#17152b,#211d3b);box-shadow:0 8px 25px rgba(0,0,0,.22)}
+        .reading-stats-title{font-size:1.25rem;font-weight:700;margin-bottom:14px;color:#fff}.stats-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:10px}.stat-card{padding:14px;border-radius:12px;background:rgba(255,255,255,.055);border:1px solid rgba(255,255,255,.06)}.stat-icon{font-size:1.35rem}.stat-value{display:block;margin-top:5px;font-size:1.25rem;font-weight:700;color:#fff}.stat-label{display:block;margin-top:2px;font-size:.82rem;color:#aaa}.stats-note{margin-top:12px;color:#888;font-size:.8rem;text-align:center}@media(max-width:600px){.stats-grid{grid-template-columns:repeat(2,1fr)}}
+
         .search-section {
             max-width: 1600px;
             margin: 0 auto 25px;
@@ -254,6 +257,17 @@
 
     </header>
 
+    <section class="reading-stats" aria-label="Reading Statistics">
+        <div class="reading-stats-title">📊 Reading Statistics</div>
+        <div class="stats-grid">
+            <div class="stat-card"><span class="stat-icon">📚</span><span class="stat-value" id="stat-books">0</span><span class="stat-label">စာအုပ်ဖတ်ထားမှု</span></div>
+            <div class="stat-card"><span class="stat-icon">⏱️</span><span class="stat-value" id="stat-time">0 min</span><span class="stat-label">စုစုပေါင်းဖတ်ချိန်</span></div>
+            <div class="stat-card"><span class="stat-icon">🔥</span><span class="stat-value" id="stat-streak">0 days</span><span class="stat-label">Reading streak</span></div>
+            <div class="stat-card"><span class="stat-icon">📅</span><span class="stat-value" id="stat-today">0 min</span><span class="stat-label">ဒီနေ့ဖတ်ချိန်</span></div>
+        </div>
+        <div class="stats-note">ဒီအချက်အလက်တွေကို ဒီ device/browser ထဲမှာပဲ သိမ်းထားပါတယ်။ Login နဲ့ Database မလိုပါ။</div>
+    </section>
+
     <div class="search-section">
         <div class="search-label">🔍 စာအုပ်အညွှန်း ရှာဖွေရန်</div>
         <input type="text" class="search-bar" id="search-input" placeholder="စာအုပ်အမည် သို့မဟုတ် စာရေးဆရာအမည် ရိုက်ထည့်ပါ...">
@@ -267,7 +281,23 @@
         <p>&copy; 2026 <a href="index.html" style="color: #8b5cf6; text-decoration: none; font-weight: 600;">𝐖𝐡𝐢𝐬𝐩𝐞𝐫 𝐎𝐟 𝐖𝐨𝐫𝐝𝐬 - 𝐦𝐦 𝐄𝐩𝐮𝐛</a></p>
     </footer>
 
+    <script src="assets/reading-stats.js"></script>
     <script>
+        function renderReadingStats() {
+            const s = window.WOWReadingStats ? window.WOWReadingStats.get() : {books:{},totalSeconds:0,daily:{}};
+            const books = Object.keys(s.books || {}).length;
+            const mins = Math.floor((s.totalSeconds || 0) / 60);
+            const todayKey = new Date().toISOString().slice(0,10);
+            const today = Math.floor(((s.daily || {})[todayKey] || 0) / 60);
+            let streak = 0, d = new Date(), daily = s.daily || {};
+            while (daily[d.toISOString().slice(0,10)]) { streak++; d.setDate(d.getDate()-1); }
+            document.getElementById('stat-books').textContent=books;
+            document.getElementById('stat-time').textContent=mins+' min';
+            document.getElementById('stat-today').textContent=today+' min';
+            document.getElementById('stat-streak').textContent=streak+' days';
+        }
+        renderReadingStats();
+
         let allPosts = [];
 
         async function loadPosts() {
