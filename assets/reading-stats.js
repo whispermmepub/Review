@@ -1,7 +1,7 @@
 (function () {
   'use strict';
   const KEY = 'wowReviewReadingStatsV1';
-  const isPostPage = /\/Review\/\d+\/?$/.test(location.pathname);
+  const isPostPage = /\/Review\/\d+\/(?:index\.html)?$/.test(location.pathname);
 
   function load() {
     try { return JSON.parse(localStorage.getItem(KEY)) || {books:{},totalSeconds:0,daily:{}}; }
@@ -17,7 +17,7 @@
 
   if (!isPostPage) return;
 
-  const id = location.pathname.replace(/\/$/, '').split('/').pop();
+  const match = location.pathname.match(/\/Review\/(\d+)\/(?:index\.html)?$/);\n  if (!match) return;\n  const id = match[1];
   const data = load();
   if (!data.books[id]) data.books[id] = {firstOpened:Date.now(), lastOpened:Date.now(), seconds:0};
   else data.books[id].lastOpened = Date.now();
