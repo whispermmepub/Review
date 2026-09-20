@@ -1,20 +1,18 @@
-// Service worker intentionally disabled for Review pages.
-// Keeping this worker inactive prevents stale interception/caching from
-// breaking individual Review post pages while the site remains network-first.
+// Service worker cleanup for Review.
+// The Review site no longer needs a service worker.
+// This file unregisters any existing worker and removes old caches.
+
 self.addEventListener('install', event => {
   self.skipWaiting();
 });
 
 self.addEventListener('activate', event => {
-  event.waitUntil(
-    caches.keys().then(keys =>
-      Promise.all(keys.map(key => caches.delete(key)))
-    )
-  );
-  self.clients.claim();
+  event.waitUntil((async () => {
+    const keys = await caches.keys();
+    await Promise.all(keys.map(key => caches.delete(key)));
+    await self.registration.unregister();
+  })());
 });
 
-self.addEventListener('fetch', event => {
-  // Always use the network. No HTML transformation and no cache fallback.
-  event.respondWith(fetch(event.request));
-});
+// Intentionally no fetch handler.
+// Requests go directly to the network.
