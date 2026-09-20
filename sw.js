@@ -1,4 +1,4 @@
-const CACHE_NAME = 'wow-books-v4-walone';
+const CACHE_NAME = 'wow-books-v5-hide-share';
 
 self.addEventListener('install', e => {
   self.skipWaiting();
@@ -38,7 +38,7 @@ self.addEventListener('fetch', e => {
                 .replace(/\/Review\/assets\/Burma001-Regular\.ttf/g, waloneUrl);
               const headers = new Headers(resp.headers);
               headers.set('Content-Type', 'text/html; charset=utf-8');
-              return new Response(transformed, { status: resp.status, statusText: resp.statusText, headers });
+              return new Response(finalHtml, { status: resp.status, statusText: resp.statusText, headers });
             });
         })
         .catch(() =>
