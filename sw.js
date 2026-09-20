@@ -1,4 +1,4 @@
-const CACHE_NAME = 'wow-books-v7-stats';
+const CACHE_NAME = 'wow-books-v8-stats-fix';
 
 self.addEventListener('install', event => {
   self.skipWaiting();
@@ -60,9 +60,12 @@ self.addEventListener('fetch', event => {
               );
 
             const statsScript = '<script src="/Review/assets/reading-stats.js"></script>';
-            const finalWithStats = transformed.includes('</body>')
-              ? transformed.replace('</body>', statsScript + '</body>')
-              : transformed + statsScript;
+            const hasStatsScript = transformed.includes('/Review/assets/reading-stats.js');
+            const finalWithStats = hasStatsScript
+              ? transformed
+              : (transformed.includes('</body>')
+                  ? transformed.replace('</body>', statsScript + '</body>')
+                  : transformed + statsScript);
 
             const hidePostControls =
               '<style id="wow-hide-post-controls">' +
