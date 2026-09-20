@@ -410,14 +410,52 @@
             50% { opacity: 0.3; }
         }
 
-            var scrollHeight = document.documentElement.scrollHeight - window.innerHeight;
-            var progress = scrollHeight > 0 ? Math.min(scrollTop / scrollHeight, 1) : 0;
-            if (readingProgress) {
-                readingProgress.style.transform = 'scaleX(' + progress + ')';
-            }
-            scrollTicking = false;
-        }
+</style>
+</head>
+<body>
+    <div class="reading-progress" id="readingProgress"></div>
+    <div class="container">
+        <header>
+            <h1>အိမ်ဖော် မကြာမီ ထွက်ရှိပါမည်</h1>
+            <div class="post-meta">📅 2026-06-30 • ✍️ Thet Paing Writes</div>
 
+        </header>
+
+        <div class="reading-time" id="readingTime">📖 <span id="readTime"></span> ဖတ်ရန်အချိန်</div>
+
+
+        <img src="https://blogger.googleusercontent.com/img/a/AVvXsEiOH-pnO4GCI5Z0_iHnzm9QQVAaFNtU4Xnrz7FkO5C_3izfTwCxdYLVOqsA7UiVvAqsTj1gtLyJr3qWfiFeRmSeS9LCmfOPglyADBbMFmPhPEwStWxYvwYx63PzyJ4MJ3I7ru1JnxjT07Wihrsb8ZfHWxRDdwVZcRtdDkEe3-h9RJKd9CYYPWyzxHXrCCu4=w423-h260" alt="အိမ်ဖော် မကြာမီ ထွက်ရှိပါမည်" class="post-image">
+        <div class="post-body">
+            <div class="post-content">
+            <p>ဒီအိမ်ကနေ ကျွန်မ ထွက်သွားနိုင်မဲ့ တစ်ခုတည်းသော နည်းလမ်းကတော့ လက်ထိပ် တန်းလန်းနဲ့ ထွက်သွားရမယ်ဆိုတာပါပဲ။ ဟုတ်တယ်။ အပေါ်ထပ်က ကိစ္စ တွေကို သူတို့ မြင်သွားရင် သူတို့ ကျွန်မကို ဖမ်းကြတော့မှာ သေချာတယ်။</p>
+            <p>ကျွန်မလို လူမျိုးကို ဘယ်သူက ယုံနိုင်မှာလဲရှင်။ တကယ်တော့ ကျွန်မဟာ စိတ်ကျန်းမာရေး ဆေးရုံကို ဝင်ချည်ထွက်ချည်လုပ်နေရတဲ့ လူနာ တစ်ယောက်ပဲ မဟုတ်ပါလား။</p>
+            <p>The Housemaid by Freida Mcfadden အိမ်ဖော် သက်ပိုင် (မြန်မာဘာသာ ပြန်ဆိုသည်။) မကြာမီ။</p>
+
+            </div>
+
+            <div class="reviewer-credit">
+                <p>Review By Thet Paing Writes</p>
+            </div>
+
+            <a href="../index.html" class="back-link">← ပင်မစာမျက်နှာသို့</a>
+
+            <div class="love-section">
+                <a href="https://t.me/+q4jx63Zt5LBiMmI1" target="_blank" class="telegram-btn">
+                    <svg class="telegram-icon" viewBox="0 0 24 24"><path d="M11.944 0A12 12 0 0 0 0 12a12 12 0 0 0 12 12 12 12 0 0 0 12-12A12 12 0 0 0 12 0a12 12 0 0 0-.056 0zm4.962 7.224c.1-.002.321.023.465.14a.506.506 0 0 1 .171.325c.016.093.036.306.02.472-.18 1.898-.962 6.502-1.36 8.627-.168.9-.499 1.201-.82 1.23-.696.065-1.225-.46-1.9-.902-1.056-.693-1.653-1.124-2.678-1.8-1.185-.78-.417-1.21.258-1.91.177-.184 3.247-2.977 3.307-3.23.007-.032.014-.15-.056-.212s-.174-.041-.249-.024c-.106.024-1.793 1.14-5.061 3.345-.479.33-.913.49-1.302.48-.428-.008-1.252-.241-1.865-.44-.752-.245-1.349-.374-1.297-.789.027-.216.325-.437.893-.663 3.498-1.524 5.83-2.529 6.998-3.014 3.332-1.386 4.025-1.627 4.476-1.635z"/></svg>
+                    Bookish Discussion
+                </a>
+            </div>
+
+            <div class="help-blink">
+                <a href="https://t.me/+q4jx63Zt5LBiMmI1" target="_blank">🔔 အကူအညီရယူရန် Discussion Group သို့ ဝင်ရောက်ပါ</a>
+            </div>
+        </div>
+    </div>
+
+    <button class="back-to-top" id="backToTop" onclick="scrollToTop()">↑</button>
+
+        <script src="/Review/assets/reading-stats.js"></script>
+    <script>
         // Performance: one passive RAF scroll handler
         var backToTopBtn = document.getElementById('backToTop');
         var readingProgress = document.getElementById('readingProgress');

@@ -410,14 +410,62 @@
             50% { opacity: 0.3; }
         }
 
-            var scrollHeight = document.documentElement.scrollHeight - window.innerHeight;
-            var progress = scrollHeight > 0 ? Math.min(scrollTop / scrollHeight, 1) : 0;
-            if (readingProgress) {
-                readingProgress.style.transform = 'scaleX(' + progress + ')';
-            }
-            scrollTicking = false;
-        }
+</style>
+</head>
+<body>
+    <div class="reading-progress" id="readingProgress"></div>
+    <div class="container">
+        <header>
+            <h1>ပင်ကိုရေး ဝတ္ထု၊ အခန်းနံပါတ် #၆၄၈</h1>
+            <div class="post-meta">📅 2026-09-09 • ✍️ Thet Paing Writes</div>
 
+        </header>
+
+        <div class="reading-time" id="readingTime">📖 <span id="readTime"></span> ဖတ်ရန်အချိန်</div>
+
+
+        <img src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEg10DUovM5LCvahVJz0xLKSBHVoLczRyw1iBn_cVegVUBkxtdGuSycIiwsW2Hxr_NUOjO6eGpD3COyqgaF9NDLJqzdJJVzNhR7lx-cGFeIIki3lAbAr-5A0r-TcxHOtvylMEuMHmZZhkJotd8lXhatuvBJ4MwuPOURtqwt2ne4HDOi47W0oOSgLg-dYmSvr/s320/photo_2026-09-09_18-38-01.jpg" alt="ပင်ကိုရေး ဝတ္ထု၊ အခန်းနံပါတ် #၆၄၈" class="post-image">
+        <div class="post-body">
+            <div class="post-content">
+            <p>It’s time, I guess.</p>
+            <p>Exclusively on Blog - <a href="https://thetpaingwrites.blogspot.com/" target="_blank" rel="noopener">https://thetpaingwrites.blogspot.com/</a> And substack - <a href="https://substack.com/@thetpaingwriter" target="_blank" rel="noopener">Thet Paing / Writer | Substack</a> Synopsis ကျွန်မကို ရန်ကုန်မြို့က နာမည်ကြီး တိုက်ခန်းတစ်ခုမှာ အိမ်ရှင်တွေ နိုင်ငံခြားသွားနေလို့ဆိုပြီး အခန်းစောင့် အလုပ်ပေးခဲ့တယ်။</p>
+            <p>ဒီကွန်ဒိုကြီးက လွန်ခဲ့တဲ့ နှစ်ပေါင်း ၅၀ ကတည်းကရှိခဲ့တာတဲ့။ နောက်ပြီး တိုက်ခန်းစောင့်သူက ညတိုင်း အခန်းထဲမှာ ရှိနေရမယ်။ တိုက်ခန်းထဲက လူတွေကို စကားမပြောရ။ အပြင် ဧည့်သည် မခေါ်ရနဲ့ စည်းကမ်းတွေက စုံနေတာပါပဲ။</p>
+            <p>အကောင်းစား တိုက်ခန်းကြီးမှာလဲ နေရမယ်။ နေပေးရုံနဲ့ ပိုက်ဆံလဲ ရမှာမို့ ကျွန်မ အလုပ်လက်ခံလိုက်တယ်။</p>
+            <p>ဒါပေမဲ့ ပထမညမှာကတည်းက ငါးပါးမှောက်တော့တာပါပဲ။</p>
+            <p>အခန်းထဲမှာ ပန်းချီကားတစ်ချပ်ရှိတယ်။ အဲဒီပန်းချီကားထဲက ထဘီရင်လျားနဲ့ အမျိုးသမီးရဲ့ မျက်လုံးတွေက ကျွန်မကို အမြဲတမ်း ငုံကြည့်နေသလိုပဲ။ ကျွန်မ ကျောချမ်းလာတယ်။</p>
+            <p>နောက်ပြီး အခန်းနံရံထဲက တဂျစ်ဂျစ် မြည်သံတွေ။</p>
+            <p>ဒီတိုက်တစ်ခုလုံးမှာ နေတဲ့ လူတွေကလဲ အသက်ကြီးကြီး လူအိုတွေချည်းပဲ။ ငယ်တဲ့လူဆိုလို့ ကျွန်မတို့လို တိုက်ခန်းစောင့်တွေပဲ ရှိတယ်။</p>
+            <p>တိုက်ခန်းမှာတွေ့ပြီး သူငယ်ချင်းဖြစ်သွားတဲ့ ကောင်မလေးက မနက်ဖြန်ကျတော့ ညကြီး အချိန်မတော် အလုပ်ထွက်သွားပြီလို့ ဧည့်ကြိုအစ်မကပြောတယ်။ ကျွန်မ မယုံနိုင်ဘူး။</p>
+            <p>နောက်မှ သိရတာ ကျွန်မထက် အရင်လဲ တိုက်ခန်းစောင့် ကောင်မလေးတစ်ယောက် ရှိခဲ့ဖူးတယ်။ သူလဲ ပျောက်သွားတာတဲ့။</p>
+            <p>ကွန်ဒိုပိုင်ရှင် အဘိုးကြီးကလဲ သူ့ကို စွပ်စွဲတဲ့ အမှုတွေကို မလွန်ဆန်နိုင်လို့ လွန်ခဲ့တဲ့ နှစ်ပေါင်း ၅၀လောက်က အထပ် ၃၀ ကနေ ခုန်ချပြီး သတ်သေသွားတာတဲ့ရှင်။</p>
+            <p>သူ့ကို ဘာအမှုတွေနဲ့ စွပ်စွဲခံခဲ့ရသလဲဆိုတာ သိလိုက်ရချိန်မှာ ကျွန်မအတွက် အရာရာက နောက်ကျသွားခဲ့ပါပြီ။</p>
+            <p>#အခန်းနံပါတ်၆၄၈ #သက်ပိုင် #ပင်ကိုရေး #မြန်မာဝတ္ထု</p>
+
+            </div>
+
+            <div class="reviewer-credit">
+                <p>Review By Thet Paing Writes</p>
+            </div>
+
+            <a href="../index.html" class="back-link">← ပင်မစာမျက်နှာသို့</a>
+
+            <div class="love-section">
+                <a href="https://t.me/+q4jx63Zt5LBiMmI1" target="_blank" class="telegram-btn">
+                    <svg class="telegram-icon" viewBox="0 0 24 24"><path d="M11.944 0A12 12 0 0 0 0 12a12 12 0 0 0 12 12 12 12 0 0 0 12-12A12 12 0 0 0 12 0a12 12 0 0 0-.056 0zm4.962 7.224c.1-.002.321.023.465.14a.506.506 0 0 1 .171.325c.016.093.036.306.02.472-.18 1.898-.962 6.502-1.36 8.627-.168.9-.499 1.201-.82 1.23-.696.065-1.225-.46-1.9-.902-1.056-.693-1.653-1.124-2.678-1.8-1.185-.78-.417-1.21.258-1.91.177-.184 3.247-2.977 3.307-3.23.007-.032.014-.15-.056-.212s-.174-.041-.249-.024c-.106.024-1.793 1.14-5.061 3.345-.479.33-.913.49-1.302.48-.428-.008-1.252-.241-1.865-.44-.752-.245-1.349-.374-1.297-.789.027-.216.325-.437.893-.663 3.498-1.524 5.83-2.529 6.998-3.014 3.332-1.386 4.025-1.627 4.476-1.635z"/></svg>
+                    Bookish Discussion
+                </a>
+            </div>
+
+            <div class="help-blink">
+                <a href="https://t.me/+q4jx63Zt5LBiMmI1" target="_blank">🔔 အကူအညီရယူရန် Discussion Group သို့ ဝင်ရောက်ပါ</a>
+            </div>
+        </div>
+    </div>
+
+    <button class="back-to-top" id="backToTop" onclick="scrollToTop()">↑</button>
+
+        <script src="/Review/assets/reading-stats.js"></script>
+    <script>
         // Performance: one passive RAF scroll handler
         var backToTopBtn = document.getElementById('backToTop');
         var readingProgress = document.getElementById('readingProgress');
