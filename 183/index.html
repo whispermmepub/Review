@@ -410,102 +410,13 @@
             50% { opacity: 0.3; }
         }
 
-        /* Share Buttons */
-        .share-section {
-            display: flex;
-            justify-content: center;
-            gap: 10px;
-            flex-wrap: wrap;
-            padding: 15px 0;
+            var scrollHeight = document.documentElement.scrollHeight - window.innerHeight;
+            var progress = scrollHeight > 0 ? Math.min(scrollTop / scrollHeight, 1) : 0;
+            if (readingProgress) {
+                readingProgress.style.transform = 'scaleX(' + progress + ')';
+            }
+            scrollTicking = false;
         }
-        .share-btn {
-            display: inline-flex;
-            align-items: center;
-            gap: 4px;
-            padding: 5px 10px;
-            border-radius: 6px;
-            font-size: 0.72rem;
-            text-decoration: none;
-            font-weight: 600;
-            transition: all 0.3s;
-            color: #fff;
-        }
-        .share-btn.tg { background: #0088cc; }
-        .share-btn.tg:hover { background: #006da3; box-shadow: 0 4px 12px rgba(0,136,204,0.4); }
-        .share-btn.fb { background: #1877f2; }
-        .share-btn.fb:hover { background: #0d6efd; box-shadow: 0 4px 12px rgba(24,119,242,0.4); }
-        .share-btn.viber { background: #7360f2; }
-        .share-btn.viber:hover { background: #5a48d4; box-shadow: 0 4px 12px rgba(115,96,242,0.4); }
-
-
-    </style>
-</head>
-<body>
-    <div class="reading-progress" id="readingProgress"></div>
-    <div class="container">
-        <header>
-            <h1>The Neighbours</h1>
-            <div class="post-meta">📅 2026-09-18 • ✍️ Thet Paing Writes</div>
-
-        </header>
-
-        <div class="reading-time" id="readingTime">📖 <span id="readTime"></span> ဖတ်ရန်အချိန်</div>
-
-
-        <img src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEhNqFNlR7yS6RzsDiSB8PBSu1plMNlBAFN894Qw5smk_YXXUhpQBYpPp2MXhWyyDv6YqX2zPwNMHtlmdaf3lS2IsXYsXGxsmhL8f_teabqkYmaT-vC2BMkNhBXcxKkZ78rCStux7k9EIhE2mGewaLkWSaER4KbDT51-cWI1AgjkG6_PEe_hTT2OHECmyAZQ/s320/photo_2026-09-18_15-23-31.jpg" alt="The Neighbours" class="post-image">
-        <div class="post-body">
-            <div class="post-content">
-            <p>Original Short Story by Thet Paing (Please bear in mind that it is still in draft so there might be some spelling and grammar mistakes.) My neighbours are weird. I know it because I have been watching them all the time. They never seem to go out, not even to buy the groceries. They look quite normal outside but I do know that there must be something dreadfully wrong with them. I started noticing their behaviors when I caught them for the first time, larking around my house a couple of weeks ago. Though I did not say any complaint about it, I had to remind myself to keep an eye on the new neighbours.</p>
-            <p>They moved in next door at the end of July which was a bit odd for house hunters. Usually, they chose to move in or move out during the summer or the spring. That did not bother me at all. After all, it was their money and they had every right to do whatever they liked. But what made me irritatingly anxious was that they were practically stalking on me and my house. To tell you the truth, they were not the first creepy neighbours, I had encountered in my life. In fact, all of my neighbourhood behaved in peculiar way around my house as if they had never seen a human before. Once, an old man tried to break into my house for no reason but when I confronted him in the kitchen, I did not even have the chance to yell at him to bugger off of my property. He just frantically screamed at my face and ran off for his dear life. Did my face change too much since I had not been under the sunlight too long?</p>
-            <p>I actually found it quite unreasonable that all of them persistently attempted to ostracize me for no apparent reason. I sometimes remembered the time when I was used to be a respectable lady in this quarter and I was adored by all of them for my richness and my glamorous appearance. Almost every single man in the quarter courted me for my love but I did not find any love in them. I only wanted to be alone and I would rather be alone than being a housewife, raising the children and doing all the house chores. It was such a tedious job for a woman to have but what amazed me was that some women truly believed, this was their destiny and faithfully used up their lives in the lonely kitchen, instead of going into society. I was pretty lucky to have painted my life in my own unique way. I was not influenced by my parents or the peers with regard to living life. And I was greatly thankful for my parents for it. They made my life a heaven and everything I wished was to come true without exception.</p>
-            <p>Perhaps, that was why I grew old as a well-off spinster for all my life. Since my parents had passed away when I was only twenty-five years old, I inherited this house and I was always here while a handful of new neighbours were moving in and out of their houses just like some hectic bees. I watched all the new neighbours coming in and the old ones out as the season went on. The only disturbing fact was that they all have one similar interest on the subject of my house and their sole purpose was to annoy me, as it appeared. I thought of reporting to the local police for the concern but something in my mind forbade me from doing that. Besides, I was not very much of a person who would gladly sneak on others’ business for fun, though watching them from afar was another matter. It could only be counted as self defence, if anything. Maybe, I was too antisocial lately and people started to think of me as a crazy woman. I could not care less about that. It was entirely their problem, not mine. Acknowledging the undeniable truth about my sinister neighbours, I could come up with the idea of keeping them away from the house.</p>
-            <p>My plan was to let them know by the distressing behaviours, just as they did to me. I did not even understand why I despised to talk to them in person. Would it not make me more comfortable if I just dropped by and told them openly that I loathed their deeds towards me? But I just did not feel like it. Since that idea had come to my mind, I began watching my neighbours intently and ...constantly. Yes, I never stopped watching them. I was by the window, gazing at them while they were running some errands and they rarely looked up my window to check on me. Especially at nights, they peeked at my house with their curious eyes. My instinct knew that they were planning something but I simply could not guess. Maybe, they were nice people and I was being too cautious about the matter. I wondered why they did not come up and said Hello to me. Was it because I looked horrendous and inapproachable ? I used to surround myself with kitty cats. They were better than humans really. They never judged or picked on me and all they did was no more than asking for food, petting on the head and that pretty much was it. But they also were gone now like forever.</p>
-            <p>They disappeared ever since THAT NIGHT.</p>
-            <p>It was that night that changed everything around me, including my neighbours, my life and all of them. And only vague animations came to my imagination whenever I tried to reminisce that night. If I recalled it correctly, I was in the bed that night, trying to fall asleep but the heat of the night was keeping me up. Then, I heard the slow, yet rushing in its own speed, footsteps from the living room. That would be nobody, rather than my beloved kitty cats. You might think it was unusual and over-exaggeration to say that I could hear the cats’ footsteps. Well, you should try living with the cats for over twenty years just as I did and you would know what I was talking about. But I did get out of the room though, to check on them and to feed them dinner. I loved them as my own children even though I did not have one in reality. When I reached to the kitchen, all I saw was nothing but an open fridge. It was really a mystery to me. My cats were not in the size as big as the one that could probably open up the fridge itself. And that was when I suddenly caught the hint of a figure, moving behind me in the dark. My cats might have gone upstairs to find me. Then, I closed the fridge back and went upstairs to feed them, holding the wet food, they desperately loved. I obviously did not know what was waiting for me upstairs. No sooner had I opened the bedroom door to meet my beloved cats then I faced the most dreadful experience of my life in a split second. First, I was sure, a dark figure of a man came rushing towards me and plunged a pointy sharp thing into my heart. It felt like getting poured down some hot, boiling water over my body. At least, that was how I remembered it and then the immense pain spread all over me and I closed my eyes tightly to control the feeling with all my might. Then, I passed out and fell into a deep sleep for a long time. When I woke up again in the morning, I felt a little bit change in me but I could not even care honestly.</p>
-            <p>It must have been a horrible dream since I did not see anything going wrong for sure. The only thing significantly bothering me was the neigbours who seemed to be having a special interest in me and my house. And I started losing my appetite and all I wanted to do was to go out yet somehow, I could not.</p>
-            <p>Instead, I sat by the lonely wooden window and stared at my neighbours. Some of them looked happy and quiet but some of them are really annoying and always trying to break into my house. They must have thought, I would not mind for this. But I did mind and I always will. Yes, my neighbours are weird and I know it because I have been watching them... all...the...time.</p>
-            <p><strong>“Have you found it yet?”</strong>, Aye Swe asked her husband, Tin Pae in despair. She could not stand a minute of staying here. She did not like the idea of coming here in the first place. Tin Pae believed that it was an easy way to find the infamous treasure from THE HOUSE. The house was originally owned by a wealthy yet unfortunate lady called Daw Min Bone but she was murdered by an unknown robber five months ago, when she encountered him in her own bedroom. The local police found a dagger in her heart and her throat was cut off too deep that almost decapitated. They also found two of her pure breed Burmese cats died of poison in the living room. It was such a miserable sight to witness the crime scene and the rumours of her hidden treasure were widely spread amongst the neighbourhood. Since then, many new people moved in the quarter in the hope of finding the treasure from the house but most of them gave up and moved out when they were allegedly haunted by the ghost. Despite the rumours, new ones kept coming just like every drop of water came to end up in the ocean.</p>
-            <p>It was like the phrase <strong>“Even the rich would refuse no easy money”</strong> was absolutely and inevitably right after all.</p>
-
-            </div>
-
-            <div class="reviewer-credit">
-                <p>Review By Thet Paing Writes</p>
-                <p><a href="https://thetpaingwrites.blogspot.com/2026/09/the-neighbours.html" target="_blank" style="color: #ff8a65;">မူရင်းကို ဖတ်ရန် →</a></p>
-            </div>
-
-            <a href="../index.html" class="back-link">← ပင်မစာမျက်နှာသို့</a>
-
-            <div class="share-section">
-                <a class="share-btn tg" id="shareTg" href="#" target="_blank">
-                    📤 Telegram
-                </a>
-                <a class="share-btn fb" id="shareFb" href="#" target="_blank">
-                    📤 Facebook
-                </a>
-                <a class="share-btn viber" id="shareViber" href="#" target="_blank">
-                    📤 Viber
-                </a>
-            </div>
-
-
-            <div class="love-section">
-                <a href="https://t.me/+q4jx63Zt5LBiMmI1" target="_blank" class="telegram-btn">
-                    <svg class="telegram-icon" viewBox="0 0 24 24"><path d="M11.944 0A12 12 0 0 0 0 12a12 12 0 0 0 12 12 12 12 0 0 0 12-12A12 12 0 0 0 12 0a12 12 0 0 0-.056 0zm4.962 7.224c.1-.002.321.023.465.14a.506.506 0 0 1 .171.325c.016.093.036.306.02.472-.18 1.898-.962 6.502-1.36 8.627-.168.9-.499 1.201-.82 1.23-.696.065-1.225-.46-1.9-.902-1.056-.693-1.653-1.124-2.678-1.8-1.185-.78-.417-1.21.258-1.91.177-.184 3.247-2.977 3.307-3.23.007-.032.014-.15-.056-.212s-.174-.041-.249-.024c-.106.024-1.793 1.14-5.061 3.345-.479.33-.913.49-1.302.48-.428-.008-1.252-.241-1.865-.44-.752-.245-1.349-.374-1.297-.789.027-.216.325-.437.893-.663 3.498-1.524 5.83-2.529 6.998-3.014 3.332-1.386 4.025-1.627 4.476-1.635z"/></svg>
-                    Bookish Discussion
-                </a>
-            </div>
-
-            <div class="help-blink">
-                <a href="https://t.me/+q4jx63Zt5LBiMmI1" target="_blank">🔔 အကူအညီရယူရန် Discussion Group သို့ ဝင်ရောက်ပါ</a>
-            </div>
-        </div>
-    </div>
-
-    <button class="back-to-top" id="backToTop" onclick="scrollToTop()">↑</button>
-
-    <script>
-
 
         // Performance: one passive RAF scroll handler
         var backToTopBtn = document.getElementById('backToTop');
@@ -542,15 +453,6 @@
             var words = text.split(/\s+/).length;
             var minutes = Math.ceil(words / 200);
             document.getElementById('readTime').textContent = minutes + ' min';
-        })();
-
-        // Share URLs
-        (function() {
-            var url = encodeURIComponent(window.location.href);
-            var title = encodeURIComponent(document.title);
-            document.getElementById('shareTg').href = 'https://t.me/share/url?url=' + url + '&text=' + title;
-            document.getElementById('shareFb').href = 'https://www.facebook.com/sharer/sharer.php?u=' + url;
-            document.getElementById('shareViber').href = 'viber://forward?text=' + title + '%20' + url;
         })();
 
         // Bookmark

@@ -410,107 +410,13 @@
             50% { opacity: 0.3; }
         }
 
-        /* Share Buttons */
-        .share-section {
-            display: flex;
-            justify-content: center;
-            gap: 10px;
-            flex-wrap: wrap;
-            padding: 15px 0;
+            var scrollHeight = document.documentElement.scrollHeight - window.innerHeight;
+            var progress = scrollHeight > 0 ? Math.min(scrollTop / scrollHeight, 1) : 0;
+            if (readingProgress) {
+                readingProgress.style.transform = 'scaleX(' + progress + ')';
+            }
+            scrollTicking = false;
         }
-        .share-btn {
-            display: inline-flex;
-            align-items: center;
-            gap: 4px;
-            padding: 5px 10px;
-            border-radius: 6px;
-            font-size: 0.72rem;
-            text-decoration: none;
-            font-weight: 600;
-            transition: all 0.3s;
-            color: #fff;
-        }
-        .share-btn.tg { background: #0088cc; }
-        .share-btn.tg:hover { background: #006da3; box-shadow: 0 4px 12px rgba(0,136,204,0.4); }
-        .share-btn.fb { background: #1877f2; }
-        .share-btn.fb:hover { background: #0d6efd; box-shadow: 0 4px 12px rgba(24,119,242,0.4); }
-        .share-btn.viber { background: #7360f2; }
-        .share-btn.viber:hover { background: #5a48d4; box-shadow: 0 4px 12px rgba(115,96,242,0.4); }
-
-
-    </style>
-</head>
-<body>
-    <div class="reading-progress" id="readingProgress"></div>
-    <div class="container">
-        <header>
-            <h1>အငိုအရယ်နည်းသော ရက်များ/ သန်းတင့်</h1>
-            <div class="post-meta">📅 2026-04-09 • ✍️ Whisper Of Words</div>
-
-        </header>
-
-        <div class="reading-time" id="readingTime">📖 <span id="readTime"></span> ဖတ်ရန်အချိန်</div>
-
-
-        <img src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEgxmUc0capVdwRkBjUjDR5RpbCbhAOHquxL4F-FYjQdZf54kaqpSfON66CVsPVMR55aJV1dKiqNpN2Qf3ZGnBPk7sMSj8M2tr9BWcieGKrT-bAHIl0Ao0v0-VaC_cBWDg2dxfahhYRbIJYAPPChcqINz0VkRvXwg_oZOeKtISd4a9RLsxHEo-Nk1dU5yp0/s16000/IMG_20260409_075031_610.webp" alt="အငိုအရယ်နည်းသော ရက်များ/ သန်းတင့်" class="post-image">
-        <div class="post-body">
-            <div class="post-content">
-            <p><a href="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEgxmUc0capVdwRkBjUjDR5RpbCbhAOHquxL4F-FYjQdZf54kaqpSfON66CVsPVMR55aJV1dKiqNpN2Qf3ZGnBPk7sMSj8M2tr9BWcieGKrT-bAHIl0Ao0v0-VaC_cBWDg2dxfahhYRbIJYAPPChcqINz0VkRvXwg_oZOeKtISd4a9RLsxHEo-Nk1dU5yp0/s1280/IMG_20260409_075031_610.webp" target="_blank" rel="noopener"></a></p>
-            <p>ဆရာသန်းတင့်ရဲ့ အငိုအရယ်နည်းသောရက်များ စာအုပ်အသစ် ထွက်လာပါတယ်။ ကဗျာကနေ အက်ဆေးဖက်ရောက်လာတဲ့ ဆရာသန်းတင့်ရဲ့ရေဒီယိုကို နားထောင်ပြီးတဲ့နောက် ခုတခါတော့ အငိုအရယ်နည်းတဲ့ ရက်တွေထဲ ကူးခတ်ရတော့တယ်။</p>
-            <p>အားလုံးကို စွန့်လွှတ်ခဲ့ရင်တောင်မှ သတိရခြင်းကို ငါပိုင်တယ် ယုံကွယ်။ ကဗျာဆရာ ဒတ္ထ (၈၈ ကျောင်းသားခေါင်းဆောင် တယောက်ဖြစ်တဲ့ အောင်ဒင်) ရဲ့ ကဗျာကို ဆရာသန်းတင့်က ခံစားပြထားတယ်။ (ယုံကွယ်) ဆိုတဲ့ စာသားလေး တာစားပုံဆိုပါတော့။</p>
-            <p>ပုံမှန်မနက်ခင်းများလိုပဲ နံသာသွေးပါ ဆီလိမ်းပါ ပြီးတော့ ခိုစာကျွေးပါ၊ ပန်းသီပါ။ တဲ့ သိဒ္ဓတ္ထကိုယ်စား ဆရာသန်းတင့်က ဖွဲ့တယ်။</p>
-            <p>တိုးတိုးသာသာ ကြွေးကြော်လိုက်တာတောင် သဲသဲလှုပ်သွားတဲ့ လှိုင်းတွေ လှိုင်းတွေတဲ့။ ဆရာသန်းတင့်က အနော်မာ ကို ဖွဲ့လေတယ်။ သိဒ္ဓတ္ထ၊ ရာဇာဓိရာဇ်၊ လဂွန်းအိမ်နဲ့ ယေရှူတို့အကြောင်းကို ခံစားပြတယ်။ သန်းခေါင်ကြက် အကြောင်းဖတ်ရတာ စိတ်ထဲမကောင်း။ ယေရှူအပေါ် သစ္စာသိပါတယ်ဆိုတဲ့ ပီတာရဲ့ ငြင်းဆိုမှု။</p>
-            <p>The man without a country ဆိုတဲ့ စာမှာ နိုင်ငံပျောက်နေတဲ့ နိုလန်အကြောင်း ဖတ်ရတယ်။ နိုင်ငံပျောက်ရုံမက၊ မိဘမောင်ဖွား ဆွေမျိုးသားချင်းတွေ ပျောက်နေရတဲ့ နိုလန်တွေဘယ်လောက်များနေပြီလဲ။ အက်ဆေးစာ နှစ်ဆယ့်နှစ်ပုဒ်ပါပါတယ်။</p>
-            <p>စာဖတ်ပြီး ပြန်စဥ်းစားရသမို့ အချိန်ယူနိုင်ပါတယ်။ ရှင်သာရိပုတ္တရာ အကြောင်းကို ဆရာသန်းတင့်က ခံစားထားပါသေးတယ်။ ချစ်ခဲ့သော်လဲ ပြန်လာဖြစ်မည် မဟုတ်ပါ တဲ့။ စာလေးနှစ်ကြောင်းဟာ မိုင်ပေါင်းသောင်းနဲ့ချီပြေးလေတယ်။</p>
-            <p>လေကိုဆန်၍ ပြောင်းပြန် လွင့်လာသော တိမ်များတွင် သွားလိုသော လိပ်စာ အတိအကျ ရှိပါသလား။ တံပိုးခရာသံတိုင်းသည် အောင်ပွဲသက်သက် ကို ရည်ရွယ်၍ မှုတ်ခဲ့ကြသည်ဟု ကျွန်တော်တော့ မထင်ပါ။ ပျက်ကျသွား သော ဂြိုဟ်ပဲ့တစ်ခြမ်းပေါ်၌ စိတ်ကြီးဝင်နေသော ဆေးမင်ကြောင်ရုပ်လေး ပါသွားခဲ့သည်။ ခင်ဗျားတို့ကို မုန်းရင်း အသစ်အသစ်သော ချစ်ခြင်းမေတ္တာ များကို ကျွန်တော် သင်ကြားခွင့်ရခဲ့ပါသည်။ ကျေးဇူးတင်ပါသည်။ ကျေးဇူး လည်း မတင်ပါ။</p>
-            <p>အိမ်ပုံပြင် မှ</p>
-            <p>စာရေးသူစကား</p>
-            <p>တခြားသူတွေတော့ မသိ။ ကျွန်တော်က ပျော်နေသည့်အခါဖြစ်ဖြစ် ဝမ်းနည်းနေသည့်အချိန်ပဲ ဖြစ်ဖြစ် ဘာအလုပ်မှ လုပ်လို့ မရတတ်သလို လုပ်ချင်စိတ်လည်း တစ်စက်မှ မရှိပါ။ ပျော်နေရသည့်အခါ ထိုအပျော်လေး ကို အရိပ်လို ကြည့်နေရတာပင် ကျွန်တော့်အတွက် အလုပ်ကြီးအကိုင်ကြီး ဖြစ်နေတတ်ပါသည်။ ထိုအခါ ကျွန်တော် ပြုံးနေရယ်နေမည်မှန်း ရိပ်မိကြ ပါလိမ့်မည်။</p>
-            <p>ဝမ်းနည်းစိတ်မကောင်း ဖြစ်နေသည့်အခါလည်း ထိုအတိုင်းသာ ဖြစ် သည်။ ဝမ်းနည်းစရာ ဟူသည် အရိပ်လို လိုက်ကြည့်နေစရာ ကောင်းသော ကိစ္စတော့ဖြင့် မဟုတ်ပါ။ သို့သော် မကြည့်ဘဲ မြင်နေရ၊ မပြောလည်း ကြား နေရ၊ မအိပ်ဘဲလည်း မက်နေရသော အိပ်မက်ဆိုးမို့ ကျွန်တော် မဲ့နေ ငိုနေ မည်မှန်း သေချာလှပါသည်။</p>
-            <p>ထိုသို့ဖြင့် အရယ်လည်း မယ်မယ်ရရ မရှိ၊ အငိုလည်း စစ်စစ် ပေါက် ပေါက် ရှာမရသော နေ့ရက်များတွင် ကျွန်တော့်ခမျာ ဟာတာတာကြီးဖြင့် လုပ်မိလုပ်ရာ အလုပ်များ၊ လုပ်သင့်လုပ်ထိုက်သော အလုပ်များ၊ လုပ်ချင် လုပ်နိုင်သော အလုပ်များကို မရှိ ရှိရာ ရှာဖွေလုပ်နေမိတတ်ပါသည်။ ယခု စာများ ကဗျာများမှာ ထိုလုပ်မိလုပ်ရာများထဲမှ လုပ်ခဲ့မိသော တစ်စုံတစ်ခု သာ ဖြစ်သည်ဟု ဆိုရပါမည်။</p>
-            <p>အငိုအရယ်နည်းသော နေ့ရက်တချို့တွင် ယခု စာများ ကဗျာများ ကို ကျွန်တော် ရေးဖြစ်ခဲ့ပါသည်။</p>
-            <p>နိုဝင်ဘာ ၆၊ ၂ဝ၂၅။</p>
-            <p>epub,kfx for Myanmar ebooks reader</p>
-
-            </div>
-
-            <div class="reviewer-credit">
-                <p>Review By Whisper Of Words</p>
-                <p><a href="https://whisper1of.blogspot.com/2026/03/blog-post.html" target="_blank" style="color: #ff8a65;">မူရင်းကို ဖတ်ရန် →</a></p>
-            </div>
-
-            <a href="../index.html" class="back-link">← ပင်မစာမျက်နှာသို့</a>
-
-            <div class="share-section">
-                <a class="share-btn tg" id="shareTg" href="#" target="_blank">
-                    📤 Telegram
-                </a>
-                <a class="share-btn fb" id="shareFb" href="#" target="_blank">
-                    📤 Facebook
-                </a>
-                <a class="share-btn viber" id="shareViber" href="#" target="_blank">
-                    📤 Viber
-                </a>
-            </div>
-
-
-            <div class="love-section">
-                <a href="https://t.me/+q4jx63Zt5LBiMmI1" target="_blank" class="telegram-btn">
-                    <svg class="telegram-icon" viewBox="0 0 24 24"><path d="M11.944 0A12 12 0 0 0 0 12a12 12 0 0 0 12 12 12 12 0 0 0 12-12A12 12 0 0 0 12 0a12 12 0 0 0-.056 0zm4.962 7.224c.1-.002.321.023.465.14a.506.506 0 0 1 .171.325c.016.093.036.306.02.472-.18 1.898-.962 6.502-1.36 8.627-.168.9-.499 1.201-.82 1.23-.696.065-1.225-.46-1.9-.902-1.056-.693-1.653-1.124-2.678-1.8-1.185-.78-.417-1.21.258-1.91.177-.184 3.247-2.977 3.307-3.23.007-.032.014-.15-.056-.212s-.174-.041-.249-.024c-.106.024-1.793 1.14-5.061 3.345-.479.33-.913.49-1.302.48-.428-.008-1.252-.241-1.865-.44-.752-.245-1.349-.374-1.297-.789.027-.216.325-.437.893-.663 3.498-1.524 5.83-2.529 6.998-3.014 3.332-1.386 4.025-1.627 4.476-1.635z"/></svg>
-                    Bookish Discussion
-                </a>
-            </div>
-
-            <div class="help-blink">
-                <a href="https://t.me/+q4jx63Zt5LBiMmI1" target="_blank">🔔 အကူအညီရယူရန် Discussion Group သို့ ဝင်ရောက်ပါ</a>
-            </div>
-        </div>
-    </div>
-
-    <button class="back-to-top" id="backToTop" onclick="scrollToTop()">↑</button>
-
-    <script>
-
 
         // Performance: one passive RAF scroll handler
         var backToTopBtn = document.getElementById('backToTop');
@@ -547,15 +453,6 @@
             var words = text.split(/\s+/).length;
             var minutes = Math.ceil(words / 200);
             document.getElementById('readTime').textContent = minutes + ' min';
-        })();
-
-        // Share URLs
-        (function() {
-            var url = encodeURIComponent(window.location.href);
-            var title = encodeURIComponent(document.title);
-            document.getElementById('shareTg').href = 'https://t.me/share/url?url=' + url + '&text=' + title;
-            document.getElementById('shareFb').href = 'https://www.facebook.com/sharer/sharer.php?u=' + url;
-            document.getElementById('shareViber').href = 'viber://forward?text=' + title + '%20' + url;
         })();
 
         // Bookmark

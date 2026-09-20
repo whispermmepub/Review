@@ -410,99 +410,13 @@
             50% { opacity: 0.3; }
         }
 
-        /* Share Buttons */
-        .share-section {
-            display: flex;
-            justify-content: center;
-            gap: 10px;
-            flex-wrap: wrap;
-            padding: 15px 0;
+            var scrollHeight = document.documentElement.scrollHeight - window.innerHeight;
+            var progress = scrollHeight > 0 ? Math.min(scrollTop / scrollHeight, 1) : 0;
+            if (readingProgress) {
+                readingProgress.style.transform = 'scaleX(' + progress + ')';
+            }
+            scrollTicking = false;
         }
-        .share-btn {
-            display: inline-flex;
-            align-items: center;
-            gap: 4px;
-            padding: 5px 10px;
-            border-radius: 6px;
-            font-size: 0.72rem;
-            text-decoration: none;
-            font-weight: 600;
-            transition: all 0.3s;
-            color: #fff;
-        }
-        .share-btn.tg { background: #0088cc; }
-        .share-btn.tg:hover { background: #006da3; box-shadow: 0 4px 12px rgba(0,136,204,0.4); }
-        .share-btn.fb { background: #1877f2; }
-        .share-btn.fb:hover { background: #0d6efd; box-shadow: 0 4px 12px rgba(24,119,242,0.4); }
-        .share-btn.viber { background: #7360f2; }
-        .share-btn.viber:hover { background: #5a48d4; box-shadow: 0 4px 12px rgba(115,96,242,0.4); }
-
-
-    </style>
-</head>
-<body>
-    <div class="reading-progress" id="readingProgress"></div>
-    <div class="container">
-        <header>
-            <h1>ခရစ်တော် မဖွားခင်က လူကောင်းတွေ ဘယ်ရောက်သွားကြသလဲ။</h1>
-            <div class="post-meta">📅 2026-06-27 • ✍️ Thet Paing Writes</div>
-
-        </header>
-
-        <div class="reading-time" id="readingTime">📖 <span id="readTime"></span> ဖတ်ရန်အချိန်</div>
-
-
-        <img src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEi8k8-tdJbCOl2jtN2Es-aoOShXBjbyKxlv6-vJlLI2B0POQcT2nFulLloDmQ35ZoZwhSJrl5Blg2FlG67aa8FwJijcSgsysA3XBrXMf9IbfLf-lUNpLPDYV5vTvIZEWMYhfsbS355yAS_TJVBcMEDf47vl8_fhWxqE5vMoybAWVuNAY-Kg6eFuqiLukS5K/s320/731823760_807031602375972_5678294968847303016_n.jpg" alt="ခရစ်တော် မဖွားခင်က လူကောင်းတွေ ဘယ်ရောက်သွားကြသလဲ။" class="post-image">
-        <div class="post-body">
-            <div class="post-content">
-            <p>ခရစ်တော် မဖွားခင်က လူကောင်းတွေ ဘယ်ရောက်သွားကြသလဲ။</p>
-            <p>(ဒန္တေ အယ်လီဂီယာရီ၏ အစ္ဆရိယရကန်ကဗျာ စကားပြေ အတွဲ ၁ နိရယဘုံမှ ကောက်နှုတ်တင်ပြပါသည်။) အီတလီစာဆို ဒန္တေ အယ်လီဂီယာရီ ‌ရေးသားတဲ့ Divine Comedy (အစ္ဆရိယရကန်) ကဗျာကြီးကို အပိုင်း ၃ ပိုင်းနဲ့ ဖွဲ့စည်းထားပြီး ပထမဆုံး အပိုင်းကတော့ နိရယဘုံ (ငရဲပြည်) ပဲဖြစ်ပါတယ်။ ဗတ္တိဇံ မင်္ဂလာ (နှစ်ခြင်း မင်္ဂလာ) ခံယူထားခြင်းမရှိတဲ့ ဝိညာဥ်တွေနဲ့ ဖောက်ပြားလော်လီပြီး ဆိုးသွမ်းတဲ့ ဝိညာဥ်တွေဟာ နိရယဘုံကို သွားကြတယ်လို့ ဒန္တေက ရေးဖွဲ့ထားပါတယ်။</p>
-            <p>လူဆိုး သူခိုးတွေရဲ့ ဝိညာဥ်တွေ ငရဲကျရတာဟာ အဓိပ္ပါယ်ရှိပေမဲ့ ခရစ်တော် လူ့ဇာတိမခံယူခင်က အကုသိုလ်ကင်းစွာ နေထိုင်ခဲ့ကြတဲ့ လူတွေကိုလဲ ငရဲပြည်မှာ တွေ့ကြောင်း ရေးသားထားတာမို့ ဒီအကြောင်းကို ရှင်းပြဖို့ လိုအပ်လာခဲ့ပါတယ်။</p>
-            <p>ဒန္တေရဲ့ နိရယဘုံဟာ အလွှာ ၉ ခုနဲ့ ဖွဲ့စည်းထားတဲ့ အရာဖြစ်ပြီး ပြစ်ဒဏ်ကြီးလေလေ၊ ပိုပိုပြီး နက်ရှိုင်းသွားလေလေ ဖြစ်ပါတယ်။ အဲဒီ အလွှာ ၉ ခုထဲက ပထမဆုံး အလွှာကို လင်းဘို ငရဲလို့ ခေါ်ပါတယ်။ မြန်မာ အယူအဆ ပြိတ္တာနဲ့ နီးစပ်သလို ရှိပေမဲ့ မတူလှပါဘူး။</p>
-            <p>လင်းဘိုငရဲဟာ ဗတ္တိဇံမင်္ဂလာ ခံယူခြင်းမရှိဘဲ သေဆုံးသွားတဲ့ ဝိညာဥ်တွေကို ထားတဲ့နေရာဖြစ်ပါတယ်။ ငရဲထိန်း မိစ္ဆာတွေရဲ့ နှိပ်စက် ကလူပြုခြင်း မခံရတဲ့ သူတို့ရဲ့ ပြစ်ဒဏ်ဟာ ခရစ်တော်နှင့် ဝေးကွာခြင်း၊ (ဧဒင် ဥယျာဥ်သို့ ဝင်ရောက်ရန်) မျှော်လင့်ချက် မရှိခြင်းပဲ ဖြစ်ပါတယ်။ သူတို့ဟာ များသောအားဖြင့် အစုလိုက်အဖွဲ့လိုက် အမှောင်ရိပ်ထဲမှာ ငုတ်တုပ်ထိုင်နေကြတဲ့ ဝိညာဥ်တွေပါ။ ဒါဟာ ဒန္တေအတွက်တော့ ခရစ်တော် မတိုင်ခင်နဲ့ ဖွားပြီးနောက်ပိုင်း ဗတ္တိဇံမင်္ဂလာမခံယူလိုက်ရဘဲ သေသွားတဲ့ သူတွေရဲ့ ပြစ်ဒဏ် ဖြစ်ခဲ့ပါတယ်။</p>
-            <p>ဒါကြောင့် ကလေးဘဝကတည်းက သေသွားတဲ့ ဝိညာဥ်တော်တော်များများကို အဲဒီနေရာမှာ သူတွေ့ခဲ့ရကြောင်း ဖွဲ့ဆိုခဲ့ပါတယ်။ နောက်ပြီး နာမည်ကြီးတွေဖြစ်တဲ့ အိလျဒ်နဲ့ ဩဒစ္ဆေ ကဗျာရှင် ဟုမ္မာ၊ ဗာဂျယ်လ်၊ အရစ္စတိုတယ်၊ ပလေတို၊ အိုဗစ်၊ လူကန်၊ ဆိုကရေးတီးစ်၊ ဂျူးလိယက် ဆီဇာ၊ ဆာလာဒင်၊ တော်လမီ၊ အော်ဖီးယပ်စ် စတဲ့ ပုဂ္ဂိုလ်တွေဟာလဲ လင်းဘိုငရဲမှာ ရှိနေခဲ့ကြပါတယ်။ ဒါ့အပြင် အာဒမ်၊ ဧဝ၊ အာဗြဟံ၊ ဒါဝိဒ်၊ ဣဇာက်၊ ယာကုပ်၊ ဣသရေလ၊ ဒံယေလ၊ ယောဟန်၊ နောဧ တို့ကလဲ လင်းဘိုမှာ ရှိနေခဲ့ကြပေမဲ့ ယေရှုခရစ်တော် ကားစင်ပေါ်မှာ အသက်ပေးခံကာ သေဆုံးသွားပြီးနောက်၊ ပြန်လည် ရှင်သန်ထမြောက်ခြင်း မပြုခင်လေးမှာ ယေရှုခရစ်ဟာ လင်းဘိုကို ဆင်းလာပြီး အာဒမ်မှ နောဧ အထိ ဝိညာဥ်တွေကို ကယ်တင်သွားခဲ့တယ်လို့ ဒန္တေကဆိုပါတယ်။ သတိပြုရမဲ့ အချက်ကတော့ ဒန္တေဟာ ကတ်သလစ်ဘာသာဝင်ဖြစ်တာမို့ သူ့အယူအဆကလဲ သုံးပါးတစ်ဆူ (ခမည်းတော်၊ သားတော်၊ သန့်ရှင်းသော ဝိညာဥ်တော်) ကို ယုံကြည်တဲ့ ကတ်သလစ် အယူအဆသာဖြစ်ပါတယ်။</p>
-            <p>သုံးပါး တစ်ဆူ အယူအဆကို ထင်ဟပ်စေလိုတဲ့ အနေနဲ့လဲ ဒန္တေဟာ ကဗျာကို ၃ ပိုင်း ရေးဖွဲ့ခဲ့သလို ကဗျာတစ်ပိုင်းစီမှာလဲ အပိုင်း ၃၃ ခန်းထည့်သွင်းထားတာမို့ သူ့ရဲ့ ဘာသာရေးအယူအဆကို သင်္ချာနဲ့ ဖော်ပြထားတာလို့ ဆိုကြပါတယ်။</p>
-            <p>Inferno – intro + poem = 1+33 = 34 Purgatorio – poem = 33 Paradiso – poem = 33 Total = 100 ဖြစ်ပါတယ် ဘာသာပြန် ထွက်ရှိပါပြီ။ စာရိပ်မြိုင် စာပေမှ မှာယူနိုင်ပါတယ်။</p>
-
-            </div>
-
-            <div class="reviewer-credit">
-                <p>Review By Thet Paing Writes</p>
-                <p><a href="https://thetpaingwrites.blogspot.com/2026/06/blog-post_27.html" target="_blank" style="color: #ff8a65;">မူရင်းကို ဖတ်ရန် →</a></p>
-            </div>
-
-            <a href="../index.html" class="back-link">← ပင်မစာမျက်နှာသို့</a>
-
-            <div class="share-section">
-                <a class="share-btn tg" id="shareTg" href="#" target="_blank">
-                    📤 Telegram
-                </a>
-                <a class="share-btn fb" id="shareFb" href="#" target="_blank">
-                    📤 Facebook
-                </a>
-                <a class="share-btn viber" id="shareViber" href="#" target="_blank">
-                    📤 Viber
-                </a>
-            </div>
-
-
-            <div class="love-section">
-                <a href="https://t.me/+q4jx63Zt5LBiMmI1" target="_blank" class="telegram-btn">
-                    <svg class="telegram-icon" viewBox="0 0 24 24"><path d="M11.944 0A12 12 0 0 0 0 12a12 12 0 0 0 12 12 12 12 0 0 0 12-12A12 12 0 0 0 12 0a12 12 0 0 0-.056 0zm4.962 7.224c.1-.002.321.023.465.14a.506.506 0 0 1 .171.325c.016.093.036.306.02.472-.18 1.898-.962 6.502-1.36 8.627-.168.9-.499 1.201-.82 1.23-.696.065-1.225-.46-1.9-.902-1.056-.693-1.653-1.124-2.678-1.8-1.185-.78-.417-1.21.258-1.91.177-.184 3.247-2.977 3.307-3.23.007-.032.014-.15-.056-.212s-.174-.041-.249-.024c-.106.024-1.793 1.14-5.061 3.345-.479.33-.913.49-1.302.48-.428-.008-1.252-.241-1.865-.44-.752-.245-1.349-.374-1.297-.789.027-.216.325-.437.893-.663 3.498-1.524 5.83-2.529 6.998-3.014 3.332-1.386 4.025-1.627 4.476-1.635z"/></svg>
-                    Bookish Discussion
-                </a>
-            </div>
-
-            <div class="help-blink">
-                <a href="https://t.me/+q4jx63Zt5LBiMmI1" target="_blank">🔔 အကူအညီရယူရန် Discussion Group သို့ ဝင်ရောက်ပါ</a>
-            </div>
-        </div>
-    </div>
-
-    <button class="back-to-top" id="backToTop" onclick="scrollToTop()">↑</button>
-
-    <script>
-
 
         // Performance: one passive RAF scroll handler
         var backToTopBtn = document.getElementById('backToTop');
@@ -539,15 +453,6 @@
             var words = text.split(/\s+/).length;
             var minutes = Math.ceil(words / 200);
             document.getElementById('readTime').textContent = minutes + ' min';
-        })();
-
-        // Share URLs
-        (function() {
-            var url = encodeURIComponent(window.location.href);
-            var title = encodeURIComponent(document.title);
-            document.getElementById('shareTg').href = 'https://t.me/share/url?url=' + url + '&text=' + title;
-            document.getElementById('shareFb').href = 'https://www.facebook.com/sharer/sharer.php?u=' + url;
-            document.getElementById('shareViber').href = 'viber://forward?text=' + title + '%20' + url;
         })();
 
         // Bookmark

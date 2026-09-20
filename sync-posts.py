@@ -727,6 +727,25 @@ def generate_post_html(post):
             scrollTicking = false;
         }}
 
+        // Performance: one passive RAF scroll handler
+        var backToTopBtn = document.getElementById('backToTop');
+        var readingProgress = document.getElementById('readingProgress');
+        var scrollTicking = false;
+
+        function updateScrollUI() {{
+            var scrollTop = window.pageYOffset || document.documentElement.scrollTop || 0;
+            if (backToTopBtn) {{
+                backToTopBtn.style.display = scrollTop > 300 ? 'flex' : 'none';
+            }}
+
+            var scrollHeight = document.documentElement.scrollHeight - window.innerHeight;
+            var progress = scrollHeight > 0 ? Math.min(scrollTop / scrollHeight, 1) : 0;
+            if (readingProgress) {{
+                readingProgress.style.transform = 'scaleX(' + progress + ')';
+            }}
+            scrollTicking = false;
+        }}
+
         window.addEventListener('scroll', function() {{
             if (!scrollTicking) {{
                 scrollTicking = true;
