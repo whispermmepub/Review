@@ -339,15 +339,15 @@ def generate_post_html(post):
     <link rel="image_src" href="{preview_image_html}">
     <style>
         @font-face {{
-            font-family: 'Burma001';
-            src: url('/Review/assets/Burma001-Regular.ttf') format('truetype');
+            font-family: 'Walone';
+            src: url('/Review/assets/Walone-Regular.ttf') format('truetype');
             font-display: swap;
         }}
 
         * {{ margin: 0; padding: 0; box-sizing: border-box; }}
 
         body {{
-            font-family: 'Burma001', sans-serif;
+            font-family: 'Walone', sans-serif;
             background: linear-gradient(135deg, #141228 0%, #1a1530 100%);
             color: #d0d0d0;
             line-height: 2;
@@ -611,7 +611,7 @@ def generate_post_html(post):
             text-decoration: none;
             font-size: 0.9rem;
             font-weight: 600;
-            font-family: 'Burma001', sans-serif;
+            font-family: 'Walone', sans-serif;
             transition: all 0.25s ease;
         }}
         .telegram-btn:hover {{
@@ -652,7 +652,7 @@ def generate_post_html(post):
             border-radius: 30px;
             cursor: pointer;
             transition: all 0.3s;
-            font-family: 'Burma001', sans-serif;
+            font-family: 'Walone', sans-serif;
         }}
         .love-btn:hover, .love-btn.liked {{
             background: #e74c3c;
