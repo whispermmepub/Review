@@ -1,81 +1,101 @@
-const CACHE_NAME = 'wow-books-v5-hide-share';
+const CACHE_NAME = 'wow-books-v6-stable';
 
-self.addEventListener('install', e => {
+self.addEventListener('install', event => {
   self.skipWaiting();
 });
 
-self.addEventListener('activate', e => {
-  e.waitUntil(
+self.addEventListener('activate', event => {
+  event.waitUntil(
     caches.keys().then(keys =>
-      Promise.all(keys.filter(k => k !== CACHE_NAME).map(k => caches.delete(k)))
+      Promise.all(
+        keys
+          .filter(key => key !== CACHE_NAME)
+          .map(key => caches.delete(key))
+      )
     )
   );
   self.clients.claim();
 });
 
-self.addEventListener('fetch', e => {
-  if (e.request.method !== 'GET') return;
+self.addEventListener('fetch', event => {
+  if (event.request.method !== 'GET') return;
 
-  const url = new URL(e.request.url);
-  const isNavigation = e.request.mode === 'navigate';
-  const isHtml = url.pathname.endsWith('.html') || /\/Review\/\d+\/?$/.test(url.pathname);
-  const isPostsJson = url.pathname.includes('posts.json');
+  const url = new URL(event.request.url);
+  const isNavigation = event.request.mode === 'navigate';
+  const isHtml =
+    url.pathname.endsWith('.html') ||
+    /\/Review\/\d+\/?$/.test(url.pathname);
+  const isPostsJson = url.pathname.endsWith('/assets/posts.json');
 
-  // posts.json must stay JSON. Do not run the HTML transformation on it.
+  // JSON must pass through unchanged. Never transform/cache it as HTML.
   if (isPostsJson) {
-    e.respondWith(
-      fetch(e.request, { cache: 'no-store' })
-        .then(resp => {
-          if (resp && resp.ok) {
-            const clone = resp.clone();
-            caches.open(CACHE_NAME).then(c => c.put(e.request, clone));
-          }
-          return resp;
-        })
-        .catch(() => caches.match(e.request))
+    event.respondWith(
+      fetch(event.request, { cache: 'no-store' })
+        .catch(() => caches.match(event.request))
     );
     return;
   }
 
-  // Always prefer the latest HTML so Telegram and other in-app browsers
-  // do not keep showing an old page after site updates.
+  // HTML pages are always fetched fresh. The only transformation here is
+  // hiding the post controls requested by the site owner and replacing the
+  // old Burma001 font reference when an old cached post still contains it.
   if (isNavigation || isHtml) {
-    e.respondWith(
-      fetch(e.request, { cache: 'no-store' })
-        .then(resp => {
-          if (resp && resp.ok) {
-            const clone = resp.clone();
-            caches.open(CACHE_NAME).then(c => c.put(e.request, clone));
+    event.respondWith(
+      fetch(event.request, { cache: 'no-store' })
+        .then(response => {
+          const contentType = response.headers.get('content-type') || '';
+          if (!response.ok || !contentType.includes('text/html')) {
+            return response;
           }
-          return resp.text().then(html => {
-              const waloneUrl = 'https://raw.githubusercontent.com/whispermmepub/myanmar-yoe-shin-fonts/main/fonts/Walone-Regular.ttf';
-              const transformed = html
-                .replace(/Burma001/g, 'Walone')
-                .replace(/\/Review\/assets\/Burma001-Regular\.ttf/g, waloneUrl);
-              const hidePostControls = '<style id="wow-hide-post-controls">.share-section{display:none!important}.reviewer-credit p a[href]{display:none!important}</style>';
-              const finalHtml = transformed.includes('</head>') ? transformed.replace('</head>', hidePostControls + '</head>') : transformed + hidePostControls;
-              const headers = new Headers(resp.headers);
-              headers.set('Content-Type', 'text/html; charset=utf-8');
-              return new Response(finalHtml, { status: resp.status, statusText: resp.statusText, headers });
+
+          return response.text().then(html => {
+            const waloneUrl =
+              'https://raw.githubusercontent.com/whispermmepub/myanmar-yoe-shin-fonts/main/fonts/Walone-Regular.ttf';
+
+            const transformed = html
+              .replace(/Burma001/g, 'Walone')
+              .replace(
+                /\/Review\/assets\/Burma001-Regular\.ttf/g,
+                waloneUrl
+              );
+
+            const hidePostControls =
+              '<style id="wow-hide-post-controls">' +
+              '.share-section,.share-btn{display:none!important}' +
+              '.reviewer-credit p a[href]{display:none!important}' +
+              '</style>';
+
+            const finalHtml = transformed.includes('</head>')
+              ? transformed.replace('</head>', hidePostControls + '</head>')
+              : transformed + hidePostControls;
+
+            const headers = new Headers(response.headers);
+            headers.set('Content-Type', 'text/html; charset=utf-8');
+
+            return new Response(finalHtml, {
+              status: response.status,
+              statusText: response.statusText,
+              headers
             });
+          });
         })
-        .catch(() =>
-          caches.match(e.request).then(r => r || caches.match('/Review/'))
-        )
+        .catch(() => caches.match(event.request))
     );
     return;
   }
 
-  // Static assets can stay cache-first for speed and offline use.
-  e.respondWith(
-    caches.match(e.request).then(r =>
-      r || fetch(e.request).then(resp => {
-        if (resp && resp.ok) {
-          const clone = resp.clone();
-          caches.open(CACHE_NAME).then(c => c.put(e.request, clone));
+  // Static assets only: cache-first for speed.
+  event.respondWith(
+    caches.match(event.request)
+      .then(cached => cached || fetch(event.request).then(response => {
+        if (response.ok) {
+          const clone = response.clone();
+          caches.open(CACHE_NAME).then(cache =>
+            cache.put(event.request, clone)
+          );
         }
-        return resp;
-      })
-    ).catch(() => caches.match('/Review/'))
+        return response;
+      }))
+      .catch(() => caches.match('/Review/'))
   );
 });
