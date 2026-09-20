@@ -767,7 +767,14 @@ def generate_post_html(post):
         // Bookmark
         var postId = window.location.pathname.match(/\/(\d+)\//);
         var pid = postId ? postId[1] : 'unknown';
-        var bookmarks = JSON.parse(localStorage.getItem('bookmarks') || '[]');
+        var bookmarks = [];
+        try {{
+            var savedBookmarks = localStorage.getItem('bookmarks');
+            bookmarks = savedBookmarks ? JSON.parse(savedBookmarks) : [];
+            if (!Array.isArray(bookmarks)) bookmarks = [];
+        }} catch (_) {{
+            bookmarks = [];
+        }}
 
         function updateBtn() {{
             var btn = document.getElementById('bookmarkBtn');
