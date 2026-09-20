@@ -25,6 +25,7 @@ for path in sorted(ROOT.glob("[0-9]*/index.html"), key=lambda p: int(p.parent.na
     s = re.sub(r'font-family\s*:\s*[\'"](?:Burma001|Noto Sans Myanmar|PyidaungsuMM|MyanmarAyar)[\'"]',
                'font-family: "Walone"', s, flags=re.I)
 
+    # Permanently remove the old source link and social share controls.\n    s = re.sub(r'\\s*<p><a href="[^"]*"[^>]*>မူရင်းကို ဖတ်ရန် →</a></p>', '', s)\n    s = re.sub(r'\\s*<div class="share-section">.*?</div>\\s*', '\\n\\n', s, flags=re.I | re.S)\n    s = re.sub(r'\\s*\\/\\* Share Buttons \\*\\/.*?(?=\\n\\s*<\\/style>)', '', s, flags=re.I | re.S)\n    s = re.sub(r'\\n\\s*\\/\\/ Share URLs.*?\\n\\s*\\}\)\\(\\);', '', s, flags=re.I | re.S)\n
     if s != old:
         path.write_text(s, encoding="utf-8")
         print("Walone:", path)
