@@ -108,16 +108,18 @@ def patch_homepage():
     if "// Performance: batch DOM insertion" not in text:
         old = "            posts.forEach(post => {"
         new = "            // Performance: batch DOM insertion\n            const fragment = document.createDocumentFragment();\n\n            posts.forEach(post => {"
-        if old not in text:
-            raise SystemExit("Could not find homepage post loop")
-        text = text.replace(old, new, 1)
+        if old in text:
+            text = text.replace(old, new, 1)
 
-        old_tail = "                container.appendChild(card);\n            });\n        }"
-        new_tail = "                fragment.appendChild(card);\n            });\n            container.appendChild(fragment);\n        }"
-        if old_tail not in text:
-            raise SystemExit("Could not patch homepage batched append")
-        text = text.replace(old_tail, new_tail, 1)
-        changed = True
+            old_tail = "                container.appendChild(card);\n            });\n        }"
+            new_tail = "                fragment.appendChild(card);\n            });\n            container.appendChild(fragment);\n        }"
+            if old_tail in text:
+                text = text.replace(old_tail, new_tail, 1)
+            else:
+                raise SystemExit("Could not patch homepage batched append")
+            changed = True
+        else:
+            print("Homepage post loop not found; performance patch already applied or structure changed. Skipping this patch.")
 
     # Decode lazy card images asynchronously without changing appearance.
     old_img = '<img src="${post.image}" class="card-img" alt="${post.title}" loading="lazy">'
