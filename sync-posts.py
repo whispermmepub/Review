@@ -1044,6 +1044,55 @@ def main():
         with open(html_path, 'w', encoding='utf-8') as f:
             f.write(html)
 
+    # Safety cleanup for all existing numeric Review pages.
+    # Some manually preserved pages may not be regenerated from the template.
+    # Remove legacy service-worker registration and make optional bookmark storage safe.
+    cleanup_count = 0
+    for name in os.listdir(REPO_DIR):
+        if not name.isdigit():
+            continue
+        html_path = os.path.join(REPO_DIR, name, 'index.html')
+        if not os.path.isfile(html_path):
+            continue
+        try:
+            with open(html_path, 'r', encoding='utf-8') as f:
+                page = f.read()
+            original = page
+
+            # Never register the legacy Review service worker on post pages.
+            page = re.sub(
+                r'\s*<script>\s*if \(\x27serviceWorker\x27 in navigator\) \{\s*'
+                r'navigator\.serviceWorker\.register\(\x27/Review/sw\.js\x27\)'
+                r'\s*\.then\(function\(\) \{\s*console\.log\(\x27SW registered\x27\);\s*\}\)'
+                r'\s*\.catch\(function\(e\) \{\s*console\.log\(\x27SW failed:\x27, e\);\s*\}\);\s*'
+                r'\}\s*</script>',
+                '',
+                page,
+                flags=re.DOTALL
+            )
+
+            # Prevent malformed old localStorage data from stopping page JS.
+            page = page.replace(
+                "var bookmarks = JSON.parse(localStorage.getItem('bookmarks') || '[]');",
+                """var bookmarks = [];
+        try {
+            var savedBookmarks = localStorage.getItem('bookmarks');
+            bookmarks = savedBookmarks ? JSON.parse(savedBookmarks) : [];
+            if (!Array.isArray(bookmarks)) bookmarks = [];
+        } catch (_) {
+            bookmarks = [];
+        }"""
+            )
+
+            if page != original:
+                with open(html_path, 'w', encoding='utf-8') as f:
+                    f.write(page)
+                cleanup_count += 1
+        except Exception as e:
+            print(f"  WARNING: Could not clean {html_path}: {e}")
+
+    print(f"Cleaned legacy post-page scripts: {cleanup_count}")
+
     print(f"Generated {len(posts)} post HTML files")
 
     # Generate sitemap.xml
