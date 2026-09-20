@@ -410,14 +410,58 @@
             50% { opacity: 0.3; }
         }
 
-            var scrollHeight = document.documentElement.scrollHeight - window.innerHeight;
-            var progress = scrollHeight > 0 ? Math.min(scrollTop / scrollHeight, 1) : 0;
-            if (readingProgress) {
-                readingProgress.style.transform = 'scaleX(' + progress + ')';
-            }
-            scrollTicking = false;
-        }
+</style>
+</head>
+<body>
+    <div class="reading-progress" id="readingProgress"></div>
+    <div class="container">
+        <header>
+            <h1>ပဉ္စလက်ကကြိုး - သစ်စိုး</h1>
+            <div class="post-meta">📅 2026-09-01 • ✍️ Whisper Of Words</div>
 
+        </header>
+
+        <div class="reading-time" id="readingTime">📖 <span id="readTime"></span> ဖတ်ရန်အချိန်</div>
+
+
+        <img src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEgH11xc8hXNl8_Xi2zdV2cDF7OkpXRozC3kcXnuL2yuFfhhWX338ESJFgFlVJqNt-KwLcxhHxcffRVEc0ORWt56mTQhK9HwLpBpUY0XUGWHN5Ll_mXS2HS3kTnno3HoJ2Ble8EPWaLqi8NL7ENdnINfWmyQYfMmGKOQZiLqK5gIgotkuDl6sUTBoR3jVJo/s1600/file_00000000d1708206b6c88b6676099625.png" alt="ပဉ္စလက်ကကြိုး - သစ်စိုး" class="post-image">
+        <div class="post-body">
+            <div class="post-content">
+            <p>Haruki Murakami ရဲ့ "Dance Dance Dance" ကို ဆရာသစ်စိုးက "ပဉ္စလက်ကကြိုး" ဆိုပြီး ပြန်ဆိုထားတာ။ Murakami စာအုပ်တွေက ဘာသာပြန်ရ ခက်ခဲတဲ့အထဲမှာပါတယ်။ သူ့ရဲ့ လေယူလေသိမ်း၊ ခပ်အေးအေးနဲ့ စိတ္တဇဆန်တဲ့ အငွေ့အသက်ကို ပျောက်မသွားအောင် ဖမ်းဆုပ်ဖို့ လိုတာကိုး။ ဆရာသစ်စိုးကတော့ ဒါကို မြန်မာဖတ်သူတွေ ဖတ်ရအဆင်ပြေမယ့် စကားလုံးတွေနဲ့ အံဝင်ခွင်ကျ ဖြစ်အောင် ပြန်ပေးထားနိုင်တယ်။</p>
+            <p>ဇာတ်လမ်းက Murakami ရဲ့ ပုံစံအတိုင်းပါပဲ။ အလုပ်အကိုင် အတည်တကျမရှိ၊ အထီးကျန်ဆန်ပြီး ဘဝကို ပေါ့ပျက်ပျက် ဖြတ်သန်းနေတဲ့ အသက် ၃၀ ကျော် လူငယ်တစ်ယောက်။ သူ့ဆီကို ပျောက်ဆုံးသွားတဲ့ ချစ်သူဟောင်းဆီက အရိပ်အယောင်တွေ၊ ပြီးတော့ Sapporo မြို့က Dolphin Hotel ဆိုတဲ့ နေရာဟောင်းကြီးက ဖိတ်ခေါ်သံတွေ ရောက်လာတဲ့အခါမှာတော့ သူဟာ စိတ္တဇဆန်ဆန် ခရီးတစ်ခုကို စတင်ခဲ့ရပါတော့တယ်။</p>
+            <p>ဒီစာအုပ်မှာ သဘောအကျဆုံးက ဘဝကို "ကကြိုး" တစ်ခုအနေနဲ့ တင်စားသွားတာ။ ဇာတ်လမ်းထဲက ဆန်းကြယ်တဲ့ သိုးလူသား (Sheep Man) က ဇာတ်ဆောင်ကို ပြောတဲ့ စကားတစ်ခွန်း ရှိတယ်။ "ဂီတသံ ရှိနေသရွေ့တော့ မင်း ဆက်ကနေရမယ်။ လှလှပပ ကပြဖို့ပဲ စဉ်းစား" တဲ့။ ဘဝမှာ ဘယ်လောက်ပဲ ကမောက်ကမတွေ ကြုံပါစေ၊ လူဖြစ်လာရင်တော့ ကိုယ့်အလှည့်မှာ ကိုယ်ဖြစ်အောင် ရှေ့ဆက်တိုးရမယ်ဆိုတဲ့ သဘောတရားကို အပူအပင်မရှိတဲ့ စာသားတွေနဲ့ တိုးတိုးလေး ပြောပြသွားသလိုပဲ။</p>
+            <p>ဇာတ်လမ်းထဲမှာ လူသတ်မှုလိုမျိုး လျှို့ဝှက်ချက်တွေ၊ ဆယ်ကျော်သက် မိန်းကလေးတစ်ယောက်နဲ့ သံယောဇဉ်ဖြစ်မိပုံတွေ၊ ပြီးတော့ အိပ်မက်နဲ့ လက်တွေ့ ကြားညှပ်နေတဲ့ ကမ္ဘာတစ်ခုကို တွေ့ရလိမ့်မယ်။ အဲဒီ စိတ္တဇဆန်တဲ့ ဖြစ်ရပ်တွေကြားထဲ ဇာတ်ဆောင်တစ်ယောက် ဘယ်လို လမ်းစရှာမလဲ၊ ပျောက်ဆုံးသွားတဲ့အရာတွေကို ပြန်တွေ့ပါ့မလားဆိုတာ စာမျက်နှာတွေကို တရွေ့ရွေ့ လှန်ရင်းနဲ့ပဲ လိုက်ကြည့်ရမှာပါ။</p>
+            <p>ဘဝရဲ့ အထီးကျန်မှုတွေ၊ မရေရာမှုတွေကို မော်ဒန်ဆန်ဆန် ပုံစံမျိုးနဲ့ ခံစားကြည့်ချင်တယ်ဆိုရင်တော့ "ပဉ္စလက်ကကြိုး" က စာအုပ်စင်ပေါ်မှာ မရှိမဖြစ် ရှိထားသင့်တဲ့ စာအုပ်မျိုးလို့ ညွှန်းပါရစေ။</p>
+            <p>#ပဉ္စလက်ကကြိုး #သစ်စိုး</p>
+            <p>#Haruki_Murakami #Dance_Dance_Dance</p>
+            <p>#Whisper_Of_Words Mmepub</p>
+            <p>epub,kfx for Myanmar ebooks reader</p>
+
+            </div>
+
+            <div class="reviewer-credit">
+                <p>Review By Whisper Of Words</p>
+            </div>
+
+            <a href="../index.html" class="back-link">← ပင်မစာမျက်နှာသို့</a>
+
+            <div class="love-section">
+                <a href="https://t.me/+q4jx63Zt5LBiMmI1" target="_blank" class="telegram-btn">
+                    <svg class="telegram-icon" viewBox="0 0 24 24"><path d="M11.944 0A12 12 0 0 0 0 12a12 12 0 0 0 12 12 12 12 0 0 0 12-12A12 12 0 0 0 12 0a12 12 0 0 0-.056 0zm4.962 7.224c.1-.002.321.023.465.14a.506.506 0 0 1 .171.325c.016.093.036.306.02.472-.18 1.898-.962 6.502-1.36 8.627-.168.9-.499 1.201-.82 1.23-.696.065-1.225-.46-1.9-.902-1.056-.693-1.653-1.124-2.678-1.8-1.185-.78-.417-1.21.258-1.91.177-.184 3.247-2.977 3.307-3.23.007-.032.014-.15-.056-.212s-.174-.041-.249-.024c-.106.024-1.793 1.14-5.061 3.345-.479.33-.913.49-1.302.48-.428-.008-1.252-.241-1.865-.44-.752-.245-1.349-.374-1.297-.789.027-.216.325-.437.893-.663 3.498-1.524 5.83-2.529 6.998-3.014 3.332-1.386 4.025-1.627 4.476-1.635z"/></svg>
+                    Bookish Discussion
+                </a>
+            </div>
+
+            <div class="help-blink">
+                <a href="https://t.me/+q4jx63Zt5LBiMmI1" target="_blank">🔔 အကူအညီရယူရန် Discussion Group သို့ ဝင်ရောက်ပါ</a>
+            </div>
+        </div>
+    </div>
+
+    <button class="back-to-top" id="backToTop" onclick="scrollToTop()">↑</button>
+
+        <script src="/Review/assets/reading-stats.js"></script>
+    <script>
         // Performance: one passive RAF scroll handler
         var backToTopBtn = document.getElementById('backToTop');
         var readingProgress = document.getElementById('readingProgress');
