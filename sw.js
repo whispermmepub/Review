@@ -1,4 +1,4 @@
-const CACHE_NAME = 'wow-books-v3';
+const CACHE_NAME = 'wow-books-v4-walone';
 
 self.addEventListener('install', e => {
   self.skipWaiting();
@@ -31,7 +31,15 @@ self.addEventListener('fetch', e => {
             const clone = resp.clone();
             caches.open(CACHE_NAME).then(c => c.put(e.request, clone));
           }
-          return resp;
+          return resp.text().then(html => {
+              const waloneUrl = 'https://raw.githubusercontent.com/whispermmepub/myanmar-yoe-shin-fonts/main/fonts/Z06_Walone%20Regular-s.p.03us02_90_za5.ttf';
+              const transformed = html
+                .replace(/Burma001/g, 'Walone')
+                .replace(/\/Review\/assets\/Burma001-Regular\.ttf/g, waloneUrl);
+              const headers = new Headers(resp.headers);
+              headers.set('Content-Type', 'text/html; charset=utf-8');
+              return new Response(transformed, { status: resp.status, statusText: resp.statusText, headers });
+            });
         })
         .catch(() =>
           caches.match(e.request).then(r => r || caches.match('/Review/'))
