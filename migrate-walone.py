@@ -1,5 +1,10 @@
 #!/usr/bin/env python3
-"""One-time migration: make every existing numbered Review post use Walone."""
+"""One-time migration for existing Review posts.
+
+Keeps the existing post design/content, switches fonts to Walone, and
+permanently removes the source link and social share buttons requested by
+the site owner.
+"""
 from pathlib import Path
 import re
 
@@ -14,20 +19,66 @@ for path in sorted(ROOT.glob("[0-9]*/index.html"), key=lambda p: int(p.parent.na
     s = path.read_text(encoding="utf-8")
     old = s
 
-    s = re.sub(r'\s*@import\s+url\(["\']https://fonts\.googleapis\.com/css2\?family=Noto\+Sans\+Myanmar[^"\']*["\']\);?', '', s, flags=re.I)
-    s = re.sub(r'\s*@font-face\s*\{[^{}]*font-family\s*:\s*[\'"]?(?:Burma001|Walone|PyidaungsuMM|MyanmarAyar)[\'"]?[^{}]*\}', '', s, flags=re.I)
+    # Remove old font imports/definitions.
+    s = re.sub(
+        r'\s*@import\s+url\(["\']https://fonts\.googleapis\.com/css2\?family=Noto\+Sans\+Myanmar[^"\']*["\']\);?',
+        '',
+        s,
+        flags=re.I,
+    )
+    s = re.sub(
+        r'\s*@font-face\s*\{[^{}]*font-family\s*:\s*["\']?(?:Burma001|Walone|PyidaungsuMM|MyanmarAyar)["\']?[^{}]*\}',
+        '',
+        s,
+        flags=re.I,
+    )
 
     if '<style>' in s:
         s = s.replace('<style>', '<style>\n        ' + FONT_BLOCK, 1)
 
-    s = re.sub(r'font-family\s*:\s*[\'"](?:Burma001|Noto Sans Myanmar|PyidaungsuMM|MyanmarAyar|Walone)[\'"]\s*,?\s*sans-serif',
-               'font-family: "Walone", sans-serif', s, flags=re.I)
-    s = re.sub(r'font-family\s*:\s*[\'"](?:Burma001|Noto Sans Myanmar|PyidaungsuMM|MyanmarAyar)[\'"]',
-               'font-family: "Walone"', s, flags=re.I)
+    s = re.sub(
+        r'font-family\s*:\s*["\'](?:Burma001|Noto Sans Myanmar|PyidaungsuMM|MyanmarAyar|Walone)["\']\s*,?\s*sans-serif',
+        'font-family: "Walone", sans-serif',
+        s,
+        flags=re.I,
+    )
+    s = re.sub(
+        r'font-family\s*:\s*["\'](?:Burma001|Noto Sans Myanmar|PyidaungsuMM|MyanmarAyar)["\']',
+        'font-family: "Walone"',
+        s,
+        flags=re.I,
+    )
 
-    # Permanently remove the old source link and social share controls.\n    s = re.sub(r'\\s*<p><a href="[^"]*"[^>]*>မူရင်းကို ဖတ်ရန် →</a></p>', '', s, flags=re.I)\n    s = re.sub(r'\\s*<div class="share-section">.*?</div>\\s*', '\\n\\n', s, flags=re.I | re.S)\n    s = re.sub(r'\\s*/\\* Share Buttons \\*/.*?(?=\\n\\s*</style>)', '', s, flags=re.I | re.S)\n    s = re.sub(r'\\n\\s*// Share URLs.*?\\n\\s*\\}\\)\\(\\);', '', s, flags=re.I | re.S)\n
+    # Permanently remove the old source link.
+    s = re.sub(
+        r'\s*<p>\s*<a href="[^"]*"[^>]*>\s*မူရင်းကို\s*ဖတ်ရန်\s*→\s*</a>\s*</p>',
+        '',
+        s,
+        flags=re.I | re.S,
+    )
+
+    # Permanently remove Telegram/Facebook/Viber share buttons and their CSS.
+    s = re.sub(
+        r'\s*<div class="share-section">.*?</div>\s*',
+        '\n\n',
+        s,
+        flags=re.I | re.S,
+    )
+    s = re.sub(
+        r'\s*/\* Share Buttons \*/.*?(?=\n\s*</style>)',
+        '',
+        s,
+        flags=re.I | re.S,
+    )
+    s = re.sub(
+        r'\n\s*// Share URLs.*?\n\s*\}\)\(\);',
+        '',
+        s,
+        flags=re.I | re.S,
+    )
+
     if s != old:
         path.write_text(s, encoding="utf-8")
-        print("Walone:", path)
+        print("Migrated:", path)
 
 print("Migration complete.")
