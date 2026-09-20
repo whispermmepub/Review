@@ -21,9 +21,25 @@ self.addEventListener('fetch', e => {
   const isHtml = url.pathname.endsWith('.html') || /\/Review\/\d+\/?$/.test(url.pathname);
   const isPostsJson = url.pathname.includes('posts.json');
 
-  // Always prefer the latest HTML/data so Telegram and other in-app browsers
+  // posts.json must stay JSON. Do not run the HTML transformation on it.
+  if (isPostsJson) {
+    e.respondWith(
+      fetch(e.request, { cache: 'no-store' })
+        .then(resp => {
+          if (resp && resp.ok) {
+            const clone = resp.clone();
+            caches.open(CACHE_NAME).then(c => c.put(e.request, clone));
+          }
+          return resp;
+        })
+        .catch(() => caches.match(e.request))
+    );
+    return;
+  }
+
+  // Always prefer the latest HTML so Telegram and other in-app browsers
   // do not keep showing an old page after site updates.
-  if (isNavigation || isHtml || isPostsJson) {
+  if (isNavigation || isHtml) {
     e.respondWith(
       fetch(e.request, { cache: 'no-store' })
         .then(resp => {
