@@ -13,7 +13,6 @@
       const data = raw ? JSON.parse(raw) : emptyStats();
       if (!data || typeof data !== 'object') return emptyStats();
 
-      // Migrate the earlier internal "books" name to "reviews".
       if (!data.reviews && data.books && typeof data.books === 'object') {
         data.reviews = data.books;
         delete data.books;
@@ -31,7 +30,10 @@
   function save(data) {
     try {
       localStorage.setItem(KEY, JSON.stringify(data));
-    } catch (_) {}
+      return true;
+    } catch (_) {
+      return false;
+    }
   }
 
   function localDateKey(date) {
@@ -51,8 +53,13 @@
     return match ? match[1] : null;
   }
 
+  let flushReadingTime = function () {};
+
   window.WOWReadingStats = {
     get: load,
+    flush: function () {
+      flushReadingTime();
+    },
     formatMinutes: function (seconds) {
       return Math.floor((seconds || 0) / 60);
     }
@@ -64,8 +71,6 @@
   if (!id) return;
 
   const data = load();
-
-  // A Review is counted once per device/browser, no matter how many times it is opened.
   if (!data.reviews[id]) {
     data.reviews[id] = {
       firstOpened: Date.now(),
@@ -79,12 +84,19 @@
 
   let lastActive = Date.now();
 
-  function flush() {
+  flushReadingTime = function () {
     const now = Date.now();
-    const seconds = Math.floor((now - lastActive) / 1000);
-    lastActive = now;
+    const elapsed = Math.floor((now - lastActive) / 1000);
 
-    if (seconds <= 0 || seconds > 120) return;
+    if (elapsed <= 0) {
+      lastActive = now;
+      return;
+    }
+
+    // If the browser was backgrounded/suspended for a long time, do not
+    // count the inactive gap. Normal active reading is recorded continuously.
+    const seconds = Math.min(elapsed, 300);
+    lastActive = now;
 
     const d = load();
     if (!d.reviews[id]) {
@@ -103,25 +115,27 @@
     d.daily[key] = (d.daily[key] || 0) + seconds;
 
     save(d);
-  }
+  };
 
-  const timer = setInterval(flush, 15000);
+  // Frequent short flushes make reading time reliable on Android browsers,
+  // including cases where a page is navigated away or suspended.
+  const timer = setInterval(flushReadingTime, 5000);
 
   document.addEventListener('visibilitychange', function () {
     if (document.hidden) {
-      flush();
+      flushReadingTime();
     } else {
       lastActive = Date.now();
     }
   });
 
   window.addEventListener('pagehide', function () {
+    flushReadingTime();
     clearInterval(timer);
-    flush();
   });
 
   window.addEventListener('beforeunload', function () {
+    flushReadingTime();
     clearInterval(timer);
-    flush();
   });
 })();
