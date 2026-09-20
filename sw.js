@@ -1,4 +1,4 @@
-const CACHE_NAME = 'wow-books-v8-stats-fix';
+const CACHE_NAME = 'wow-books-v9-stable';
 
 self.addEventListener('install', event => {
   self.skipWaiting();
@@ -59,23 +59,15 @@ self.addEventListener('fetch', event => {
                 waloneUrl
               );
 
-            const statsScript = '<script src="/Review/assets/reading-stats.js"></script>';
-            const hasStatsScript = transformed.includes('/Review/assets/reading-stats.js');
-            const finalWithStats = hasStatsScript
-              ? transformed
-              : (transformed.includes('</body>')
-                  ? transformed.replace('</body>', statsScript + '</body>')
-                  : transformed + statsScript);
-
             const hidePostControls =
               '<style id="wow-hide-post-controls">' +
               '.share-section,.share-btn{display:none!important}' +
               '.reviewer-credit p a[href]{display:none!important}' +
               '</style>';
 
-            const finalHtml = finalWithStats.includes('</head>')
-              ? finalWithStats.replace('</head>', hidePostControls + '</head>')
-              : finalWithStats + hidePostControls;
+            const finalHtml = transformed.includes('</head>')
+              ? transformed.replace('</head>', hidePostControls + '</head>')
+              : transformed + hidePostControls;
 
             const headers = new Headers(response.headers);
             headers.set('Content-Type', 'text/html; charset=utf-8');
