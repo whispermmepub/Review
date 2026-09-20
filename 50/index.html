@@ -410,97 +410,13 @@
             50% { opacity: 0.3; }
         }
 
-        /* Share Buttons */
-        .share-section {
-            display: flex;
-            justify-content: center;
-            gap: 10px;
-            flex-wrap: wrap;
-            padding: 15px 0;
+            var scrollHeight = document.documentElement.scrollHeight - window.innerHeight;
+            var progress = scrollHeight > 0 ? Math.min(scrollTop / scrollHeight, 1) : 0;
+            if (readingProgress) {
+                readingProgress.style.transform = 'scaleX(' + progress + ')';
+            }
+            scrollTicking = false;
         }
-        .share-btn {
-            display: inline-flex;
-            align-items: center;
-            gap: 4px;
-            padding: 5px 10px;
-            border-radius: 6px;
-            font-size: 0.72rem;
-            text-decoration: none;
-            font-weight: 600;
-            transition: all 0.3s;
-            color: #fff;
-        }
-        .share-btn.tg { background: #0088cc; }
-        .share-btn.tg:hover { background: #006da3; box-shadow: 0 4px 12px rgba(0,136,204,0.4); }
-        .share-btn.fb { background: #1877f2; }
-        .share-btn.fb:hover { background: #0d6efd; box-shadow: 0 4px 12px rgba(24,119,242,0.4); }
-        .share-btn.viber { background: #7360f2; }
-        .share-btn.viber:hover { background: #5a48d4; box-shadow: 0 4px 12px rgba(115,96,242,0.4); }
-
-
-    </style>
-</head>
-<body>
-    <div class="reading-progress" id="readingProgress"></div>
-    <div class="container">
-        <header>
-            <h1>(လီကွမ်းယု)နားဝင်မချိုတဲ့ အမှန်တရားများ - ဇင်ဝေသော်</h1>
-            <div class="post-meta">📅 2026-07-11 • ✍️ Whisper Of Words</div>
-
-        </header>
-
-        <div class="reading-time" id="readingTime">📖 <span id="readTime"></span> ဖတ်ရန်အချိန်</div>
-
-
-        <img src="https://blogger.googleusercontent.com/img/a/AVvXsEiHCRrnXUxNjQt50Q6caGzFQo49ycBf6y7MpWXP7TTikyiiBgsoM-_Ly6VRpwRSfoARXkuKrnYvD-H9aeXmu2mB9XbVi5lV21QNzoK-yohqIEy20rZCZvgMDn8RfvUju3_M27_1BTaAZbyOdimW4am_Vlf28IyMDT2vL3YiwBo2TjVC6DJxsR8ri9kGNJ4" alt="(လီကွမ်းယု)နားဝင်မချိုတဲ့ အမှန်တရားများ - ဇင်ဝေသော်" class="post-image">
-        <div class="post-body">
-            <div class="post-content">
-            <p>စင်ကာပူဆိုတဲ့ နိုင်ငံငယ်လေးကို ကမ္ဘာ့အလယ်မှာ ခေါင်းမော့နိုင်အောင် လုပ်ပြခဲ့တဲ့ လီကွမ်းယုအကြောင်း ပြောရင် အကောင်းမြင်တာရော၊ အဝေဖန်ခံရတာပါ ဒွန်တွဲနေတတ်ပါတယ်။ ဒါပေမဲ့ လူတိုင်းကတော့ သူ့ရဲ့ စီမံခန့်ခွဲမှုနဲ့ ပြတ်သားမှုကို အသိအမှတ်ပြုကြရတာချည်းပါပဲ။ အခု ဇင်ဝေသော် ဘာသာပြန်ထားတဲ့ "နားဝင်မချိုတဲ့ အမှန်တရားများ" ဆိုတဲ့ စာအုပ်ကတော့ လီကွမ်းယုရဲ့ အတွေးအခေါ်တွေကို အပေါ်ယံမဟုတ်ဘဲ အတွင်းကျကျ လှန်လှောကြည့်ချင်သူတွေအတွက် လက်မလွှတ်သင့်တဲ့ စာအုပ်တစ်အုပ် ဖြစ်လာပါတယ်။</p>
-            <p>စာအုပ်အစမှာတင် ဘာသာပြန်သူရဲ့ အမှာစကားနဲ့အတူ ကျော်ကြားသူတွေရဲ့ အမှာစာတွေ၊ နောက်ပြီး လီကွမ်းယုကိုယ်တိုင် ရေးထားတဲ့ အမှာစာ တွေ ပါဝင်တာကြောင့် ဒီစာအုပ်ဟာ ဘယ်လောက်အထိ အလေးအနက်ထားရမလဲဆိုတာ သိသာစေပါတယ်။ လီကွမ်းယုဟာ သူ့ရဲ့ မူဝါဒတွေ၊ သူယုံကြည်တဲ့ အမှန်တရားတွေကို ပွင့်ပွင့်လင်းလင်း၊ ခါးခါးသီးသီးပဲ ပြောလေ့ရှိပါတယ်။ ဒီစာအုပ်ခေါင်းစဉ်အတိုင်းပါပဲ၊ တချို့အချက်တွေက နားဝင်ချိုချင်မှ ချိုပါလိမ့်မယ်။ ဒါပေမဲ့ အဲဒီ နားဝင်မချိုတဲ့ အချက်တွေထဲမှာပဲ နိုင်ငံတစ်နိုင်ငံ တည်ဆောက်ဖို့အတွက် လိုအပ်တဲ့ အနှစ်သာရတွေ ကိန်းအောင်းနေတာကို တွေ့ရမှာပါ။</p>
-            <p>ဒီစာအုပ်ထဲမှာ စင်ကာပူရဲ့ အနာဂတ်၊ လူငယ်တွေရဲ့ အခန်းကဏ္ဍနဲ့ နိုင်ငံရေး အကျပ်အတည်းတွေကို လီကွမ်းယုက ဘယ်လို အမြင်နဲ့ ကြည့်သလဲဆိုတာကို တစ်ခန်းချင်း စိတ်ဝင်တစား ဖတ်ရှုသွားရမှာပါ။</p>
-            <p>နိုင်ငံရေးကို စိတ်ဝင်စားသူဖြစ်စေ၊ စီမံခန့်ခွဲမှုပိုင်းကို လေ့လာနေသူဖြစ်စေ၊ ဒါမှမဟုတ် လူတစ်ယောက်ရဲ့ ခိုင်မာတဲ့ ရပ်တည်ချက်ကို သိချင်သူဖြစ်စေ ဒီစာအုပ်ကို အစဆုံးဖတ်ကြည့်ဖို့ တိုက်တွန်းချင်ပါတယ်။ စာအုပ်ကို ပိတ်လိုက်တဲ့အခါ "အမှန်တရား" ဆိုတာ တစ်ခါတလေမှာ ဘယ်လောက်ထိ ခါးသီးပြီး တန်ဖိုးရှိသလဲဆိုတာကို ကိုယ်တိုင် ခံစားမိပါလိမ့်မယ်။ စာအုပ်ဆိုင်မှာ တွေ့ရင်တော့ မဝယ်ဘဲ မကျော်သွားသင့်တဲ့ စာအုပ်ကောင်းတစ်အုပ်ဖြစ်ကြောင်း အကြံပြုပါရစေ။</p>
-            <p>#whisperofwords #လီကွမ်းယု #နာဝင်မချိုတဲ့အမှန်တရားများ #ဇင်ဝေသော်</p>
-            <p>epub,kfx for Myanmar ebooks reader</p>
-
-            </div>
-
-            <div class="reviewer-credit">
-                <p>Review By Whisper Of Words</p>
-                <p><a href="https://whisper1of.blogspot.com/2026/07/blog-post_11.html" target="_blank" style="color: #ff8a65;">မူရင်းကို ဖတ်ရန် →</a></p>
-            </div>
-
-            <a href="../index.html" class="back-link">← ပင်မစာမျက်နှာသို့</a>
-
-            <div class="share-section">
-                <a class="share-btn tg" id="shareTg" href="#" target="_blank">
-                    📤 Telegram
-                </a>
-                <a class="share-btn fb" id="shareFb" href="#" target="_blank">
-                    📤 Facebook
-                </a>
-                <a class="share-btn viber" id="shareViber" href="#" target="_blank">
-                    📤 Viber
-                </a>
-            </div>
-
-
-            <div class="love-section">
-                <a href="https://t.me/+q4jx63Zt5LBiMmI1" target="_blank" class="telegram-btn">
-                    <svg class="telegram-icon" viewBox="0 0 24 24"><path d="M11.944 0A12 12 0 0 0 0 12a12 12 0 0 0 12 12 12 12 0 0 0 12-12A12 12 0 0 0 12 0a12 12 0 0 0-.056 0zm4.962 7.224c.1-.002.321.023.465.14a.506.506 0 0 1 .171.325c.016.093.036.306.02.472-.18 1.898-.962 6.502-1.36 8.627-.168.9-.499 1.201-.82 1.23-.696.065-1.225-.46-1.9-.902-1.056-.693-1.653-1.124-2.678-1.8-1.185-.78-.417-1.21.258-1.91.177-.184 3.247-2.977 3.307-3.23.007-.032.014-.15-.056-.212s-.174-.041-.249-.024c-.106.024-1.793 1.14-5.061 3.345-.479.33-.913.49-1.302.48-.428-.008-1.252-.241-1.865-.44-.752-.245-1.349-.374-1.297-.789.027-.216.325-.437.893-.663 3.498-1.524 5.83-2.529 6.998-3.014 3.332-1.386 4.025-1.627 4.476-1.635z"/></svg>
-                    Bookish Discussion
-                </a>
-            </div>
-
-            <div class="help-blink">
-                <a href="https://t.me/+q4jx63Zt5LBiMmI1" target="_blank">🔔 အကူအညီရယူရန် Discussion Group သို့ ဝင်ရောက်ပါ</a>
-            </div>
-        </div>
-    </div>
-
-    <button class="back-to-top" id="backToTop" onclick="scrollToTop()">↑</button>
-
-    <script>
-
 
         // Performance: one passive RAF scroll handler
         var backToTopBtn = document.getElementById('backToTop');
@@ -537,15 +453,6 @@
             var words = text.split(/\s+/).length;
             var minutes = Math.ceil(words / 200);
             document.getElementById('readTime').textContent = minutes + ' min';
-        })();
-
-        // Share URLs
-        (function() {
-            var url = encodeURIComponent(window.location.href);
-            var title = encodeURIComponent(document.title);
-            document.getElementById('shareTg').href = 'https://t.me/share/url?url=' + url + '&text=' + title;
-            document.getElementById('shareFb').href = 'https://www.facebook.com/sharer/sharer.php?u=' + url;
-            document.getElementById('shareViber').href = 'viber://forward?text=' + title + '%20' + url;
         })();
 
         // Bookmark

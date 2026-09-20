@@ -410,102 +410,13 @@
             50% { opacity: 0.3; }
         }
 
-        /* Share Buttons */
-        .share-section {
-            display: flex;
-            justify-content: center;
-            gap: 10px;
-            flex-wrap: wrap;
-            padding: 15px 0;
+            var scrollHeight = document.documentElement.scrollHeight - window.innerHeight;
+            var progress = scrollHeight > 0 ? Math.min(scrollTop / scrollHeight, 1) : 0;
+            if (readingProgress) {
+                readingProgress.style.transform = 'scaleX(' + progress + ')';
+            }
+            scrollTicking = false;
         }
-        .share-btn {
-            display: inline-flex;
-            align-items: center;
-            gap: 4px;
-            padding: 5px 10px;
-            border-radius: 6px;
-            font-size: 0.72rem;
-            text-decoration: none;
-            font-weight: 600;
-            transition: all 0.3s;
-            color: #fff;
-        }
-        .share-btn.tg { background: #0088cc; }
-        .share-btn.tg:hover { background: #006da3; box-shadow: 0 4px 12px rgba(0,136,204,0.4); }
-        .share-btn.fb { background: #1877f2; }
-        .share-btn.fb:hover { background: #0d6efd; box-shadow: 0 4px 12px rgba(24,119,242,0.4); }
-        .share-btn.viber { background: #7360f2; }
-        .share-btn.viber:hover { background: #5a48d4; box-shadow: 0 4px 12px rgba(115,96,242,0.4); }
-
-
-    </style>
-</head>
-<body>
-    <div class="reading-progress" id="readingProgress"></div>
-    <div class="container">
-        <header>
-            <h1>စာအုပ်မိတ်ဆက် ၄</h1>
-            <div class="post-meta">📅 2026-03-13 • ✍️ Thet Paing Writes</div>
-
-        </header>
-
-        <div class="reading-time" id="readingTime">📖 <span id="readTime"></span> ဖတ်ရန်အချိန်</div>
-
-
-        <img src="https://blogger.googleusercontent.com/img/a/AVvXsEis_lDrTKaPTxGac_owRas0Q6OvoMvfOXetMZQi_Uj9Nrbv6Ga2BCONdztCoUXgCU30QOlf02a6tzEG958i0i4OVTUQryCorhbIZAd3PqFiFnxc75hX2pseHnYR3pTsmtPbvzCOAHAjKJ5fIRa3A2VpWYmyFZJa9QgjT5VSMuS9macefVvEtfynGNnoXwJe" alt="စာအုပ်မိတ်ဆက် ၄" class="post-image">
-        <div class="post-body">
-            <div class="post-content">
-            <p><strong>“အမေ့အိမ်က ငရဲခန်း”</strong> စာအုပ်ဟာ David Pelzer ‌‌ရေးသားတဲ့ A child called it ကို ဘာသာပြန်ဆိုထားတာ ဖြစ်ပါတယ်။ သားငယ် စာပေတိုက်ကနေ မှာယူနိုင်ပါတယ်။</p>
-            <p>ဒါဟာ သက်ပိုင် (ဘာသာပြန်) ရဲ့ ၈ အုပ်မြောက် စာအုပ်ဖြစ်ပါတယ်။</p>
-            <p>ဒီစာအုပ်ဟာ အဖြစ်မှန်ကို အခြေခံထားတဲ့ စာအုပ်ဖြစ်ပြီး ကလေးသူငယ် ညှင်းပန်းနှိပ်စက်ရေးနဲ့ ပတ်သက်တဲ့အကြောင်းဖြစ်တာမို့ အသက်မပြည့်သေးသူတွေ မဖတ်သင့်ကြောင်း ဆိုချင်ပါတယ်။ နောက်ပြီး စာအုပ်ဟာ စာရေးသူရဲ့ ဘဝအကြောင်း ဖြစ်ကာ ကယ်လီဖိုးနီးယားပြည်နယ်က အဆိုးရွားဆုံး ကလေးသူငယ် ညှင်းပန်းနှိပ်စက်မှုတွေထဲက တစ်ခု ဖြစ်ခဲ့ပါတယ်။</p>
-            <p>၁၉၇၃ ခုနှစ် အမေရိက၊ ကယ်လီဖိုးနီးယားပြည်နယ်က မူလတန်းကျောင်းတစ်ခုမှာ တစ်နေ့တော့ ကျောင်းသူနာပြုဟာ အတန်းထဲမှာ စုတ်စုတ်ပြတ်ပြတ်နဲ့ နေတတ်တဲ့ ၁၂ နှစ်အရွယ် ကျောင်းသားလေး တစ်ယောက်ကို နှစ်ယောက်တည်း ခေါ်တွေ့ပြီး သူ့အင်္ကျီကို ချွတ်ပြဖို့ တောင်းဆိုလိုက်ပါတယ်။ ကျောင်းသားလေးဟာ အင်္ကျီကို ချွတ်ပြလိုက်တဲ့ အချိန်မှာတော့ သူနာပြုဆရာမလည်း အင်မတန် အံ့သြသွားပြီး ကျောင်းအုပ်ကြီးဆီကို ပြေးကာ သတင်းပို့ရတော့တဲ့အထိပါပဲ။</p>
-            <p>ဒီကျောင်းသားလေးဟာ ဒေးဗစ် ပဲလ်ဇာပဲဖြစ်ပါတယ်။ ဒေးဗစ်ဟာ ပဲလ်ဇာ မိသားစုရဲ့ ဒုတိယမြောက်သားဖြစ်ပြီး မွေးချင်း ညီအစ်ကို ငါးယောက်ရှိပါတယ်။ သူ့အဖေဟာ မီးသတ်သမား တစ်ယောက်ဖြစ်တယ်ဆိုတာကလွဲပြီး ကျန်တာကိုတော့ သေချာမသိရပါဘူး။</p>
-            <p>ဒေးဗစ်က သူ့ဘဝမှာ အမေကို အချစ်ဆုံးလို့ ငယ်ငယ်က ထင်ခဲ့ဘူးပါတယ်။ ဒါပေမဲ့ တနေ့တော့ ရုတ်ခြည်းဆိုသလို သူ့ဘဝက ပြောင်းလဲသွားတယ်။ သူ့ကို ချစ်ခင်တယ်လို့ ထင်ထားခဲ့တဲ့ အမေဖြစ်သူ ကတ်သရင်း ရိုရာဗာ ပဲလ်ဇာက အပြစ်ပေးတဲ့အနေနဲ့ ၅နှစ်သားအရွယ် ဒေးဗစ်ကို အိမ်ရဲ့ မြေအောက်ခန်းထဲမှာ သွားအိပ်ခိုင်းလိုက်ပါတော့တယ်။ နောက်ရက်တွေကနေစပြီး ကတ်သရင်းဟာ ၅ နှစ်သားကလေး ဒေးဗစ်ကို အိမ်မှာ ထမင်းမကျွေးတော့ပါဘူး။ ကျောင်းကိုလည်း လမ်းလျှောက်သွားခိုင်းခဲ့သလို အဝတ်အစားလည်း မဝယ်‌ပေးတော့ပါဘူး။ အိမ်ကနေ ကျောင်းမသွားခင် စပ်ကြားမှာလည်း အိမ်အလုပ်တွေကို အရွယ်နဲ့ မလိုက်အောင် ခိုင်းခဲ့သလို သူ့အတွက် အိမ်မှာ ညစာဆိုတာ မရှိခဲ့တော့ပါဘူး။ ဒါကြောင့် ဒေးဗစ်ဟာ ကျောင်းမှာ သူငယ်ချင်းတွေရဲ့ ထမင်းဘူးတွေ ခိုးစားခဲ့သလို အိမ်မှာလည်း သူ့မိသားစုတွေ ညစာစားပြီးလို့ အမှိုက်ပစ်ထားတဲ့ အမှိုက်ပုံးထဲက ထမင်းကျန်၊ ဟင်းကျန်တွေကို ခွေးတစ်ကောင်လို ရှာပြီး စားသောက်ခဲ့ရပါတော့တယ်။</p>
-            <p>နှိပ်စက်မှုတွေက ဒီမှာတင်မရပ်သေးပါဘူး။ တစ်ခါ ဒေးဗစ်ကို အပြင်ထွက်ပြီး ဆော့တဲ့အတွက် အမေက သူ့ကို မီးဖို ဟော့ပလိတ်ပြားပေါ် မတ်တပ်ရပ်ခိုင်းကာ မီးရှို့ပြီး အပြစ်ပေးခဲ့ပါသေးတယ်။ ကလေးက ဗိုက်ဆာလို့ ကျောင်းကန်တင်းထဲက သူများမုန့်တွေ ခိုးစားလာခဲ့ရင်လည်း အမေက အိမ်ရောက်တာနဲ့ အိမ်သာနဲ့ မျက်နှာကိုတေ့ပြီး ပြန်အန်ခိုင်းလေ့ရှိပါတယ်။ တစ်ခါ သူ့အမေကြောင့်လည်း ဒဏ်ရာကိုယ်မှာ ဓါးဒဏ်ရာရခဲ့သလို၊ သူ့အမေ ဆွဲရမ်းလိုက်လို့ ပုခုံးအဆစ်ပြုတ်ကာ တစ်ယောက်တည်း မြေအောက်ခန်းထဲမှာ အိပ်ခဲ့ရပြန်ပါတယ်။ ဒေးဗစ်အတွက်တော့ အမေ့အိမ်ဟာ ငရဲခန်းပါပဲ။</p>
-            <p>ဒေးဗစ်ခမျာ ဆာလောင်လွန်းလို့ တစ်ခါ သူ့အမေကို တခုခုကျွေးဖို့ တောင်းစားတော့လည်း အမေဖြစ်သူက ကလေးအငယ်ဆုံးရဲ့ ချေးပေနေတဲ့ ဒိုက်ဘာကို သူ့ပါးစပ်ထဲ အတင်းထိုးထည့်ကာ ကလေးချေးစားဖို့ အပြစ်ပေးခဲ့တာမျိုးလည်း ရှိသေးတဲ့အပြင် သူ့ကို အိမ်သာဆေးတဲ့ ဓါတုဆေးတွေနဲ့ အိမ်သာဆေးခိုင်းပြီး အသက်ရှူကြပ်အောင် တံခါးပိတ်ကာ နှိပ်စက်တာမျိုးလည်း ရှိပါသေးတယ်။</p>
-            <p>ဒီလို ကလေးသူငယ် ညှင်းပန်းနှိပ်စက်မှုတွေကြောင့် ဒီစာအုပ်ကို ဖတ်ဖို့ဆိုရင် အသက်ပြည့်မှ ဖတ်ဖို့ အကြံပေးတာပါ။</p>
-            <p>ကျောင်းသူနာပြုရဲ့ ကောင်းမှုကြောင့် ဒေးဗစ်ဟာ အသက် ၁၂ နှစ်ရောက်တော့မှပဲ အမေ့ရဲ့ ငရဲခန်းကနေ လွတ်မြောက်ခဲ့ပါတော့တယ်။ သူဟာ ဘဝကို အကောင်းဆုံး ကြိုးစားဖြတ်သန်းခဲ့သလို အမေရိကန် ရေတပ်မှာ စစ်သားတစ်ယောက် ဖြစ်လာခဲ့ပါတယ်။ နောက်ပိုင်း သူ့ကိုယ်ပိုင် မိသားစုဘဝလေး တစ်ခု ရရှိလာခဲ့တဲ့ အခါမှတော့ ဒေးဗစ်ဟာ သူ့ရဲ့ ကြောက်မက်ဖွယ်ရာ ကလေးဘဝအကြောင်းကို ဖွင့်ချလိုက်တာမို့ အမေရိကန်ပြည်သူတွေအတွက် မယုံနိုင်လောက်အောင် အံ့အားသင့်ခဲ့ရပါတော့တယ်။ YouTube မှာလည်း David Pelzer ရဲ့ အင်တာဗျူးအဟောင်းတွေ အခုထိ ရှိပါသေးတယ်။ ဒေးဗစ်ရဲ့ ဘဝအကြောင်းဟာ အစစ်အမှန်ဖြစ်သလားလို့ လိုက်လံစုံစမ်းတဲ့အခါမှာ သူ့ရဲ့ အစ်ကိုအကြီးဆုံး ရွန်က ဟုတ်မှန်ကြောင်း ဖွင့်ဆိုခဲ့ပေမဲ့ ကျန်တဲ့ ညီအစ်ကိုတွေကတော့ အင်တာအဗျူးမခံခဲ့ပါဘူး။ ဒီစာအုပ် ထွက်ရှိတဲ့ အချိန်မှာ သူ့မိဘ နှစ်ပါးလုံး ကွယ်လွန်သွားခဲ့ပါပြီ။</p>
-            <p><a href="https://web.facebook.com/hashtag/%E1%80%9E%E1%80%80%E1%80%BA%E1%80%95%E1%80%AD%E1%80%AF%E1%80%84%E1%80%BA?__eep__=6&amp;__cft__[0]=AZYKRVQudJIZY7dNc5WTEZK35FgUMDZHmTH8VgAdAGMwpEu3FxQQeWe5WfflAWuWFT4gostEe4w2JDnZGeA-Jtfz7Kb27IlOB0OF6ZRdQwRVUpjG98ZBJsc9ryjaTXBMvJTwfoE-z3AraXoxMERY8nXX&amp;__tn__=*NK-R" target="_blank" rel="noopener">#သက်ပိုင်</a> <a href="https://web.facebook.com/hashtag/%E1%80%A1%E1%80%99%E1%80%B1%E1%80%B7%E1%80%A1%E1%80%AD%E1%80%99%E1%80%BA%E1%80%80%E1%80%84%E1%80%9B%E1%80%B2%E1%80%81%E1%80%94%E1%80%BA%E1%80%B8?__eep__=6&amp;__cft__[0]=AZYKRVQudJIZY7dNc5WTEZK35FgUMDZHmTH8VgAdAGMwpEu3FxQQeWe5WfflAWuWFT4gostEe4w2JDnZGeA-Jtfz7Kb27IlOB0OF6ZRdQwRVUpjG98ZBJsc9ryjaTXBMvJTwfoE-z3AraXoxMERY8nXX&amp;__tn__=*NK-R" target="_blank" rel="noopener">#အမေ့အိမ်ကငရဲခန်း</a> <a href="https://web.facebook.com/hashtag/davidpelzer?__eep__=6&amp;__cft__[0]=AZYKRVQudJIZY7dNc5WTEZK35FgUMDZHmTH8VgAdAGMwpEu3FxQQeWe5WfflAWuWFT4gostEe4w2JDnZGeA-Jtfz7Kb27IlOB0OF6ZRdQwRVUpjG98ZBJsc9ryjaTXBMvJTwfoE-z3AraXoxMERY8nXX&amp;__tn__=*NK-R" target="_blank" rel="noopener">#DavidPelzer</a> <a href="https://web.facebook.com/hashtag/achildcalledit?__eep__=6&amp;__cft__[0]=AZYKRVQudJIZY7dNc5WTEZK35FgUMDZHmTH8VgAdAGMwpEu3FxQQeWe5WfflAWuWFT4gostEe4w2JDnZGeA-Jtfz7Kb27IlOB0OF6ZRdQwRVUpjG98ZBJsc9ryjaTXBMvJTwfoE-z3AraXoxMERY8nXX&amp;__tn__=*NK-R" target="_blank" rel="noopener">#AChildCalledIt</a> <a href="https://web.facebook.com/hashtag/%E1%80%9E%E1%80%AC%E1%80%B8%E1%80%84%E1%80%9A%E1%80%BA%E1%80%85%E1%80%AC%E1%80%95%E1%80%B1?__eep__=6&amp;__cft__[0]=AZYKRVQudJIZY7dNc5WTEZK35FgUMDZHmTH8VgAdAGMwpEu3FxQQeWe5WfflAWuWFT4gostEe4w2JDnZGeA-Jtfz7Kb27IlOB0OF6ZRdQwRVUpjG98ZBJsc9ryjaTXBMvJTwfoE-z3AraXoxMERY8nXX&amp;__tn__=*NK-R" target="_blank" rel="noopener">#သားငယ်စာပေ</a></p>
-
-            </div>
-
-            <div class="reviewer-credit">
-                <p>Review By Thet Paing Writes</p>
-                <p><a href="https://thetpaingwrites.blogspot.com/2026/03/blog-post_91.html" target="_blank" style="color: #ff8a65;">မူရင်းကို ဖတ်ရန် →</a></p>
-            </div>
-
-            <a href="../index.html" class="back-link">← ပင်မစာမျက်နှာသို့</a>
-
-            <div class="share-section">
-                <a class="share-btn tg" id="shareTg" href="#" target="_blank">
-                    📤 Telegram
-                </a>
-                <a class="share-btn fb" id="shareFb" href="#" target="_blank">
-                    📤 Facebook
-                </a>
-                <a class="share-btn viber" id="shareViber" href="#" target="_blank">
-                    📤 Viber
-                </a>
-            </div>
-
-
-            <div class="love-section">
-                <a href="https://t.me/+q4jx63Zt5LBiMmI1" target="_blank" class="telegram-btn">
-                    <svg class="telegram-icon" viewBox="0 0 24 24"><path d="M11.944 0A12 12 0 0 0 0 12a12 12 0 0 0 12 12 12 12 0 0 0 12-12A12 12 0 0 0 12 0a12 12 0 0 0-.056 0zm4.962 7.224c.1-.002.321.023.465.14a.506.506 0 0 1 .171.325c.016.093.036.306.02.472-.18 1.898-.962 6.502-1.36 8.627-.168.9-.499 1.201-.82 1.23-.696.065-1.225-.46-1.9-.902-1.056-.693-1.653-1.124-2.678-1.8-1.185-.78-.417-1.21.258-1.91.177-.184 3.247-2.977 3.307-3.23.007-.032.014-.15-.056-.212s-.174-.041-.249-.024c-.106.024-1.793 1.14-5.061 3.345-.479.33-.913.49-1.302.48-.428-.008-1.252-.241-1.865-.44-.752-.245-1.349-.374-1.297-.789.027-.216.325-.437.893-.663 3.498-1.524 5.83-2.529 6.998-3.014 3.332-1.386 4.025-1.627 4.476-1.635z"/></svg>
-                    Bookish Discussion
-                </a>
-            </div>
-
-            <div class="help-blink">
-                <a href="https://t.me/+q4jx63Zt5LBiMmI1" target="_blank">🔔 အကူအညီရယူရန် Discussion Group သို့ ဝင်ရောက်ပါ</a>
-            </div>
-        </div>
-    </div>
-
-    <button class="back-to-top" id="backToTop" onclick="scrollToTop()">↑</button>
-
-    <script>
-
 
         // Performance: one passive RAF scroll handler
         var backToTopBtn = document.getElementById('backToTop');
@@ -542,15 +453,6 @@
             var words = text.split(/\s+/).length;
             var minutes = Math.ceil(words / 200);
             document.getElementById('readTime').textContent = minutes + ' min';
-        })();
-
-        // Share URLs
-        (function() {
-            var url = encodeURIComponent(window.location.href);
-            var title = encodeURIComponent(document.title);
-            document.getElementById('shareTg').href = 'https://t.me/share/url?url=' + url + '&text=' + title;
-            document.getElementById('shareFb').href = 'https://www.facebook.com/sharer/sharer.php?u=' + url;
-            document.getElementById('shareViber').href = 'viber://forward?text=' + title + '%20' + url;
         })();
 
         // Bookmark

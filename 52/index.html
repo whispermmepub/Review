@@ -410,101 +410,13 @@
             50% { opacity: 0.3; }
         }
 
-        /* Share Buttons */
-        .share-section {
-            display: flex;
-            justify-content: center;
-            gap: 10px;
-            flex-wrap: wrap;
-            padding: 15px 0;
+            var scrollHeight = document.documentElement.scrollHeight - window.innerHeight;
+            var progress = scrollHeight > 0 ? Math.min(scrollTop / scrollHeight, 1) : 0;
+            if (readingProgress) {
+                readingProgress.style.transform = 'scaleX(' + progress + ')';
+            }
+            scrollTicking = false;
         }
-        .share-btn {
-            display: inline-flex;
-            align-items: center;
-            gap: 4px;
-            padding: 5px 10px;
-            border-radius: 6px;
-            font-size: 0.72rem;
-            text-decoration: none;
-            font-weight: 600;
-            transition: all 0.3s;
-            color: #fff;
-        }
-        .share-btn.tg { background: #0088cc; }
-        .share-btn.tg:hover { background: #006da3; box-shadow: 0 4px 12px rgba(0,136,204,0.4); }
-        .share-btn.fb { background: #1877f2; }
-        .share-btn.fb:hover { background: #0d6efd; box-shadow: 0 4px 12px rgba(24,119,242,0.4); }
-        .share-btn.viber { background: #7360f2; }
-        .share-btn.viber:hover { background: #5a48d4; box-shadow: 0 4px 12px rgba(115,96,242,0.4); }
-
-
-    </style>
-</head>
-<body>
-    <div class="reading-progress" id="readingProgress"></div>
-    <div class="container">
-        <header>
-            <h1>တို့လူလေးများဆိုသလေး-ခင်မျိုးချစ်🔍</h1>
-            <div class="post-meta">📅 2026-07-12 • ✍️ Youths Book Reflections</div>
-
-        </header>
-
-        <div class="reading-time" id="readingTime">📖 <span id="readTime"></span> ဖတ်ရန်အချိန်</div>
-
-
-        <img src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEjOrN5aisg9PnHm2DBNeCoOQhQAlLyNF4jMFRxr6-NRoxuCQkB-E_hdQyzZ-9A_fxiHClHtX_ePHeMV_nlkxzz6K_irrk3BB-Dt5TQfjIJTqDQdgivHcEjZjnN_8LGxN2QKHPP1WOYOxc6WUdoi3sbn9IQqYyL6lFapgy4MX148GvqbTD2m_Dx7qssHpN4/w300-h400/IMG_0159.png" alt="တို့လူလေးများဆိုသလေး-ခင်မျိုးချစ်🔍" class="post-image">
-        <div class="post-body">
-            <div class="post-content">
-            <p><a href="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEjOrN5aisg9PnHm2DBNeCoOQhQAlLyNF4jMFRxr6-NRoxuCQkB-E_hdQyzZ-9A_fxiHClHtX_ePHeMV_nlkxzz6K_irrk3BB-Dt5TQfjIJTqDQdgivHcEjZjnN_8LGxN2QKHPP1WOYOxc6WUdoi3sbn9IQqYyL6lFapgy4MX148GvqbTD2m_Dx7qssHpN4/s1195/IMG_0159.png" target="_blank" rel="noopener"></a></p>
-            <p>ကလေးစာပေတွေဆိုရင် အများအားဖြင့် စိတ်ကူးယဉ် ဇာတ်ကောင်တွေ၊အံ့ဖွယ်ဆန်းကြယ်တွေနဲ့ပဲ ပြည့်လို့နေတယ်။ လက်တွေ့ဆန်ပြီး ဘဝတွေနဲ့နီးစပ်တာမျိုးကတော့ ရှားတယ်။ ဒါက ၁၉၂၀ ဝန်းကျင်က ကလေးစာပေမှာဆို ပိုလို့တောင်မှန်ပါလိမ့်မယ်။</p>
-            <p>အဲ့လို အရေးအသားရှားပါးတဲ့အချိန်မှာ ဒီ ဆရာမခင်မျိုးချစ် ဘာသာပြန်ထားတဲ့ Emil and the Detectives စာအုပ်ကတော့ ဘဝနဲ့နီးစပ်တဲ့ ကလေးစာပေပါပဲ။ ရောင်းအားကလည်း ကောင်းလိုက်သမှ အကြိမ်ကြိမ်ပြန်ထုတ်ရပြီး ဘာသာပေါင်းများစွာပြန်ဆိုထားရတဲ့အထိပဲ။ မူရင်းစာရေးဆရာ Emil Erich Kästner က ဂျာမနီနိုင်ငံသားဖြစ်ပါတယ်။ ဟစ်တလာလက်ထက်မှာ သူ့စာအုပ်အများစုကို ပိတ်ပင်မီးရှို့ခဲ့ပေမယ့် Emil and the Detectives ကတော့ နိုင်ငံရေးအရ အန္တရာယ်မရှိတဲ့ ကလေးစာပေအဖြစ် ယူဆခံရတာကြောင့် ကင်းလွတ်ခွင့်ရခဲ့ပါတယ်။</p>
-            <p>စာအုပ်က ပါး၊ အရွယ်အစားကလည်း သေးပြန်။ ဖတ်လိုက်ဦးမယ်လို့ ကောက်အကိုင် ဝတ္ထုကို ဘာသာပြန်သူက မြန်မာစာပေနယ်မှာတော့ လောကသားတွေ လေးစားချစ်ခင်ကြည်ညိုတဲ့ ဆရာမ ခင်မျိုးချစ်ဖြစ်နေတယ်။</p>
-            <p>ဆရာမရဲ့လက်ရာတွေကို မဖတ်ဖူးပါဘဲနဲ့ ဆရာမ ရဲ့ကောင်းသတင်းတွေကတော့ အတော်လေးမွှေးပျံ့နေတယ်။ သူ့ခေတ်သူ့ခါမှာတော့ မြန်မာစာပေတိုးတက်စေဖို့ သူ့ရဲ့အားထုတ်မှု၊သူ့ရဲ့ စေတနာတွေကို ကျွန်တော်တို့စာဖတ်သူတွေရော ဒီနယ်ပယ်ကသူတွေပါ မသိမရှိပါဘဲ။ ဆရာမရဲ့ ဩဇာဟာ အဲ့ဒီခေတ်ကစာရေးဆရာတော်တော်များများမှာ မကင်းခဲ့ဘူး။</p>
-            <p>တောမြို့ကလေး တစ်မြို့ spa ဆိုင်ရှင် မုဆိုးမ သား အီမယ်ခေါ် သူငယ်ကလေးတစ်ဦး မီးရထားပေါ်မှာ ငွေခါးပိုက်နှိုက်ခံလိုက်ရတယ်။ ဂရုစိုက်ဖို့ သူ့အမေက အထပ်ထပ်မှာထားရက်သားနဲ့ ပျောက်သွားတဲ့အတွက် သူ့မှာ အိမ်လည်းမပြန်ရဲ။ ဒါနဲ့ပဲ သူခိုးလို့ သူထင်တဲ့သူနောက်ကို လိုက်ရင်း အခြားကလေးများကလည်း သူ့ကိုဝိုင်းကူညီစုံထောက်ပေးကြတယ်။ အီမယ်နဲ့ သူငယ်ချင်းတစ်အုပ် ဒီကလေးတွေ သူခိုးကို ဘယ်လိုအစီအစဉ်တွေ ချပြီး ဖမ်းဖို့ ကြိုးစားကြသလဲ ဆိုတာကို စာဖတ်သူ သိချင်လာအောင် နှိုးဆွသွားတယ်။ ယုတ္တိကလည်းကျလိုက်သေးတယ်။ ကလေးတွေရဲ့အတွေးတွေ၊ လူကြီးဇာတ်ကောင်တွေရဲ့ စရိုက်အမျိုးမျိုးနဲ့ ၂၀ရာစုအစပိုင်းက ဘာလင်မြို့ကြီးရဲ့အငွေ့အသက်တွေရယ် ကို စာရေးဆရာက ကျကျနနပေါင်းစပ်ရေးသားထားတယ်။</p>
-            <p>ဇာတ်လမ်းဇာတ်ကွက်က အရှိန်ကောင်းကောင်းနဲ့ ချစ်စရာကောင်းအောင် ဆွဲဆောင်ထားသလို ဘာသာပြန်သူရဲ့ ညက်ညောပြေပြစ်တဲ့ စကားလုံးတွေကြောင့် အရသာကို မပျက်မစီးဘဲ ခံစားလိုက်ရတယ်။ ဘာသာပြန်ကောင်းတယ် ကောင်းတယ်နဲ့ ကြားဖူးနေတဲ့ ဆရာမရဲ့လက်ရာကိုလည်း အခုမှပဲကိုယ်တိုင်ခံစားလိုက်ရပါတယ်။ ကလေးစာပေဖြစ်တာကြောင့် ကိုယ်ကျင့်တရားနဲ့ပတ်သက်ပြီး ဆုံးမလမ်းညွှန်တာတွေပါပေမယ့် အတုံးလိုက်အတစ်လိုက်ကြီး မထည့်ထားဘဲ ဖတ်ရင်း ခံစားမိအောင်ပဲရေးထားတယ်။ ကလေးစာပေဆိုပေမယ့် အဆင့်တစ်ခုရှိတဲ့ စာအုပ်ပါပဲ။ အပျင်းပြေဖို့ပဲဖတ်ဖတ် အချိန်ကုန်ရကျိုးနပ်မယ့်စာအုပ်ပါပဲခင်ဗျာ။</p>
-            <p>အကယ်၍ ဒီreviewကိုနှစ်သက်သဘောကျမိတယ်ဆို နောက်ထပ်များစွာသော စာအုပ်အညွှန်းတွေကို pageမှာ ဝင်ဖတ်ကြည့်လှည့်ပါခင်ဗျာ🙏🏻</p>
-            <p>👉<a href="https://www.facebook.com/profile.php?id=61558100551851" target="_blank" rel="noopener"> https://www.facebook.com/profile.php?id=61558100551851</a></p>
-            <p>#တို့လူလေးများဆိုသလေး #EmilAndTheDetectives #ErichKästner #ခင်မျိုးချစ် #bookreview #Youths_book_reflections</p>
-
-            </div>
-
-            <div class="reviewer-credit">
-                <p>Review By Youths Book Reflections</p>
-                <p><a href="https://youthsbookreflections.blogspot.com/2026/07/blog-post.html" target="_blank" style="color: #ff8a65;">မူရင်းကို ဖတ်ရန် →</a></p>
-            </div>
-
-            <a href="../index.html" class="back-link">← ပင်မစာမျက်နှာသို့</a>
-
-            <div class="share-section">
-                <a class="share-btn tg" id="shareTg" href="#" target="_blank">
-                    📤 Telegram
-                </a>
-                <a class="share-btn fb" id="shareFb" href="#" target="_blank">
-                    📤 Facebook
-                </a>
-                <a class="share-btn viber" id="shareViber" href="#" target="_blank">
-                    📤 Viber
-                </a>
-            </div>
-
-
-            <div class="love-section">
-                <a href="https://t.me/+q4jx63Zt5LBiMmI1" target="_blank" class="telegram-btn">
-                    <svg class="telegram-icon" viewBox="0 0 24 24"><path d="M11.944 0A12 12 0 0 0 0 12a12 12 0 0 0 12 12 12 12 0 0 0 12-12A12 12 0 0 0 12 0a12 12 0 0 0-.056 0zm4.962 7.224c.1-.002.321.023.465.14a.506.506 0 0 1 .171.325c.016.093.036.306.02.472-.18 1.898-.962 6.502-1.36 8.627-.168.9-.499 1.201-.82 1.23-.696.065-1.225-.46-1.9-.902-1.056-.693-1.653-1.124-2.678-1.8-1.185-.78-.417-1.21.258-1.91.177-.184 3.247-2.977 3.307-3.23.007-.032.014-.15-.056-.212s-.174-.041-.249-.024c-.106.024-1.793 1.14-5.061 3.345-.479.33-.913.49-1.302.48-.428-.008-1.252-.241-1.865-.44-.752-.245-1.349-.374-1.297-.789.027-.216.325-.437.893-.663 3.498-1.524 5.83-2.529 6.998-3.014 3.332-1.386 4.025-1.627 4.476-1.635z"/></svg>
-                    Bookish Discussion
-                </a>
-            </div>
-
-            <div class="help-blink">
-                <a href="https://t.me/+q4jx63Zt5LBiMmI1" target="_blank">🔔 အကူအညီရယူရန် Discussion Group သို့ ဝင်ရောက်ပါ</a>
-            </div>
-        </div>
-    </div>
-
-    <button class="back-to-top" id="backToTop" onclick="scrollToTop()">↑</button>
-
-    <script>
-
 
         // Performance: one passive RAF scroll handler
         var backToTopBtn = document.getElementById('backToTop');
@@ -541,15 +453,6 @@
             var words = text.split(/\s+/).length;
             var minutes = Math.ceil(words / 200);
             document.getElementById('readTime').textContent = minutes + ' min';
-        })();
-
-        // Share URLs
-        (function() {
-            var url = encodeURIComponent(window.location.href);
-            var title = encodeURIComponent(document.title);
-            document.getElementById('shareTg').href = 'https://t.me/share/url?url=' + url + '&text=' + title;
-            document.getElementById('shareFb').href = 'https://www.facebook.com/sharer/sharer.php?u=' + url;
-            document.getElementById('shareViber').href = 'viber://forward?text=' + title + '%20' + url;
         })();
 
         // Bookmark
