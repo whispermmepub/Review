@@ -39,6 +39,13 @@
 <a href="https://www.facebook.com/mmebookwhisper/" class="social-link facebook" target="_blank">Facebook</a><a href="https://www.youtube.com/@whisperofwordsebook" class="social-link youtube" target="_blank">YouTube</a><a href="https://x.com/whisperw69842" class="social-link twitter" target="_blank">Twitter/X</a><a href="https://t.me/TheBookR" class="social-link telegram" target="_blank">Telegram</a></div></header>
 <section class="reading-stats" aria-label="Review Statistics"><div class="reading-stats-title">📊 Review Statistics</div><div class="stats-grid"><div class="stat-card"><span class="stat-icon">📖</span><span class="stat-value" id="stat-books">0</span><span class="stat-label">Review ဖတ်ထားမှု</span></div><div class="stat-card"><span class="stat-icon">⏱️</span><span class="stat-value" id="stat-time">0 min</span><span class="stat-label">Review ဖတ်ချိန်</span></div><div class="stat-card"><span class="stat-icon">🔥</span><span class="stat-value" id="stat-streak">0 days</span><span class="stat-label">Review streak</span></div><div class="stat-card"><span class="stat-icon">📅</span><span class="stat-value" id="stat-today">0 min</span><span class="stat-label">ဒီနေ့ Review ဖတ်ချိန်</span></div></div><div class="stats-note">Review တွေကို ဒီ device/browser မှာ ဖတ်ကြည့်ထားတဲ့ မှတ်တမ်းကိုပဲ သိမ်းထားပါတယ်။ Login နဲ့ Database မလိုပါ။</div></section>
 <div class="search-section"><div class="search-label">🔍 စာအုပ်အညွှန်း ရှာဖွေရန်</div><input type="text" class="search-bar" id="search-input" placeholder="စာအုပ်အမည် သို့မဟုတ် စာရေးဆရာအမည် ရိုက်ထည့်ပါ..."></div><div class="container" id="posts-container"><div class="loading">📖 ပို့စ်များကို ရယူနေပါသည်...</div></div><footer><p>&copy; 2026 <a href="index.html" style="color:#8b5cf6;text-decoration:none;font-weight:600">𝐖𝐡𝐢𝐬𝐩𝐞𝐫 𝐎𝐟 𝐖𝐨𝐫𝐝𝐬 - 𝐦𝐦 𝐄𝐩𝐮𝐛</a></p></footer>
+<script>
+if ('serviceWorker' in navigator) {
+  navigator.serviceWorker.getRegistrations().then(function(regs) {
+    regs.forEach(function(reg) { reg.unregister(); });
+  });
+}
+</script>
 <script src="assets/reading-stats.js"></script>
 <script>
 function renderReadingStats(){const s=window.WOWReadingStats?window.WOWReadingStats.get():{books:{},totalSeconds:0,daily:{}};const books=Object.keys(s.books||{}).length;const mins=Math.floor((s.totalSeconds||0)/60);const todayKey=new Date().toISOString().slice(0,10);const today=Math.floor(((s.daily||{})[todayKey]||0)/60);let streak=0,d=new Date(),daily=s.daily||{};while(daily[d.toISOString().slice(0,10)]){streak++;d.setDate(d.getDate()-1)}document.getElementById('stat-books').textContent=books;document.getElementById('stat-time').textContent=mins+' min';document.getElementById('stat-today').textContent=today+' min';document.getElementById('stat-streak').textContent=streak+' days'}
