@@ -794,13 +794,7 @@ def generate_post_html(post):
 
         updateBtn();
     </script>
-    <script>
-        if ('serviceWorker' in navigator) {{
-            navigator.serviceWorker.register('/Review/sw.js')
-            .then(function() {{ console.log('SW registered'); }})
-            .catch(function(e) {{ console.log('SW failed:', e); }});
-        }}
-    </script>
+
 </body>
 </html>'''
     return html
