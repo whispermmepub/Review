@@ -102,7 +102,8 @@ for path in sorted(ROOT.glob("[0-9]*/index.html"), key=lambda p: int(p.parent.na
         path.write_text(s, encoding="utf-8")
 
 
-# Add lightweight browser Read Aloud player below each post cover image.
+
+# Add a browser-safe Read Aloud player using pre-generated Microsoft Edge TTS MP3 files.
 READ_ALOUD_CSS = '''
         /* Browser Read Aloud player */
         .read-aloud-player {
@@ -139,12 +140,18 @@ READ_ALOUD_CSS = '''
             font-family: "Walone", sans-serif;
             font-size: 0.84rem;
         }
-        .read-aloud-player select { flex: 1 1 150px; }
+        .read-aloud-player select { flex: 1 1 140px; }
         .read-aloud-player button { cursor: pointer; }
         .read-aloud-player .read-play {
             background: #4a9eff;
             border-color: #4a9eff;
             font-weight: 700;
+        }
+        .read-audio {
+            display: block;
+            width: 100%;
+            margin-top: 11px;
+            height: 40px;
         }
         .read-aloud-status {
             margin-top: 8px;
@@ -166,11 +173,14 @@ READ_ALOUD_CSS = '''
             }
         }
 '''
-READ_ALOUD_HTML = '''
-        <section class="read-aloud-player" aria-label="အသံဖြင့်ဖတ်ရန်">
+READ_ALOUD_HTML_TEMPLATE = '''
+        <section class="read-aloud-player" data-audio-base="../audio/{post_id}" aria-label="အသံဖြင့်ဖတ်ရန်">
             <div class="read-aloud-title">🔊 အသံဖြင့်ဖတ်ရန်</div>
             <div class="read-aloud-controls">
-                <select class="read-voice" aria-label="အသံရွေးရန်"></select>
+                <select class="read-voice" aria-label="အသံရွေးရန်">
+                    <option value="nilar">🎙 Nilar — မိန်းကလေးအသံ</option>
+                    <option value="thiha">🎙 Thiha — ယောကျ်ားလေးအသံ</option>
+                </select>
                 <select class="read-rate" aria-label="ဖတ်နှုန်း">
                     <option value="0.8">0.8×</option>
                     <option value="1" selected>1.0×</option>
@@ -181,91 +191,97 @@ READ_ALOUD_HTML = '''
                 <button type="button" class="read-pause">⏸ ခဏရပ်</button>
                 <button type="button" class="read-stop">⏹ ရပ်ရန်</button>
             </div>
-            <div class="read-aloud-status">Microsoft Edge / browser တွင် ရရှိနိုင်သော မြန်မာအသံကို အသုံးပြုပါမည်။</div>
+            <audio class="read-audio" controls preload="none"></audio>
+            <div class="read-aloud-status">Nilar / Thiha အသံဖိုင်ကို ရွေးပြီး ဖတ်နိုင်ပါတယ်။</div>
         </section>
 '''
-READ_ALOUD_JS = r'''
+READ_ALOUD_JS = '''
     <script>
     (function () {
-        var players = document.querySelectorAll('.read-aloud-player');
-        if (!players.length || !('speechSynthesis' in window)) return;
+        document.querySelectorAll(".read-aloud-player").forEach(function (player) {
+            var base = player.getAttribute("data-audio-base");
+            var voice = player.querySelector(".read-voice");
+            var rate = player.querySelector(".read-rate");
+            var audio = player.querySelector(".read-audio");
+            var play = player.querySelector(".read-play");
+            var pause = player.querySelector(".read-pause");
+            var stop = player.querySelector(".read-stop");
+            var status = player.querySelector(".read-aloud-status");
+            var currentVoice = "";
 
-        players.forEach(function (player) {
-            var voiceSelect = player.querySelector('.read-voice');
-            var rateSelect = player.querySelector('.read-rate');
-            var playBtn = player.querySelector('.read-play');
-            var pauseBtn = player.querySelector('.read-pause');
-            var stopBtn = player.querySelector('.read-stop');
-            var status = player.querySelector('.read-aloud-status');
-            var textEl = document.querySelector('.post-body');
-            var voices = [];
-
-            function loadVoices() {
-                voices = window.speechSynthesis.getVoices().filter(function (v) {
-                    return /^my(?:-|_)/i.test(v.lang) || /burmese|myanmar|nilar|thiha/i.test(v.name);
-                });
-                voiceSelect.innerHTML = '';
-                if (!voices.length) {
-                    var none = document.createElement('option');
-                    none.textContent = 'မြန်မာအသံ မတွေ့သေးပါ';
-                    none.value = '';
-                    voiceSelect.appendChild(none);
-                    status.textContent = 'ဒီ browser/device မှာ Burmese voice မရသေးပါ။ Edge Read Aloud တွင် Burmese voice ရှိပါက အဲဒီ voice ကို အသုံးပြုနိုင်ပါသည်။';
-                    return;
-                }
-                voices.forEach(function (voice, i) {
-                    var opt = document.createElement('option');
-                    opt.value = String(i);
-                    opt.textContent = voice.name + ' (' + voice.lang + ')';
-                    voiceSelect.appendChild(opt);
-                });
-                var preferred = voices.findIndex(function (v) { return /nilar/i.test(v.name); });
-                if (preferred < 0) preferred = voices.findIndex(function (v) { return /thiha/i.test(v.name); });
-                voiceSelect.value = String(preferred >= 0 ? preferred : 0);
-                status.textContent = 'ရရှိနိုင်သော မြန်မာအသံ: ' + voices.length + ' ခု';
+            function setSource() {
+                currentVoice = voice.value;
+                audio.src = base + "/" + currentVoice + ".mp3";
+                audio.playbackRate = parseFloat(rate.value) || 1;
+                audio.load();
+                status.textContent = (currentVoice === "nilar" ? "Nilar" : "Thiha") + " အသံကို ပြင်ဆင်နေပါသည်…";
             }
 
-            playBtn.addEventListener('click', function () {
-                if (!voices.length || !textEl) return;
-                window.speechSynthesis.cancel();
-                var utterance = new SpeechSynthesisUtterance(textEl.innerText.trim());
-                utterance.lang = 'my-MM';
-                utterance.rate = parseFloat(rateSelect.value) || 1;
-                var selected = voices[parseInt(voiceSelect.value, 10)];
-                if (selected) utterance.voice = selected;
-                utterance.onend = function () { status.textContent = 'ဖတ်ပြီးပါပြီ။'; };
-                utterance.onerror = function () { status.textContent = 'အသံဖတ်ရာတွင် ပြဿနာရှိပါသည်။'; };
-                window.speechSynthesis.speak(utterance);
-                status.textContent = 'ဖတ်နေပါသည်…';
+            voice.addEventListener("change", setSource);
+            rate.addEventListener("change", function () {
+                audio.playbackRate = parseFloat(rate.value) || 1;
             });
-            pauseBtn.addEventListener('click', function () {
-                if (window.speechSynthesis.speaking) window.speechSynthesis.pause();
+
+            play.addEventListener("click", function () {
+                if (currentVoice !== voice.value || !audio.src) setSource();
+                audio.play().then(function () {
+                    status.textContent = "ဖတ်နေပါသည်…";
+                }).catch(function () {
+                    status.textContent = "အသံဖိုင်ကို မဖွင့်နိုင်ပါ။ Browser ရဲ့ audio permission ကို စစ်ပေးပါ။";
+                });
             });
-            stopBtn.addEventListener('click', function () {
-                window.speechSynthesis.cancel();
-                status.textContent = 'ရပ်ထားပါပြီ။';
+
+            pause.addEventListener("click", function () {
+                audio.pause();
+                status.textContent = "ခဏရပ်ထားပါပြီ။";
             });
-            loadVoices();
-            if (window.speechSynthesis.onvoiceschanged !== undefined) {
-                window.speechSynthesis.onvoiceschanged = loadVoices;
-            }
+
+            stop.addEventListener("click", function () {
+                audio.pause();
+                audio.currentTime = 0;
+                status.textContent = "ရပ်ထားပါပြီ။";
+            });
+
+            audio.addEventListener("ended", function () {
+                status.textContent = "ဖတ်ပြီးပါပြီ။";
+            });
+
+            audio.addEventListener("error", function () {
+                status.textContent = "ဒီ post ရဲ့ အသံဖိုင် မရသေးပါ။ ခဏနောက် ပြန်ဖွင့်ကြည့်ပါ။";
+            });
+
+            setSource();
         });
     })();
     </script>
 '''
 for path in sorted(ROOT.glob("[0-9]*/index.html"), key=lambda p: int(p.parent.name)):
     s = path.read_text(encoding="utf-8")
-    if 'class="read-aloud-player"' not in s:
+    # Remove any previous Read Aloud player, CSS and scripts before installing the final version.
+    s = re.sub(r'\s*/\* Browser Read Aloud player \*/.*?(?=\n\s*</style>)', '', s, flags=re.I | re.S)
+    s = re.sub(r'\s*<section class="read-aloud-player".*?</section>\s*', '\n', s, flags=re.I | re.S)
+    s = re.sub(r'\s*<script>\s*\(function \(\) \{\s*var players = document\.querySelectorAll\([\'"]\.read-aloud-player[\'"]\).*?</script>\s*', '\n', s, flags=re.I | re.S)
+    s = re.sub(r'\s*<script>\s*\(function \(\) \{\s*document\.querySelectorAll\([\'"]\.read-aloud-player[\'"]\).*?</script>\s*', '\n', s, flags=re.I | re.S)
+
+    if "<style>" in s:
         s = s.replace("</style>", READ_ALOUD_CSS + "    </style>", 1)
+
+    player = READ_ALOUD_HTML_TEMPLATE.format(post_id=path.parent.name)
+    # Place the player directly below the first post cover image.
+    if 'class="post-image"' in s:
         s = re.sub(
             r'(<img\b[^>]*class="post-image"[^>]*>\s*)',
-            r'\1' + READ_ALOUD_HTML + '\n',
+            r'\1' + player + '\n',
             s,
             count=1,
             flags=re.I | re.S,
         )
-        s = s.replace("</body>", READ_ALOUD_JS + "\n</body>", 1)
-        path.write_text(s, encoding="utf-8")
-        print("Added Read Aloud player:", path)
+    else:
+        # Safe fallback: place before the review body.
+        s = s.replace('<div class="post-body">', player + '\n<div class="post-body">', 1)
+
+    s = s.replace("</body>", READ_ALOUD_JS + "\n</body>", 1)
+    path.write_text(s, encoding="utf-8")
+    print("Updated Read Aloud player:", path)
 
 print("Migration complete.")
