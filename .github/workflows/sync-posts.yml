@@ -1,5 +1,9 @@
 name: Sync Blog Posts
 
+concurrency:
+  group: review-sync
+  cancel-in-progress: true
+
 on:
   push:
     branches:
