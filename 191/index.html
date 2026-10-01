@@ -410,7 +410,19 @@
             50% { opacity: 0.3; }
         }
 
-</style>
+
+        /* Mobile browser + Telegram in-app browser typography */
+        @media (max-width: 600px) {
+            body { font-size: 14px; }
+            header { margin: 12px 10px 10px; padding: 26px 14px 22px; }
+            header h1 { font-size: 1.25rem !important; line-height: 1.35; }
+            .post-meta { font-size: 0.80rem !important; }
+            .post-body { padding: 22px 10px; }
+            .post-body p { font-size: 1.00rem !important; line-height: 1.78 !important; }
+            .back-link { font-size: 0.85rem; padding: 8px 14px; }
+            .reviewer-credit { font-size: 0.78rem; }
+        }
+    </style>
 </head>
 <body>
     <div class="reading-progress" id="readingProgress"></div>
