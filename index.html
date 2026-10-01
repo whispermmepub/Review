@@ -31,6 +31,26 @@
         .social-links{display:flex;justify-content:center;gap:10px;margin-top:16px;flex-wrap:wrap}.social-link{display:inline-flex;align-items:center;gap:6px;padding:8px 14px;border-radius:10px;font-size:.85em;text-decoration:none;transition:all .3s;font-weight:500}.social-link.facebook{color:#fff;background:#1877f2;border:1px solid #1877f2}.social-link.youtube{color:#fff;background:#f00;border:1px solid #f00}.social-link.twitter{color:#fff;background:rgba(255,255,255,.15);border:1px solid rgba(255,255,255,.2)}.social-link.telegram{color:#fff;background:#08c;border:1px solid #08c}.social-icon{width:18px;height:18px;fill:currentColor}
         .reading-stats{max-width:1600px;margin:0 auto 25px;padding:18px;border:1px solid rgba(255,255,255,.08);border-radius:16px;background:linear-gradient(135deg,#17152b,#211d3b);box-shadow:0 8px 25px rgba(0,0,0,.22)}.reading-stats-title{font-size:1.15rem;font-weight:700;margin-bottom:14px;color:#fff}.stats-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:10px}.stat-card{padding:14px;border-radius:12px;background:rgba(255,255,255,.055);border:1px solid rgba(255,255,255,.06)}.stat-icon{font-size:1.35rem}.stat-value{display:block;margin-top:5px;font-size:1.25rem;font-weight:700;color:#fff}.stat-label{display:block;margin-top:2px;font-size:.82rem;color:#aaa}.stats-note{margin-top:12px;color:#888;font-size:.8rem;text-align:center}@media(max-width:600px){.stats-grid{grid-template-columns:repeat(2,1fr)}}
         .search-section{max-width:1600px;margin:0 auto 25px;text-align:center}.search-label{font-size:.90rem;font-weight:700;color:#ccc;margin-bottom:10px}.search-bar{width:100%;max-width:600px;padding:11px 18px;font-size:.95rem;font-family:'Walone',sans-serif;border:2px solid #333;border-radius:12px;outline:none;background:#1a1830;color:#e0e0e0}.container{max-width:1600px;margin:0 auto;display:grid;grid-template-columns:repeat(2,1fr);gap:12px}.post-card{background:#1a1830;border-radius:12px;overflow:hidden;box-shadow:0 4px 12px rgba(0,0,0,.3);transition:transform .2s;text-decoration:none;color:inherit;display:block}.post-card:hover{transform:translateY(-5px)}.card-img,.card-img-placeholder{width:100%;height:150px}.card-img{object-fit:cover;background:#151328}.card-img-placeholder{background:linear-gradient(135deg,#d84315,#bf360c);display:flex;align-items:center;justify-content:center;color:#fff;font-size:1.5rem}.card-content{padding:12px 15px}.card-title{font-size:1.15rem;font-weight:700;margin-bottom:5px;color:#e8e8e8;line-height:1.5}.card-meta{font-size:.95rem;color:#ff8a65;margin-bottom:10px}.card-excerpt{font-size:.95rem;color:#aaa;line-height:1.5;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}.no-results,.loading{text-align:center;padding:60px;color:#666;font-size:.95rem}.no-results{grid-column:1/-1}footer{text-align:center;padding:40px;color:#555}@media(max-width:600px){.container{grid-template-columns:repeat(2,1fr)}header h1{font-size:1.5rem}.search-bar{max-width:100%}}
+
+        /* Smaller mobile typography — normal browser + Telegram in-app browser */
+        @media (max-width:600px){
+            body{font-size:14px}
+            header{padding:28px 14px}
+            header h1{font-size:1.35rem!important;line-height:1.35}
+            header p{font-size:.88rem}
+            .reading-stats-title{font-size:.92rem}
+            .stat-value{font-size:1.05rem}
+            .stat-label{font-size:.72rem}
+            .stats-note{font-size:.70rem}
+            .search-label{font-size:.82rem}
+            .search-bar{font-size:.82rem;padding:9px 13px}
+            .card-content{padding:9px 10px}
+            .card-title{font-size:.92rem;line-height:1.4}
+            .card-meta{font-size:.76rem}
+            .card-excerpt{font-size:.80rem;line-height:1.45}
+            .no-results,.loading{font-size:.82rem}
+            footer{font-size:.74rem}
+        }
         @font-face{font-family:'Walone';src:url('https://raw.githubusercontent.com/whispermmepub/myanmar-yoe-shin-fonts/main/fonts/Walone-Bold.ttf') format('truetype');font-weight:700;font-style:normal;font-display:swap}
     </style>
 </head>
