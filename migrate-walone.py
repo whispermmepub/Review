@@ -81,7 +81,8 @@ for path in sorted(ROOT.glob("[0-9]*/index.html"), key=lambda p: int(p.parent.na
         path.write_text(s, encoding="utf-8")
         print("Migrated:", path)
 
-# Force a smaller, consistent mobile reading size for both normal mobile browsers and Telegram in-app browsers.\nMOBILE_POST_CSS = '''
+# Force a smaller, consistent mobile reading size for both normal mobile browsers and Telegram in-app browsers.
+MOBILE_POST_CSS = '''
         /* Mobile browser + Telegram in-app browser typography */
         @media (max-width: 600px) {
             body { font-size: 14px; }
@@ -93,4 +94,11 @@ for path in sorted(ROOT.glob("[0-9]*/index.html"), key=lambda p: int(p.parent.na
             .back-link { font-size: 0.85rem; padding: 8px 14px; }
             .reviewer-credit { font-size: 0.78rem; }
         }
-'''\nfor path in sorted(ROOT.glob("[0-9]*/index.html"), key=lambda p: int(p.parent.name)):\n    s = path.read_text(encoding="utf-8")\n    if "Mobile browser + Telegram in-app browser typography" not in s:\n        s = s.replace("</style>", MOBILE_POST_CSS + "    </style>", 1)\n        path.write_text(s, encoding="utf-8")\n\nprint("Migration complete.")
+'''
+for path in sorted(ROOT.glob("[0-9]*/index.html"), key=lambda p: int(p.parent.name)):
+    s = path.read_text(encoding="utf-8")
+    if "Mobile browser + Telegram in-app browser typography" not in s:
+        s = s.replace("</style>", MOBILE_POST_CSS + "    </style>", 1)
+        path.write_text(s, encoding="utf-8")
+
+print("Migration complete.")
