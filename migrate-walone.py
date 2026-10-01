@@ -199,62 +199,42 @@ READ_ALOUD_JS = '''
     <script>
     (function () {
         document.querySelectorAll(".read-aloud-player").forEach(function (player) {
-            var base = player.getAttribute("data-audio-base");
-            var voice = player.querySelector(".read-voice");
-            var rate = player.querySelector(".read-rate");
-            var audio = player.querySelector(".read-audio");
-            var play = player.querySelector(".read-play");
-            var pause = player.querySelector(".read-pause");
-            var stop = player.querySelector(".read-stop");
-            var status = player.querySelector(".read-aloud-status");
-            var currentVoice = "";
-
-            function setSource() {
-                currentVoice = voice.value;
-                audio.src = base + "/" + currentVoice + ".mp3";
-                audio.playbackRate = parseFloat(rate.value) || 1;
-                audio.load();
-                status.textContent = (currentVoice === "nilar" ? "Nilar" : "Thiha") + " အသံကို ပြင်ဆင်နေပါသည်…";
+            var base=player.getAttribute("data-audio-base"), voice=player.querySelector(".read-voice");
+            var rate=player.querySelector(".read-rate"), audio=player.querySelector(".read-audio");
+            var play=player.querySelector(".read-play"), pause=player.querySelector(".read-pause"), stop=player.querySelector(".read-stop");
+            var status=player.querySelector(".read-aloud-status"), chunks=[], index=0, stopped=false, loadedVoice="";
+            function loadVoice(){
+                var key=voice.value; loadedVoice=key; stopped=false; index=0; chunks=[];
+                status.textContent=(key==="nilar"?"Nilar":"Thiha")+" အသံကို ပြင်ဆင်နေပါသည်…";
+                return fetch(base+"/"+key+".json",{cache:"no-store"}).then(function(r){
+                    if(!r.ok) throw new Error("manifest "+r.status);
+                    return r.json();
+                }).then(function(data){
+                    chunks=data.chunks||[]; if(!chunks.length) throw new Error("no chunks");
+                    audio.src=base+"/"+chunks[0]; audio.playbackRate=parseFloat(rate.value)||1; audio.load();
+                    status.textContent=(key==="nilar"?"Nilar":"Thiha")+" အသံ အဆင်သင့်ဖြစ်ပါပြီ။";
+                }).catch(function(){chunks=[]; status.textContent="ဒီ post ရဲ့ မြန်မာအသံဖိုင် မရသေးပါ။";});
             }
-
-            voice.addEventListener("change", setSource);
-            rate.addEventListener("change", function () {
-                audio.playbackRate = parseFloat(rate.value) || 1;
+            function playChunk(){
+                if(stopped || !chunks.length || index>=chunks.length){ if(!stopped) status.textContent="ဖတ်ပြီးပါပြီ။"; return; }
+                audio.src=base+"/"+chunks[index]; audio.playbackRate=parseFloat(rate.value)||1;
+                audio.play().then(function(){status.textContent="ဖတ်နေပါသည်… ("+(index+1)+"/"+chunks.length+")";}).catch(function(){status.textContent="အသံဖိုင်ကို မဖွင့်နိုင်ပါ။";});
+            }
+            voice.addEventListener("change",loadVoice);
+            rate.addEventListener("change",function(){audio.playbackRate=parseFloat(rate.value)||1;});
+            play.addEventListener("click",function(){
+                if(loadedVoice!==voice.value || !chunks.length){ loadVoice().then(playChunk); }
+                else { stopped=false; playChunk(); }
             });
-
-            play.addEventListener("click", function () {
-                if (currentVoice !== voice.value || !audio.src) setSource();
-                audio.play().then(function () {
-                    status.textContent = "ဖတ်နေပါသည်…";
-                }).catch(function () {
-                    status.textContent = "အသံဖိုင်ကို မဖွင့်နိုင်ပါ။ Browser ရဲ့ audio permission ကို စစ်ပေးပါ။";
-                });
-            });
-
-            pause.addEventListener("click", function () {
-                audio.pause();
-                status.textContent = "ခဏရပ်ထားပါပြီ။";
-            });
-
-            stop.addEventListener("click", function () {
-                audio.pause();
-                audio.currentTime = 0;
-                status.textContent = "ရပ်ထားပါပြီ။";
-            });
-
-            audio.addEventListener("ended", function () {
-                status.textContent = "ဖတ်ပြီးပါပြီ။";
-            });
-
-            audio.addEventListener("error", function () {
-                status.textContent = "ဒီ post ရဲ့ အသံဖိုင် မရသေးပါ။ ခဏနောက် ပြန်ဖွင့်ကြည့်ပါ။";
-            });
-
-            setSource();
+            pause.addEventListener("click",function(){audio.pause();status.textContent="ခဏရပ်ထားပါပြီ။";});
+            stop.addEventListener("click",function(){stopped=true;audio.pause();audio.currentTime=0;index=0;status.textContent="ရပ်ထားပါပြီ။";});
+            audio.addEventListener("ended",function(){if(!stopped){index++;playChunk();}});
+            loadVoice();
         });
     })();
     </script>
 '''
+
 for path in sorted(ROOT.glob("[0-9]*/index.html"), key=lambda p: int(p.parent.name)):
     s = path.read_text(encoding="utf-8")
     # Remove any previous Read Aloud player, CSS and scripts before installing the final version.
