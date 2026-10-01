@@ -81,4 +81,16 @@ for path in sorted(ROOT.glob("[0-9]*/index.html"), key=lambda p: int(p.parent.na
         path.write_text(s, encoding="utf-8")
         print("Migrated:", path)
 
-print("Migration complete.")
+# Force a smaller, consistent mobile reading size for both normal mobile browsers and Telegram in-app browsers.\nMOBILE_POST_CSS = '''
+        /* Mobile browser + Telegram in-app browser typography */
+        @media (max-width: 600px) {
+            body { font-size: 14px; }
+            header { margin: 12px 10px 10px; padding: 26px 14px 22px; }
+            header h1 { font-size: 1.25rem !important; line-height: 1.35; }
+            .post-meta { font-size: 0.80rem !important; }
+            .post-body { padding: 22px 10px; }
+            .post-body p { font-size: 1.00rem !important; line-height: 1.78 !important; }
+            .back-link { font-size: 0.85rem; padding: 8px 14px; }
+            .reviewer-credit { font-size: 0.78rem; }
+        }
+'''\nfor path in sorted(ROOT.glob("[0-9]*/index.html"), key=lambda p: int(p.parent.name)):\n    s = path.read_text(encoding="utf-8")\n    if "Mobile browser + Telegram in-app browser typography" not in s:\n        s = s.replace("</style>", MOBILE_POST_CSS + "    </style>", 1)\n        path.write_text(s, encoding="utf-8")\n\nprint("Migration complete.")
