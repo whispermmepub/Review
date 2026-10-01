@@ -422,6 +422,68 @@
             .back-link { font-size: 0.85rem; padding: 8px 14px; }
             .reviewer-credit { font-size: 0.78rem; }
         }
+    
+        /* Browser Read Aloud player */
+        .read-aloud-player {
+            width: calc(100% - 24px);
+            max-width: 760px;
+            margin: 0 auto 24px;
+            padding: 14px;
+            border: 1px solid rgba(74,158,255,0.35);
+            border-radius: 16px;
+            background: rgba(30,26,53,0.92);
+            box-shadow: 0 10px 28px rgba(0,0,0,0.22);
+            font-family: "Walone", sans-serif;
+        }
+        .read-aloud-title {
+            font-size: 0.95rem;
+            font-weight: 700;
+            color: #fff;
+            margin-bottom: 10px;
+        }
+        .read-aloud-controls {
+            display: flex;
+            gap: 8px;
+            align-items: center;
+            flex-wrap: wrap;
+        }
+        .read-aloud-player select,
+        .read-aloud-player button {
+            min-height: 38px;
+            border: 1px solid rgba(255,255,255,0.16);
+            border-radius: 10px;
+            background: #24203f;
+            color: #fff;
+            padding: 7px 11px;
+            font-family: "Walone", sans-serif;
+            font-size: 0.84rem;
+        }
+        .read-aloud-player select { flex: 1 1 150px; }
+        .read-aloud-player button { cursor: pointer; }
+        .read-aloud-player .read-play {
+            background: #4a9eff;
+            border-color: #4a9eff;
+            font-weight: 700;
+        }
+        .read-aloud-status {
+            margin-top: 8px;
+            color: #9fa4bd;
+            font-size: 0.75rem;
+            line-height: 1.5;
+        }
+        @media (max-width: 600px) {
+            .read-aloud-player {
+                width: calc(100% - 20px);
+                margin-bottom: 18px;
+                padding: 11px;
+            }
+            .read-aloud-controls { gap: 6px; }
+            .read-aloud-player select,
+            .read-aloud-player button {
+                font-size: 0.78rem;
+                min-height: 36px;
+            }
+        }
     </style>
 </head>
 <body>
@@ -437,7 +499,25 @@
 
 
         <img src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEg2HV7HWo9HXmuY-wdCiamMD0CYA9-GEgwNPqI_ewJFoZaPNaIp0xOJkuLVWQyTTD_LttpljNF7_I1dK1QOJfegmDn87hIvJix9A2hOrRFH2dJiUikuslQeb2XAyPIAl6gfdtpOGJBhWhAxfZmZtkXcDMJprxGeOa3sKXhUlRKiN8nTUCCr7Q0lWxgiYvVJ/s320/photo_2026-09-03_10-17-23.jpg" alt="အပယ်ခံတို့ နှလုံးသား ၁၊ ၁၊ ၅" class="post-image">
-        <div class="post-body">
+        
+        <section class="read-aloud-player" aria-label="အသံဖြင့်ဖတ်ရန်">
+            <div class="read-aloud-title">🔊 အသံဖြင့်ဖတ်ရန်</div>
+            <div class="read-aloud-controls">
+                <select class="read-voice" aria-label="အသံရွေးရန်"></select>
+                <select class="read-rate" aria-label="ဖတ်နှုန်း">
+                    <option value="0.8">0.8×</option>
+                    <option value="1" selected>1.0×</option>
+                    <option value="1.2">1.2×</option>
+                    <option value="1.5">1.5×</option>
+                </select>
+                <button type="button" class="read-play">▶ ဖတ်ရန်</button>
+                <button type="button" class="read-pause">⏸ ခဏရပ်</button>
+                <button type="button" class="read-stop">⏹ ရပ်ရန်</button>
+            </div>
+            <div class="read-aloud-status">Microsoft Edge / browser တွင် ရရှိနိုင်သော မြန်မာအသံကို အသုံးပြုပါမည်။</div>
+        </section>
+
+<div class="post-body">
             <div class="post-content">
             <p>အပယ်ခံတို့ နှလုံးသား ၁၊ ၁၊ ၅ Les Miserbales by Victor Hugo သက်ပိုင် အခန်း ၅ ဆရာတော် ဘျန်ဗနျု၏ နွမ်းပါးသော ဝတ်ရုံ မွန်ဆီယာ မာရီယယ်လ်၏ ကိုယ်ပိုင်ဘဝသည် သူ၏ ပြည်သူ့အကျိုးဆောင်ဘဝကဲ့သို့ပင် တူညီသော အတွေးအမြင်များဖြင့် ပြည့်နှက်နေခဲ့၏။ အနီးကပ် လေ့လာခွင့်ရသူတိုင်းအတွက်မူ ဒိညမြို့ဂိုဏ်းအုပ်ဘုန်းတော်ကြီး နေထိုင်ကျင့်သုံးခဲ့သော မိမိသဘောဆန္ဒအလျောက် ရွေးချယ်ထားသည့် ဆင်းရဲနွမ်းပါးမှုသည် အလွန်တရာ ဂုဏ်ကျက်သရေရှိပြီး နှစ်လိုဖွယ်ကောင်းသော မြင်ကွင်းတစ်ရပ် ဖြစ်ပေလိမ့်မည်။</p>
             <p>သက်ကြီးရွယ်အိုတိုင်းနှင့် တွေးခေါ်ပညာရှင် အများစုကဲ့သို့ပင် သူ့တွင် အိပ်စက်ချိန် နည်းပါးလှသည်။ ထိုခဏတာ အိပ်စက်ခြင်းသည်ပင် အလွန်နှစ်ခြိုက်သော အိပ်စက်ခြင်းဖြစ်၏။ နံနက်ခင်းတွင် တစ်နာရီခန့် တရားရှုမှတ်ပြီးနောက် ဘုရားရှိခိုးကျောင်းကြီးတွင်ဖြစ်စေ၊ သူ၏ သီးသန့်ဝတ်ပြုဆောင်တွင်ဖြစ်စေ ဝတ်ပြုဆုတောင်းပွဲကို ကျင်းပလေသည်။ ဝတ်ပြုဆုတောင်းပွဲ ပြီးစီးသည်နှင့် သူမွေးမြူထားသော နွားများမှရသည့် နို့တွင် နှစ်ထားသော ရိုင်းဂျုံဖြင့် ဖုတ်သည့် ပေါင်မုန့်ညိုကို နံနက်စာအဖြစ် သုံးဆောင်သည်။ ထို့နောက် လုပ်ငန်းဆောင်တာများ စတင်လေတော့သည်။</p>
@@ -559,6 +639,75 @@
         }
 
         updateBtn();
+    </script>
+
+
+    <script>
+    (function () {
+        var players = document.querySelectorAll('.read-aloud-player');
+        if (!players.length || !('speechSynthesis' in window)) return;
+
+        players.forEach(function (player) {
+            var voiceSelect = player.querySelector('.read-voice');
+            var rateSelect = player.querySelector('.read-rate');
+            var playBtn = player.querySelector('.read-play');
+            var pauseBtn = player.querySelector('.read-pause');
+            var stopBtn = player.querySelector('.read-stop');
+            var status = player.querySelector('.read-aloud-status');
+            var textEl = document.querySelector('.post-body');
+            var voices = [];
+
+            function loadVoices() {
+                voices = window.speechSynthesis.getVoices().filter(function (v) {
+                    return /^my(?:-|_)/i.test(v.lang) || /burmese|myanmar|nilar|thiha/i.test(v.name);
+                });
+                voiceSelect.innerHTML = '';
+                if (!voices.length) {
+                    var none = document.createElement('option');
+                    none.textContent = 'မြန်မာအသံ မတွေ့သေးပါ';
+                    none.value = '';
+                    voiceSelect.appendChild(none);
+                    status.textContent = 'ဒီ browser/device မှာ Burmese voice မရသေးပါ။ Edge Read Aloud တွင် Burmese voice ရှိပါက အဲဒီ voice ကို အသုံးပြုနိုင်ပါသည်။';
+                    return;
+                }
+                voices.forEach(function (voice, i) {
+                    var opt = document.createElement('option');
+                    opt.value = String(i);
+                    opt.textContent = voice.name + ' (' + voice.lang + ')';
+                    voiceSelect.appendChild(opt);
+                });
+                var preferred = voices.findIndex(function (v) { return /nilar/i.test(v.name); });
+                if (preferred < 0) preferred = voices.findIndex(function (v) { return /thiha/i.test(v.name); });
+                voiceSelect.value = String(preferred >= 0 ? preferred : 0);
+                status.textContent = 'ရရှိနိုင်သော မြန်မာအသံ: ' + voices.length + ' ခု';
+            }
+
+            playBtn.addEventListener('click', function () {
+                if (!voices.length || !textEl) return;
+                window.speechSynthesis.cancel();
+                var utterance = new SpeechSynthesisUtterance(textEl.innerText.trim());
+                utterance.lang = 'my-MM';
+                utterance.rate = parseFloat(rateSelect.value) || 1;
+                var selected = voices[parseInt(voiceSelect.value, 10)];
+                if (selected) utterance.voice = selected;
+                utterance.onend = function () { status.textContent = 'ဖတ်ပြီးပါပြီ။'; };
+                utterance.onerror = function () { status.textContent = 'အသံဖတ်ရာတွင် ပြဿနာရှိပါသည်။'; };
+                window.speechSynthesis.speak(utterance);
+                status.textContent = 'ဖတ်နေပါသည်…';
+            });
+            pauseBtn.addEventListener('click', function () {
+                if (window.speechSynthesis.speaking) window.speechSynthesis.pause();
+            });
+            stopBtn.addEventListener('click', function () {
+                window.speechSynthesis.cancel();
+                status.textContent = 'ရပ်ထားပါပြီ။';
+            });
+            loadVoices();
+            if (window.speechSynthesis.onvoiceschanged !== undefined) {
+                window.speechSynthesis.onvoiceschanged = loadVoices;
+            }
+        });
+    })();
     </script>
 
 </body>

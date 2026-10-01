@@ -422,6 +422,68 @@
             .back-link { font-size: 0.85rem; padding: 8px 14px; }
             .reviewer-credit { font-size: 0.78rem; }
         }
+    
+        /* Browser Read Aloud player */
+        .read-aloud-player {
+            width: calc(100% - 24px);
+            max-width: 760px;
+            margin: 0 auto 24px;
+            padding: 14px;
+            border: 1px solid rgba(74,158,255,0.35);
+            border-radius: 16px;
+            background: rgba(30,26,53,0.92);
+            box-shadow: 0 10px 28px rgba(0,0,0,0.22);
+            font-family: "Walone", sans-serif;
+        }
+        .read-aloud-title {
+            font-size: 0.95rem;
+            font-weight: 700;
+            color: #fff;
+            margin-bottom: 10px;
+        }
+        .read-aloud-controls {
+            display: flex;
+            gap: 8px;
+            align-items: center;
+            flex-wrap: wrap;
+        }
+        .read-aloud-player select,
+        .read-aloud-player button {
+            min-height: 38px;
+            border: 1px solid rgba(255,255,255,0.16);
+            border-radius: 10px;
+            background: #24203f;
+            color: #fff;
+            padding: 7px 11px;
+            font-family: "Walone", sans-serif;
+            font-size: 0.84rem;
+        }
+        .read-aloud-player select { flex: 1 1 150px; }
+        .read-aloud-player button { cursor: pointer; }
+        .read-aloud-player .read-play {
+            background: #4a9eff;
+            border-color: #4a9eff;
+            font-weight: 700;
+        }
+        .read-aloud-status {
+            margin-top: 8px;
+            color: #9fa4bd;
+            font-size: 0.75rem;
+            line-height: 1.5;
+        }
+        @media (max-width: 600px) {
+            .read-aloud-player {
+                width: calc(100% - 20px);
+                margin-bottom: 18px;
+                padding: 11px;
+            }
+            .read-aloud-controls { gap: 6px; }
+            .read-aloud-player select,
+            .read-aloud-player button {
+                font-size: 0.78rem;
+                min-height: 36px;
+            }
+        }
     </style>
 </head>
 <body>
@@ -437,7 +499,25 @@
 
 
         <img src="https://blogger.googleusercontent.com/img/a/AVvXsEi5QNZmDPbSC2-4bFlbRlKETI5PkC-_GS_6WMWK9m95cXndtFkjXeZZYuu2ZRwlZosBqRtuqo8JGhrKXm3aFct1HwkAfRQDirM06t5x7Lr3ONqFK40LmM56y8SjXpHLJeCwkg4rxGyPmrjIkKgtfGBQViIZQJ7eOG1YJiE-XTOxGV9Znu5ktqgib2xYzqQ" alt="မှောင်မိုက်မှာငို - မြသန်းတင့်" class="post-image">
-        <div class="post-body">
+        
+        <section class="read-aloud-player" aria-label="အသံဖြင့်ဖတ်ရန်">
+            <div class="read-aloud-title">🔊 အသံဖြင့်ဖတ်ရန်</div>
+            <div class="read-aloud-controls">
+                <select class="read-voice" aria-label="အသံရွေးရန်"></select>
+                <select class="read-rate" aria-label="ဖတ်နှုန်း">
+                    <option value="0.8">0.8×</option>
+                    <option value="1" selected>1.0×</option>
+                    <option value="1.2">1.2×</option>
+                    <option value="1.5">1.5×</option>
+                </select>
+                <button type="button" class="read-play">▶ ဖတ်ရန်</button>
+                <button type="button" class="read-pause">⏸ ခဏရပ်</button>
+                <button type="button" class="read-stop">⏹ ရပ်ရန်</button>
+            </div>
+            <div class="read-aloud-status">Microsoft Edge / browser တွင် ရရှိနိုင်သော မြန်မာအသံကို အသုံးပြုပါမည်။</div>
+        </section>
+
+<div class="post-body">
             <div class="post-content">
             <p>ဂေါ်ကီရဲ့ ဖိုမာဂေါ်ဒေးယဲ့ဗ် ဝတ္ထုကို ဖတ်ပြီးတဲ့အခါ အချိန် အတော်ကြာကြာ ကျွန်တော့်စိတ်ထဲမှာ ကသိကအောင့် ဖြစ်ကျန်နေခဲ့တယ်။ မြသန်းတင့် က ဘာသာပြန်ရာမှာ ဘာသာပြန် "မှောင်မိုက်မှာငို" လို့နာမည်ပေးပြီး ဗမာ့နားနဲ့ ဗမာ့လျှာမှာ အရသာတွေ့အောင် ယဉ်ကျေးမှုကိုချိန်ငြှိပြီး ဘာသာပြန်ဆိုထားတယ်။ ဒီဝတ္ထုက လှတယ်လို့ မပြောနိုင်ဘူး။ ဖတ်လို့ကောင်းတယ်လို့လည်း တထစ်ချပြောဖို့လည်း ခက်တယ်။ ဒါပေမယ့် သူက ဘဝင်ကိုတော်တော် ထိခိုက်စေတယ်။ လူတယောက် ဖြည်းဖြည်းချင်း အသက်ရှူကြပ်ပြီး ရုန်းကန်ရင်းသေသွားတာကို ဘာမှမလုပ်ဘဲ ငုတ်တုတ်ထိုင်ကြည့်နေရသလိုပဲ။ အဲဒီလူက ဖိုးမာဂေါ်ဒီယက်။ လှေထိုးသားဘဝကနေ ကြီးပွားလာခဲ့တဲ့ ရုရှားကုန်သည်သူဌေးကြီး တယောက်ရဲ့ တဦးတည်းသော ဖတဆိုးသား။ သူ့ဘဝတခုလုံးကို လူတွေက "ကံကောင်းတဲ့ကောင်" လို့ ခေါ်ကြမယ့်အနေအထားမှာ မွေးလာတယ်။ ပိုက်ဆံတွေ၊ သင်္ဘောတွေ၊ စက်ရုံတွေ၊ လူတွေရဲ့ ဦးညွှတ်မှု၊ လေးစားမှု‌တွေ အကုန်လုံး သူ့အဖေ အိညက်က သူ့တသက်တာလုံး သွေးချောင်းစီးပြီး ကြိုတည်ဆောက်ထားခဲ့တယ်။ ဖိုးမာကတော့ အဲဒီအရာအားလုံးကို လက်ဆင့်ကမ်းယူလိုက်ရုံပဲ။ ဒါပေမဲ့ ဘာဖြစ်သွားလဲဆိုတော့ ဒီအမွေတွေအားလုံးက သူ့အတွက် ရွှေဟန်းချိန်းတွေမဟုတ်ဘဲ သံချေးတက်နေတဲ့ သံကြိုးတွေဖြစ်နေတယ်။ သူဟာ အဲဒီသံကြိုးတွေကို ဆွဲဖြုတ်ဖို့ကြိုးစားရင်း တကိုယ်လုံး ဒဏ်ရာတွေရလို့ စိတ်ဓာတ်ကျိုးပဲ့ပြီး နောက်ဆုံးမှာ ရူးသွပ်သွားရတယ်။</p>
             <p>ဒီဝတ္ထုကို ကျွန်တော်တို့ ဘယ်လိုဖတ်ရမလဲ။ မာ့က်စ်ဝါဒနဲ့ ဖတ်ရင် တမျိုးရတယ်။ ဟိုက်ဒက်ဂါးရဲ့ ဖြစ်တည်မှုဒဿနနဲ့ဖတ်ရင် နောက်တမျိုးရတယ်။ ဒါပေမဲ့ ဒီနှစ်ခုကို သပ်သပ်ခွဲပြီး လေ့လာနေမယ့်အစား ဖိုးမာဆိုတဲ့ လူငယ်တယောက်ရဲ့ ဘဝထဲကို ဒီအတွေးအခေါ်တွေကို ယူသွားပြီး သူဘာကြောင့် ဒီလောက်ထိ ပြိုလဲသွားရတာလဲဆိုတာ နားလည်အောင် ကြိုးစားကြည့်ရအောင်။ ပြီးတော့ ဂေါ်ကီရဲ့ အဓိကအားနည်းချက်ဖြစ်တဲ့ တရားဟောဆန်မှုက ဝတ္ထုရဲ့အတွေးအခေါ်တွေနဲ့ ဘယ်လို ထိပ်တိုက်တွေ့သွားလဲဆိုတာလည်း ကြည့်ကြည့်ရအောင်။</p>
@@ -562,6 +642,75 @@
         }
 
         updateBtn();
+    </script>
+
+
+    <script>
+    (function () {
+        var players = document.querySelectorAll('.read-aloud-player');
+        if (!players.length || !('speechSynthesis' in window)) return;
+
+        players.forEach(function (player) {
+            var voiceSelect = player.querySelector('.read-voice');
+            var rateSelect = player.querySelector('.read-rate');
+            var playBtn = player.querySelector('.read-play');
+            var pauseBtn = player.querySelector('.read-pause');
+            var stopBtn = player.querySelector('.read-stop');
+            var status = player.querySelector('.read-aloud-status');
+            var textEl = document.querySelector('.post-body');
+            var voices = [];
+
+            function loadVoices() {
+                voices = window.speechSynthesis.getVoices().filter(function (v) {
+                    return /^my(?:-|_)/i.test(v.lang) || /burmese|myanmar|nilar|thiha/i.test(v.name);
+                });
+                voiceSelect.innerHTML = '';
+                if (!voices.length) {
+                    var none = document.createElement('option');
+                    none.textContent = 'မြန်မာအသံ မတွေ့သေးပါ';
+                    none.value = '';
+                    voiceSelect.appendChild(none);
+                    status.textContent = 'ဒီ browser/device မှာ Burmese voice မရသေးပါ။ Edge Read Aloud တွင် Burmese voice ရှိပါက အဲဒီ voice ကို အသုံးပြုနိုင်ပါသည်။';
+                    return;
+                }
+                voices.forEach(function (voice, i) {
+                    var opt = document.createElement('option');
+                    opt.value = String(i);
+                    opt.textContent = voice.name + ' (' + voice.lang + ')';
+                    voiceSelect.appendChild(opt);
+                });
+                var preferred = voices.findIndex(function (v) { return /nilar/i.test(v.name); });
+                if (preferred < 0) preferred = voices.findIndex(function (v) { return /thiha/i.test(v.name); });
+                voiceSelect.value = String(preferred >= 0 ? preferred : 0);
+                status.textContent = 'ရရှိနိုင်သော မြန်မာအသံ: ' + voices.length + ' ခု';
+            }
+
+            playBtn.addEventListener('click', function () {
+                if (!voices.length || !textEl) return;
+                window.speechSynthesis.cancel();
+                var utterance = new SpeechSynthesisUtterance(textEl.innerText.trim());
+                utterance.lang = 'my-MM';
+                utterance.rate = parseFloat(rateSelect.value) || 1;
+                var selected = voices[parseInt(voiceSelect.value, 10)];
+                if (selected) utterance.voice = selected;
+                utterance.onend = function () { status.textContent = 'ဖတ်ပြီးပါပြီ။'; };
+                utterance.onerror = function () { status.textContent = 'အသံဖတ်ရာတွင် ပြဿနာရှိပါသည်။'; };
+                window.speechSynthesis.speak(utterance);
+                status.textContent = 'ဖတ်နေပါသည်…';
+            });
+            pauseBtn.addEventListener('click', function () {
+                if (window.speechSynthesis.speaking) window.speechSynthesis.pause();
+            });
+            stopBtn.addEventListener('click', function () {
+                window.speechSynthesis.cancel();
+                status.textContent = 'ရပ်ထားပါပြီ။';
+            });
+            loadVoices();
+            if (window.speechSynthesis.onvoiceschanged !== undefined) {
+                window.speechSynthesis.onvoiceschanged = loadVoices;
+            }
+        });
+    })();
     </script>
 
 </body>

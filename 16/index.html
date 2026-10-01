@@ -422,6 +422,68 @@
             .back-link { font-size: 0.85rem; padding: 8px 14px; }
             .reviewer-credit { font-size: 0.78rem; }
         }
+    
+        /* Browser Read Aloud player */
+        .read-aloud-player {
+            width: calc(100% - 24px);
+            max-width: 760px;
+            margin: 0 auto 24px;
+            padding: 14px;
+            border: 1px solid rgba(74,158,255,0.35);
+            border-radius: 16px;
+            background: rgba(30,26,53,0.92);
+            box-shadow: 0 10px 28px rgba(0,0,0,0.22);
+            font-family: "Walone", sans-serif;
+        }
+        .read-aloud-title {
+            font-size: 0.95rem;
+            font-weight: 700;
+            color: #fff;
+            margin-bottom: 10px;
+        }
+        .read-aloud-controls {
+            display: flex;
+            gap: 8px;
+            align-items: center;
+            flex-wrap: wrap;
+        }
+        .read-aloud-player select,
+        .read-aloud-player button {
+            min-height: 38px;
+            border: 1px solid rgba(255,255,255,0.16);
+            border-radius: 10px;
+            background: #24203f;
+            color: #fff;
+            padding: 7px 11px;
+            font-family: "Walone", sans-serif;
+            font-size: 0.84rem;
+        }
+        .read-aloud-player select { flex: 1 1 150px; }
+        .read-aloud-player button { cursor: pointer; }
+        .read-aloud-player .read-play {
+            background: #4a9eff;
+            border-color: #4a9eff;
+            font-weight: 700;
+        }
+        .read-aloud-status {
+            margin-top: 8px;
+            color: #9fa4bd;
+            font-size: 0.75rem;
+            line-height: 1.5;
+        }
+        @media (max-width: 600px) {
+            .read-aloud-player {
+                width: calc(100% - 20px);
+                margin-bottom: 18px;
+                padding: 11px;
+            }
+            .read-aloud-controls { gap: 6px; }
+            .read-aloud-player select,
+            .read-aloud-player button {
+                font-size: 0.78rem;
+                min-height: 36px;
+            }
+        }
     </style>
 </head>
 <body>
@@ -437,7 +499,25 @@
 
 
         <img src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEgjlniBgwVJnhxF_8voWPWQnbM7uBMZJD0Pj4D95Uy30Rq2Bg1-3RAdEPR_9aG2HVGWlCapguu7wKBzJNOUnX_LzKOyI2J6Oeuxlq6JDWY7HqRjcTqCf0y0007bdWe6IBAaoXBBjdOkE_GRupCHJSV89FjzS_vmF_oGFHSJqI4YkTMtfzWipSMei1iANE4/w427-h640/cover.webp" alt="ကွယ်လွန်သူတို့ ဝိညာဉ် - သတိုးတေဇ" class="post-image">
-        <div class="post-body">
+        
+        <section class="read-aloud-player" aria-label="အသံဖြင့်ဖတ်ရန်">
+            <div class="read-aloud-title">🔊 အသံဖြင့်ဖတ်ရန်</div>
+            <div class="read-aloud-controls">
+                <select class="read-voice" aria-label="အသံရွေးရန်"></select>
+                <select class="read-rate" aria-label="ဖတ်နှုန်း">
+                    <option value="0.8">0.8×</option>
+                    <option value="1" selected>1.0×</option>
+                    <option value="1.2">1.2×</option>
+                    <option value="1.5">1.5×</option>
+                </select>
+                <button type="button" class="read-play">▶ ဖတ်ရန်</button>
+                <button type="button" class="read-pause">⏸ ခဏရပ်</button>
+                <button type="button" class="read-stop">⏹ ရပ်ရန်</button>
+            </div>
+            <div class="read-aloud-status">Microsoft Edge / browser တွင် ရရှိနိုင်သော မြန်မာအသံကို အသုံးပြုပါမည်။</div>
+        </section>
+
+<div class="post-body">
             <div class="post-content">
             <p>ဆေးကျောင်းနောက်ခံ သည်းထိတ်ရင်ဖို ဝတ္ထုတွေကိုမှ စွဲစွဲမြဲမြဲ ဖတ်တတ်တဲ့သူတွေအတွက် သတိုးတေဇ ရေးထားတဲ့ “ကွယ်လွန်သူတို့ ဝိညာဉ်” ဆိုတဲ့ စာအုပ်က လက်မလွှတ်သင့်တဲ့ စာအုပ်တစ်အုပ်ပါ၊။ စာရေးသူကိုယ်တိုင်က ဆေးကျောင်းသားဘဝ ဖြတ်သန်းခဲ့သူပီပီ ဆေးရုံ၊ ဆေးကျောင်း ပတ်ဝန်းကျင်ရဲ့ ခြောက်ခြားစရာကောင်းတဲ့ အငွေ့အသက်တွေကို ပီပီပြင်ပြင် ပုံဖော်သွားနိုင်တာ တွေ့ရပါတယ်၊။</p>
             <p>မန္တလေးဆေးတက္ကသိုလ်ကနေ ရန်ကုန်ကို ပြောင်းလာတဲ့ ကျောင်းသားသစ် အောင်လွန်း ရဲ့ အတွေ့အကြုံကနေ စထားတာပါ။ ကျောင်းသားသစ်ဖြစ်လို့ အပေါင်းအသင်းရအောင် မောင်မယ်သစ်လွင်ကြိုဆိုပွဲ (Freshers' Welcome) ကော်မတီမှာ ဝင်ကူညီရင်း မြတ်ကောင်း၊ အင်ကြင်းခိုင် တို့နဲ့ ခင်မင်သွားခဲ့တယ်၊။ တစ်နေ့မှာတော့ ပွဲအတွက် လိုအပ်တဲ့ ပစ္စည်းတွေသွားယူရင်း ဆေးရုံအဟောင်းကြီးဘက်ကို အောင်လွန်းတစ်ယောက် မတော်တဆ ရောက်သွားရာကနေ မထင်မှတ်ထားတဲ့ အဖြစ်အပျက်တွေ စကြုံရတော့တာပါပဲ၊။</p>
@@ -546,6 +626,75 @@
         }
 
         updateBtn();
+    </script>
+
+
+    <script>
+    (function () {
+        var players = document.querySelectorAll('.read-aloud-player');
+        if (!players.length || !('speechSynthesis' in window)) return;
+
+        players.forEach(function (player) {
+            var voiceSelect = player.querySelector('.read-voice');
+            var rateSelect = player.querySelector('.read-rate');
+            var playBtn = player.querySelector('.read-play');
+            var pauseBtn = player.querySelector('.read-pause');
+            var stopBtn = player.querySelector('.read-stop');
+            var status = player.querySelector('.read-aloud-status');
+            var textEl = document.querySelector('.post-body');
+            var voices = [];
+
+            function loadVoices() {
+                voices = window.speechSynthesis.getVoices().filter(function (v) {
+                    return /^my(?:-|_)/i.test(v.lang) || /burmese|myanmar|nilar|thiha/i.test(v.name);
+                });
+                voiceSelect.innerHTML = '';
+                if (!voices.length) {
+                    var none = document.createElement('option');
+                    none.textContent = 'မြန်မာအသံ မတွေ့သေးပါ';
+                    none.value = '';
+                    voiceSelect.appendChild(none);
+                    status.textContent = 'ဒီ browser/device မှာ Burmese voice မရသေးပါ။ Edge Read Aloud တွင် Burmese voice ရှိပါက အဲဒီ voice ကို အသုံးပြုနိုင်ပါသည်။';
+                    return;
+                }
+                voices.forEach(function (voice, i) {
+                    var opt = document.createElement('option');
+                    opt.value = String(i);
+                    opt.textContent = voice.name + ' (' + voice.lang + ')';
+                    voiceSelect.appendChild(opt);
+                });
+                var preferred = voices.findIndex(function (v) { return /nilar/i.test(v.name); });
+                if (preferred < 0) preferred = voices.findIndex(function (v) { return /thiha/i.test(v.name); });
+                voiceSelect.value = String(preferred >= 0 ? preferred : 0);
+                status.textContent = 'ရရှိနိုင်သော မြန်မာအသံ: ' + voices.length + ' ခု';
+            }
+
+            playBtn.addEventListener('click', function () {
+                if (!voices.length || !textEl) return;
+                window.speechSynthesis.cancel();
+                var utterance = new SpeechSynthesisUtterance(textEl.innerText.trim());
+                utterance.lang = 'my-MM';
+                utterance.rate = parseFloat(rateSelect.value) || 1;
+                var selected = voices[parseInt(voiceSelect.value, 10)];
+                if (selected) utterance.voice = selected;
+                utterance.onend = function () { status.textContent = 'ဖတ်ပြီးပါပြီ။'; };
+                utterance.onerror = function () { status.textContent = 'အသံဖတ်ရာတွင် ပြဿနာရှိပါသည်။'; };
+                window.speechSynthesis.speak(utterance);
+                status.textContent = 'ဖတ်နေပါသည်…';
+            });
+            pauseBtn.addEventListener('click', function () {
+                if (window.speechSynthesis.speaking) window.speechSynthesis.pause();
+            });
+            stopBtn.addEventListener('click', function () {
+                window.speechSynthesis.cancel();
+                status.textContent = 'ရပ်ထားပါပြီ။';
+            });
+            loadVoices();
+            if (window.speechSynthesis.onvoiceschanged !== undefined) {
+                window.speechSynthesis.onvoiceschanged = loadVoices;
+            }
+        });
+    })();
     </script>
 
 </body>

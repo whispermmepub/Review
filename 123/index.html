@@ -422,6 +422,68 @@
             .back-link { font-size: 0.85rem; padding: 8px 14px; }
             .reviewer-credit { font-size: 0.78rem; }
         }
+    
+        /* Browser Read Aloud player */
+        .read-aloud-player {
+            width: calc(100% - 24px);
+            max-width: 760px;
+            margin: 0 auto 24px;
+            padding: 14px;
+            border: 1px solid rgba(74,158,255,0.35);
+            border-radius: 16px;
+            background: rgba(30,26,53,0.92);
+            box-shadow: 0 10px 28px rgba(0,0,0,0.22);
+            font-family: "Walone", sans-serif;
+        }
+        .read-aloud-title {
+            font-size: 0.95rem;
+            font-weight: 700;
+            color: #fff;
+            margin-bottom: 10px;
+        }
+        .read-aloud-controls {
+            display: flex;
+            gap: 8px;
+            align-items: center;
+            flex-wrap: wrap;
+        }
+        .read-aloud-player select,
+        .read-aloud-player button {
+            min-height: 38px;
+            border: 1px solid rgba(255,255,255,0.16);
+            border-radius: 10px;
+            background: #24203f;
+            color: #fff;
+            padding: 7px 11px;
+            font-family: "Walone", sans-serif;
+            font-size: 0.84rem;
+        }
+        .read-aloud-player select { flex: 1 1 150px; }
+        .read-aloud-player button { cursor: pointer; }
+        .read-aloud-player .read-play {
+            background: #4a9eff;
+            border-color: #4a9eff;
+            font-weight: 700;
+        }
+        .read-aloud-status {
+            margin-top: 8px;
+            color: #9fa4bd;
+            font-size: 0.75rem;
+            line-height: 1.5;
+        }
+        @media (max-width: 600px) {
+            .read-aloud-player {
+                width: calc(100% - 20px);
+                margin-bottom: 18px;
+                padding: 11px;
+            }
+            .read-aloud-controls { gap: 6px; }
+            .read-aloud-player select,
+            .read-aloud-player button {
+                font-size: 0.78rem;
+                min-height: 36px;
+            }
+        }
     </style>
 </head>
 <body>
@@ -437,7 +499,25 @@
 
 
         <img src="https://blogger.googleusercontent.com/img/a/AVvXsEjhSHnbePVT9UQhVLpXKTkQ2ThFKzuvgbbV7mwGZdZ_nlKZ49Z1zTcDNSv8vptNv0jr-mogBkyH4_dvvbxYDr9TTP9VJ0uwI36l3V_vqbCZkL2bXDHAumOEaTh3-Lg71-SgtiRTfrIPRVXRpkIyrxm40PIe2xdxBTYh6u_4nclZIgrhMiyTQDV5DeDAWLnS" alt="ဒန္တေ အယ်လီဂီယာရီနှင့် အစ္ဆရိယရကန်" class="post-image">
-        <div class="post-body">
+        
+        <section class="read-aloud-player" aria-label="အသံဖြင့်ဖတ်ရန်">
+            <div class="read-aloud-title">🔊 အသံဖြင့်ဖတ်ရန်</div>
+            <div class="read-aloud-controls">
+                <select class="read-voice" aria-label="အသံရွေးရန်"></select>
+                <select class="read-rate" aria-label="ဖတ်နှုန်း">
+                    <option value="0.8">0.8×</option>
+                    <option value="1" selected>1.0×</option>
+                    <option value="1.2">1.2×</option>
+                    <option value="1.5">1.5×</option>
+                </select>
+                <button type="button" class="read-play">▶ ဖတ်ရန်</button>
+                <button type="button" class="read-pause">⏸ ခဏရပ်</button>
+                <button type="button" class="read-stop">⏹ ရပ်ရန်</button>
+            </div>
+            <div class="read-aloud-status">Microsoft Edge / browser တွင် ရရှိနိုင်သော မြန်မာအသံကို အသုံးပြုပါမည်။</div>
+        </section>
+
+<div class="post-body">
             <div class="post-content">
             <p>ဒန္တေ အယ်လီဂီယာရီ ဒန္တေ အယ်လီဂီယာရီကို ၁၂၆၅ ခုနှစ်တွင် ဖလောရင့်စ်မြို့၌ ဖွားမြင်ခဲ့သည်။ ဖခင်ဖြစ်သူ အယ်လီဂီယာရို အယ်လီဂီယာရီမှာ ငွေတိုးချေးလုပ်ငန်းနှင့် အိမ်ခြံမြေလုပ်ငန်း လုပ်ကိုင်သူဖြစ်ပုံရပြီး မိခင်မှာ ဘဲလာဖြစ်သည်။ အယ်လီဂီယာရီ မိသားစုသည် အသိုင်းအဝိုင်းကောင်းမှ ဆင်းသက်လာသူများ ဖြစ်ကြသည်။ ဒန္တေ၏ ငယ်ဘဝအကြောင်းအရာ အများစုကို ၁၂၉၃ ခုနှစ်ဝန်းကျင်တွင် သူ ရေးသားပြီးစီးခဲ့သော <strong>“ဘဝသစ်”</strong> အမည်ရှိ ကဗျာစာအုပ်မှတဆင့် သိရှိရသည်။ ထိုကဗျာတွင် သူ၏ ကိုးနှစ်ပြည့် မွေးနေ့မတိုင်မီလေး၌ တွေ့ဆုံခဲ့ဖူးသည့် ဘီရာထရစ် ပေါ်တီနာရီ အပေါ်ထားရှိသော စိတ်ကူးယဉ် အချစ်ဇာတ်လမ်းကို ဖော်ကျူးထားသည်။ ဘီရာထရစ်သည် ၁၂၉၀ ခုနှစ်တွင် ကွယ်လွန်သွားခဲ့သော်လည်း ဒန္တေ၏ ဘဝတစ်လျှောက်လုံးတွင် စိတ်ကူးယဉ်ချစ်သူနှင့် ကဗျာဉာဏ်ကွန့်မြူးရာ ဝိညာဥ်အဖြစ် တည်ရှိနေခဲ့သည်။ ၁၂၈၅ ခုနှစ် ဝန်းကျင်၌ ဒန္တေသည် ဂျမ်မာ ဒိုနာတီနှင့် လက်ထပ်ခဲ့ပြီး သားသုံးယောက်နှင့် သမီးတစ်ယောက် ထွန်းကားခဲ့သည်။</p>
             <p>ဒန္တေ၏ ပုဂ္ဂိုလ်ရေးဘဝထက် သူ၏ လူမှုရေးနှင့် နိုင်ငံရေးဘဝကို မှတ်တမ်းအထောက်အထားအရ ပိုမိုခိုင်လုံစွာ သိရှိရသည်။ သူ၏ အရင်းနှီးဆုံး မိတ်ဆွေများထဲတွင် ကဗျာဆရာ ဂွီဒို ကာဗယ်လ်ကန်တီနှင့် ၁၃ ရာစု ဖလောရင့်စ်မြို့သို့ ဂန္ထဝင်စာပေများ ယူဆောင်လာပေးသူအဖြစ် လူသိများသည့် ဒဿနပညာရှင်၊ စာရေးဆရာ ဘရူနက်တို လာတီနီတို့ ပါဝင်ကြောင်း သိရှိရသည်။ ဒန္တေသည် ၁၂၉၂ ခုနှစ်တွင် ဆန်တာမာရီယာ နိုဗဲလား နှင့် ဆန်တာခရော့ချ်ဘုရားရှိခိုးကျောင်းများ၌ ဓမ္မဗေဒပညာရပ်ကို လေ့လာလိုက်စားခဲ့ပြီး ဂန္ထဝင်စာပေ၊ ဒဿနပညာနှင့် ဘာသာရေးဆိုင်ရာ အတွေးအခေါ်များကို နှံ့စပ်ကျွမ်းကျင်သူ ဖြစ်လာခဲ့သည်။ ထိုခေတ်၌ ဖလောရင့်စ်မြို့၏ အစိုးရအဖွဲ့တွင် ပါဝင်နိုင်ရန်အတွက် အသက်မွေးဝမ်းကျောင်း အသင်းအဖွဲ့တစ်ခုခု၏ အသင်းဝင်ဖြစ်ရန် လိုအပ်သည်။ သို့ဖြစ်၍ ဒန္တေသည် ၁၂၉၅ ခုနှစ်တွင် ဆေးဆရာနှင့် ဆေးဝါးကျွမ်းကျင်သူများအသင်းသို့ ဝင်ရောက်ကာ ထိုအခွင့်အရေးကို ရယူခဲ့သည်။ ၁၃၀၀ ပြည့်နှစ်တွင်မူ မြို့တော်၏ အမြင့်ဆုံးရာထူးဖြစ်သော အုပ်ချုပ်ရေးမှူးအဖြစ် ရွေးချယ်တင်မြှောက်ခြင်း ခံခဲ့ရသည်။</p>
@@ -580,6 +660,75 @@
         }
 
         updateBtn();
+    </script>
+
+
+    <script>
+    (function () {
+        var players = document.querySelectorAll('.read-aloud-player');
+        if (!players.length || !('speechSynthesis' in window)) return;
+
+        players.forEach(function (player) {
+            var voiceSelect = player.querySelector('.read-voice');
+            var rateSelect = player.querySelector('.read-rate');
+            var playBtn = player.querySelector('.read-play');
+            var pauseBtn = player.querySelector('.read-pause');
+            var stopBtn = player.querySelector('.read-stop');
+            var status = player.querySelector('.read-aloud-status');
+            var textEl = document.querySelector('.post-body');
+            var voices = [];
+
+            function loadVoices() {
+                voices = window.speechSynthesis.getVoices().filter(function (v) {
+                    return /^my(?:-|_)/i.test(v.lang) || /burmese|myanmar|nilar|thiha/i.test(v.name);
+                });
+                voiceSelect.innerHTML = '';
+                if (!voices.length) {
+                    var none = document.createElement('option');
+                    none.textContent = 'မြန်မာအသံ မတွေ့သေးပါ';
+                    none.value = '';
+                    voiceSelect.appendChild(none);
+                    status.textContent = 'ဒီ browser/device မှာ Burmese voice မရသေးပါ။ Edge Read Aloud တွင် Burmese voice ရှိပါက အဲဒီ voice ကို အသုံးပြုနိုင်ပါသည်။';
+                    return;
+                }
+                voices.forEach(function (voice, i) {
+                    var opt = document.createElement('option');
+                    opt.value = String(i);
+                    opt.textContent = voice.name + ' (' + voice.lang + ')';
+                    voiceSelect.appendChild(opt);
+                });
+                var preferred = voices.findIndex(function (v) { return /nilar/i.test(v.name); });
+                if (preferred < 0) preferred = voices.findIndex(function (v) { return /thiha/i.test(v.name); });
+                voiceSelect.value = String(preferred >= 0 ? preferred : 0);
+                status.textContent = 'ရရှိနိုင်သော မြန်မာအသံ: ' + voices.length + ' ခု';
+            }
+
+            playBtn.addEventListener('click', function () {
+                if (!voices.length || !textEl) return;
+                window.speechSynthesis.cancel();
+                var utterance = new SpeechSynthesisUtterance(textEl.innerText.trim());
+                utterance.lang = 'my-MM';
+                utterance.rate = parseFloat(rateSelect.value) || 1;
+                var selected = voices[parseInt(voiceSelect.value, 10)];
+                if (selected) utterance.voice = selected;
+                utterance.onend = function () { status.textContent = 'ဖတ်ပြီးပါပြီ။'; };
+                utterance.onerror = function () { status.textContent = 'အသံဖတ်ရာတွင် ပြဿနာရှိပါသည်။'; };
+                window.speechSynthesis.speak(utterance);
+                status.textContent = 'ဖတ်နေပါသည်…';
+            });
+            pauseBtn.addEventListener('click', function () {
+                if (window.speechSynthesis.speaking) window.speechSynthesis.pause();
+            });
+            stopBtn.addEventListener('click', function () {
+                window.speechSynthesis.cancel();
+                status.textContent = 'ရပ်ထားပါပြီ။';
+            });
+            loadVoices();
+            if (window.speechSynthesis.onvoiceschanged !== undefined) {
+                window.speechSynthesis.onvoiceschanged = loadVoices;
+            }
+        });
+    })();
     </script>
 
 </body>
