@@ -50,6 +50,9 @@ jobs:
       - name: Migrate all existing posts to Walone
         run: python3 migrate-walone.py
 
+      - name: Install ffmpeg
+        run: sudo apt-get update -qq && sudo apt-get install -y -qq ffmpeg
+
       - name: Generate Burmese Read Aloud audio
         run: |
           python -m pip install --disable-pip-version-check --no-input edge-tts
