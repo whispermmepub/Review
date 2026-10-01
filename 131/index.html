@@ -505,7 +505,7 @@
 
 
         <img src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEhEC_3rOHr2eZap872bRy5eU6GJs4dRWTF8SxIlNPRjLViuxmJcxPBbzBnD2V5TZzJJeHyFBoT8m4JfmFfHfy7y1AqhxIhVpPpgMO176EE7YjczVDZEokjmkJUdMA9A63g9SBa3imvZ5soN1QPsW_3Ph_Q9Reizep8b_ZwLkV1quvaRRh9r01VUh6gCeS-F/s320/photo_2025-11-23_22-11-39.jpg" alt="ဘာသာရေးနှင့် သိပ္ပံပညာ စာအုပ် စတင် ဖြန့်ချိပါပြီ" class="post-image">
-        
+
         <section class="read-aloud-player" data-audio-base="../audio/131" aria-label="အသံဖြင့်ဖတ်ရန်">
             <div class="read-aloud-title">🔊 အသံဖြင့်ဖတ်ရန်</div>
             <div class="read-aloud-controls">
@@ -644,40 +644,58 @@
         updateBtn();
     </script>
 
-
     <script>
     (function () {
         document.querySelectorAll(".read-aloud-player").forEach(function (player) {
             var base=player.getAttribute("data-audio-base"), voice=player.querySelector(".read-voice");
             var rate=player.querySelector(".read-rate"), audio=player.querySelector(".read-audio");
             var play=player.querySelector(".read-play"), pause=player.querySelector(".read-pause"), stop=player.querySelector(".read-stop");
-            var status=player.querySelector(".read-aloud-status"), chunks=[], index=0, stopped=false, loadedVoice="";
+            var status=player.querySelector(".read-aloud-status"), chunks=[], index=0;
+            var stopped=false, completed=false, loadedVoice="", loadToken=0;
+            function voiceName(key){ return key==="nilar" ? "Nilar" : "Thiha"; }
+            function setStatus(text){ status.textContent=text; }
             function loadVoice(){
-                var key=voice.value; loadedVoice=key; stopped=false; index=0; chunks=[];
-                status.textContent=(key==="nilar"?"Nilar":"Thiha")+" အသံကို ပြင်ဆင်နေပါသည်…";
+                var key=voice.value, token=++loadToken;
+                loadedVoice=""; stopped=true; completed=false; index=0; chunks=[]; audio.pause();
+                setStatus(voiceName(key)+" အသံကို ပြင်ဆင်နေပါသည်…");
                 return fetch(base+"/"+key+".json",{cache:"no-store"}).then(function(r){
                     if(!r.ok) throw new Error("manifest "+r.status);
                     return r.json();
                 }).then(function(data){
+                    if(token!==loadToken) return;
                     chunks=data.chunks||[]; if(!chunks.length) throw new Error("no chunks");
-                    audio.src=base+"/"+chunks[0]; audio.playbackRate=parseFloat(rate.value)||1; audio.load();
-                    status.textContent=(key==="nilar"?"Nilar":"Thiha")+" အသံ အဆင်သင့်ဖြစ်ပါပြီ။";
-                }).catch(function(){chunks=[]; status.textContent="ဒီ post ရဲ့ မြန်မာအသံဖိုင် မရသေးပါ။";});
+                    loadedVoice=key; stopped=false; audio.src=base+"/"+chunks[0];
+                    audio.playbackRate=parseFloat(rate.value)||1; audio.load();
+                    setStatus(voiceName(key)+" အသံ အဆင်သင့်ဖြစ်ပါပြီ။");
+                }).catch(function(){
+                    if(token===loadToken){ loadedVoice=""; chunks=[]; setStatus("ဒီ post ရဲ့ မြန်မာအသံဖိုင် မရသေးပါ။"); }
+                });
             }
             function playChunk(){
-                if(stopped || !chunks.length || index>=chunks.length){ if(!stopped) status.textContent="ဖတ်ပြီးပါပြီ။"; return; }
+                if(stopped || !chunks.length) return;
+                if(index>=chunks.length){ completed=true; stopped=true; setStatus(voiceName(loadedVoice)+" ဖတ်ပြီးပါပြီ။"); return; }
                 audio.src=base+"/"+chunks[index]; audio.playbackRate=parseFloat(rate.value)||1;
-                audio.play().then(function(){status.textContent="ဖတ်နေပါသည်… ("+(index+1)+"/"+chunks.length+")";}).catch(function(){status.textContent="အသံဖိုင်ကို မဖွင့်နိုင်ပါ။";});
+                audio.play().then(function(){setStatus("ဖတ်နေပါသည်… ("+(index+1)+"/"+chunks.length+")");}).catch(function(){setStatus("အသံဖိုင်ကို မဖွင့်နိုင်ပါ။");});
             }
-            voice.addEventListener("change",loadVoice);
+            voice.addEventListener("change",function(){ loadVoice(); });
             rate.addEventListener("change",function(){audio.playbackRate=parseFloat(rate.value)||1;});
             play.addEventListener("click",function(){
-                if(loadedVoice!==voice.value || !chunks.length){ loadVoice().then(playChunk); }
-                else { stopped=false; playChunk(); }
+                if(loadedVoice!==voice.value || !chunks.length){ loadVoice().then(playChunk); return; }
+                if(completed){ index=0; completed=false; }
+                stopped=false;
+                if(audio.paused && audio.src && index<chunks.length && audio.currentTime>0 && !completed){
+                    audio.play().then(function(){setStatus("ဖတ်နေပါသည်… ("+(index+1)+"/"+chunks.length+")");}).catch(function(){setStatus("အသံဖိုင်ကို မဖွင့်နိုင်ပါ။");});
+                } else { playChunk(); }
             });
-            pause.addEventListener("click",function(){audio.pause();status.textContent="ခဏရပ်ထားပါပြီ။";});
-            stop.addEventListener("click",function(){stopped=true;audio.pause();audio.currentTime=0;index=0;status.textContent="ရပ်ထားပါပြီ။";});
-            audio.addEventListener("ended",function(){if(!stopped){index++;playChunk();}});
+            pause.addEventListener("click",function(){
+                if(!audio.paused){ audio.pause(); setStatus("ခဏရပ်ထားပါပြီ။ Play နှိပ်လျှင် ဒီနေရာကနေ ဆက်ဖတ်ပါမည်။"); }
+            });
+            stop.addEventListener("click",function(){
+                stopped=true; completed=false; audio.pause(); audio.currentTime=0; index=0; setStatus("ရပ်ထားပါပြီ။");
+            });
+            audio.addEventListener("ended",function(){
+                if(!stopped){ index++; if(index>=chunks.length){ completed=true; stopped=true; setStatus(voiceName(loadedVoice)+" ဖတ်ပြီးပါပြီ။"); } else { playChunk(); } }
+            });
             loadVoice();
         });
     })();
