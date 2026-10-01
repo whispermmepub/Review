@@ -192,7 +192,7 @@ READ_ALOUD_HTML_TEMPLATE = '''
                 <button type="button" class="read-stop">⏹ ရပ်ရန်</button>
             </div>
             <audio class="read-audio" controls preload="none"></audio>
-            <div class="read-aloud-status">Nilar / Thiha အသံဖိုင်ကို ရွေးပြီး ဖတ်နိုင်ပါတယ်။</div>
+            <div class="read-aloud-status">Nilar / Thiha အသံဖိုင်ကို ရွေးပြီး ▶️ ဖတ်နိုင်ပါတယ်။</div>
         </section>
 '''
 READ_ALOUD_JS = '''
