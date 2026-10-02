@@ -719,6 +719,57 @@ def generate_post_html(post):
             50% {{ opacity: 0.3; }}
         }}
 
+        .read-aloud-player {{
+            width: calc(100% - 24px); max-width: 760px; margin: 0 auto 24px;
+            padding: 14px; border: 1px solid rgba(74,158,255,0.35);
+            border-radius: 16px; background: rgba(30,26,53,0.92);
+        }}
+        .read-aloud-title {{ font-size: .95rem; font-weight: 700; color: #fff; margin-bottom: 10px; }}
+        .read-aloud-controls {{ display: flex; gap: 8px; align-items: center; flex-wrap: wrap; }}
+        .read-aloud-player select, .read-aloud-player button {{
+            min-height: 38px; border: 1px solid rgba(255,255,255,0.16); border-radius: 10px;
+            background: #24203f; color: #fff; padding: 7px 11px; font-family: inherit; font-size: .84rem;
+        }}
+        .read-aloud-player select {{ flex: 1 1 140px; }}
+        .read-aloud-player button {{ cursor: pointer; }}
+        .read-aloud-player .read-play {{ background: #4a9eff; border-color: #4a9eff; font-weight: 700; }}
+        .read-audio {{ display: block; width: 100%; margin-top: 11px; height: 40px; }}
+        .read-aloud-status {{ margin-top: 8px; color: #9fa4bd; font-size: .75rem; line-height: 1.5; }}
+        @media (max-width: 600px) {{
+            .read-aloud-player {{ width: calc(100% - 20px); margin-bottom: 18px; padding: 11px; }}
+            .read-aloud-controls {{ gap: 6px; }}
+            .read-aloud-player select, .read-aloud-player button {{ font-size: .78rem; min-height: 36px; }}
+        }}
+
+        .comments-panel {{
+            margin: 30px auto 18px;
+            padding: 22px 18px;
+            max-width: 760px;
+            border: 1px solid rgba(255,255,255,0.14);
+            border-radius: 20px;
+            background: rgba(255,255,255,0.045);
+        }}
+        .comments-title {{ color: #fff; font-size: 1.2rem; margin-bottom: 12px; }}
+        .comment-form {{ display: grid; gap: 10px; margin-bottom: 18px; }}
+        .comment-form input, .comment-form textarea {{
+            width: 100%; padding: 11px 12px; border-radius: 12px;
+            border: 1px solid rgba(255,255,255,0.16); background: rgba(0,0,0,0.2);
+            color: #fff; font: inherit; line-height: 1.6;
+        }}
+        .comment-form textarea {{ min-height: 92px; resize: vertical; }}
+        .rating-picker {{ display: flex; align-items: center; gap: 3px; color: #aaa; }}
+        .rating-star {{ border: 0; background: transparent; color: #777; cursor: pointer; font-size: 1.45rem; padding: 0 2px; }}
+        .rating-star.selected, .comment-stars {{ color: #fbbf24; }}
+        .comment-submit {{ width: fit-content; border: 0; border-radius: 999px; padding: 9px 17px; background: linear-gradient(90deg,#8b5cf6,#ec4899); color: #fff; cursor: pointer; font: inherit; font-weight: 700; }}
+        .comment-submit:disabled {{ opacity: .55; cursor: wait; }}
+        .comment-status {{ min-height: 1.5em; color: #a7f3d0; font-size: .9rem; }}
+        .comment-status.error {{ color: #fda4af; }}
+        .comment-item {{ padding: 12px 0; border-top: 1px solid rgba(255,255,255,0.1); }}
+        .comment-head {{ display: flex; justify-content: space-between; gap: 12px; color: #eee; }}
+        .comment-item p {{ margin-top: 5px; color: #cfcfcf; white-space: pre-wrap; line-height: 1.75; }}
+        .comments-empty {{ color: #999; }}
+        @media (max-width: 520px) {{ .comments-panel {{ margin-left: 8px; margin-right: 8px; }} .comment-head {{ display: block; }} }}
+
 </style>
 </head>
 <body>
@@ -733,6 +784,24 @@ def generate_post_html(post):
         <div class="reading-time" id="readingTime">📖 <span id="readTime"></span> ဖတ်ရန်အချိန်</div>
 
 {image_html}
+        <section class="read-aloud-player" data-audio-base="../audio/{post['id']}" aria-label="အသံဖြင့်ဖတ်ရန်">
+            <div class="read-aloud-title">🔊 အသံဖြင့်ဖတ်ရန်</div>
+            <div class="read-aloud-controls">
+                <select class="read-voice" aria-label="အသံရွေးရန်">
+                    <option value="nilar">🎙 Nilar — မိန်းကလေးအသံ</option>
+                    <option value="thiha">🎙 Thiha — ယောကျ်ားလေးအသံ</option>
+                </select>
+                <select class="read-rate" aria-label="ဖတ်နှုန်း">
+                    <option value="0.8">0.8×</option><option value="1" selected>1.0×</option>
+                    <option value="1.2">1.2×</option><option value="1.5">1.5×</option>
+                </select>
+                <button type="button" class="read-play">▶ ဖတ်ရန်</button>
+                <button type="button" class="read-pause">⏸ ခဏရပ်</button>
+                <button type="button" class="read-stop">⏹ ရပ်ရန်</button>
+            </div>
+            <audio class="read-audio" controls preload="none"></audio>
+            <div class="read-aloud-status">Nilar / Thiha အသံဖိုင်ကို ရွေးပြီး ▶️ ဖတ်နိုင်ပါတယ်။</div>
+        </section>
         <div class="post-body">
             <div class="post-content">
 {post.get("content", "")}
@@ -751,6 +820,26 @@ def generate_post_html(post):
                 </a>
             </div>
 
+            <section class="comments-panel" id="commentsPanel" data-post-id="{post['id']}" aria-labelledby="commentsTitle">
+                <h2 class="comments-title" id="commentsTitle">💬 စာဖတ်သူများ၏ Comment / Review</h2>
+                <form class="comment-form" id="commentForm">
+                    <input id="commentName" maxlength="40" required placeholder="သင့်အမည် သို့မဟုတ် အမည်ပြောင်">
+                    <textarea id="commentText" maxlength="1000" required placeholder="ဒီစာအုပ်အပေါ် သင့်အမြင်ကို ရေးပါ…"></textarea>
+                    <div class="rating-picker" aria-label="ကြယ် rating">
+                        Rating:
+                        <button type="button" class="rating-star" data-rating="1" aria-label="1 star" aria-pressed="false">★</button>
+                        <button type="button" class="rating-star" data-rating="2" aria-label="2 stars" aria-pressed="false">★</button>
+                        <button type="button" class="rating-star" data-rating="3" aria-label="3 stars" aria-pressed="false">★</button>
+                        <button type="button" class="rating-star" data-rating="4" aria-label="4 stars" aria-pressed="false">★</button>
+                        <button type="button" class="rating-star" data-rating="5" aria-label="5 stars" aria-pressed="false">★</button>
+                        <input type="hidden" id="commentRating" value="0">
+                    </div>
+                    <button class="comment-submit" id="commentSubmit" type="submit">Comment ပို့မယ်</button>
+                    <div class="comment-status" id="commentStatus" role="status">Comment များကို အတည်ပြုပြီးမှ ပြသပါမယ်။</div>
+                </form>
+                <div id="commentsList" aria-live="polite"><p class="comments-empty">Comment များကို ရယူနေပါသည်…</p></div>
+            </section>
+
             <div class="help-blink">
                 <a href="https://t.me/+q4jx63Zt5LBiMmI1" target="_blank">🔔 အကူအညီရယူရန် Discussion Group သို့ ဝင်ရောက်ပါ</a>
             </div>
@@ -759,6 +848,11 @@ def generate_post_html(post):
 
     <button class="back-to-top" id="backToTop" onclick="scrollToTop()">↑</button>
 
+        <script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-app-compat.js"></script>
+        <script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-auth-compat.js"></script>
+        <script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore-compat.js"></script>
+        <script src="/Review/assets/firebase-comments.js"></script>
+        <script src="/Review/assets/audio-player.js"></script>
         <script src="/Review/assets/reading-stats.js"></script>
     <script>
         // Performance: one passive RAF scroll handler

@@ -491,6 +491,9 @@
             }
         }
     </style>
+
+<link rel="stylesheet" href="/Review/assets/firebase-comments.css">
+<script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-app-compat.js"></script><script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-auth-compat.js"></script><script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore-compat.js"></script><script src="/Review/assets/firebase-comments.js"></script>
 </head>
 <body>
     <div class="reading-progress" id="readingProgress"></div>
@@ -710,5 +713,15 @@
     })();
     </script>
 
+
+<section class="comments-panel" id="commentsPanel" data-post-id="173" aria-labelledby="commentsTitle">
+<h2 class="comments-title" id="commentsTitle">💬 စာဖတ်သူများ၏ Comment / Review</h2>
+<form class="comment-form" id="commentForm">
+<input id="commentName" maxlength="40" required placeholder="သင့်အမည် သို့မဟုတ် အမည်ပြောင်">
+<textarea id="commentText" maxlength="1000" required placeholder="ဒီစာအုပ်အပေါ် သင့်အမြင်ကို ရေးပါ…"></textarea>
+<div class="rating-picker" aria-label="ကြယ် rating">Rating: <button type="button" class="rating-star" data-rating="1" aria-label="1 star" aria-pressed="false">★</button><button type="button" class="rating-star" data-rating="2" aria-label="2 stars" aria-pressed="false">★</button><button type="button" class="rating-star" data-rating="3" aria-label="3 stars" aria-pressed="false">★</button><button type="button" class="rating-star" data-rating="4" aria-label="4 stars" aria-pressed="false">★</button><button type="button" class="rating-star" data-rating="5" aria-label="5 stars" aria-pressed="false">★</button><input type="hidden" id="commentRating" value="0"></div>
+<button class="comment-submit" id="commentSubmit" type="submit">Comment ပို့မယ်</button>
+<div class="comment-status" id="commentStatus" role="status">Comment များကို အတည်ပြုပြီးမှ ပြသပါမယ်။</div>
+</form><div id="commentsList" aria-live="polite"><p class="comments-empty">Comment များကို ရယူနေပါသည်…</p></div></section>
 </body>
 </html>
