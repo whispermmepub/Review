@@ -9,13 +9,14 @@
     appId: '1:423917068098:web:bfb899f06ae1375741b2db'
   };
   var stats = {};
+  var commentCounts = {};
   function esc(value) {
     return String(value || '').replace(/[&<>"']/g, function (c) { return ({ '&':'&amp;', '<':'&lt;', '>':'&gt;', '"':'&quot;', "'":'&#39;' })[c]; });
   }
   function card(post, metric, rank) {
-    var value = metric === 'views' ? ((stats[post.id] || {}).views || 0) + ' views' : Math.floor(((stats[post.id] || {}).seconds || 0) / 60) + ' min';
+    var value = metric === 'views' ? ((stats[post.id] || {}).views || 0) + ' views' : metric === 'comments' ? (commentCounts[post.id] || 0) + ' comments' : Math.floor(((stats[post.id] || {}).seconds || 0) / 60) + ' min';
     var image = post.image ? '<img src="' + esc(post.image) + '" alt="' + esc(post.title) + '" loading="lazy">' : '<div class="popular-placeholder">📖</div>';
-    var champion = metric === 'seconds' && rank === 1 ? '<span class="popular-champion-badge" aria-label="အများဆုံးဖတ်ထားသော Review နံပါတ် ၁">🏆 #1</span>' : '';
+    var champion = metric === 'seconds' && rank === 1 ? '<span class="popular-champion-badge" aria-label="အများဆုံးဖတ်ထားသော Review နံပါတ် ၁">🏆 #1</span>' : metric === 'comments' && rank === 1 ? '<span class="popular-champion-badge comment-champion-badge" aria-label="Comment အများဆုံး Review နံပါတ် ၁">💬 #1</span>' : '';
     var championClass = champion ? ' popular-champion-card' : '';
     return '<a class="popular-card' + championClass + '" href="' + esc(post.link) + '">' + champion + '<span class="popular-rank">' + rank + '</span>' + image + '<span class="popular-info"><strong>' + esc(post.title) + '</strong><small>' + esc(post.author) + ' · ' + value + '</small></span></a>';
   }
@@ -23,20 +24,34 @@
     var el = document.getElementById(id); if (!el) return;
     el.innerHTML = posts.slice(0, 5).map(function (p, i) { return card(p, metric, i + 1); }).join('') || '<p class="popular-empty">မကြာမီ ပြသပါမယ်။</p>';
   }
+  function renderMostCommented(posts) {
+    render('most-commented-reviews', posts.slice().sort(function (a, b) { return (commentCounts[b.id] || 0) - (commentCounts[a.id] || 0); }), 'comments');
+  }
+  function loadCommentCounts(posts, done) {
+    var jobs = posts.map(function (post) {
+      return firebase.firestore().collection('posts').doc(String(post.id)).collection('comments').where('status', '==', 'approved').get().then(function (snap) {
+        commentCounts[post.id] = snap.size;
+      }).catch(function () { commentCounts[post.id] = 0; });
+    });
+    Promise.all(jobs).then(done);
+  }
   function start(posts) {
     var newest = posts.slice().sort(function (a, b) { return String(b.date || '').localeCompare(String(a.date || '')); });
     render('newest-reviews', newest, 'views');
-    if (!window.firebase) { render('popular-reviews', posts, 'views'); render('most-read-reviews', posts, 'seconds'); return; }
+    if (!window.firebase) { render('popular-reviews', posts, 'views'); render('most-read-reviews', posts, 'seconds'); renderMostCommented(posts); return; }
     try {
       if (!firebase.apps.length) firebase.initializeApp(config);
       firebase.firestore().collection('reviewStats').get().then(function (snap) {
         snap.forEach(function (doc) { stats[doc.id] = doc.data() || {}; });
         render('popular-reviews', posts.slice().sort(function (a, b) { return ((stats[b.id] || {}).views || 0) - ((stats[a.id] || {}).views || 0); }), 'views');
         render('most-read-reviews', posts.slice().sort(function (a, b) { return ((stats[b.id] || {}).seconds || 0) - ((stats[a.id] || {}).seconds || 0); }), 'seconds');
-      }).catch(function () { render('popular-reviews', posts, 'views'); render('most-read-reviews', posts, 'seconds'); });
-    } catch (_) { render('popular-reviews', posts, 'views'); render('most-read-reviews', posts, 'seconds'); }
+        var auth = firebase.auth();
+        var load = function () { loadCommentCounts(posts, function () { renderMostCommented(posts); }); };
+        if (auth.currentUser) load(); else auth.signInAnonymously().then(load).catch(load);
+      }).catch(function () { render('popular-reviews', posts, 'views'); render('most-read-reviews', posts, 'seconds'); renderMostCommented(posts); });
+    } catch (_) { render('popular-reviews', posts, 'views'); render('most-read-reviews', posts, 'seconds'); renderMostCommented(posts); }
   }
   fetch('assets/posts.json').then(function (r) { return r.json(); }).then(start).catch(function () {
-    ['popular-reviews', 'most-read-reviews', 'newest-reviews'].forEach(function (id) { var el = document.getElementById(id); if (el) el.innerHTML = '<p class="popular-empty">ဖတ်၍မရပါ။</p>'; });
+    ['popular-reviews', 'most-read-reviews', 'most-commented-reviews', 'newest-reviews'].forEach(function (id) { var el = document.getElementById(id); if (el) el.innerHTML = '<p class="popular-empty">ဖတ်၍မရပါ။</p>'; });
   });
 }());
