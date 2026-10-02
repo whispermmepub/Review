@@ -529,6 +529,13 @@
         .newest-review-card:nth-child(2) img, .newest-review-card:nth-child(2) .newest-review-placeholder { transform:perspective(800px) rotateY(4deg) rotateZ(.7deg); }
         .newest-review-card:hover img, .newest-review-card:hover .newest-review-placeholder { transform:perspective(800px) translateY(-4px) rotateY(0deg) rotateZ(0deg); }
         @media (max-width: 600px) { .newest-review-card img, .newest-review-placeholder { width:96px; height:144px; } }
+        /* Full-cover mockup finish: make the entire newest-review cover the hero. */
+        .newest-review-card { position:relative; padding-bottom:8px; }
+        .newest-review-card::before { left:2px; right:auto; width:92%; bottom:27px; top:1px; transform:translateX(5px) skewY(-1deg); box-shadow:inset 4px 0 rgba(58,42,31,.16),inset -3px 0 rgba(58,42,31,.10),0 10px 12px rgba(55,45,35,.18); }
+        .newest-review-card img, .newest-review-placeholder { width:132px; height:198px; max-width:100%; aspect-ratio:2/3; object-fit:contain; object-position:center bottom; background:transparent; filter:drop-shadow(7px 8px 4px rgba(50,40,30,.28)); transform:perspective(900px) rotateY(-4deg) rotateZ(-.7deg); }
+        .newest-review-card:nth-child(2) img, .newest-review-card:nth-child(2) .newest-review-placeholder { transform:perspective(900px) rotateY(4deg) rotateZ(.7deg); }
+        .newest-review-card:hover img, .newest-review-card:hover .newest-review-placeholder { transform:perspective(900px) translateY(-5px) rotateY(0deg) rotateZ(0deg); filter:drop-shadow(10px 11px 5px rgba(50,40,30,.33)); }
+        @media (max-width: 600px) { .newest-review-card img, .newest-review-placeholder { width:106px; height:159px; } .newest-review-card::before { bottom:23px; } }
         /* Comment previews: keep long reader comments compact until expanded. */
         .comment-text { margin-bottom: 4px; }
         .comment-collapsed .comment-text { display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; max-height: 3.2em; overflow: hidden; }
