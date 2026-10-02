@@ -466,6 +466,15 @@
         .back-link { background: #fff; color: #a34a42; border-color: #d9b3a2; }
         .back-link:hover { background: #a34a42; color: #fff; }
         @media (max-width: 600px) { header { padding: 22px 16px 8px; } .post-image { width: min(78vw, 330px); max-height: 430px; margin-bottom: 24px; } .post-body { padding: 4px 18px 28px; } .post-body p { font-size: 1.06rem !important; line-height: 1.86 !important; } }
+        /* Cover-first reading finish: generous white space, title directly below image. */
+        .container { max-width: 720px; background: #fff; box-shadow: 0 0 28px rgba(74,55,35,.06); }
+        .post-image { width: min(68vw, 330px); max-width: 330px; max-height: 500px; margin: 34px auto 46px; box-shadow: 7px 8px 0 rgba(120,102,82,.07), 0 12px 24px rgba(70,50,30,.11); }
+        header { padding: 0 20px 8px; text-align: left; }
+        header h1 { margin: 0 0 10px; font-size: clamp(1.4rem, 4.5vw, 2rem); line-height: 1.45; }
+        .post-meta { font-size: 1rem; }
+        .reading-time { margin: 8px 20px 16px; text-align: left; }
+        .post-body { padding: 8px 20px 36px; }
+        @media (max-width: 600px) { .post-image { width: min(68vw, 300px); max-height: 450px; margin: 26px auto 38px; } header { padding: 0 20px 8px; } .reading-time { margin-left: 20px; margin-right: 20px; } .post-body { padding-left: 20px; padding-right: 20px; } }
 
         /* Mobile browser + Telegram in-app browser typography */
         @media (max-width: 600px) {
@@ -483,6 +492,8 @@
 <body>
     <div class="reading-progress" id="readingProgress"></div>
     <div class="container">
+
+        <img src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEhEC_3rOHr2eZap872bRy5eU6GJs4dRWTF8SxIlNPRjLViuxmJcxPBbzBnD2V5TZzJJeHyFBoT8m4JfmFfHfy7y1AqhxIhVpPpgMO176EE7YjczVDZEokjmkJUdMA9A63g9SBa3imvZ5soN1QPsW_3Ph_Q9Reizep8b_ZwLkV1quvaRRh9r01VUh6gCeS-F/s320/photo_2025-11-23_22-11-39.jpg" alt="ဘာသာရေးနှင့် သိပ္ပံပညာ စာအုပ် စတင် ဖြန့်ချိပါပြီ" class="post-image" loading="eager" decoding="async" fetchpriority="high">
         <header>
             <h1>ဘာသာရေးနှင့် သိပ္ပံပညာ စာအုပ် စတင် ဖြန့်ချိပါပြီ</h1>
             <div class="post-meta">📅 2026-02-18 • ✍️ Thet Paing Writes</div>
@@ -491,8 +502,6 @@
 
         <div class="reading-time" id="readingTime">📖 <span id="readTime"></span> ဖတ်ရန်အချိန်</div>
 
-
-        <img src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEhEC_3rOHr2eZap872bRy5eU6GJs4dRWTF8SxIlNPRjLViuxmJcxPBbzBnD2V5TZzJJeHyFBoT8m4JfmFfHfy7y1AqhxIhVpPpgMO176EE7YjczVDZEokjmkJUdMA9A63g9SBa3imvZ5soN1QPsW_3Ph_Q9Reizep8b_ZwLkV1quvaRRh9r01VUh6gCeS-F/s320/photo_2025-11-23_22-11-39.jpg" alt="ဘာသာရေးနှင့် သိပ္ပံပညာ စာအုပ် စတင် ဖြန့်ချိပါပြီ" class="post-image" loading="eager" decoding="async" fetchpriority="high">
         <div class="post-body">
             <div class="post-content">
             <p>(Give away စာအုပ်လက်ဆောင် အစီအစဉ်) ၂၀၂၆ ခုနှစ်ရဲ့ မဖတ်မဖြစ် မှတ်တိုင်သစ် - <strong>"ဘာသာရေးနှင့် သိပ္ပံပညာ"</strong> ပူလစ်ဇာဆုရှင် Edward J. Larson နဲ့ ဒဿနပညာရှင် Michael Ruse တို့ရဲ့ ကမ္ဘာကျော်လက်ရာကို အခြေခံထားတဲ့ <strong>"ဘာသာရေးနှင့် သိပ္ပံပညာ"</strong> ဘာသာပြန် စာအုပ်သစ် ထွက်ရှိလာပါပြီ။</p>

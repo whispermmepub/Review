@@ -466,6 +466,15 @@
         .back-link { background: #fff; color: #a34a42; border-color: #d9b3a2; }
         .back-link:hover { background: #a34a42; color: #fff; }
         @media (max-width: 600px) { header { padding: 22px 16px 8px; } .post-image { width: min(78vw, 330px); max-height: 430px; margin-bottom: 24px; } .post-body { padding: 4px 18px 28px; } .post-body p { font-size: 1.06rem !important; line-height: 1.86 !important; } }
+        /* Cover-first reading finish: generous white space, title directly below image. */
+        .container { max-width: 720px; background: #fff; box-shadow: 0 0 28px rgba(74,55,35,.06); }
+        .post-image { width: min(68vw, 330px); max-width: 330px; max-height: 500px; margin: 34px auto 46px; box-shadow: 7px 8px 0 rgba(120,102,82,.07), 0 12px 24px rgba(70,50,30,.11); }
+        header { padding: 0 20px 8px; text-align: left; }
+        header h1 { margin: 0 0 10px; font-size: clamp(1.4rem, 4.5vw, 2rem); line-height: 1.45; }
+        .post-meta { font-size: 1rem; }
+        .reading-time { margin: 8px 20px 16px; text-align: left; }
+        .post-body { padding: 8px 20px 36px; }
+        @media (max-width: 600px) { .post-image { width: min(68vw, 300px); max-height: 450px; margin: 26px auto 38px; } header { padding: 0 20px 8px; } .reading-time { margin-left: 20px; margin-right: 20px; } .post-body { padding-left: 20px; padding-right: 20px; } }
 
         /* Mobile browser + Telegram in-app browser typography */
         @media (max-width: 600px) {
@@ -483,6 +492,8 @@
 <body>
     <div class="reading-progress" id="readingProgress"></div>
     <div class="container">
+
+        <img src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEhPbhH1GieaG7yqAXMve1FrfVMpJMncZ4k5qh-T2NVkYCoqE2CXvf5aK5rVke4eZKD9IU4PcUQWvmO46kHBl0q6sQghmO4bzIMXqLlll1mGmU-d5CvBiBg0te8QJBLWTzWgPG4Is8KSs8sPRjvEmXE2A1RDtfnEYednunRuJ6O49Hr_rSlYhym3RMmp4DE/s1600/5a708d40-90fc-11f1-b7ed-b9b04e51599f.png" alt="လေပြည်ကလေး၏ တေးဆိုသံ" class="post-image" loading="eager" decoding="async" fetchpriority="high">
         <header>
             <h1>လေပြည်ကလေး၏ တေးဆိုသံ</h1>
             <div class="post-meta">📅 2026-08-07 • ✍️ Whisper Of Words</div>
@@ -491,8 +502,6 @@
 
         <div class="reading-time" id="readingTime">📖 <span id="readTime"></span> ဖတ်ရန်အချိန်</div>
 
-
-        <img src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEhPbhH1GieaG7yqAXMve1FrfVMpJMncZ4k5qh-T2NVkYCoqE2CXvf5aK5rVke4eZKD9IU4PcUQWvmO46kHBl0q6sQghmO4bzIMXqLlll1mGmU-d5CvBiBg0te8QJBLWTzWgPG4Is8KSs8sPRjvEmXE2A1RDtfnEYednunRuJ6O49Hr_rSlYhym3RMmp4DE/s1600/5a708d40-90fc-11f1-b7ed-b9b04e51599f.png" alt="လေပြည်ကလေး၏ တေးဆိုသံ" class="post-image" loading="eager" decoding="async" fetchpriority="high">
         <div class="post-body">
             <div class="post-content">
             <p>ရဲမြလွင်ရဲ့ "လေပြည်ကလေး၏ တေးဆိုသံ" ဟာ နာမည်လေးအတိုင်းပါပဲ၊ ဖတ်နေရင်းနဲ့ အေးမြတဲ့ လေညင်းလေး တိုးဝှေ့သွားသလို ခံစားချက်မျိုးကို ပေးစွမ်းနိုင်တယ်။ စာရေးသူက သူ့ရဲ့ ဘဝထဲက အမှတ်တရတွေကို ပန်းချီကားတချပ်လို ခပ်ပါးပါးလေး ခြယ်မှုန်းပြထားတာ တွေ့ရပါတယ်။</p>

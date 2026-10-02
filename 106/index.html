@@ -466,6 +466,15 @@
         .back-link { background: #fff; color: #a34a42; border-color: #d9b3a2; }
         .back-link:hover { background: #a34a42; color: #fff; }
         @media (max-width: 600px) { header { padding: 22px 16px 8px; } .post-image { width: min(78vw, 330px); max-height: 430px; margin-bottom: 24px; } .post-body { padding: 4px 18px 28px; } .post-body p { font-size: 1.06rem !important; line-height: 1.86 !important; } }
+        /* Cover-first reading finish: generous white space, title directly below image. */
+        .container { max-width: 720px; background: #fff; box-shadow: 0 0 28px rgba(74,55,35,.06); }
+        .post-image { width: min(68vw, 330px); max-width: 330px; max-height: 500px; margin: 34px auto 46px; box-shadow: 7px 8px 0 rgba(120,102,82,.07), 0 12px 24px rgba(70,50,30,.11); }
+        header { padding: 0 20px 8px; text-align: left; }
+        header h1 { margin: 0 0 10px; font-size: clamp(1.4rem, 4.5vw, 2rem); line-height: 1.45; }
+        .post-meta { font-size: 1rem; }
+        .reading-time { margin: 8px 20px 16px; text-align: left; }
+        .post-body { padding: 8px 20px 36px; }
+        @media (max-width: 600px) { .post-image { width: min(68vw, 300px); max-height: 450px; margin: 26px auto 38px; } header { padding: 0 20px 8px; } .reading-time { margin-left: 20px; margin-right: 20px; } .post-body { padding-left: 20px; padding-right: 20px; } }
 
         /* Mobile browser + Telegram in-app browser typography */
         @media (max-width: 600px) {
@@ -483,6 +492,8 @@
 <body>
     <div class="reading-progress" id="readingProgress"></div>
     <div class="container">
+
+        <img src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEhi9_LNBWbj888Zn4v7Ph23PY3WHJ2Ud5rGRVBEXY6ygoMmqRrCyoJTf2pi7PwcWT6odGv7TX4OUuubcepFO-W2ZfggYb5QzIlnBQKxWvhH2HuW_NoTr3SM_Pa6jEcyZ3lkhcjA30TaLeQCP4inP9OD5dYM6knjfFnykLt5GK2_MghtJqzniiDmrI9lGKK5/s320/photo_2026-08-02_15-35-16.jpg" alt="မရဏတံခါး စီမံကိန်း -  နိဒါန်း" class="post-image" loading="eager" decoding="async" fetchpriority="high">
         <header>
             <h1>မရဏတံခါး စီမံကိန်း -  နိဒါန်း</h1>
             <div class="post-meta">📅 2026-08-02 • ✍️ Thet Paing Writes</div>
@@ -491,8 +502,6 @@
 
         <div class="reading-time" id="readingTime">📖 <span id="readTime"></span> ဖတ်ရန်အချိန်</div>
 
-
-        <img src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEhi9_LNBWbj888Zn4v7Ph23PY3WHJ2Ud5rGRVBEXY6ygoMmqRrCyoJTf2pi7PwcWT6odGv7TX4OUuubcepFO-W2ZfggYb5QzIlnBQKxWvhH2HuW_NoTr3SM_Pa6jEcyZ3lkhcjA30TaLeQCP4inP9OD5dYM6knjfFnykLt5GK2_MghtJqzniiDmrI9lGKK5/s320/photo_2026-08-02_15-35-16.jpg" alt="မရဏတံခါး စီမံကိန်း -  နိဒါန်း" class="post-image" loading="eager" decoding="async" fetchpriority="high">
         <div class="post-body">
             <div class="post-content">
             <p>The Secret of secrets Dan Brown မရဏတံခါး စီမံကိန်း သက်ပိုင် နိဒါန်း <strong>“ငါ သေသွားပြီ ထင်တယ်”</strong> ဟု အမျိုးသမီးက တွေးလိုက်သည်။</p>

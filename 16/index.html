@@ -466,6 +466,15 @@
         .back-link { background: #fff; color: #a34a42; border-color: #d9b3a2; }
         .back-link:hover { background: #a34a42; color: #fff; }
         @media (max-width: 600px) { header { padding: 22px 16px 8px; } .post-image { width: min(78vw, 330px); max-height: 430px; margin-bottom: 24px; } .post-body { padding: 4px 18px 28px; } .post-body p { font-size: 1.06rem !important; line-height: 1.86 !important; } }
+        /* Cover-first reading finish: generous white space, title directly below image. */
+        .container { max-width: 720px; background: #fff; box-shadow: 0 0 28px rgba(74,55,35,.06); }
+        .post-image { width: min(68vw, 330px); max-width: 330px; max-height: 500px; margin: 34px auto 46px; box-shadow: 7px 8px 0 rgba(120,102,82,.07), 0 12px 24px rgba(70,50,30,.11); }
+        header { padding: 0 20px 8px; text-align: left; }
+        header h1 { margin: 0 0 10px; font-size: clamp(1.4rem, 4.5vw, 2rem); line-height: 1.45; }
+        .post-meta { font-size: 1rem; }
+        .reading-time { margin: 8px 20px 16px; text-align: left; }
+        .post-body { padding: 8px 20px 36px; }
+        @media (max-width: 600px) { .post-image { width: min(68vw, 300px); max-height: 450px; margin: 26px auto 38px; } header { padding: 0 20px 8px; } .reading-time { margin-left: 20px; margin-right: 20px; } .post-body { padding-left: 20px; padding-right: 20px; } }
 
         /* Mobile browser + Telegram in-app browser typography */
         @media (max-width: 600px) {
@@ -483,6 +492,8 @@
 <body>
     <div class="reading-progress" id="readingProgress"></div>
     <div class="container">
+
+        <img src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEgjlniBgwVJnhxF_8voWPWQnbM7uBMZJD0Pj4D95Uy30Rq2Bg1-3RAdEPR_9aG2HVGWlCapguu7wKBzJNOUnX_LzKOyI2J6Oeuxlq6JDWY7HqRjcTqCf0y0007bdWe6IBAaoXBBjdOkE_GRupCHJSV89FjzS_vmF_oGFHSJqI4YkTMtfzWipSMei1iANE4/w427-h640/cover.webp" alt="ကွယ်လွန်သူတို့ ဝိညာဉ် - သတိုးတေဇ" class="post-image" loading="eager" decoding="async" fetchpriority="high">
         <header>
             <h1>ကွယ်လွန်သူတို့ ဝိညာဉ် - သတိုးတေဇ</h1>
             <div class="post-meta">📅 2026-04-04 • ✍️ Whisper Of Words</div>
@@ -491,8 +502,6 @@
 
         <div class="reading-time" id="readingTime">📖 <span id="readTime"></span> ဖတ်ရန်အချိန်</div>
 
-
-        <img src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEgjlniBgwVJnhxF_8voWPWQnbM7uBMZJD0Pj4D95Uy30Rq2Bg1-3RAdEPR_9aG2HVGWlCapguu7wKBzJNOUnX_LzKOyI2J6Oeuxlq6JDWY7HqRjcTqCf0y0007bdWe6IBAaoXBBjdOkE_GRupCHJSV89FjzS_vmF_oGFHSJqI4YkTMtfzWipSMei1iANE4/w427-h640/cover.webp" alt="ကွယ်လွန်သူတို့ ဝိညာဉ် - သတိုးတေဇ" class="post-image" loading="eager" decoding="async" fetchpriority="high">
         <div class="post-body">
             <div class="post-content">
             <p>ဆေးကျောင်းနောက်ခံ သည်းထိတ်ရင်ဖို ဝတ္ထုတွေကိုမှ စွဲစွဲမြဲမြဲ ဖတ်တတ်တဲ့သူတွေအတွက် သတိုးတေဇ ရေးထားတဲ့ “ကွယ်လွန်သူတို့ ဝိညာဉ်” ဆိုတဲ့ စာအုပ်က လက်မလွှတ်သင့်တဲ့ စာအုပ်တစ်အုပ်ပါ၊။ စာရေးသူကိုယ်တိုင်က ဆေးကျောင်းသားဘဝ ဖြတ်သန်းခဲ့သူပီပီ ဆေးရုံ၊ ဆေးကျောင်း ပတ်ဝန်းကျင်ရဲ့ ခြောက်ခြားစရာကောင်းတဲ့ အငွေ့အသက်တွေကို ပီပီပြင်ပြင် ပုံဖော်သွားနိုင်တာ တွေ့ရပါတယ်၊။</p>
