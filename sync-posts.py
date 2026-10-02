@@ -837,6 +837,15 @@ def generate_post_html(post):
         .newest-review-card strong {{ display: -webkit-box; margin-top: 6px; color: #40372f; font-size: .74rem; line-height: 1.35; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; }}
         .newest-review-card:hover img {{ border-color: #b87333; transform: translateY(-2px); }}
         @media (max-width: 600px) {{ .newest-reviews-panel {{ margin: 18px 4px 10px; }} .newest-reviews-heading {{ padding-left: 12px; padding-right: 12px; font-size: .88rem; }} .newest-reviews-track {{ padding-left: 12px; padding-right: 12px; }} .newest-review-card {{ flex-basis: 112px; }} .newest-review-card img, .newest-review-placeholder {{ width: 112px; height: 140px; }} .newest-review-card strong {{ font-size: .66rem; }} }}
+        /* Unified 3D book mockups for post-page newest-review cards. */
+        .newest-review-card {{ position:relative; isolation:isolate; padding-bottom:8px; perspective:800px; }}
+        .newest-review-card::before {{ content:""; position:absolute; z-index:0; left:4px; right:4px; top:2px; bottom:28px; border-radius:3px; background:linear-gradient(90deg,rgba(45,35,28,.20),rgba(255,255,255,.10) 10%,rgba(255,255,255,.02) 78%,rgba(45,35,28,.16)); box-shadow:inset 3px 0 rgba(58,42,31,.12),inset -3px 0 rgba(58,42,31,.08),0 7px 10px rgba(55,45,35,.16); pointer-events:none; }}
+        .newest-review-card::after {{ content:""; position:absolute; z-index:0; left:0; right:0; bottom:2px; height:6px; border-radius:2px; background:linear-gradient(#d8d0c7,#9e958a); box-shadow:0 5px 7px rgba(55,45,35,.24); pointer-events:none; }}
+        .newest-review-card img, .newest-review-placeholder {{ position:relative; z-index:1; border:0; border-radius:2px; background:#eee7df; filter:drop-shadow(5px 5px 3px rgba(50,40,30,.24)); transform:perspective(700px) rotateY(-6deg) rotateZ(-1deg); transform-origin:bottom center; transition:transform .2s ease,filter .2s ease; }}
+        .newest-review-card:nth-child(2) img, .newest-review-card:nth-child(2) .newest-review-placeholder {{ transform:perspective(700px) rotateY(5deg) rotateZ(1deg); }}
+        .newest-review-card:hover img, .newest-review-card:hover .newest-review-placeholder {{ transform:perspective(700px) translateY(-4px) rotateY(0deg) rotateZ(0deg); filter:drop-shadow(8px 8px 4px rgba(50,40,30,.30)); }}
+        .newest-review-card strong {{ position:relative; z-index:2; display:block; padding:1px 3px; border-radius:3px; background:rgba(255,253,251,.86); }}
+        @media (max-width: 600px) {{ .newest-review-card::before {{ bottom:24px; }} .newest-review-card::after {{ height:5px; }} }}
         /* Comment previews: keep long reader comments compact until expanded. */
         .comment-text {{ margin-bottom: 4px; }}
         .comment-collapsed .comment-text {{ display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; max-height: 3.2em; overflow: hidden; }}
