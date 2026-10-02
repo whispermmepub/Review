@@ -148,11 +148,7 @@
   function init() {
     bindControls();
     byId('posts-container').dataset.view = 'grid';
-    try {
-      var saved = window.localStorage.getItem(VIEW_KEY);
-      if (VIEWS.indexOf(saved) !== -1) setView(saved, false);
-      else setView('grid', false);
-    } catch (_) { setView('grid', false); }
+    try { window.localStorage.removeItem(VIEW_KEY); } catch (_) {}
     load();
   }
 
