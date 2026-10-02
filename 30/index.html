@@ -505,7 +505,9 @@
         .comment-collapsed .comment-text { display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; max-height: 3.2em; overflow: hidden; }
         .comment-toggle { display: inline-flex; align-items: center; border: 0; padding: 2px 0; background: transparent; color: #a34a42; font: inherit; font-size: .76rem; font-weight: 700; cursor: pointer; }
         .comment-toggle:hover { color: #7b4932; text-decoration: underline; }
-        .theme-toggle { display:inline-flex; align-items:center; justify-content:center; margin:10px 0 0; min-height:36px; padding:6px 12px; border:1px solid #d9b3a2; border-radius:999px; background:#fff8f0; color:#5d3628; font:inherit; font-size:.78rem; font-weight:700; cursor:pointer; }
+        .header-controls { display:flex; align-items:center; flex-wrap:wrap; gap:7px; margin-top:10px; }
+        .sr-only { position:absolute; width:1px; height:1px; padding:0; margin:-1px; overflow:hidden; clip:rect(0,0,0,0); white-space:nowrap; border:0; }
+        .theme-toggle { display:inline-flex; align-items:center; justify-content:center; min-height:36px; padding:6px 12px; border:1px solid #d9b3a2; border-radius:999px; background:#fff8f0; color:#5d3628; font:inherit; font-size:.78rem; font-weight:700; cursor:pointer; }
         .theme-toggle:hover { background:#6b4a3a; color:#fff; }
         html[data-theme="dark"] body { background:#121218!important; color:#eeeaf2!important; }
         html[data-theme="dark"] .container { background:#1b1921!important; box-shadow:0 0 30px rgba(0,0,0,.35)!important; }
@@ -529,8 +531,22 @@
         html[data-theme="dark"] .newest-review-card strong { color:#eeeaf2!important; }
         html[data-theme="dark"] .back-link { background:#282431!important; color:#f0c6a9!important; border-color:#80648e!important; }
         html[data-theme="dark"] .theme-toggle { background:#2d2636; color:#f5dfbd; border-color:#80648e; }
-        @media(max-width:600px) { .theme-toggle { font-size:.7rem; min-height:33px; } }
+        @media(max-width:600px) { .theme-toggle { font-size:.7rem; min-height:33px; } .header-controls { margin-top:8px; } }
         .post-content { touch-action:pan-y; }
+        @font-face { font-family:'WOW-Walone'; src:url('https://raw.githubusercontent.com/whispermmepub/myanmar-yoe-shin-fonts/main/fonts/Walone-Regular.ttf') format('truetype'); font-display:swap; }
+        @font-face { font-family:'WOW-Yadanabon'; src:url('https://raw.githubusercontent.com/whispermmepub/myanmar-yoe-shin-fonts/main/fonts/A07_Yadanabon-Regular.ttf') format('truetype'); font-display:swap; }
+        @font-face { font-family:'WOW-YoeYar'; src:url('https://raw.githubusercontent.com/whispermmepub/myanmar-yoe-shin-fonts/main/fonts/YoeYar-One-Regular.ttf') format('truetype'); font-display:swap; }
+        @font-face { font-family:'WOW-Pyidaungsu'; src:url('https://raw.githubusercontent.com/whispermmepub/myanmar-yoe-shin-fonts/main/fonts/Pyidaungsu-2.5.3_Regular.ttf') format('truetype'); font-display:swap; }
+        .post-controls { display:flex; align-items:center; flex-wrap:wrap; gap:7px 10px; margin:0 20px 14px; color:#887b70; font-size:.78rem; }
+        .font-picker { max-width:150px; padding:6px 8px; border:1px solid #d9b3a2; border-radius:8px; background:#fff; color:#5d3628; font:inherit; cursor:pointer; }
+        .copy-link { display:inline-flex; align-items:center; justify-content:center; min-width:30px; min-height:29px; padding:3px 7px; border:1px solid #d9b3a2; border-radius:7px; background:#fff; color:#7b4932; font:inherit; cursor:pointer; }
+        .copy-link:hover { background:#a34a42; color:#fff; }
+        .copy-status { color:#a34a42; font-size:.72rem; }
+        .reader-view-count { display:inline-flex; align-items:center; gap:3px; white-space:nowrap; }
+        html[data-theme="dark"] .font-picker, html[data-theme="dark"] .copy-link { background:#2d2636; color:#f5dfbd; border-color:#80648e; }
+        html[data-theme="dark"] .post-controls { color:#b9adbe; }
+        html[data-theme="dark"] .copy-status { color:#e4a197; }
+        @media(max-width:600px) { .post-controls { margin-left:20px; margin-right:20px; font-size:.7rem; } .font-picker { max-width:130px; } }
 
         /* Mobile browser + Telegram in-app browser typography */
         @media (max-width: 600px) {
@@ -553,11 +569,15 @@
         <header>
             <h1>🙏🏻ညီတော်အာနန္ဒာ၏တစ်သက်တာမှတ်တမ်း-ဝဏ္ဏသီရိ</h1>
             <div class="post-meta">📅 2026-04-13 • ✍️ Youths Book Reflections</div>
-            <button type="button" class="theme-toggle" data-theme-toggle aria-pressed="false">🌙 Dark mode</button>
+            <div class="header-controls"><button type="button" class="theme-toggle" data-theme-toggle aria-pressed="false">🌙 Dark mode</button><label for="fontPicker" class="sr-only">ဖွန့်ရွေးရန်</label><select id="fontPicker" class="font-picker" aria-label="ဖွန့်ရွေးရန်"><option value="WOW-Walone">Walone</option><option value="WOW-Yadanabon">Yadanabon</option><option value="WOW-YoeYar">YoeYar</option><option value="WOW-Pyidaungsu">Pyidaungsu</option></select></div>
 
         </header>
 
         <div class="reading-time" id="readingTime">📖 <span id="readTime"></span> ဖတ်ရန်အချိန်</div>
+        <div class="post-controls" aria-label="ဖတ်ရှုရန် ရွေးချယ်စရာများ">
+            <button type="button" id="copyLink" class="copy-link" aria-label="Post link ကော်ပီယူရန်" title="Post link ကော်ပီယူရန်">🔗</button><span id="copyStatus" class="copy-status" role="status" aria-live="polite"></span>
+            <span class="reader-view-count" title="ဒီ post ကို ဖတ်ရှုသူအရေအတွက်">👁️ <span id="readerViewCount">…</span></span>
+        </div>
 
         <div class="post-body">
             <div class="post-content">
@@ -701,6 +721,37 @@
 
         updateBtn();
     </script>
+        <script>
+        // Post controls: persistent custom font, copy current link, and realtime view count.
+        (function() {
+            var picker = document.getElementById('fontPicker');
+            var copy = document.getElementById('copyLink');
+            var copyStatus = document.getElementById('copyStatus');
+            var body = document.querySelector('.post-body');
+            var FONT_KEY = 'wow-reader-font-family';
+            var fonts = ['WOW-Walone','WOW-Yadanabon','WOW-YoeYar','WOW-Pyidaungsu'];
+            var chosen = 'WOW-Walone';
+            try { if (fonts.indexOf(localStorage.getItem(FONT_KEY)) > -1) chosen = localStorage.getItem(FONT_KEY); } catch (_) {}
+            function applyFont(name) {
+                if (fonts.indexOf(name) < 0) name = 'WOW-Walone';
+                if (body) body.querySelectorAll('.post-content, .post-content *').forEach(function(el) { el.style.setProperty('font-family', '"' + name + '", sans-serif', 'important'); });
+                if (picker) picker.value = name;
+                try { localStorage.setItem(FONT_KEY, name); } catch (_) {}
+            }
+            if (picker) { picker.addEventListener('change', function() { applyFont(picker.value); }); applyFont(chosen); }
+            if (copy) copy.addEventListener('click', function() {
+                var url = window.location.href.split('#')[0];
+                function done() { if (copyStatus) { copyStatus.textContent = 'ကော်ပီယူပြီးပါပြီ'; setTimeout(function() { copyStatus.textContent = ''; }, 1800); } }
+                if (navigator.clipboard && navigator.clipboard.writeText) navigator.clipboard.writeText(url).then(done).catch(function() { fallback(); }); else fallback();
+                function fallback() { var area = document.createElement('textarea'); area.value = url; area.style.position = 'fixed'; area.style.opacity = '0'; document.body.appendChild(area); area.select(); try { document.execCommand('copy'); done(); } catch (_) { if (copyStatus) copyStatus.textContent = 'ကော်ပီမရပါ'; } document.body.removeChild(area); }
+            });
+            var count = document.getElementById('readerViewCount');
+            if (count && window.firebase) { try {
+                if (!firebase.apps.length) firebase.initializeApp({ apiKey:'AIzaSyBX28BIHkrQzF7QmAEsoh8OPdEIaFILYRA', authDomain:'github-comment-9f76d.firebaseapp.com', projectId:'github-comment-9f76d', storageBucket:'github-comment-9f76d.firebasestorage.app', messagingSenderId:'423917068098', appId:'1:423917068098:web:bfb899f06ae1375741b2db' });
+                firebase.firestore().collection('reviewStats').doc(String(pid)).onSnapshot(function(doc) { count.textContent = String((doc.exists && doc.data().views) || 0); }, function() { count.textContent = '0'; });
+            } catch (_) { count.textContent = '0'; } }
+        })();
+        </script>
 
         <script>
         // Reader font size: persistent two-finger pinch on the post body.
