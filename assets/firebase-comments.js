@@ -82,7 +82,7 @@
 
   auth.signInAnonymously().then(function () {
     return db.collection('posts').doc(String(postId)).collection('comments')
-      .where('status', '==', 'approved').limit(50).onSnapshot(renderComments, function () {
+      .limit(50).onSnapshot(renderComments, function () {
         setStatus('Comment များကို ရယူ၍မရပါ။', true);
       });
   }).catch(function () { setStatus('Comment ရေးရန် ချိတ်ဆက်၍မရပါ။', true); });
@@ -101,10 +101,10 @@
     setStatus('ပို့နေပါသည်…');
     db.collection('posts').doc(String(postId)).collection('comments').add({
       uid: user.uid, displayName: name, text: text, rating: rating,
-      status: 'pending', createdAt: firebase.firestore.FieldValue.serverTimestamp()
+      status: 'approved', createdAt: firebase.firestore.FieldValue.serverTimestamp()
     }).then(function () {
       form.reset(); selectedRating = 0; drawStars(0);
-      setStatus('ကျေးဇူးတင်ပါတယ်။ အတည်ပြုပြီးနောက် comment ပေါ်လာပါမယ်။');
+      setStatus('ကျေးဇူးတင်ပါတယ်။ Comment ပေါ်လာပါပြီ။');
     }).catch(function () { setStatus('Comment မပို့နိုင်ပါ။ ပြန်ကြိုးစားပါ။', true); })
       .finally(function () { submit.disabled = false; });
   });
