@@ -337,11 +337,28 @@
         .book-group-divider{grid-column:1/-1!important;width:100%!important;height:9px!important;margin:4px 0 10px!important;background:#fff!important;border:1px solid #eee9e3!important;border-radius:2px!important;box-shadow:0 2px 5px rgba(74,55,35,.10)!important}
         @media(max-width:900px){.container,.container[data-view="grid"]{grid-template-columns:repeat(4,minmax(0,1fr))!important;gap:24px 13px!important}.book-group-divider{height:8px!important;margin:2px 0 8px!important}}
         @media(max-width:600px){.container,.container[data-view="grid"]{grid-template-columns:repeat(3,minmax(0,1fr))!important;gap:20px 8px!important}.book-group-divider{height:6px!important;margin:1px 0 7px!important}}
+        .theme-toggle{display:inline-flex!important;align-items:center!important;justify-content:center!important;margin:14px auto 0!important;min-height:38px!important;padding:7px 13px!important;border:1px solid #b99d87!important;border-radius:999px!important;background:#fff8f0!important;color:#5d3628!important;font:inherit!important;font-size:.78rem!important;font-weight:700!important;cursor:pointer!important;box-shadow:0 2px 6px rgba(74,55,35,.10)!important}
+        .theme-toggle:hover{background:#6b4a3a!important;color:#fff!important}
+        html[data-theme="dark"] body{background:#121218!important;color:#eeeaf2!important}
+        html[data-theme="dark"] body>header{background:linear-gradient(135deg,#24212d,#191823)!important;border-color:#51445b!important;box-shadow:0 8px 24px rgba(0,0,0,.35)!important}
+        html[data-theme="dark"] body>header h1{color:#f5dfbd!important}html[data-theme="dark"] body>header p{color:#d4b28f!important}
+        html[data-theme="dark"] .reading-stats,html[data-theme="dark"] .popular-section,html[data-theme="dark"] .catalog-controls{background:#1d1b25!important;border-color:#403747!important;box-shadow:0 5px 16px rgba(0,0,0,.28)!important}
+        html[data-theme="dark"] .reading-stats-title,html[data-theme="dark"] .popular-title{color:#f1d7b5!important}
+        html[data-theme="dark"] .stat-card{background:#282431!important;border-color:#4b4050!important;box-shadow:none!important}html[data-theme="dark"] .stat-value{color:#f1bf75!important}html[data-theme="dark"] .stat-label{color:#b9adbe!important}
+        html[data-theme="dark"] .catalog-search label,html[data-theme="dark"] .results-count{color:#c6baca!important}
+        html[data-theme="dark"] .search-bar,html[data-theme="dark"] .clear-search{background:#282431!important;color:#f4eff8!important;border-color:#51445b!important}
+        html[data-theme="dark"] .post-card,html[data-theme="dark"] .container[data-view="grid"] .post-card{background:#1d1b25!important;border-color:#403747!important;box-shadow:0 4px 12px rgba(0,0,0,.3)!important}
+        html[data-theme="dark"] .card-cover,html[data-theme="dark"] .container[data-view="grid"] .card-cover{background:#282431!important;border-color:#51445b!important}
+        html[data-theme="dark"] .card-title,html[data-theme="dark"] .popular-info strong{color:#f0e9f2!important}
+        html[data-theme="dark"] .popular-info small,html[data-theme="dark"] footer{color:#aaa0b2!important}
+        html[data-theme="dark"] .book-group-divider{background:#fff!important;border-color:#d9d2dc!important}
+        html[data-theme="dark"] .theme-toggle{background:#2d2636!important;color:#f5dfbd!important;border-color:#80648e!important}
+        @media(max-width:600px){.theme-toggle{margin-top:10px!important;font-size:.7rem!important;min-height:34px!important}}
 </style>
 </head>
 <body>
 <header><h1>𝐖𝐡𝐢𝐬𝐩𝐞𝐫 𝐎𝐟 𝐖𝐨𝐫𝐝𝐬 - 𝐦𝐦 𝐄𝐩𝐮𝐛</h1><p>📚 စာအုပ်အညွှန်းများစုစည်းမှု</p><div class="social-links">
-<a href="https://www.facebook.com/mmebookwhisper/" class="social-link facebook" target="_blank">Facebook</a><a href="https://www.youtube.com/@whisperofwordsebook" class="social-link youtube" target="_blank">YouTube</a><a href="https://x.com/whisperw69842" class="social-link twitter" target="_blank">Twitter/X</a><a href="https://t.me/TheBookR" class="social-link telegram" target="_blank">Telegram</a></div></header>
+<a href="https://www.facebook.com/mmebookwhisper/" class="social-link facebook" target="_blank">Facebook</a><a href="https://www.youtube.com/@whisperofwordsebook" class="social-link youtube" target="_blank">YouTube</a><a href="https://x.com/whisperw69842" class="social-link twitter" target="_blank">Twitter/X</a><a href="https://t.me/TheBookR" class="social-link telegram" target="_blank">Telegram</a></div><button type="button" class="theme-toggle" data-theme-toggle aria-pressed="false">🌙 Dark mode</button></header>
 <section class="reading-stats" aria-label="Review Statistics"><div class="reading-stats-title">📊 Review Statistics</div><div class="stats-grid"><div class="stat-card"><span class="stat-icon">📖</span><span class="stat-value" id="stat-books">0</span><span class="stat-label">Review ဖတ်ထားမှု</span></div><div class="stat-card"><span class="stat-icon">⏱️</span><span class="stat-value" id="stat-time">0 min</span><span class="stat-label">Review ဖတ်ချိန်</span></div><div class="stat-card"><span class="stat-icon">🔥</span><span class="stat-value" id="stat-streak">0 days</span><span class="stat-label">Review streak</span></div><div class="stat-card"><span class="stat-icon">📅</span><span class="stat-value" id="stat-today">0 min</span><span class="stat-label">ဒီနေ့ Review ဖတ်ချိန်</span></div></div><div class="stats-sync-area"><p class="stats-sync-status" id="stats-sync-status" role="status" aria-live="polite">လောလောဆယ် ဤ browser ထဲတွင်သာ သိမ်းထားပါသည်။ Google အကောင့်နှင့် ချိတ်လျှင် browser ဒေတာရှင်းပြီးနောက် ပြန်ရယူနိုင်ပါသည်။</p><div class="stats-sync-actions"><button type="button" id="stats-sync-signin">Google အကောင့်ဖြင့် အရန်သိမ်းရန်</button><button type="button" id="stats-sync-signout" hidden>အကောင့်မှ ထွက်ရန်</button></div></div></section>
 <section class="popular-sections" aria-label="Review အမျိုးအစားများ"><div class="popular-section"><h2 class="popular-title">🔥 လူကြိုက်များသော Reviewများ</h2><div id="popular-reviews"><p class="popular-empty">ရယူနေပါသည်…</p></div></div><div class="popular-section"><h2 class="popular-title">📖 အများဆုံးဖတ်ထားသော Reviewများ</h2><div id="most-read-reviews"><p class="popular-empty">ရယူနေပါသည်…</p></div></div><div class="popular-section"><h2 class="popular-title">✨ အသစ်တင်ထားသော Reviewများ</h2><div id="newest-reviews"><p class="popular-empty">ရယူနေပါသည်…</p></div></div></section><section class="catalog-controls" aria-label="စာအုပ်အညွှန်း ရှာဖွေရန်">
   <div class="catalog-controls-top">
@@ -363,7 +380,7 @@ if ('serviceWorker' in navigator) {
   });
 }
 </script>
-<script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-app-compat.js"></script><script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-auth-compat.js"></script><script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore-compat.js"></script><script src="assets/reading-stats.js"></script>
+<script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-app-compat.js"></script><script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-auth-compat.js"></script><script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore-compat.js"></script><script src="assets/theme.js"></script><script src="assets/reading-stats.js"></script>
 <script src="assets/smart-search.js"></script>
 <script src="assets/catalog-views.js"></script>
 <script>
