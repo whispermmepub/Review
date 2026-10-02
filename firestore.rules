@@ -1,0 +1,28 @@
+rules_version = '2';
+service cloud.firestore {
+  match /databases/{database}/documents {
+    match /posts/{postId}/comments/{commentId} {
+      allow read: if true;
+      allow create: if request.auth != null && request.resource.data.status == 'approved';
+      allow update, delete: if false;
+    }
+
+    match /reviewStats/{postId} {
+      allow read: if true;
+      allow create, update: if request.auth != null;
+      allow delete: if false;
+    }
+
+    match /users/{userId}/readingStats/{deviceId} {
+      allow read: if request.auth != null && request.auth.uid == userId;
+      allow create, update: if request.auth != null
+        && request.auth.uid == userId
+        && request.resource.data.keys().hasOnly(['schema', 'reviews', 'totalSeconds', 'daily', 'updatedAt'])
+        && request.resource.data.schema == 1
+        && request.resource.data.reviews is map
+        && request.resource.data.totalSeconds is number
+        && request.resource.data.daily is map;
+      allow delete: if false;
+    }
+  }
+}

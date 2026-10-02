@@ -80,12 +80,25 @@
     });
   }
 
-  auth.signInAnonymously().then(function () {
-    return db.collection('posts').doc(String(postId)).collection('comments')
+  var activeCommentUid = null;
+  var commentUnsubscribe = null;
+  var anonymousSignInPending = false;
+  auth.onAuthStateChanged(function (user) {
+    if (!user) {
+      if (!anonymousSignInPending) {
+        anonymousSignInPending = true;
+        auth.signInAnonymously().catch(function () { setStatus('Comment ရေးရန် ချိတ်ဆက်၍မရပါ။', true); }).then(function () { anonymousSignInPending = false; });
+      }
+      return;
+    }
+    if (activeCommentUid === user.uid) return;
+    if (commentUnsubscribe) commentUnsubscribe();
+    activeCommentUid = user.uid;
+    commentUnsubscribe = db.collection('posts').doc(String(postId)).collection('comments')
       .limit(50).onSnapshot(renderComments, function () {
         setStatus('Comment များကို ရယူ၍မရပါ။', true);
       });
-  }).catch(function () { setStatus('Comment ရေးရန် ချိတ်ဆက်၍မရပါ။', true); });
+  }, function () { setStatus('Comment များကို ရယူ၍မရပါ။', true); });
 
   form.addEventListener('submit', function (event) {
     event.preventDefault();

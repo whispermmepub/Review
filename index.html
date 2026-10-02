@@ -209,12 +209,22 @@
             .stat-value{font-size:.9rem}
             .stat-label{font-size:.64rem}
         }
+
+        .stats-sync-area{display:flex;align-items:center;justify-content:space-between;gap:10px;margin-top:7px;padding-top:7px;border-top:1px solid rgba(255,224,178,.2)}
+        .stats-sync-status{margin:0;color:#f0d5b1;font-size:.74rem;line-height:1.4;text-align:left}
+        .stats-sync-status.is-error{color:#ffd0a1}
+        .stats-sync-actions{display:flex;gap:6px;flex:none}
+        .stats-sync-actions button{min-height:30px;padding:5px 9px;border:1px solid rgba(255,220,170,.3);border-radius:7px;background:rgba(52,29,15,.75);color:#ffe5bb;font:inherit;font-size:.7rem;cursor:pointer}
+        .stats-sync-actions button:hover{background:rgba(72,40,20,.9)}
+        .stats-sync-actions button:disabled{opacity:.65;cursor:wait}
+        .stats-sync-actions button[hidden]{display:none!important}
+        @media(max-width:600px){.stats-sync-area{align-items:stretch;flex-direction:column;gap:6px}.stats-sync-status{text-align:center;font-size:.65rem}.stats-sync-actions{justify-content:center}.stats-sync-actions button{min-height:28px;font-size:.64rem}}
     </style>
 </head>
 <body>
 <header><h1>𝐖𝐡𝐢𝐬𝐩𝐞𝐫 𝐎𝐟 𝐖𝐨𝐫𝐝𝐬 - 𝐦𝐦 𝐄𝐩𝐮𝐛</h1><p>📚 စာအုပ်အညွှန်းများစုစည်းမှု</p><div class="social-links">
 <a href="https://www.facebook.com/mmebookwhisper/" class="social-link facebook" target="_blank">Facebook</a><a href="https://www.youtube.com/@whisperofwordsebook" class="social-link youtube" target="_blank">YouTube</a><a href="https://x.com/whisperw69842" class="social-link twitter" target="_blank">Twitter/X</a><a href="https://t.me/TheBookR" class="social-link telegram" target="_blank">Telegram</a></div></header>
-<section class="reading-stats" aria-label="Review Statistics"><div class="reading-stats-title">📊 Review Statistics</div><div class="stats-grid"><div class="stat-card"><span class="stat-icon">📖</span><span class="stat-value" id="stat-books">0</span><span class="stat-label">Review ဖတ်ထားမှု</span></div><div class="stat-card"><span class="stat-icon">⏱️</span><span class="stat-value" id="stat-time">0 min</span><span class="stat-label">Review ဖတ်ချိန်</span></div><div class="stat-card"><span class="stat-icon">🔥</span><span class="stat-value" id="stat-streak">0 days</span><span class="stat-label">Review streak</span></div><div class="stat-card"><span class="stat-icon">📅</span><span class="stat-value" id="stat-today">0 min</span><span class="stat-label">ဒီနေ့ Review ဖတ်ချိန်</span></div></div></section>
+<section class="reading-stats" aria-label="Review Statistics"><div class="reading-stats-title">📊 Review Statistics</div><div class="stats-grid"><div class="stat-card"><span class="stat-icon">📖</span><span class="stat-value" id="stat-books">0</span><span class="stat-label">Review ဖတ်ထားမှု</span></div><div class="stat-card"><span class="stat-icon">⏱️</span><span class="stat-value" id="stat-time">0 min</span><span class="stat-label">Review ဖတ်ချိန်</span></div><div class="stat-card"><span class="stat-icon">🔥</span><span class="stat-value" id="stat-streak">0 days</span><span class="stat-label">Review streak</span></div><div class="stat-card"><span class="stat-icon">📅</span><span class="stat-value" id="stat-today">0 min</span><span class="stat-label">ဒီနေ့ Review ဖတ်ချိန်</span></div></div><div class="stats-sync-area"><p class="stats-sync-status" id="stats-sync-status" role="status" aria-live="polite">လောလောဆယ် ဤ browser ထဲတွင်သာ သိမ်းထားပါသည်။ Google အကောင့်နှင့် ချိတ်လျှင် browser ဒေတာရှင်းပြီးနောက် ပြန်ရယူနိုင်ပါသည်။</p><div class="stats-sync-actions"><button type="button" id="stats-sync-signin">Google အကောင့်ဖြင့် အရန်သိမ်းရန်</button><button type="button" id="stats-sync-signout" hidden>အကောင့်မှ ထွက်ရန်</button></div></div></section>
 <section class="popular-sections" aria-label="Review အမျိုးအစားများ"><div class="popular-section"><h2 class="popular-title">🔥 လူကြိုက်များသော Reviewများ</h2><div id="popular-reviews"><p class="popular-empty">ရယူနေပါသည်…</p></div></div><div class="popular-section"><h2 class="popular-title">📖 အများဆုံးဖတ်ထားသော Reviewများ</h2><div id="most-read-reviews"><p class="popular-empty">ရယူနေပါသည်…</p></div></div><div class="popular-section"><h2 class="popular-title">✨ အသစ်တင်ထားသော Reviewများ</h2><div id="newest-reviews"><p class="popular-empty">ရယူနေပါသည်…</p></div></div></section><section class="catalog-controls" aria-label="စာအုပ်အညွှန်း ရှာဖွေမှုနှင့် မြင်ကွင်းရွေးချယ်မှု">
   <div class="catalog-controls-top">
     <div class="catalog-search">
@@ -265,5 +275,6 @@ function renderReadingStats(){
 }
 renderReadingStats();
 window.addEventListener('pageshow',renderReadingStats);
+window.addEventListener('wow:reading-stats-updated',renderReadingStats);
 window.WOWCatalogViews.init();
 </script><script src="assets/popular-reviews.js"></script></body></html>
