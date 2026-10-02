@@ -396,6 +396,16 @@
         .popular-info{position:relative!important;z-index:2!important;background:rgba(255,253,251,.86)!important;padding:2px 3px!important;border-radius:3px!important;text-align:center!important}
         @media(max-width:900px){.card-cover,.container[data-view="grid"] .card-cover{height:232px!important}.popular-card{height:190px!important}.popular-card img,.popular-card .popular-placeholder{height:150px!important}}
         @media(max-width:600px){.card-cover,.container[data-view="grid"] .card-cover{height:180px!important;padding:0 5px 14px!important}.card-cover::before{bottom:11px!important}.card-cover::after{height:7px!important;bottom:3px!important}.card-cover .card-img,.card-cover .card-img-placeholder{width:clamp(52px,20vw,84px)!important;height:clamp(110px,31vw,145px)!important;filter:drop-shadow(4px 5px 2px rgba(50,40,30,.24))!important}.popular-card{height:165px!important;padding-bottom:10px!important}.popular-card::before{top:4px!important;bottom:13px!important}.popular-card::after{height:6px!important}.popular-card img,.popular-card .popular-placeholder{height:128px!important;width:clamp(40px,22vw,70px)!important}.popular-info strong{font-size:.58rem!important}.popular-info{padding:1px 2px!important}}
+        /* Proportion finish: preserve real cover ratios inside consistent 2:3 mockup frames. */
+        .card-cover .card-img,.card-cover .card-img-placeholder{width:clamp(72px,8.4vw,126px)!important;height:auto!important;aspect-ratio:2/3!important;object-fit:contain!important;object-position:center!important;box-sizing:border-box!important;transform:perspective(900px) rotateY(-4deg) rotateZ(-.7deg)!important}
+        .post-card:nth-child(3n+2) .card-cover .card-img,.post-card:nth-child(3n+2) .card-cover .card-img-placeholder{transform:perspective(900px) rotateY(4deg) rotateZ(.7deg)!important}
+        .post-card:nth-child(3n) .card-cover .card-img,.post-card:nth-child(3n) .card-cover .card-img-placeholder{transform:perspective(900px) rotateY(-3deg) rotateZ(-.4deg)!important}
+        .card-cover .card-img-placeholder{height:auto!important;min-height:0!important;display:flex!important;align-items:center!important;justify-content:center!important}
+        .popular-card img,.popular-card .popular-placeholder{width:clamp(52px,7.4vw,104px)!important;height:auto!important;aspect-ratio:2/3!important;object-fit:contain!important;object-position:center!important;box-sizing:border-box!important;transform:perspective(900px) rotateY(-4deg) rotateZ(-.7deg)!important}
+        .popular-card:nth-child(2) img,.popular-card:nth-child(2) .popular-placeholder{transform:perspective(900px) rotateY(4deg) rotateZ(.7deg)!important}
+        .popular-card:nth-child(3) img,.popular-card:nth-child(3) .popular-placeholder{transform:perspective(900px) rotateY(-3deg) rotateZ(-.4deg)!important}
+        .popular-card:hover img,.popular-card:hover .popular-placeholder,.post-card:hover .card-cover .card-img,.post-card:hover .card-cover .card-img-placeholder{transform:perspective(900px) translateY(-5px) rotateY(0deg) rotateZ(0deg)!important}
+        @media(max-width:600px){.card-cover .card-img,.card-cover .card-img-placeholder{width:clamp(54px,19vw,80px)!important}.popular-card img,.popular-card .popular-placeholder{width:clamp(40px,20vw,64px)!important}}
 </style>
 </head>
 <body>
