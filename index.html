@@ -60,13 +60,85 @@
         .post-card:hover{transform:translateY(-4px);box-shadow:0 12px 18px rgba(20,7,2,.55),0 0 0 2px rgba(224,145,74,.25)}
         .card-img,.card-img-placeholder{height:136px;flex:none}.card-content{display:flex;flex:1;flex-direction:column;min-height:0}.card-title{display:-webkit-box;-webkit-box-orient:vertical;-webkit-line-clamp:2;overflow:hidden}.card-meta{display:-webkit-box;-webkit-box-orient:vertical;-webkit-line-clamp:2;overflow:hidden}.card-excerpt{-webkit-line-clamp:2;margin-top:auto}
         @media(max-width:600px){.container{padding:12px 8px 20px;border-width:6px;border-radius:16px;background:repeating-linear-gradient(0deg,rgba(83,36,15,.72) 0,rgba(83,36,15,.72) 7px,rgba(34,14,7,.78) 7px,rgba(34,14,7,.78) 10px,transparent 10px,transparent 190px),linear-gradient(135deg,#7d431f,#35170b 72%)}.post-card{height:225px;border-radius:8px}.card-img,.card-img-placeholder{height:94px}.card-content{padding:7px!important}.card-title{font-size:.82rem!important;-webkit-line-clamp:2}.card-meta{font-size:.67rem!important;margin-bottom:3px;-webkit-line-clamp:1}.card-excerpt{font-size:.70rem!important;line-height:1.35!important;-webkit-line-clamp:2}}
+
+        /* Catalog filters, accessible controls, and clearer compact bookshelf cards */
+        .search-section{margin-bottom:12px}
+        .search-bar:focus-visible,.filter-chip:focus-visible,.sort-select:focus-visible,.clear-filters:focus-visible,.post-card:focus-visible{outline:3px solid #ffd08a;outline-offset:3px}
+        .catalog-toolbar{width:100%;max-width:1600px;margin:0 auto 18px;padding:14px 16px;border:1px solid rgba(255,214,160,.22);border-radius:16px;background:linear-gradient(135deg,rgba(35,24,42,.96),rgba(25,20,38,.96));box-shadow:0 8px 22px rgba(0,0,0,.24)}
+        .filter-row{display:grid;grid-template-columns:92px minmax(0,1fr);align-items:center;gap:10px;padding:5px 0}
+        .filter-heading{font-size:.86rem;line-height:1.3;color:#f0c18d;font-weight:700}
+        .filter-chips{display:flex;align-items:center;gap:7px;min-width:0;overflow-x:auto;padding:3px 2px 6px;scrollbar-width:thin;scrollbar-color:#8b5936 transparent}
+        .filter-chip{flex:0 0 auto;max-width:230px;min-height:40px;padding:7px 12px;border:1px solid rgba(255,220,170,.22);border-radius:999px;background:#241d32;color:#ddd;font:inherit;font-size:.78rem;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;cursor:pointer;transition:background .18s,border-color .18s,color .18s,transform .18s}
+        .filter-chip:hover{border-color:#d89a60;color:#fff;transform:translateY(-1px)}
+        .filter-chip[aria-pressed="true"]{background:linear-gradient(135deg,#87502b,#5d341f);border-color:#f0bd7d;color:#fff;box-shadow:0 2px 8px rgba(0,0,0,.22)}
+        .toolbar-footer{display:flex;align-items:center;gap:10px;flex-wrap:wrap;padding-top:10px;margin-top:4px;border-top:1px solid rgba(255,255,255,.08)}
+        .sort-control{display:flex;align-items:center;gap:8px;color:#e8d0b5;font-size:.84rem;font-weight:700}
+        .sort-select,.clear-filters{min-height:42px;border:1px solid rgba(255,220,170,.24);border-radius:10px;background:#1a1830;color:#eee;font:inherit;font-size:.82rem;padding:8px 12px}
+        .sort-select{max-width:240px}.sort-select option{background:#1a1830;color:#fff}
+        .clear-filters{cursor:pointer;color:#ffd08a;background:rgba(130,77,40,.2)}.clear-filters:hover{background:rgba(130,77,40,.42)}
+        .results-count{margin-left:auto;color:#b9b0c4;font-size:.8rem}
+        .container{background:repeating-linear-gradient(105deg,rgba(255,203,135,.025) 0 2px,transparent 2px 34px),linear-gradient(135deg,#774322,#482511 58%,#35180c)}
+        .container::after{content:"";position:absolute;z-index:0;pointer-events:none;left:8px;right:8px;top:26px;bottom:8px;background:repeating-linear-gradient(to bottom,transparent 0 300px,rgba(31,11,3,.9) 300px 303px,rgba(215,150,85,.72) 303px 308px,rgba(77,34,13,.95) 308px 312px)}
+        .post-card{z-index:1;border:1px solid rgba(255,220,164,.24);background:linear-gradient(180deg,#29223d,#17142c);box-shadow:0 7px 12px rgba(22,8,2,.5),inset 0 1px 0 rgba(255,255,255,.1)}
+        .card-cover{position:relative;flex:none;width:100%;height:136px;overflow:hidden;background:linear-gradient(145deg,#41304a,#20162d)}
+        .card-cover .card-img,.card-cover .card-img-placeholder{display:block;width:100%;height:100%;object-fit:cover;object-position:center 24%;transition:transform .28s ease}
+        .card-cover .card-img-placeholder{display:flex;align-items:center;justify-content:center;font-size:1.8rem;background:linear-gradient(145deg,#98603a,#4b2615)}
+        .post-card:hover .card-cover .card-img{transform:scale(1.035)}
+        .card-category{position:absolute;left:7px;top:7px;max-width:calc(100% - 14px);padding:4px 8px;border:1px solid rgba(255,231,195,.25);border-radius:999px;background:rgba(25,15,20,.78);color:#ffdfb3;font-size:.66rem;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;backdrop-filter:blur(6px)}
+        .card-content{gap:6px;padding:10px 12px!important}
+        .card-meta{display:flex;align-items:center;justify-content:space-between;gap:5px;min-width:0;margin:0!important;color:#dca875;font-size:.75rem!important;line-height:1.35}
+        .card-author{min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+        .card-date{flex:none;color:#b9a6a0;font-size:.68rem;white-space:nowrap}
+        .card-title{min-height:2.65em;margin:0!important;color:#f1e9dc;font-size:1.04rem;line-height:1.32!important;display:-webkit-box;-webkit-box-orient:vertical;-webkit-line-clamp:2;overflow:hidden;overflow-wrap:anywhere}
+        .card-excerpt{min-height:2.7em;margin:0!important;color:#c3bbc4;font-size:.82rem;line-height:1.38!important;-webkit-line-clamp:2}
+        .card-read-more{display:block;margin-top:auto;padding-top:3px;color:#f2bc7b;font-size:.72rem;font-weight:700;line-height:1.2}
+        .post-card:focus-visible{transform:translateY(-3px)}
+        @media(max-width:600px){
+            .container{grid-template-columns:repeat(3,minmax(0,1fr));gap:8px;padding:12px 8px 20px;background:repeating-linear-gradient(105deg,rgba(255,203,135,.025) 0 2px,transparent 2px 30px),linear-gradient(135deg,#774322,#482511 58%,#35180c)}
+            .container::after{top:18px;bottom:8px;background:repeating-linear-gradient(to bottom,transparent 0 225px,rgba(31,11,3,.9) 225px 228px,rgba(215,150,85,.72) 228px 230px,rgba(77,34,13,.95) 230px 233px)}
+            .catalog-toolbar{padding:10px 9px;margin-bottom:14px;border-radius:12px}
+            .filter-row{grid-template-columns:62px minmax(0,1fr);gap:6px;padding:3px 0}
+            .filter-heading{font-size:.72rem}
+            .filter-chips{gap:5px}
+            .filter-chip{max-width:180px;min-height:38px;padding:6px 10px;font-size:.7rem}
+            .toolbar-footer{gap:7px;padding-top:8px}
+            .sort-control{gap:5px;font-size:.72rem}.sort-select,.clear-filters{min-height:40px;padding:7px 8px;font-size:.7rem}.sort-select{max-width:175px}
+            .results-count{width:100%;margin:0;font-size:.72rem}
+            .post-card{height:225px}.card-cover{height:94px}
+            .card-content{gap:4px;padding:7px!important}
+            .card-category{left:5px;top:5px;padding:3px 6px;font-size:.55rem}
+            .card-meta{gap:3px;font-size:.61rem!important;line-height:1.2}
+            .card-date{font-size:.56rem}
+            .card-title{min-height:2.55em;font-size:.78rem!important;line-height:1.28!important}
+            .card-excerpt{min-height:2.65em;font-size:.65rem!important;line-height:1.32!important}
+            .card-read-more{font-size:.61rem;padding-top:1px}
+        }
+        @media(max-width:360px){.filter-row{grid-template-columns:55px minmax(0,1fr)}.card-content{padding:6px!important}.card-title{font-size:.73rem!important}.card-meta{font-size:.56rem!important}.card-date{font-size:.52rem}.card-excerpt{font-size:.61rem!important}.card-read-more{font-size:.56rem}}
+        @media(hover:none){.post-card:hover{transform:none}.post-card:hover .card-cover .card-img{transform:none}}
+
     </style>
 </head>
 <body>
 <header><h1>𝐖𝐡𝐢𝐬𝐩𝐞𝐫 𝐎𝐟 𝐖𝐨𝐫𝐝𝐬 - 𝐦𝐦 𝐄𝐩𝐮𝐛</h1><p>📚 စာအုပ်အညွှန်းများစုစည်းမှု</p><div class="social-links">
 <a href="https://www.facebook.com/mmebookwhisper/" class="social-link facebook" target="_blank">Facebook</a><a href="https://www.youtube.com/@whisperofwordsebook" class="social-link youtube" target="_blank">YouTube</a><a href="https://x.com/whisperw69842" class="social-link twitter" target="_blank">Twitter/X</a><a href="https://t.me/TheBookR" class="social-link telegram" target="_blank">Telegram</a></div></header>
 <section class="reading-stats" aria-label="Review Statistics"><div class="reading-stats-title">📊 Review Statistics</div><div class="stats-grid"><div class="stat-card"><span class="stat-icon">📖</span><span class="stat-value" id="stat-books">0</span><span class="stat-label">Review ဖတ်ထားမှု</span></div><div class="stat-card"><span class="stat-icon">⏱️</span><span class="stat-value" id="stat-time">0 min</span><span class="stat-label">Review ဖတ်ချိန်</span></div><div class="stat-card"><span class="stat-icon">🔥</span><span class="stat-value" id="stat-streak">0 days</span><span class="stat-label">Review streak</span></div><div class="stat-card"><span class="stat-icon">📅</span><span class="stat-value" id="stat-today">0 min</span><span class="stat-label">ဒီနေ့ Review ဖတ်ချိန်</span></div></div></section>
-<section class="popular-sections" aria-label="Review အမျိုးအစားများ"><div class="popular-section"><h2 class="popular-title">🔥 လူကြိုက်များသော Reviewများ</h2><div id="popular-reviews"><p class="popular-empty">ရယူနေပါသည်…</p></div></div><div class="popular-section"><h2 class="popular-title">📖 အများဆုံးဖတ်ထားသော Reviewများ</h2><div id="most-read-reviews"><p class="popular-empty">ရယူနေပါသည်…</p></div></div><div class="popular-section"><h2 class="popular-title">✨ အသစ်တင်ထားသော Reviewများ</h2><div id="newest-reviews"><p class="popular-empty">ရယူနေပါသည်…</p></div></div></section><div class="search-section"><div class="search-label">🔍 စာအုပ်အညွှန်း ရှာဖွေရန်</div><input type="text" class="search-bar" id="search-input" placeholder="စာအုပ်အမည် သို့မဟုတ် စာရေးဆရာအမည် ရိုက်ထည့်ပါ..."></div><div class="container" id="posts-container"><div class="loading">📖 ပို့စ်များကို ရယူနေပါသည်...</div></div><footer><p>&copy; 2026 <a href="index.html" style="color:#8b5cf6;text-decoration:none;font-weight:600">𝐖𝐡𝐢𝐬𝐩𝐞𝐫 𝐎𝐟 𝐖𝐨𝐫𝐝𝐬 - 𝐦𝐦 𝐄𝐩𝐮𝐛</a></p></footer>
+<section class="popular-sections" aria-label="Review အမျိုးအစားများ"><div class="popular-section"><h2 class="popular-title">🔥 လူကြိုက်များသော Reviewများ</h2><div id="popular-reviews"><p class="popular-empty">ရယူနေပါသည်…</p></div></div><div class="popular-section"><h2 class="popular-title">📖 အများဆုံးဖတ်ထားသော Reviewများ</h2><div id="most-read-reviews"><p class="popular-empty">ရယူနေပါသည်…</p></div></div><div class="popular-section"><h2 class="popular-title">✨ အသစ်တင်ထားသော Reviewများ</h2><div id="newest-reviews"><p class="popular-empty">ရယူနေပါသည်…</p></div></div></section><div class="search-section"><div class="search-label">🔍 စာအုပ်အညွှန်း ရှာဖွေရန်</div><input type="text" class="search-bar" id="search-input" placeholder="စာအုပ်အမည် သို့မဟုတ် စာရေးဆရာအမည် ရိုက်ထည့်ပါ..."></div><section class="catalog-toolbar" aria-label="Review များကို စစ်ထုတ်ခြင်းနှင့် စီခြင်း">
+    <div class="filter-row"><h2 class="filter-heading">စာရေးသူ</h2><div class="filter-chips" id="author-filters" role="group" aria-label="စာရေးသူအလိုက် စစ်ထုတ်ရန်"></div></div>
+    <div class="filter-row"><h2 class="filter-heading">အမျိုးအစား</h2><div class="filter-chips" id="category-filters" role="group" aria-label="အမျိုးအစားအလိုက် စစ်ထုတ်ရန်"></div></div>
+    <div class="filter-row"><h2 class="filter-heading">ခုနှစ်</h2><div class="filter-chips" id="year-filters" role="group" aria-label="ခုနှစ်အလိုက် စစ်ထုတ်ရန်"></div></div>
+    <div class="toolbar-footer"><label class="sort-control" for="sort-select">စီရန်
+        <select id="sort-select" class="sort-select">
+            <option value="relevance">သက်ဆိုင်မှု / မူလအစဉ်</option>
+            <option value="newest">အသစ်ဆုံးအရင်</option>
+            <option value="oldest">အဟောင်းဆုံးအရင်</option>
+            <option value="title">ခေါင်းစဉ် A–Z</option>
+            <option value="author">စာရေးသူအလိုက်</option>
+        </select>
+    </label>
+    <button type="button" id="clear-filters" class="clear-filters">စစ်ထုတ်မှုရှင်းရန်</button>
+    <p class="results-count" id="results-count" role="status" aria-live="polite"></p></div>
+</section>
+<div class="container" id="posts-container"><div class="loading">📖 ပို့စ်များကို ရယူနေပါသည်...</div></div><footer><p>&copy; 2026 <a href="index.html" style="color:#8b5cf6;text-decoration:none;font-weight:600">𝐖𝐡𝐢𝐬𝐩𝐞𝐫 𝐎𝐟 𝐖𝐨𝐫𝐝𝐬 - 𝐦𝐦 𝐄𝐩𝐮𝐛</a></p></footer>
 <script>
 if ('serviceWorker' in navigator) {
   navigator.serviceWorker.getRegistrations().then(function(regs) {
@@ -77,7 +149,138 @@ if ('serviceWorker' in navigator) {
 <script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-app-compat.js"></script><script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-auth-compat.js"></script><script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore-compat.js"></script><script src="assets/reading-stats.js"></script>
 <script src="assets/smart-search.js"></script>
 <script>
-function renderReadingStats(){const s=window.WOWReadingStats?window.WOWReadingStats.get():{reviews:{},totalSeconds:0,daily:{}};const reviews=s.reviews||s.books||{};const mins=Math.floor((s.totalSeconds||0)/60);const localKey=function(d){return d.getFullYear()+'-'+String(d.getMonth()+1).padStart(2,'0')+'-'+String(d.getDate()).padStart(2,'0')};const todayKey=localKey(new Date());const today=Math.floor(((s.daily||{})[todayKey]||0)/60);let streak=0,d=new Date(),daily=s.daily||{};if(!daily[todayKey])d.setDate(d.getDate()-1);while(daily[localKey(d)]){streak++;d.setDate(d.getDate()-1)}document.getElementById('stat-books').textContent=Object.keys(reviews).length;document.getElementById('stat-time').textContent=mins+' min';document.getElementById('stat-today').textContent=today+' min';document.getElementById('stat-streak').textContent=streak+' days'}
-let allPosts=[];async function loadPosts(){try{const response=await fetch('assets/posts.json');const posts=await response.json();allPosts=posts;renderPosts(posts)}catch(err){document.getElementById('posts-container').innerHTML='<div class="loading">ပို့စ်များကို ဖတ်၍မရပါ။ <a href="https://whisper1of.blogspot.com" target="_blank">Blog မှာ ဖတ်ပါ</a></div>'}}function renderPosts(posts){const container=document.getElementById('posts-container');container.innerHTML='';if(posts.length===0){container.innerHTML='<div class="no-results">🔍 ရှာဖွေချက်နှင့် ကိုက်ညီသည့် ပို့စ် မတွေ့ပါ။</div>';return}const fragment=document.createDocumentFragment();posts.forEach(post=>{const card=document.createElement('a');card.className='post-card';card.href=post.link;let imgHtml=post.image?'<img src="'+post.image+'" class="card-img" alt="'+post.title+'" loading="lazy" decoding="async" fetchpriority="low">':'<div class="card-img-placeholder">📖</div>';card.innerHTML=imgHtml+'<div class="card-content"><div class="card-meta">📅 '+post.date+' • ✍️ '+post.author+'</div><div class="card-title">'+post.title+'</div><div class="card-excerpt">'+post.excerpt+'</div></div>';fragment.appendChild(card)});container.appendChild(fragment)}
-const searchInput=document.getElementById('search-input');let searchTimer=null;searchInput.addEventListener('input',function(){const value=this.value;clearTimeout(searchTimer);searchTimer=setTimeout(function(){if(window.WOWSmartSearch){renderPosts(WOWSmartSearch.search(allPosts,value));return}const query=value.toLowerCase().trim();if(!query){renderPosts(allPosts);return}renderPosts(allPosts.filter(p=>(p.title&&p.title.toLowerCase().includes(query))||(p.author&&p.author.toLowerCase().includes(query))||(p.excerpt&&p.excerpt.toLowerCase().includes(query))))},120)});loadPosts();renderReadingStats();window.addEventListener('pageshow',renderReadingStats);
-</script><script src="assets/popular-reviews.js"></script></body></html>
+function renderReadingStats(){
+  const stats=window.WOWReadingStats?window.WOWReadingStats.get():{reviews:{},totalSeconds:0,daily:{}};
+  const reviews=stats.reviews||stats.books||{};
+  const localKey=function(d){return d.getFullYear()+'-'+String(d.getMonth()+1).padStart(2,'0')+'-'+String(d.getDate()).padStart(2,'0')};
+  const todayKey=localKey(new Date());
+  const minutes=Math.floor((stats.totalSeconds||0)/60);
+  const today=Math.floor(((stats.daily||{})[todayKey]||0)/60);
+  let streak=0,date=new Date(),daily=stats.daily||{};
+  if(!daily[todayKey])date.setDate(date.getDate()-1);
+  while(daily[localKey(date)]){streak++;date.setDate(date.getDate()-1)}
+  document.getElementById('stat-books').textContent=Object.keys(reviews).length;
+  document.getElementById('stat-time').textContent=minutes+' min';
+  document.getElementById('stat-today').textContent=today+' min';
+  document.getElementById('stat-streak').textContent=streak+' days';
+}
+
+let allPosts=[];
+const filterState={author:'',category:'',year:''};
+const searchInput=document.getElementById('search-input');
+const sortSelect=document.getElementById('sort-select');
+const resultsCount=document.getElementById('results-count');
+const filterGroups=[
+  {key:'author',id:'author-filters',label:'စာရေးသူ'},
+  {key:'category',id:'category-filters',label:'အမျိုးအစား'},
+  {key:'year',id:'year-filters',label:'ခုနှစ်'}
+];
+
+function createElement(tag,className,text){
+  const element=document.createElement(tag);
+  if(className)element.className=className;
+  if(text!==undefined)element.textContent=String(text);
+  return element;
+}
+function uniqueValues(posts,key,convert){
+  return Array.from(new Set(posts.map(function(post){return convert?convert(post):String(post[key]||'').trim()}).filter(Boolean)));
+}
+function buildFilterChips(group,values){
+  const host=document.getElementById(group.id);
+  host.replaceChildren();
+  [['','အားလုံး']].concat(values.map(function(value){return [value,value]})).forEach(function(pair){
+    const value=pair[0],label=pair[1];
+    const chip=createElement('button','filter-chip',label);
+    chip.type='button';chip.dataset.value=value;chip.title=label;
+    chip.setAttribute('aria-pressed',String(filterState[group.key]===value));
+    chip.addEventListener('click',function(){
+      filterState[group.key]=value;
+      host.querySelectorAll('.filter-chip').forEach(function(button){button.setAttribute('aria-pressed',String(button.dataset.value===value))});
+      renderCatalog();
+    });
+    host.appendChild(chip);
+  });
+}
+function populateFilters(){
+  const authorCounts={};
+  allPosts.forEach(function(post){const author=String(post.author||'').trim();if(author)authorCounts[author]=(authorCounts[author]||0)+1});
+  const authors=Object.keys(authorCounts).sort(function(a,b){return authorCounts[b]-authorCounts[a]||a.localeCompare(b,'my')});
+  const categories=uniqueValues(allPosts,'category').sort(function(a,b){return a.localeCompare(b,'my')});
+  const years=uniqueValues(allPosts,'date',function(post){const match=String(post.date||'').match(/^\d{4}/);return match?match[0]:''}).sort(function(a,b){return Number(b)-Number(a)});
+  buildFilterChips(filterGroups[0],authors);
+  buildFilterChips(filterGroups[1],categories);
+  buildFilterChips(filterGroups[2],years);
+}
+function safeWebUrl(value){
+  const raw=String(value||'').trim();
+  if(!raw)return '';
+  try{const url=new URL(raw,window.location.href);return url.protocol==='https:'||url.protocol==='http:'?url.href:''}catch(_){return ''}
+}
+function renderPosts(posts){
+  const container=document.getElementById('posts-container');
+  container.replaceChildren();
+  if(!posts.length){container.appendChild(createElement('div','no-results','🔍 ရှာဖွေချက်နှင့် ကိုက်ညီသည့် Review မတွေ့ပါ။'));return}
+  const fragment=document.createDocumentFragment();
+  posts.forEach(function(post){
+    const title=String(post.title||'စာအုပ်အညွှန်း');
+    const author=String(post.author||'Whisper Of Words');
+    const card=createElement('a','post-card');
+    card.href=safeWebUrl(post.link)||'#';
+    card.setAttribute('aria-label',title+' — '+author);
+    const cover=createElement('div','card-cover');
+    const imageUrl=safeWebUrl(post.image);
+    if(imageUrl){
+      const image=createElement('img','card-img');
+      image.src=imageUrl;image.alt=title;image.loading='lazy';image.decoding='async';image.fetchPriority='low';
+      cover.appendChild(image);
+    }else cover.appendChild(createElement('div','card-img-placeholder','📖'));
+    if(post.category)cover.appendChild(createElement('span','card-category',post.category));
+    const content=createElement('div','card-content');
+    const meta=createElement('div','card-meta');
+    meta.appendChild(createElement('span','card-author','✍️ '+author));
+    const date=createElement('time','card-date','📅 '+String(post.date||''));
+    if(/^\d{4}-\d{2}-\d{2}$/.test(String(post.date||'')))date.dateTime=post.date;
+    meta.appendChild(date);
+    content.appendChild(meta);
+    content.appendChild(createElement('h3','card-title',title));
+    content.appendChild(createElement('p','card-excerpt',post.excerpt||''));
+    content.appendChild(createElement('span','card-read-more','ဖတ်ရန် →'));
+    card.appendChild(cover);card.appendChild(content);fragment.appendChild(card);
+  });
+  container.appendChild(fragment);
+}
+function renderCatalog(){
+  const query=searchInput.value.trim();
+  let results=allPosts.filter(function(post){
+    const date=String(post.date||'');
+    return (!filterState.author||String(post.author||'').trim()===filterState.author)
+      &&(!filterState.category||String(post.category||'').trim()===filterState.category)
+      &&(!filterState.year||date.slice(0,4)===filterState.year);
+  });
+  if(query&&window.WOWSmartSearch)results=window.WOWSmartSearch.search(results,query);
+  else if(query){const q=query.toLocaleLowerCase();results=results.filter(function(post){return [post.title,post.author,post.category,post.tags,post.excerpt].join(' ').toLocaleLowerCase().includes(q)})}
+  const sort=sortSelect.value;
+  if(sort==='newest')results.sort(function(a,b){return String(b.date||'').localeCompare(String(a.date||''))});
+  else if(sort==='oldest')results.sort(function(a,b){return String(a.date||'').localeCompare(String(b.date||''))});
+  else if(sort==='title')results.sort(function(a,b){return String(a.title||'').localeCompare(String(b.title||''),'my')});
+  else if(sort==='author')results.sort(function(a,b){return String(a.author||'').localeCompare(String(b.author||''),'my')||String(a.title||'').localeCompare(String(b.title||''),'my')});
+  resultsCount.textContent='တွေ့ရှိမှု '+results.length+' / '+allPosts.length+' ခု';
+  renderPosts(results);
+}
+async function loadPosts(){
+  const container=document.getElementById('posts-container');
+  try{
+    const response=await fetch('assets/posts.json');
+    if(!response.ok)throw new Error('Review list request failed');
+    const posts=await response.json();
+    allPosts=Array.isArray(posts)?posts:[];
+    populateFilters();renderCatalog();
+  }catch(error){container.replaceChildren(createElement('div','loading','ပို့စ်များကို ဖတ်၍မရပါ။ Blog မှာ ဖတ်ပါ။'))}
+}
+let searchTimer=null;
+searchInput.addEventListener('input',function(){clearTimeout(searchTimer);searchTimer=setTimeout(renderCatalog,120)});
+sortSelect.addEventListener('change',renderCatalog);
+document.getElementById('clear-filters').addEventListener('click',function(){
+  filterState.author='';filterState.category='';filterState.year='';searchInput.value='';sortSelect.value='relevance';populateFilters();renderCatalog();searchInput.focus();
+});
+loadPosts();renderReadingStats();window.addEventListener('pageshow',renderReadingStats);</script><script src="assets/popular-reviews.js"></script></body></html>
