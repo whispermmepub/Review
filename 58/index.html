@@ -542,7 +542,6 @@
         @font-face { font-family:'WOW-MyanmarSagar'; src:url('https://raw.githubusercontent.com/whispermmepub/myanmar-yoe-shin-fonts/main/fonts/MyanmarSagar.ttf') format('truetype'); font-display:swap; }
         @font-face { font-family:'WOW-MyanmarBlack'; src:url('https://raw.githubusercontent.com/whispermmepub/myanmar-yoe-shin-fonts/main/fonts/MyanmarBlack.ttf') format('truetype'); font-display:swap; }
         @font-face { font-family:'WOW-BurmeseHandwriting'; src:url('https://raw.githubusercontent.com/whispermmepub/myanmar-yoe-shin-fonts/main/fonts/Burmese-Handwriting.ttf') format('truetype'); font-display:swap; }
-        @font-face { font-family:'WOW-Tharlon'; src:url('https://raw.githubusercontent.com/whispermmepub/myanmar-yoe-shin-fonts/main/fonts/Tharlon-Regular.ttf') format('truetype'); font-display:swap; }
         .post-controls { display:flex; align-items:center; flex-wrap:wrap; gap:7px 10px; margin:0 20px 14px; color:#887b70; font-size:.78rem; }
         .font-picker { max-width:150px; padding:6px 8px; border:1px solid #d9b3a2; border-radius:8px; background:#fff; color:#5d3628; font:inherit; cursor:pointer; }
         .copy-link { display:inline-flex; align-items:center; justify-content:center; min-width:30px; min-height:29px; padding:3px 7px; border:1px solid #d9b3a2; border-radius:7px; background:#fff; color:#7b4932; font:inherit; cursor:pointer; }
@@ -575,7 +574,7 @@
         <header>
             <h1>ဂျာနယ်ကျော်မမလေး (သို့မဟုတ်) မေတ္တာပန်းပွင့်</h1>
             <div class="post-meta">📅 2026-07-28 • ✍️ Whisper Of Words</div>
-            <div class="header-controls"><button type="button" class="theme-toggle" data-theme-toggle aria-pressed="false">🌙 Dark mode</button><label for="fontPicker" class="sr-only">ဖွန့်ရွေးရန်</label><select id="fontPicker" class="font-picker" aria-label="ဖွန့်ရွေးရန်"><option value="WOW-Walone">Walone</option><option value="WOW-Yadanabon">Yadanabon</option><option value="WOW-YoeYar">YoeYar</option><option value="WOW-Pyidaungsu">Pyidaungsu</option><option value="WOW-YoeShin">Yoe Shin</option><option value="WOW-MyanmarSansPro">Myanmar Sans Pro</option><option value="WOW-MyanmarSagar">Myanmar Sagar</option><option value="WOW-MyanmarBlack">Myanmar Black</option><option value="WOW-BurmeseHandwriting">Burmese Handwriting</option><option value="WOW-Tharlon">Tharlon</option></select></div>
+            <div class="header-controls"><button type="button" class="theme-toggle" data-theme-toggle aria-pressed="false">🌙 Dark mode</button><label for="fontPicker" class="sr-only">ဖွန့်ရွေးရန်</label><select id="fontPicker" class="font-picker" aria-label="ဖွန့်ရွေးရန်"><option value="WOW-Walone">Walone</option><option value="WOW-Yadanabon">Yadanabon</option><option value="WOW-YoeYar">YoeYar</option><option value="WOW-Pyidaungsu">Pyidaungsu</option><option value="WOW-YoeShin">Yoe Shin</option><option value="WOW-MyanmarSansPro">Myanmar Sans Pro</option><option value="WOW-MyanmarSagar">Myanmar Sagar</option><option value="WOW-MyanmarBlack">Myanmar Black</option><option value="WOW-BurmeseHandwriting">Burmese Handwriting</option></select></div>
 
         </header>
 
@@ -840,7 +839,7 @@
             var copyStatus = document.getElementById('copyStatus');
             var body = document.querySelector('.post-body');
             var FONT_KEY = 'wow-reader-font-family';
-            var fonts = ['WOW-Walone','WOW-Yadanabon','WOW-YoeYar','WOW-Pyidaungsu','WOW-YoeShin','WOW-MyanmarSansPro','WOW-MyanmarSagar','WOW-MyanmarBlack','WOW-BurmeseHandwriting','WOW-Tharlon'];
+            var fonts = ['WOW-Walone','WOW-Yadanabon','WOW-YoeYar','WOW-Pyidaungsu','WOW-YoeShin','WOW-MyanmarSansPro','WOW-MyanmarSagar','WOW-MyanmarBlack','WOW-BurmeseHandwriting'];
             var chosen = 'WOW-Walone';
             try { if (fonts.indexOf(localStorage.getItem(FONT_KEY)) > -1) chosen = localStorage.getItem(FONT_KEY); } catch (_) {}
             function applyFont(name) {
