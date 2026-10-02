@@ -52,6 +52,14 @@
             footer{font-size:.74rem}
         }
         @font-face{font-family:'Walone';src:url('https://raw.githubusercontent.com/whispermmepub/myanmar-yoe-shin-fonts/main/fonts/Walone-Bold.ttf') format('truetype');font-weight:700;font-style:normal;font-display:swap}
+
+        /* Compact wooden bookshelf for the Review collection */
+        .container{position:relative;padding:18px 14px 28px;border:8px solid #4a2412;border-radius:20px;background:repeating-linear-gradient(0deg,rgba(83,36,15,.72) 0,rgba(83,36,15,.72) 8px,rgba(34,14,7,.78) 8px,rgba(34,14,7,.78) 12px,transparent 12px,transparent 238px),linear-gradient(135deg,#7d431f,#35170b 72%);box-shadow:inset 0 0 0 2px rgba(239,167,92,.18),inset 0 12px 28px rgba(255,194,116,.08),0 14px 32px rgba(0,0,0,.38);}
+        .container::before{content:'';position:absolute;inset:8px;border:1px solid rgba(255,205,133,.2);border-radius:12px;pointer-events:none;box-shadow:inset 0 0 22px rgba(20,7,2,.38);}
+        .post-card{position:relative;z-index:1;height:300px;display:flex;flex-direction:column;background:linear-gradient(180deg,#27213d,#17142c);border:1px solid rgba(255,220,164,.16);border-radius:10px;box-shadow:0 7px 12px rgba(22,8,2,.48),inset 0 1px 0 rgba(255,255,255,.08);}
+        .post-card:hover{transform:translateY(-4px);box-shadow:0 12px 18px rgba(20,7,2,.55),0 0 0 2px rgba(224,145,74,.25)}
+        .card-img,.card-img-placeholder{height:136px;flex:none}.card-content{display:flex;flex:1;flex-direction:column;min-height:0}.card-title{display:-webkit-box;-webkit-box-orient:vertical;-webkit-line-clamp:2;overflow:hidden}.card-meta{display:-webkit-box;-webkit-box-orient:vertical;-webkit-line-clamp:2;overflow:hidden}.card-excerpt{-webkit-line-clamp:2;margin-top:auto}
+        @media(max-width:600px){.container{padding:12px 8px 20px;border-width:6px;border-radius:16px;background:repeating-linear-gradient(0deg,rgba(83,36,15,.72) 0,rgba(83,36,15,.72) 7px,rgba(34,14,7,.78) 7px,rgba(34,14,7,.78) 10px,transparent 10px,transparent 190px),linear-gradient(135deg,#7d431f,#35170b 72%)}.post-card{height:225px;border-radius:8px}.card-img,.card-img-placeholder{height:94px}.card-content{padding:7px!important}.card-title{font-size:.82rem!important;-webkit-line-clamp:2}.card-meta{font-size:.67rem!important;margin-bottom:3px;-webkit-line-clamp:1}.card-excerpt{font-size:.70rem!important;line-height:1.35!important;-webkit-line-clamp:2}}
     </style>
 </head>
 <body>
