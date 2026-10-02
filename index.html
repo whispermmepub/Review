@@ -314,6 +314,22 @@
         .card-cover,.container[data-view="grid"] .card-cover{background:#fdfbf8!important;border-color:#e0d7cf!important}
         .card-content{padding-left:4px!important;padding-right:4px!important}
         @media(max-width:600px){.post-card,.container[data-view="grid"] .post-card{padding:5px!important;border-radius:5px!important}.container,.container[data-view="grid"]{gap:20px 8px!important}}
+        /* Home emphasis: separated brand/stat cards and shelf rails under every cover. */
+        body>header{max-width:1200px!important;margin:18px auto 16px!important;padding:28px 22px 24px!important;background:linear-gradient(135deg,#fffaf4,#f1e4d6)!important;border:1px solid #d8c4b2!important;border-radius:14px!important;box-shadow:0 8px 22px rgba(74,55,35,.12)!important}
+        body>header h1{color:#5d3628!important;font-size:clamp(1.5rem,4vw,2.35rem)!important;font-weight:800!important;letter-spacing:.01em!important}
+        body>header p{color:#8a5a43!important;font-size:1rem!important;font-weight:700!important}
+        body>header .social-links{margin-top:14px!important}
+        .reading-stats{position:relative!important;max-width:1200px!important;margin:0 auto 28px!important;padding:16px 18px 18px!important;background:linear-gradient(135deg,#fffefd,#f8f1e9)!important;border:1px solid #d7c2af!important;border-radius:14px!important;box-shadow:0 7px 20px rgba(74,55,35,.11)!important}
+        .reading-stats::before{content:"";position:absolute;left:0;right:0;top:0;height:4px;border-radius:14px 14px 0 0;background:linear-gradient(90deg,#b87333,#d9a441,#a34a42)}
+        .reading-stats-title{color:#5d3628!important;font-size:1.12rem!important;font-weight:800!important}
+        .stat-card{background:#fff!important;border-color:#e1d4c8!important;box-shadow:0 2px 8px rgba(74,55,35,.06)!important}
+        .stat-value{color:#7b4932!important}.stat-label{color:#806e60!important}
+        .card-cover,.container[data-view="grid"] .card-cover{position:relative!important;overflow:visible!important;margin-bottom:11px!important}
+        .card-cover::after{display:block!important;content:""!important;position:absolute!important;z-index:3!important;left:-1px!important;right:-1px!important;bottom:-9px!important;height:6px!important;border-radius:2px!important;background:linear-gradient(#d8d0c7,#aaa39a)!important;box-shadow:0 5px 6px rgba(55,45,35,.24)!important}
+        .post-card{padding-bottom:5px!important}
+        .popular-card{position:relative!important;padding-bottom:9px!important}
+        .popular-card::after{content:""!important;position:absolute!important;z-index:3!important;left:0!important;right:0!important;bottom:0!important;height:5px!important;border-radius:2px!important;background:linear-gradient(#d8d0c7,#aaa39a)!important;box-shadow:0 4px 5px rgba(55,45,35,.22)!important}
+        @media(max-width:600px){body>header{margin:10px 8px 12px!important;padding:22px 14px 18px!important}.reading-stats{margin:0 8px 20px!important;padding:13px 10px 14px!important}.reading-stats-title{font-size:.94rem!important}.card-cover,.container[data-view="grid"] .card-cover{margin-bottom:9px!important}.card-cover::after{bottom:-7px!important;height:5px!important}.popular-card::after{height:4px!important}}
 </style>
 </head>
 <body>
