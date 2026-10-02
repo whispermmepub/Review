@@ -15,7 +15,9 @@
   function card(post, metric, rank) {
     var value = metric === 'views' ? ((stats[post.id] || {}).views || 0) + ' views' : Math.floor(((stats[post.id] || {}).seconds || 0) / 60) + ' min';
     var image = post.image ? '<img src="' + esc(post.image) + '" alt="' + esc(post.title) + '" loading="lazy">' : '<div class="popular-placeholder">📖</div>';
-    return '<a class="popular-card" href="' + esc(post.link) + '"><span class="popular-rank">' + rank + '</span>' + image + '<span class="popular-info"><strong>' + esc(post.title) + '</strong><small>' + esc(post.author) + ' · ' + value + '</small></span></a>';
+    var champion = metric === 'seconds' && rank === 1 ? '<span class="popular-champion-badge" aria-label="အများဆုံးဖတ်ထားသော Review နံပါတ် ၁">🏆 #1</span>' : '';
+    var championClass = champion ? ' popular-champion-card' : '';
+    return '<a class="popular-card' + championClass + '" href="' + esc(post.link) + '">' + champion + '<span class="popular-rank">' + rank + '</span>' + image + '<span class="popular-info"><strong>' + esc(post.title) + '</strong><small>' + esc(post.author) + ' · ' + value + '</small></span></a>';
   }
   function render(id, posts, metric) {
     var el = document.getElementById(id); if (!el) return;
