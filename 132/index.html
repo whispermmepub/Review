@@ -439,6 +439,33 @@
         .comments-empty { color: #999; }
         @media (max-width: 520px) { .comments-panel { margin-left: 8px; margin-right: 8px; } .comment-head { display: block; } }
 
+        /* Clean compact reading layout: centered cover, fast start, calm paper surface. */
+        html, body { background: #f3f0eb; color: #332d29; }
+        body { line-height: 1.8; padding: 0; }
+        .reading-progress { background: linear-gradient(90deg,#d9a441,#b87333); }
+        .container { max-width: 900px; margin: 0 auto; overflow: hidden; background: #fffdfa; box-shadow: 0 0 30px rgba(74,55,35,.08); }
+        header { margin: 0; padding: 28px 20px 12px; background: transparent; border: 0; border-radius: 0; box-shadow: none; backdrop-filter: none; -webkit-backdrop-filter: none; }
+        header::before, header::after { display: none; }
+        header h1 { color: #302a26; font-size: clamp(1.35rem, 4vw, 2rem); text-shadow: none; margin-bottom: 8px; }
+        .post-meta { color: #a34a42; text-shadow: none; font-size: .95rem; }
+        .reading-time { margin: 0 auto 6px; color: #887b70; font-size: .82rem; text-align: center; }
+        .reading-time span { color: #a34a42; animation: none; }
+        .post-image { display: block; width: min(82vw, 360px); max-width: 360px; max-height: 470px; height: auto; object-fit: contain; margin: 4px auto 30px; border: 0; border-radius: 2px; background: #fff; box-shadow: 8px 9px 0 rgba(120,102,82,.08), 0 12px 25px rgba(70,50,30,.14); filter: none; }
+        .post-content img { width: min(100%, 760px); max-height: none; border: 0; border-radius: 8px; box-shadow: 0 7px 18px rgba(70,50,30,.12); }
+        .post-body { padding: 6px 22px 34px; color: #332d29; }
+        .post-body p { margin-bottom: 1.25em; font-size: clamp(1.08rem, 2.6vw, 1.25rem); line-height: 1.9; letter-spacing: .01em; color: #332d29; }
+        .post-body a { color: #b04b43; text-decoration-color: rgba(176,75,67,.35); }
+        .reviewer-credit { color: #887b70; border-top-color: #e8dfd4; }
+        .comments-panel { color: #332d29; background: #f8f4ef; border-color: #e8dfd4; }
+        .comments-title { color: #4c4038; }
+        .comment-form input, .comment-form textarea { background: #fff; color: #332d29; border-color: #dfd4c8; }
+        .comment-item { border-top-color: #e8dfd4; }
+        .comment-head { color: #4c4038; }
+        .comment-item p { color: #544a43; }
+        .comments-empty { color: #887b70; }
+        .back-link { background: #fff; color: #a34a42; border-color: #d9b3a2; }
+        .back-link:hover { background: #a34a42; color: #fff; }
+        @media (max-width: 600px) { header { padding: 22px 16px 8px; } .post-image { width: min(78vw, 330px); max-height: 430px; margin-bottom: 24px; } .post-body { padding: 4px 18px 28px; } .post-body p { font-size: 1.06rem !important; line-height: 1.86 !important; } }
 
         /* Mobile browser + Telegram in-app browser typography */
         @media (max-width: 600px) {
@@ -465,7 +492,7 @@
         <div class="reading-time" id="readingTime">📖 <span id="readTime"></span> ဖတ်ရန်အချိန်</div>
 
 
-        <img src="https://blogger.googleusercontent.com/img/a/AVvXsEjy4DePJ3qLqiEG_jh0p0AwgfvFGCbR6HTD6FHSdruZazM-DsSHmRyiBw5qrEYZj4FC4hs_UOyL6ltcU291G4Dufc5e9rP3ZDyk69O1i7EckCRK-0M9AfLCNOoSEBKqJ51t_HsGX52U2TLeemBmr9U5ew3M36WGl2xJq-7nlWL6kv7pvmgfZKbYtDwOqggw" alt="အစ္ဆရိယရကန်စကားပြေ ၂" class="post-image">
+        <img src="https://blogger.googleusercontent.com/img/a/AVvXsEjy4DePJ3qLqiEG_jh0p0AwgfvFGCbR6HTD6FHSdruZazM-DsSHmRyiBw5qrEYZj4FC4hs_UOyL6ltcU291G4Dufc5e9rP3ZDyk69O1i7EckCRK-0M9AfLCNOoSEBKqJ51t_HsGX52U2TLeemBmr9U5ew3M36WGl2xJq-7nlWL6kv7pvmgfZKbYtDwOqggw" alt="အစ္ဆရိယရကန်စကားပြေ ၂" class="post-image" loading="eager" decoding="async" fetchpriority="high">
         <div class="post-body">
             <div class="post-content">
             <p>လင်္ကာပိုဒ် ၁၀၀ မှ ၁၁၁ အီတလီပြည်အတွက် ကယ်တင်ရှင် <strong>"ထိုသားရဲမဟာ သတ္တဝါများစွာနှင့် မိတ်လိုက်ပေါင်းသင်းလေ့ရှိပြီး သူ့ကို နာကျင်စွာ သေဆုံးစေမည့် 'မုဆိုးခွေးအာဇာနည်' ပေါ်ထွန်းမလာမချင်း နောင်တွင်လည်း ဆက်လက်၍ ကျူးလွန်နေဦးမှာ ဖြစ်တယ်။ ထိုအာဇာနည်ဟာ မြေယာနှင့် ဥစ္စာဓနအပေါ် မှီခို တက်မက်သူမဟုတ်ဘဲ၊ ဉာဏ်ပညာ၊ မေတ္တာနှင့် သီလတရားတို့၌သာ မွေ့လျော်သူ ဖြစ်ပေလိမ့်မယ်။ သူ၏ ဇာတိမြေဟာ ဖဲလ်ထရိုမြို့နှစ်မြို့ကြား၌ ရှိလိမ့်မယ်။ သူဟာ ကာမီလာ၊ ယူရီယာလပ်စ် ၊ တာနပ်စ် နှင့် နီးဆပ်စ် တို့ အသက်ပေးသွားခဲ့ရသည့် အီတလီပြည်အောက်ပိုင်းဒေသအတွက် ကယ်တင်ရှင် ဖြစ်လာလတ္တံ့။ ထိုသူဟာ မနာလိုဝန်တိုခြင်းစိတ်မှ စေလွှတ်လိုက်သော ထိုဝံပုလွေမကို ငရဲပြည်သို့ ပြန်လည်ရောက်ရှိသည်အထိ မြို့တိုင်းစေ့ လိုက်လံမောင်းနှင်ပေလိမ့်မယ်"</strong> လင်္ကာပိုဒ် ၁၁၂ မှ ၁၃၆ ငရဲပြည်ခရီးစဉ်၏ လမ်းပြ ဗာဂျယ်လ် "သို့ဖြစ်၍ ကျွန်ုပ်၏ အကြံအစည်အရ၊ သင် ကျွန်ုပ်နောက်သို့သာ လိုက်ခဲ့ပေလော့။ ကျွန်ုပ် သင့်အား လမ်းပြအဖြစ် ဤနေရာမှတဆင့် ထာဝရ တည်ရှိနေသော အရပ် (နိရယဘုံ) သို့ ခေါ်ဆောင်သွားပေမယ်။ ထိုအရပ်၌ မျှော်လင့်ချက်မဲ့စွာ အော်ဟစ်ညည်းညူသံများကို သင် ကြားရလိမ့်ပေမယ်။ ဒုတိယအကြိမ် သေဆုံးခြင်းကို တောင့်တလျက် ဆင်းရဲဒုက္ခခံစားနေရသည့် ရှေးဟောင်းဝိညာဉ်များကိုလည်း မြင်တွေ့ရပါလိမ့်မယ်။ ထို့နောက် တချိန်ချိန်တွင် ပါရာဒိသုဘုံသို့ ရောက်လိမ့်မည်ဟု မျှော်လင့်ချက်ဖြင့် မီးလျှံများကြား၌ ငြိမ်းချမ်းစွာ ရှိနေသူများကိုလည်း တွေ့ရပေမယ်။</p>
