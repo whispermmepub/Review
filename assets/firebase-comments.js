@@ -75,8 +75,25 @@
       stars.textContent = '★'.repeat(Math.max(0, Math.min(5, Number(row.data.rating) || 0)));
       head.appendChild(author); head.appendChild(stars);
       var body = document.createElement('p');
+      body.className = 'comment-text';
       body.textContent = row.data.text || '';
-      item.appendChild(head); item.appendChild(body); commentsList.appendChild(item);
+      item.appendChild(head); item.appendChild(body);
+      if (String(row.data.text || '').length > 100) {
+        item.classList.add('comment-collapsed');
+        var toggle = document.createElement('button');
+        toggle.type = 'button';
+        toggle.className = 'comment-toggle';
+        toggle.setAttribute('aria-expanded', 'false');
+        toggle.textContent = 'ဆက်ဖတ်ရန် ↓';
+        toggle.addEventListener('click', function () {
+          var expanded = item.classList.toggle('comment-expanded');
+          item.classList.toggle('comment-collapsed', !expanded);
+          toggle.setAttribute('aria-expanded', expanded ? 'true' : 'false');
+          toggle.textContent = expanded ? 'လျှော့ပြရန် ↑' : 'ဆက်ဖတ်ရန် ↓';
+        });
+        item.appendChild(toggle);
+      }
+      commentsList.appendChild(item);
     });
   }
 
