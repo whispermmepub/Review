@@ -332,6 +332,11 @@
         @media(max-width:600px){body>header{margin:10px 8px 12px!important;padding:22px 14px 18px!important}.reading-stats{margin:0 8px 20px!important;padding:13px 10px 14px!important}.reading-stats-title{font-size:.94rem!important}.card-cover,.container[data-view="grid"] .card-cover{margin-bottom:9px!important}.card-cover::after{bottom:-7px!important;height:5px!important}.popular-card::after{height:4px!important}}
         .social-link.twitter{color:#3b2f2a!important;background:#e8ddd2!important;border-color:#b99d87!important;box-shadow:0 2px 6px rgba(74,55,35,.10)!important}
         .social-link.twitter:hover{color:#fff!important;background:#6b4a3a!important;border-color:#6b4a3a!important}
+        /* Six-book groups with a long white separator line. */
+        .container,.container[data-view="grid"]{grid-template-columns:repeat(6,minmax(0,1fr))!important;gap:28px 16px!important}
+        .book-group-divider{grid-column:1/-1!important;width:100%!important;height:9px!important;margin:4px 0 10px!important;background:#fff!important;border:1px solid #eee9e3!important;border-radius:2px!important;box-shadow:0 2px 5px rgba(74,55,35,.10)!important}
+        @media(max-width:900px){.container,.container[data-view="grid"]{grid-template-columns:repeat(4,minmax(0,1fr))!important;gap:24px 13px!important}.book-group-divider{height:8px!important;margin:2px 0 8px!important}}
+        @media(max-width:600px){.container,.container[data-view="grid"]{grid-template-columns:repeat(3,minmax(0,1fr))!important;gap:20px 8px!important}.book-group-divider{height:6px!important;margin:1px 0 7px!important}}
 </style>
 </head>
 <body>

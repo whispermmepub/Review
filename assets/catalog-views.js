@@ -82,7 +82,12 @@
       return;
     }
     var fragment = document.createDocumentFragment();
-    items.forEach(function (post) { fragment.appendChild(makeCard(post)); });
+    items.forEach(function (post, index) {
+      fragment.appendChild(makeCard(post));
+      if ((index + 1) % 6 === 0 && index < items.length - 1) {
+        fragment.appendChild(make('div', 'book-group-divider'));
+      }
+    });
     container.appendChild(fragment);
   }
 
