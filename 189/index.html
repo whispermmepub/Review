@@ -524,6 +524,11 @@
         .newest-review-card:hover img, .newest-review-card:hover .newest-review-placeholder { transform:perspective(700px) translateY(-4px) rotateY(0deg) rotateZ(0deg); filter:drop-shadow(8px 8px 4px rgba(50,40,30,.30)); }
         .newest-review-card strong { position:relative; z-index:2; display:block; padding:1px 3px; border-radius:3px; background:rgba(255,253,251,.86); }
         @media (max-width: 600px) { .newest-review-card::before { bottom:24px; } .newest-review-card::after { height:5px; } }
+        /* Proportion finish: keep post-page book covers neat and undistorted. */
+        .newest-review-card img, .newest-review-placeholder { width:118px; height:177px; aspect-ratio:2/3; object-fit:contain; object-position:center; box-sizing:border-box; transform:perspective(800px) rotateY(-4deg) rotateZ(-.7deg); }
+        .newest-review-card:nth-child(2) img, .newest-review-card:nth-child(2) .newest-review-placeholder { transform:perspective(800px) rotateY(4deg) rotateZ(.7deg); }
+        .newest-review-card:hover img, .newest-review-card:hover .newest-review-placeholder { transform:perspective(800px) translateY(-4px) rotateY(0deg) rotateZ(0deg); }
+        @media (max-width: 600px) { .newest-review-card img, .newest-review-placeholder { width:96px; height:144px; } }
         /* Comment previews: keep long reader comments compact until expanded. */
         .comment-text { margin-bottom: 4px; }
         .comment-collapsed .comment-text { display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; max-height: 3.2em; overflow: hidden; }
