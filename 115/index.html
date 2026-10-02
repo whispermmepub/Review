@@ -709,7 +709,7 @@
                 body.querySelectorAll('.post-content, .post-content *').forEach(function(el) {
                     if (!el.hasAttribute('data-reader-base-font')) el.setAttribute('data-reader-base-font', getComputedStyle(el).fontSize);
                     var base = parseFloat(el.getAttribute('data-reader-base-font')) || 16;
-                    el.style.fontSize = (base * scale) + 'px';
+                    el.style.setProperty('font-size', (base * scale) + 'px', 'important');
                 });
                 try { localStorage.setItem(KEY, String(scale)); } catch (_) {}
             }
