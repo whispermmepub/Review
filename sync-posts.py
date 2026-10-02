@@ -797,6 +797,20 @@ def generate_post_html(post):
         .reading-time {{ margin: 8px 20px 16px; text-align: left; }}
         .post-body {{ padding: 8px 20px 36px; }}
         @media (max-width: 600px) {{ .post-image {{ width: min(68vw, 300px); max-height: 450px; margin: 26px auto 38px; }} header {{ padding: 0 20px 8px; }} .reading-time {{ margin-left: 20px; margin-right: 20px; }} .post-body {{ padding-left: 20px; padding-right: 20px; }} }}
+        /* Compact reader comments: useful but visually secondary to the post. */
+        .comments-panel {{ max-width: 600px; margin: 24px auto 14px; padding: 14px 15px; border-radius: 12px; }}
+        .comments-title {{ margin-bottom: 8px; font-size: 1rem; line-height: 1.4; }}
+        .comment-form {{ gap: 7px; margin-bottom: 12px; }}
+        .comment-form input, .comment-form textarea {{ padding: 8px 10px; border-radius: 8px; font-size: .88rem; line-height: 1.45; }}
+        .comment-form textarea {{ min-height: 66px; }}
+        .rating-picker {{ font-size: .84rem; }}
+        .rating-star {{ font-size: 1.15rem; }}
+        .comment-submit {{ padding: 7px 13px; font-size: .84rem; }}
+        .comment-status {{ font-size: .78rem; }}
+        .comment-item {{ padding: 9px 0; }}
+        .comment-head {{ font-size: .84rem; }}
+        .comment-item p {{ margin-top: 4px; font-size: .88rem; line-height: 1.55; }}
+        @media (max-width: 600px) {{ .comments-panel {{ max-width: none; margin: 20px 4px 12px; padding: 12px; }} .comments-title {{ font-size: .92rem; }} }}
 </style>
 </head>
 <body>
