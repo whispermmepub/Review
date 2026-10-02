@@ -410,28 +410,6 @@
             50% { opacity: 0.3; }
         }
 
-        .read-aloud-player {
-            width: calc(100% - 24px); max-width: 760px; margin: 0 auto 24px;
-            padding: 14px; border: 1px solid rgba(74,158,255,0.35);
-            border-radius: 16px; background: rgba(30,26,53,0.92);
-        }
-        .read-aloud-title { font-size: .95rem; font-weight: 700; color: #fff; margin-bottom: 10px; }
-        .read-aloud-controls { display: flex; gap: 8px; align-items: center; flex-wrap: wrap; }
-        .read-aloud-player select, .read-aloud-player button {
-            min-height: 38px; border: 1px solid rgba(255,255,255,0.16); border-radius: 10px;
-            background: #24203f; color: #fff; padding: 7px 11px; font-family: inherit; font-size: .84rem;
-        }
-        .read-aloud-player select { flex: 1 1 140px; }
-        .read-aloud-player button { cursor: pointer; }
-        .read-aloud-player .read-play { background: #4a9eff; border-color: #4a9eff; font-weight: 700; }
-        .read-audio { display: block; width: 100%; margin-top: 11px; height: 40px; }
-        .read-aloud-status { margin-top: 8px; color: #9fa4bd; font-size: .75rem; line-height: 1.5; }
-        @media (max-width: 600px) {
-            .read-aloud-player { width: calc(100% - 20px); margin-bottom: 18px; padding: 11px; }
-            .read-aloud-controls { gap: 6px; }
-            .read-aloud-player select, .read-aloud-player button { font-size: .78rem; min-height: 36px; }
-        }
-
         .comments-panel {
             margin: 30px auto 18px;
             padding: 22px 18px;
@@ -473,74 +451,7 @@
             .back-link { font-size: 0.85rem; padding: 8px 14px; }
             .reviewer-credit { font-size: 0.78rem; }
         }
-    
-        /* Browser Read Aloud player */
-        .read-aloud-player {
-            width: calc(100% - 24px);
-            max-width: 760px;
-            margin: 0 auto 24px;
-            padding: 14px;
-            border: 1px solid rgba(74,158,255,0.35);
-            border-radius: 16px;
-            background: rgba(30,26,53,0.92);
-            box-shadow: 0 10px 28px rgba(0,0,0,0.22);
-            font-family: "Walone", sans-serif;
-        }
-        .read-aloud-title {
-            font-size: 0.95rem;
-            font-weight: 700;
-            color: #fff;
-            margin-bottom: 10px;
-        }
-        .read-aloud-controls {
-            display: flex;
-            gap: 8px;
-            align-items: center;
-            flex-wrap: wrap;
-        }
-        .read-aloud-player select,
-        .read-aloud-player button {
-            min-height: 38px;
-            border: 1px solid rgba(255,255,255,0.16);
-            border-radius: 10px;
-            background: #24203f;
-            color: #fff;
-            padding: 7px 11px;
-            font-family: "Walone", sans-serif;
-            font-size: 0.84rem;
-        }
-        .read-aloud-player select { flex: 1 1 140px; }
-        .read-aloud-player button { cursor: pointer; }
-        .read-aloud-player .read-play {
-            background: #4a9eff;
-            border-color: #4a9eff;
-            font-weight: 700;
-        }
-        .read-audio {
-            display: block;
-            width: 100%;
-            margin-top: 11px;
-            height: 40px;
-        }
-        .read-aloud-status {
-            margin-top: 8px;
-            color: #9fa4bd;
-            font-size: 0.75rem;
-            line-height: 1.5;
-        }
-        @media (max-width: 600px) {
-            .read-aloud-player {
-                width: calc(100% - 20px);
-                margin-bottom: 18px;
-                padding: 11px;
-            }
-            .read-aloud-controls { gap: 6px; }
-            .read-aloud-player select,
-            .read-aloud-player button {
-                font-size: 0.78rem;
-                min-height: 36px;
-            }
-        }
+
     </style>
 </head>
 <body>
@@ -556,28 +467,6 @@
 
 
         <img src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEi2bd0pMR-Q0obPwbDJhxaJ8FC9QYvS_If_P6iJpSidvkEkpjgj6wHsLvAshWbqnjUGH4oYBuUcAzJqgE56XHs8eJhOjkBdUHSHPLcRlHBhlz52fy-ndh9B1mcqfPNNJk57jPjgMjLbe7Tf1v3WJ5k0diUwyxp8PQFFz2rBs2KnH-JrZCBUI9Ds8XTxAk8/s16000/IMG_20260623_055642_095.png" alt="အလ်ဘတ်ကမူး၏အရေးအသားများ - မြင့်သန်း" class="post-image">
-
-        <section class="read-aloud-player" data-audio-base="../audio/42" aria-label="အသံဖြင့်ဖတ်ရန်">
-            <div class="read-aloud-title">🔊 အသံဖြင့်ဖတ်ရန်</div>
-            <div class="read-aloud-controls">
-                <select class="read-voice" aria-label="အသံရွေးရန်">
-                    <option value="nilar">🎙 Nilar — မိန်းကလေးအသံ</option>
-                    <option value="thiha">🎙 Thiha — ယောကျ်ားလေးအသံ</option>
-                </select>
-                <select class="read-rate" aria-label="ဖတ်နှုန်း">
-                    <option value="0.8">0.8×</option>
-                    <option value="1" selected>1.0×</option>
-                    <option value="1.2">1.2×</option>
-                    <option value="1.5">1.5×</option>
-                </select>
-                <button type="button" class="read-play">▶ ဖတ်ရန်</button>
-                <button type="button" class="read-pause">⏸ ခဏရပ်</button>
-                <button type="button" class="read-stop">⏹ ရပ်ရန်</button>
-            </div>
-            <audio class="read-audio" controls preload="none"></audio>
-            <div class="read-aloud-status">Nilar / Thiha အသံဖိုင်ကို ရွေးပြီး ▶️ ဖတ်နိုင်ပါတယ်။</div>
-        </section>
-
 <div class="post-body">
             <div class="post-content">
             <p><a href="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEi2bd0pMR-Q0obPwbDJhxaJ8FC9QYvS_If_P6iJpSidvkEkpjgj6wHsLvAshWbqnjUGH4oYBuUcAzJqgE56XHs8eJhOjkBdUHSHPLcRlHBhlz52fy-ndh9B1mcqfPNNJk57jPjgMjLbe7Tf1v3WJ5k0diUwyxp8PQFFz2rBs2KnH-JrZCBUI9Ds8XTxAk8/s1264/IMG_20260623_055642_095.png" target="_blank" rel="noopener"></a></p>
@@ -638,7 +527,6 @@
         <script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-auth-compat.js"></script>
         <script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore-compat.js"></script>
         <script src="/Review/assets/firebase-comments.js"></script>
-        <script src="/Review/assets/audio-player.js"></script>
         <script src="/Review/assets/reading-stats.js"></script>
     <script>
         // Performance: one passive RAF scroll handler
@@ -714,64 +602,6 @@
         }
 
         updateBtn();
-    </script>
-
-
-    <script>
-    (function () {
-        document.querySelectorAll(".read-aloud-player").forEach(function (player) {
-            var base=player.getAttribute("data-audio-base"), voice=player.querySelector(".read-voice");
-            var rate=player.querySelector(".read-rate"), audio=player.querySelector(".read-audio");
-            var play=player.querySelector(".read-play"), pause=player.querySelector(".read-pause"), stop=player.querySelector(".read-stop");
-            var status=player.querySelector(".read-aloud-status"), chunks=[], index=0;
-            var stopped=false, completed=false, loadedVoice="", loadToken=0;
-            function voiceName(key){ return key==="nilar" ? "Nilar" : "Thiha"; }
-            function setStatus(text){ status.textContent=text; }
-            function loadVoice(){
-                var key=voice.value, token=++loadToken;
-                loadedVoice=""; stopped=true; completed=false; index=0; chunks=[]; audio.pause();
-                setStatus(voiceName(key)+" အသံကို ပြင်ဆင်နေပါသည်…");
-                return fetch(base+"/"+key+".json",{cache:"no-store"}).then(function(r){
-                    if(!r.ok) throw new Error("manifest "+r.status);
-                    return r.json();
-                }).then(function(data){
-                    if(token!==loadToken) return;
-                    chunks=data.chunks||[]; if(!chunks.length) throw new Error("no chunks");
-                    loadedVoice=key; stopped=false; audio.src=base+"/"+chunks[0];
-                    audio.playbackRate=parseFloat(rate.value)||1; audio.load();
-                    setStatus(voiceName(key)+" အသံ အဆင်သင့်ဖြစ်ပါပြီ။");
-                }).catch(function(){
-                    if(token===loadToken){ loadedVoice=""; chunks=[]; setStatus("ဒီ post ရဲ့ မြန်မာအသံဖိုင် မရသေးပါ။"); }
-                });
-            }
-            function playChunk(){
-                if(stopped || !chunks.length) return;
-                if(index>=chunks.length){ completed=true; stopped=true; setStatus(voiceName(loadedVoice)+" ဖတ်ပြီးပါပြီ။"); return; }
-                audio.src=base+"/"+chunks[index]; audio.playbackRate=parseFloat(rate.value)||1;
-                audio.play().then(function(){setStatus("ဖတ်နေပါသည်… ("+(index+1)+"/"+chunks.length+")");}).catch(function(){setStatus("အသံဖိုင်ကို မဖွင့်နိုင်ပါ။");});
-            }
-            voice.addEventListener("change",function(){ loadVoice(); });
-            rate.addEventListener("change",function(){audio.playbackRate=parseFloat(rate.value)||1;});
-            play.addEventListener("click",function(){
-                if(loadedVoice!==voice.value || !chunks.length){ loadVoice().then(playChunk); return; }
-                if(completed){ index=0; completed=false; }
-                stopped=false;
-                if(audio.paused && audio.src && index<chunks.length && audio.currentTime>0 && !completed){
-                    audio.play().then(function(){setStatus("ဖတ်နေပါသည်… ("+(index+1)+"/"+chunks.length+")");}).catch(function(){setStatus("အသံဖိုင်ကို မဖွင့်နိုင်ပါ။");});
-                } else { playChunk(); }
-            });
-            pause.addEventListener("click",function(){
-                if(!audio.paused){ audio.pause(); setStatus("ခဏရပ်ထားပါပြီ။ Play နှိပ်လျှင် ဒီနေရာကနေ ဆက်ဖတ်ပါမည်။"); }
-            });
-            stop.addEventListener("click",function(){
-                stopped=true; completed=false; audio.pause(); audio.currentTime=0; index=0; setStatus("ရပ်ထားပါပြီ။");
-            });
-            audio.addEventListener("ended",function(){
-                if(!stopped){ index++; if(index>=chunks.length){ completed=true; stopped=true; setStatus(voiceName(loadedVoice)+" ဖတ်ပြီးပါပြီ။"); } else { playChunk(); } }
-            });
-            loadVoice();
-        });
-    })();
     </script>
 
 </body>

@@ -1,10 +1,5 @@
 #!/usr/bin/env python3
-"""One-time migration for existing Review posts.
-
-Keeps the existing post design/content, switches fonts to Walone, and
-permanently removes the source link and social share buttons requested by
-the site owner.
-"""
+"""Keep Review pages consistent and remove the retired audio player."""
 from pathlib import Path
 import re
 
@@ -81,7 +76,7 @@ for path in sorted(ROOT.glob("[0-9]*/index.html"), key=lambda p: int(p.parent.na
         path.write_text(s, encoding="utf-8")
         print("Migrated:", path)
 
-# Force a smaller, consistent mobile reading size for both normal mobile browsers and Telegram in-app browsers.
+# Force a smaller, consistent mobile reading size for normal and Telegram in-app browsers.
 MOBILE_POST_CSS = '''
         /* Mobile browser + Telegram in-app browser typography */
         @media (max-width: 600px) {
@@ -102,185 +97,78 @@ for path in sorted(ROOT.glob("[0-9]*/index.html"), key=lambda p: int(p.parent.na
         path.write_text(s, encoding="utf-8")
 
 
+def remove_retired_audio(s: str) -> str:
+    """Strip only the legacy audio player and its dedicated styles/scripts."""
+    # Remove the original player styles; the comment section starts immediately after them.
+    s = re.sub(
+        r'^[ \t]*\.read-aloud-player\s*\{.*?(?=^[ \t]*\.comments-panel\s*\{)',
+        '',
+        s,
+        count=1,
+        flags=re.I | re.S | re.M,
+    )
+    # Remove the later, standalone audio-only CSS block.
+    s = re.sub(
+        r'^[ \t]*/\* Browser Read Aloud player \*/.*?(?=^[ \t]*</style>)',
+        '',
+        s,
+        count=1,
+        flags=re.I | re.S | re.M,
+    )
+    # Remove the audio controls, if present.
+    s = re.sub(
+        r'\s*<section\b(?=[^>]*\bclass=["\'][^"\']*\bread-aloud-player\b[^"\']*["\'])[^>]*>.*?</section>\s*',
+        '\n',
+        s,
+        flags=re.I | re.S,
+    )
+    s = re.sub(
+        r'\s*<audio\b(?=[^>]*\bclass=["\'][^"\']*\bread-audio\b[^"\']*["\'])[^>]*>.*?</audio>\s*',
+        '\n',
+        s,
+        flags=re.I | re.S,
+    )
 
-# Add a browser-safe Read Aloud player using pre-generated Microsoft Edge TTS MP3 files.
-READ_ALOUD_CSS = '''
-        /* Browser Read Aloud player */
-        .read-aloud-player {
-            width: calc(100% - 24px);
-            max-width: 760px;
-            margin: 0 auto 24px;
-            padding: 14px;
-            border: 1px solid rgba(74,158,255,0.35);
-            border-radius: 16px;
-            background: rgba(30,26,53,0.92);
-            box-shadow: 0 10px 28px rgba(0,0,0,0.22);
-            font-family: "Walone", sans-serif;
-        }
-        .read-aloud-title {
-            font-size: 0.95rem;
-            font-weight: 700;
-            color: #fff;
-            margin-bottom: 10px;
-        }
-        .read-aloud-controls {
-            display: flex;
-            gap: 8px;
-            align-items: center;
-            flex-wrap: wrap;
-        }
-        .read-aloud-player select,
-        .read-aloud-player button {
-            min-height: 38px;
-            border: 1px solid rgba(255,255,255,0.16);
-            border-radius: 10px;
-            background: #24203f;
-            color: #fff;
-            padding: 7px 11px;
-            font-family: "Walone", sans-serif;
-            font-size: 0.84rem;
-        }
-        .read-aloud-player select { flex: 1 1 140px; }
-        .read-aloud-player button { cursor: pointer; }
-        .read-aloud-player .read-play {
-            background: #4a9eff;
-            border-color: #4a9eff;
-            font-weight: 700;
-        }
-        .read-audio {
-            display: block;
-            width: 100%;
-            margin-top: 11px;
-            height: 40px;
-        }
-        .read-aloud-status {
-            margin-top: 8px;
-            color: #9fa4bd;
-            font-size: 0.75rem;
-            line-height: 1.5;
-        }
-        @media (max-width: 600px) {
-            .read-aloud-player {
-                width: calc(100% - 20px);
-                margin-bottom: 18px;
-                padding: 11px;
-            }
-            .read-aloud-controls { gap: 6px; }
-            .read-aloud-player select,
-            .read-aloud-player button {
-                font-size: 0.78rem;
-                min-height: 36px;
-            }
-        }
-'''
-READ_ALOUD_HTML_TEMPLATE = '''
-        <section class="read-aloud-player" data-audio-base="../audio/{post_id}" aria-label="အသံဖြင့်ဖတ်ရန်">
-            <div class="read-aloud-title">🔊 အသံဖြင့်ဖတ်ရန်</div>
-            <div class="read-aloud-controls">
-                <select class="read-voice" aria-label="အသံရွေးရန်">
-                    <option value="nilar">🎙 Nilar — မိန်းကလေးအသံ</option>
-                    <option value="thiha">🎙 Thiha — ယောကျ်ားလေးအသံ</option>
-                </select>
-                <select class="read-rate" aria-label="ဖတ်နှုန်း">
-                    <option value="0.8">0.8×</option>
-                    <option value="1" selected>1.0×</option>
-                    <option value="1.2">1.2×</option>
-                    <option value="1.5">1.5×</option>
-                </select>
-                <button type="button" class="read-play">▶ ဖတ်ရန်</button>
-                <button type="button" class="read-pause">⏸ ခဏရပ်</button>
-                <button type="button" class="read-stop">⏹ ရပ်ရန်</button>
-            </div>
-            <audio class="read-audio" controls preload="none"></audio>
-            <div class="read-aloud-status">Nilar / Thiha အသံဖိုင်ကို ရွေးပြီး ▶️ ဖတ်နိုင်ပါတယ်။</div>
-        </section>
-'''
-READ_ALOUD_JS = '''
-    <script>
-    (function () {
-        document.querySelectorAll(".read-aloud-player").forEach(function (player) {
-            var base=player.getAttribute("data-audio-base"), voice=player.querySelector(".read-voice");
-            var rate=player.querySelector(".read-rate"), audio=player.querySelector(".read-audio");
-            var play=player.querySelector(".read-play"), pause=player.querySelector(".read-pause"), stop=player.querySelector(".read-stop");
-            var status=player.querySelector(".read-aloud-status"), chunks=[], index=0;
-            var stopped=false, completed=false, loadedVoice="", loadToken=0;
-            function voiceName(key){ return key==="nilar" ? "Nilar" : "Thiha"; }
-            function setStatus(text){ status.textContent=text; }
-            function loadVoice(){
-                var key=voice.value, token=++loadToken;
-                loadedVoice=""; stopped=true; completed=false; index=0; chunks=[]; audio.pause();
-                setStatus(voiceName(key)+" အသံကို ပြင်ဆင်နေပါသည်…");
-                return fetch(base+"/"+key+".json",{cache:"no-store"}).then(function(r){
-                    if(!r.ok) throw new Error("manifest "+r.status);
-                    return r.json();
-                }).then(function(data){
-                    if(token!==loadToken) return;
-                    chunks=data.chunks||[]; if(!chunks.length) throw new Error("no chunks");
-                    loadedVoice=key; stopped=false; audio.src=base+"/"+chunks[0];
-                    audio.playbackRate=parseFloat(rate.value)||1; audio.load();
-                    setStatus(voiceName(key)+" အသံ အဆင်သင့်ဖြစ်ပါပြီ။");
-                }).catch(function(){
-                    if(token===loadToken){ loadedVoice=""; chunks=[]; setStatus("ဒီ post ရဲ့ မြန်မာအသံဖိုင် မရသေးပါ။"); }
-                });
-            }
-            function playChunk(){
-                if(stopped || !chunks.length) return;
-                if(index>=chunks.length){ completed=true; stopped=true; setStatus(voiceName(loadedVoice)+" ဖတ်ပြီးပါပြီ။"); return; }
-                audio.src=base+"/"+chunks[index]; audio.playbackRate=parseFloat(rate.value)||1;
-                audio.play().then(function(){setStatus("ဖတ်နေပါသည်… ("+(index+1)+"/"+chunks.length+")");}).catch(function(){setStatus("အသံဖိုင်ကို မဖွင့်နိုင်ပါ။");});
-            }
-            voice.addEventListener("change",function(){ loadVoice(); });
-            rate.addEventListener("change",function(){audio.playbackRate=parseFloat(rate.value)||1;});
-            play.addEventListener("click",function(){
-                if(loadedVoice!==voice.value || !chunks.length){ loadVoice().then(playChunk); return; }
-                if(completed){ index=0; completed=false; }
-                stopped=false;
-                if(audio.paused && audio.src && index<chunks.length && audio.currentTime>0 && !completed){
-                    audio.play().then(function(){setStatus("ဖတ်နေပါသည်… ("+(index+1)+"/"+chunks.length+")");}).catch(function(){setStatus("အသံဖိုင်ကို မဖွင့်နိုင်ပါ။");});
-                } else { playChunk(); }
-            });
-            pause.addEventListener("click",function(){
-                if(!audio.paused){ audio.pause(); setStatus("ခဏရပ်ထားပါပြီ။ Play နှိပ်လျှင် ဒီနေရာကနေ ဆက်ဖတ်ပါမည်။"); }
-            });
-            stop.addEventListener("click",function(){
-                stopped=true; completed=false; audio.pause(); audio.currentTime=0; index=0; setStatus("ရပ်ထားပါပြီ။");
-            });
-            audio.addEventListener("ended",function(){
-                if(!stopped){ index++; if(index>=chunks.length){ completed=true; stopped=true; setStatus(voiceName(loadedVoice)+" ဖတ်ပြီးပါပြီ။"); } else { playChunk(); } }
-            });
-            loadVoice();
-        });
-    })();
-    </script>
-'''
+    def drop_audio_script(match: re.Match) -> str:
+        opening, body, closing = match.groups()
+        if re.search(r'audio-player\.js', opening, re.I) or re.search(
+            r'read-aloud-player|data-audio-base|read-audio|read-voice|read-rate|read-play|read-pause|read-stop',
+            body,
+            re.I,
+        ):
+            return '\n'
+        return match.group(0)
 
+    s = re.sub(r'(<script\b[^>]*>)([\s\S]*?)(</script\s*>)', drop_audio_script, s, flags=re.I)
+    s = re.sub(r'\s+data-audio-base=["\'][^"\']*["\']', '', s, flags=re.I)
+    # Avoid leaving whitespace-only lines where the removed player used to be.
+    s = re.sub(r'(?m)^[ \t]+(?=\r?\n[ \t]*</style>)', '', s)
+    s = re.sub(
+        r'(?is)(<script\b[^>]*firebase-comments\.js[^>]*></script>)[ \t\r\n]*(<script\b[^>]*reading-stats\.js[^>]*></script>)',
+        r'\1\n        \2',
+        s,
+    )
+    s = re.sub(
+        r'(?is)(</script>)[ \t\r\n]+(?=</body>)',
+        r'\1\n\n',
+        s,
+    )
+    s = re.sub(
+        r'(?m)^[ \t]+(?=(?:\r?\n[ \t]*)+</body>\s*</html>\s*\Z)',
+        '',
+        s,
+        flags=re.I,
+    )
+    return s
+
+
+cleaned_pages = 0
 for path in sorted(ROOT.glob("[0-9]*/index.html"), key=lambda p: int(p.parent.name)):
     s = path.read_text(encoding="utf-8")
-    # Remove any previous Read Aloud player, CSS and scripts before installing the final version.
-    s = re.sub(r'\s*/\* Browser Read Aloud player \*/.*?(?=\n\s*</style>)', '', s, flags=re.I | re.S)
-    s = re.sub(r'\s*<section class="read-aloud-player".*?</section>\s*', '\n', s, flags=re.I | re.S)
-    s = re.sub(r'\s*<script>\s*\(function \(\) \{\s*var players = document\.querySelectorAll\([\'"]\.read-aloud-player[\'"]\).*?</script>\s*', '\n', s, flags=re.I | re.S)
-    s = re.sub(r'\s*<script>\s*\(function \(\) \{\s*document\.querySelectorAll\([\'"]\.read-aloud-player[\'"]\).*?</script>\s*', '\n', s, flags=re.I | re.S)
+    cleaned = remove_retired_audio(s)
+    if cleaned != s:
+        path.write_text(cleaned, encoding="utf-8")
+        cleaned_pages += 1
+        print("Removed retired audio UI:", path)
 
-    if "<style>" in s:
-        s = s.replace("</style>", READ_ALOUD_CSS + "    </style>", 1)
-
-    player = READ_ALOUD_HTML_TEMPLATE.format(post_id=path.parent.name)
-    # Place the player directly below the first post cover image.
-    if 'class="post-image"' in s:
-        s = re.sub(
-            r'(<img\b[^>]*class="post-image"[^>]*>\s*)',
-            r'\1' + player + '\n',
-            s,
-            count=1,
-            flags=re.I | re.S,
-        )
-    else:
-        # Safe fallback: place before the review body.
-        s = s.replace('<div class="post-body">', player + '\n<div class="post-body">', 1)
-
-    s = s.replace("</body>", READ_ALOUD_JS + "\n</body>", 1)
-    path.write_text(s, encoding="utf-8")
-    print("Updated Read Aloud player:", path)
-
-print("Migration complete.")
+print(f"Migration complete. Audio UI cleaned from {cleaned_pages} post page(s).")

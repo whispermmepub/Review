@@ -719,28 +719,6 @@ def generate_post_html(post):
             50% {{ opacity: 0.3; }}
         }}
 
-        .read-aloud-player {{
-            width: calc(100% - 24px); max-width: 760px; margin: 0 auto 24px;
-            padding: 14px; border: 1px solid rgba(74,158,255,0.35);
-            border-radius: 16px; background: rgba(30,26,53,0.92);
-        }}
-        .read-aloud-title {{ font-size: .95rem; font-weight: 700; color: #fff; margin-bottom: 10px; }}
-        .read-aloud-controls {{ display: flex; gap: 8px; align-items: center; flex-wrap: wrap; }}
-        .read-aloud-player select, .read-aloud-player button {{
-            min-height: 38px; border: 1px solid rgba(255,255,255,0.16); border-radius: 10px;
-            background: #24203f; color: #fff; padding: 7px 11px; font-family: inherit; font-size: .84rem;
-        }}
-        .read-aloud-player select {{ flex: 1 1 140px; }}
-        .read-aloud-player button {{ cursor: pointer; }}
-        .read-aloud-player .read-play {{ background: #4a9eff; border-color: #4a9eff; font-weight: 700; }}
-        .read-audio {{ display: block; width: 100%; margin-top: 11px; height: 40px; }}
-        .read-aloud-status {{ margin-top: 8px; color: #9fa4bd; font-size: .75rem; line-height: 1.5; }}
-        @media (max-width: 600px) {{
-            .read-aloud-player {{ width: calc(100% - 20px); margin-bottom: 18px; padding: 11px; }}
-            .read-aloud-controls {{ gap: 6px; }}
-            .read-aloud-player select, .read-aloud-player button {{ font-size: .78rem; min-height: 36px; }}
-        }}
-
         .comments-panel {{
             margin: 30px auto 18px;
             padding: 22px 18px;
@@ -784,24 +762,6 @@ def generate_post_html(post):
         <div class="reading-time" id="readingTime">📖 <span id="readTime"></span> ဖတ်ရန်အချိန်</div>
 
 {image_html}
-        <section class="read-aloud-player" data-audio-base="../audio/{post['id']}" aria-label="အသံဖြင့်ဖတ်ရန်">
-            <div class="read-aloud-title">🔊 အသံဖြင့်ဖတ်ရန်</div>
-            <div class="read-aloud-controls">
-                <select class="read-voice" aria-label="အသံရွေးရန်">
-                    <option value="nilar">🎙 Nilar — မိန်းကလေးအသံ</option>
-                    <option value="thiha">🎙 Thiha — ယောကျ်ားလေးအသံ</option>
-                </select>
-                <select class="read-rate" aria-label="ဖတ်နှုန်း">
-                    <option value="0.8">0.8×</option><option value="1" selected>1.0×</option>
-                    <option value="1.2">1.2×</option><option value="1.5">1.5×</option>
-                </select>
-                <button type="button" class="read-play">▶ ဖတ်ရန်</button>
-                <button type="button" class="read-pause">⏸ ခဏရပ်</button>
-                <button type="button" class="read-stop">⏹ ရပ်ရန်</button>
-            </div>
-            <audio class="read-audio" controls preload="none"></audio>
-            <div class="read-aloud-status">Nilar / Thiha အသံဖိုင်ကို ရွေးပြီး ▶️ ဖတ်နိုင်ပါတယ်။</div>
-        </section>
         <div class="post-body">
             <div class="post-content">
 {post.get("content", "")}
@@ -852,7 +812,6 @@ def generate_post_html(post):
         <script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-auth-compat.js"></script>
         <script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore-compat.js"></script>
         <script src="/Review/assets/firebase-comments.js"></script>
-        <script src="/Review/assets/audio-player.js"></script>
         <script src="/Review/assets/reading-stats.js"></script>
     <script>
         // Performance: one passive RAF scroll handler

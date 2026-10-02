@@ -14,8 +14,7 @@ on:
       - 'apply-performance-optimizations.py'
       - 'migrate-walone.py'
       - 'sync-posts.py'
-      - 'generate-tts.py'
-  schedule:
+    schedule:
     - cron: '0 * * * *'
   workflow_dispatch:
 
@@ -49,48 +48,6 @@ jobs:
 
       - name: Migrate all existing posts to Walone
         run: python3 migrate-walone.py
-
-      - name: Install ffmpeg
-        run: sudo apt-get update -qq && sudo apt-get install -y -qq ffmpeg
-
-      - name: Generate Burmese Read Aloud audio
-        run: |
-          python -m pip install --disable-pip-version-check --no-input edge-tts
-          python3 generate-tts.py
-
-      - name: Validate Burmese Read Aloud audio
-        run: |
-          python3 - <<'PY'
-          import json
-          from pathlib import Path
-
-          failures = []
-          post_dirs = sorted(Path("audio").glob("[0-9]*"), key=lambda p: int(p.name))
-          for post_dir in post_dirs:
-              for voice in ("nilar", "thiha"):
-                  manifest_path = post_dir / f"{voice}.json"
-                  marker_path = post_dir / f"{voice}.sha256"
-                  if not manifest_path.exists() or not marker_path.exists():
-                      failures.append(f"{post_dir.name}/{voice}: missing manifest or hash")
-                      continue
-                  try:
-                      manifest = json.loads(manifest_path.read_text(encoding="utf-8"))
-                      chunks = manifest.get("chunks", [])
-                  except Exception as exc:
-                      failures.append(f"{post_dir.name}/{voice}: invalid manifest ({exc})")
-                      continue
-                  if not chunks:
-                      failures.append(f"{post_dir.name}/{voice}: no chunks")
-                  for name in chunks:
-                      target = post_dir / name
-                      if not target.exists() or target.stat().st_size < 1024:
-                          failures.append(f"{post_dir.name}/{voice}: missing or tiny {name}")
-          if failures:
-              print("Audio validation failures:")
-              print("\n".join(failures))
-              raise SystemExit(1)
-          print(f"Validated {len(post_dirs)} posts with Nilar and Thiha audio.")
-          PY
 
       - name: Check for changes
         id: git-check

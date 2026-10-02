@@ -2,7 +2,7 @@
   'use strict';
 
   var VIEW_KEY = 'wow-review-catalog-view-v1';
-  var VIEWS = ['grid', 'listen', 'small-list', 'large-list', 'small-grid', 'large-grid'];
+  var VIEWS = ['grid', 'small-list', 'large-list', 'small-grid', 'large-grid'];
   var posts = [];
   var view = 'grid';
   var searchTimer = null;
@@ -67,10 +67,6 @@
     var readLink = make('a', 'card-read-more', 'ဖတ်ရန် →');
     readLink.href = target;
     actions.appendChild(readLink);
-    var listenLink = make('a', 'card-listen', '🔊 နားထောင်ရန်');
-    listenLink.href = target;
-    listenLink.setAttribute('aria-label', title + ' — ရှိပြီးသား audio player ဖြင့် နားထောင်ရန်');
-    actions.appendChild(listenLink);
     content.appendChild(actions);
 
     article.appendChild(cover);

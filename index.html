@@ -125,17 +125,15 @@
         .clear-search:hover{background:#382741}
         .catalog-controls .results-count{flex:0 0 auto;margin:0 2px 8px 0;color:#c9bbce;font-size:.77rem;white-space:nowrap}
         .view-mode-title{margin-bottom:6px}
-        .view-mode-buttons{display:grid;grid-template-columns:repeat(6,minmax(0,1fr));gap:7px}
+        .view-mode-buttons{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:7px}
         .view-mode-button{display:flex;align-items:center;justify-content:center;gap:6px;min-width:0;min-height:40px;padding:6px 9px;border:1px solid rgba(255,220,170,.2);border-radius:9px;background:#1c1930;color:#ded7e4;font:inherit;font-size:.75rem;white-space:nowrap;cursor:pointer;transition:background .18s,border-color .18s,transform .18s}
         .view-mode-button:hover{border-color:#8b7bf5;transform:translateY(-1px)}
         .view-mode-button[aria-pressed="true"]{border-color:#8b7bf5;background:#352d4d;color:#fff;box-shadow:none}
-        .view-mode-button:focus-visible,.clear-search:focus-visible,.card-title-link:focus-visible,.card-read-more:focus-visible,.card-listen:focus-visible{outline:3px solid #ffd08a;outline-offset:2px}
+        .view-mode-button:focus-visible,.clear-search:focus-visible,.card-title-link:focus-visible,.card-read-more:focus-visible{outline:3px solid #ffd08a;outline-offset:2px}
         .card-title-link{color:inherit;text-decoration:none}
         .card-title-link:hover{text-decoration:underline;text-decoration-color:#dca875}
         .card-actions{display:flex;align-items:center;gap:10px;flex-wrap:wrap;margin-top:auto}
-        .card-read-more,.card-listen{display:inline-flex;align-items:center;min-height:28px;color:#ffd08a;font-size:.72rem;text-decoration:none}
-        .card-listen{display:none;padding:4px 8px;border:1px solid rgba(255,255,255,.16);border-radius:7px;background:rgba(139,124,246,.1)}
-        .card-listen:hover{background:rgba(139,124,246,.2)}
+        .card-read-more{display:inline-flex;align-items:center;min-height:28px;color:#ffd08a;font-size:.72rem;text-decoration:none}
         .container[data-view="small-grid"]{grid-template-columns:repeat(4,minmax(0,1fr));gap:10px}
         .container[data-view="small-grid"] .post-card{height:260px}
         .container[data-view="small-grid"] .card-cover{height:108px}
@@ -143,22 +141,17 @@
         .container[data-view="large-grid"] .post-card{height:350px}
         .container[data-view="large-grid"] .card-cover{height:166px}
         .container[data-view="large-grid"] .card-title{font-size:1.05rem}
-        .container[data-view="small-list"],.container[data-view="large-list"],.container[data-view="listen"]{grid-template-columns:minmax(0,1fr);gap:10px;padding:14px;border:1px solid rgba(255,255,255,.08);border-radius:12px;background:#17152b;box-shadow:none}
-        .container[data-view="small-list"]::before,.container[data-view="small-list"]::after,.container[data-view="large-list"]::before,.container[data-view="large-list"]::after,.container[data-view="listen"]::before,.container[data-view="listen"]::after{display:none}
-        .container[data-view="small-list"] .post-card,.container[data-view="large-list"] .post-card,.container[data-view="listen"] .post-card{display:flex;flex-direction:row;align-items:stretch;height:auto;min-height:94px;overflow:hidden}
+        .container[data-view="small-list"],.container[data-view="large-list"]{grid-template-columns:minmax(0,1fr);gap:10px;padding:14px;border:1px solid rgba(255,255,255,.08);border-radius:12px;background:#17152b;box-shadow:none}
+        .container[data-view="small-list"]::before,.container[data-view="small-list"]::after,.container[data-view="large-list"]::before,.container[data-view="large-list"]::after{display:none}
+        .container[data-view="small-list"] .post-card,.container[data-view="large-list"] .post-card{display:flex;flex-direction:row;align-items:stretch;height:auto;min-height:94px;overflow:hidden}
         .container[data-view="small-list"] .card-cover{width:70px;height:88px}
         .container[data-view="large-list"] .card-cover{width:132px;height:168px}
-        .container[data-view="listen"] .card-cover{width:82px;height:104px}
         .container[data-view="small-list"] .card-content{gap:3px;padding:8px 11px!important}
         .container[data-view="small-list"] .card-title{min-height:0;font-size:.9rem}
         .container[data-view="small-list"] .card-excerpt{display:none}
         .container[data-view="large-list"] .card-content{gap:8px;padding:16px 20px!important}
         .container[data-view="large-list"] .card-title{min-height:0;font-size:1.12rem}
         .container[data-view="large-list"] .card-excerpt{display:-webkit-box;-webkit-line-clamp:3}
-        .container[data-view="listen"] .card-content{gap:5px;padding:12px 16px!important}
-        .container[data-view="listen"] .card-title{min-height:0;font-size:.98rem}
-        .container[data-view="listen"] .card-excerpt{display:none}
-        .container[data-view="listen"] .card-listen{display:inline-flex}
         @media(max-width:900px){.container[data-view="small-grid"]{grid-template-columns:repeat(3,minmax(0,1fr))}}
         @media(max-width:600px){
             .catalog-controls{padding:10px;margin-bottom:12px}
@@ -172,17 +165,13 @@
             .container[data-view="large-grid"]{grid-template-columns:repeat(3,minmax(0,1fr));gap:7px}
             .container[data-view="large-grid"] .post-card{height:270px}
             .container[data-view="large-grid"] .card-cover{height:126px}
-            .container[data-view="small-list"],.container[data-view="large-list"],.container[data-view="listen"]{grid-template-columns:minmax(0,1fr);padding:8px;gap:7px}
+            .container[data-view="small-list"],.container[data-view="large-list"]{grid-template-columns:minmax(0,1fr);padding:8px;gap:7px}
             .container[data-view="small-list"] .card-cover{width:62px;height:78px}
             .container[data-view="large-list"] .card-cover{width:96px;height:124px}
-            .container[data-view="listen"] .card-cover{width:66px;height:86px}
             .container[data-view="large-list"] .card-content{padding:10px 12px!important}
             .container[data-view="large-list"] .card-title{font-size:.9rem}
             .container[data-view="large-list"] .card-excerpt{-webkit-line-clamp:2;font-size:.7rem!important}
-            .container[data-view="listen"] .card-content{padding:8px 10px!important}
-            .container[data-view="listen"] .card-title{font-size:.78rem!important}
-            .container[data-view="listen"] .card-meta{font-size:.58rem!important}
-            .card-read-more,.card-listen{min-height:28px;font-size:.64rem}
+            .card-read-more{min-height:28px;font-size:.64rem}
         }
 
         /* Compact, plain dark Review Statistics */
@@ -224,7 +213,6 @@
   <div class="view-mode-title">မြင်ကွင်းရွေးချယ်ရန်</div>
   <div class="view-mode-buttons" id="view-mode-buttons" role="group" aria-label="Book card မြင်ကွင်း">
     <button type="button" class="view-mode-button" data-view="grid" aria-pressed="true" title="ပုံမှန် Grid View">▦ <span>Grid</span></button>
-    <button type="button" class="view-mode-button" data-view="listen" aria-pressed="false" title="နားထောင်ရန်စာရင်း">🔊 <span>Listen</span></button>
     <button type="button" class="view-mode-button" data-view="small-list" aria-pressed="false" title="စာရင်းအသေး">☷ <span>Small List</span></button>
     <button type="button" class="view-mode-button" data-view="large-list" aria-pressed="false" title="စာရင်းအကြီး">☰ <span>Large List</span></button>
     <button type="button" class="view-mode-button" data-view="small-grid" aria-pressed="false" title="ကတ်အသေး Grid">▦ <span>Small Grid</span></button>
