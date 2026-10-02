@@ -99,6 +99,19 @@ def get_slug_from_title(title):
         slug = hashlib.md5(clean_title.encode()).hexdigest()[:8]
     return slug
 
+def build_new_post_link(numeric_id, date_str, title):
+    """Build a stable nested URL for a newly discovered post."""
+    try:
+        year, month = str(date_str)[:7].split('-')
+        if not (year.isdigit() and month.isdigit()):
+            raise ValueError
+        year, month = year.zfill(4), month.zfill(2)
+    except (ValueError, AttributeError):
+        now = datetime.now()
+        year, month = now.strftime('%Y'), now.strftime('%m')
+    slug = get_slug_from_title(title) or 'post'
+    return f"{year}/{month}/{slug}-{numeric_id}/index.html"
+
 def extract_image(description):
     """Extract the first image URL from the post description."""
     img_match = re.search(r'<img[^>]+src=["\']([^"\']+)["\']', description)
@@ -791,7 +804,7 @@ def generate_post_html(post):
                 <div id="commentsList" aria-live="polite"><p class="comments-empty">Comment များကို ရယူနေပါသည်…</p></div>
             </section>
 
-            <a href="../index.html" class="back-link">← ပင်မစာမျက်နှာသို့</a>
+            <a href="/Review/" class="back-link">← ပင်မစာမျက်နှာသို့</a>
 
             <div class="love-section">
                 <a href="https://t.me/+q4jx63Zt5LBiMmI1" target="_blank" class="telegram-btn">
@@ -852,7 +865,7 @@ def generate_post_html(post):
         }})();
 
         // Bookmark
-        var postId = window.location.pathname.match(/\/(\d+)\//);
+        var postId = window.location.pathname.match(/\/(?:\d{4}\/\d{2}\/)?(?:[^/]*-)?(\d+)\/?(?:index\.html)?$/);
         var pid = postId ? postId[1] : 'unknown';
         var bookmarks = [];
         try {{
@@ -953,10 +966,12 @@ def main():
             excerpt = fb_post['excerpt']
             reviewer = fb_post['reviewer']
             
-            # Check if post already exists by title — reuse its ID
+            # Check if post already exists by title — reuse its ID and URL
+            existing_link = None
             if title in existing_by_title:
                 old = existing_by_title[title]
                 numeric_id = old['id']
+                existing_link = old.get('link')
                 if old.get('manually_edited'):
                     print(f"  SKIP (manually edited, Facebook): {numeric_id} -> {title[:60]}")
                     del existing_by_title[title]
@@ -978,7 +993,7 @@ def main():
                 'author': reviewer,
                 'image': image_url,
                 'excerpt': excerpt,
-                'link': f"{numeric_id}/index.html",
+                'link': existing_link or build_new_post_link(numeric_id, date_str, title),
                 'source_url': link,
                 'content': content_html
             })
@@ -1061,10 +1076,12 @@ def main():
             except:
                 date_str = pub_date
 
-            # Check if post already exists by title — reuse its ID
+            # Check if post already exists by title — reuse its ID and URL
+            existing_link = None
             if title in existing_by_title:
                 old = existing_by_title[title]
                 numeric_id = old['id']
+                existing_link = old.get('link')
                 # Skip if manually edited via admin page
                 if old.get('manually_edited'):
                     print(f"  SKIP (manually edited): {numeric_id} -> {title[:60]}")
@@ -1088,7 +1105,7 @@ def main():
                 'author': reviewer,
                 'image': image_url,
                 'excerpt': excerpt,
-                'link': f"{numeric_id}/index.html",
+                'link': existing_link or build_new_post_link(numeric_id, date_str, title),
                 'source_url': link,
                 'content': content_html
             })
@@ -1129,23 +1146,22 @@ def main():
         json.dump(posts_json, f, ensure_ascii=False, indent=2)
     print(f"\nSaved posts.json ({len(posts_json)} posts) — {updated_count} updated, {new_count} new, {preserved_count} preserved")
 
-    # Generate individual post HTML files
+    # Generate individual post HTML files. Existing posts retain their
+    # published paths; only new posts create nested year/month/slug folders.
     for post in posts:
-        post_dir = os.path.join(REPO_DIR, post['id'])
+        post_dir = os.path.dirname(os.path.join(REPO_DIR, post['link']))
         os.makedirs(post_dir, exist_ok=True)
         html = generate_post_html(post)
         html_path = os.path.join(post_dir, 'index.html')
         with open(html_path, 'w', encoding='utf-8') as f:
             f.write(html)
 
-    # Safety cleanup for all existing numeric Review pages.
+    # Safety cleanup for all generated Review pages (legacy and nested).
     # Some manually preserved pages may not be regenerated from the template.
     # Remove legacy service-worker registration and make optional bookmark storage safe.
     cleanup_count = 0
-    for name in os.listdir(REPO_DIR):
-        if not name.isdigit():
-            continue
-        html_path = os.path.join(REPO_DIR, name, 'index.html')
+    for post in posts:
+        html_path = os.path.join(REPO_DIR, post['link'])
         if not os.path.isfile(html_path):
             continue
         try:

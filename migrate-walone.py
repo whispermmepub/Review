@@ -10,7 +10,15 @@ FONT_B = "https://raw.githubusercontent.com/whispermmepub/myanmar-yoe-shin-fonts
 FONT_BLOCK = f'''@font-face {{ font-family: "Walone"; src: url("{FONT_R}") format("truetype"); font-weight: 400; font-style: normal; font-display: swap; }}
         @font-face {{ font-family: "Walone"; src: url("{FONT_B}") format("truetype"); font-weight: 700; font-style: normal; font-display: swap; }}'''
 
-for path in sorted(ROOT.glob("[0-9]*/index.html"), key=lambda p: int(p.parent.name)):
+def post_pages():
+    """Return post pages, excluding the root site and wow-reader pages."""
+    return sorted(
+        (p for p in ROOT.rglob("index.html")
+         if p.parent != ROOT and "wow-reader" not in p.parts),
+        key=lambda p: str(p.relative_to(ROOT)),
+    )
+
+for path in post_pages():
     s = path.read_text(encoding="utf-8")
     old = s
 
@@ -90,7 +98,7 @@ MOBILE_POST_CSS = '''
             .reviewer-credit { font-size: 0.78rem; }
         }
 '''
-for path in sorted(ROOT.glob("[0-9]*/index.html"), key=lambda p: int(p.parent.name)):
+for path in post_pages():
     s = path.read_text(encoding="utf-8")
     if "Mobile browser + Telegram in-app browser typography" not in s:
         s = s.replace("</style>", MOBILE_POST_CSS + "    </style>", 1)
@@ -163,7 +171,7 @@ def remove_retired_audio(s: str) -> str:
 
 
 cleaned_pages = 0
-for path in sorted(ROOT.glob("[0-9]*/index.html"), key=lambda p: int(p.parent.name)):
+for path in post_pages():
     s = path.read_text(encoding="utf-8")
     cleaned = remove_retired_audio(s)
     if cleaned != s:

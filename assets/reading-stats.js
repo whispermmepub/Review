@@ -52,8 +52,12 @@
     return d.getFullYear() + '-' + String(d.getMonth() + 1).padStart(2, '0') + '-' + String(d.getDate()).padStart(2, '0');
   }
   function getId() {
-    var match = location.pathname.match(/^\/Review\/(\d+)\/?(?:index\.html)?$/);
-    return match ? match[1] : null;
+    var match = location.pathname.match(/^\/Review\/(?:\d{4}\/\d{2}\/)?([^/]+)\/?(?:index\.html)?$/);
+    if (!match) return null;
+    var segment = match[1];
+    if (/^\d+$/.test(segment)) return segment;
+    var id = segment.match(/-(\d+)$/);
+    return id ? id[1] : null;
   }
   function getDeviceId() {
     try {
