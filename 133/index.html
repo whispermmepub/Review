@@ -505,6 +505,31 @@
         .comment-collapsed .comment-text { display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; max-height: 3.2em; overflow: hidden; }
         .comment-toggle { display: inline-flex; align-items: center; border: 0; padding: 2px 0; background: transparent; color: #a34a42; font: inherit; font-size: .76rem; font-weight: 700; cursor: pointer; }
         .comment-toggle:hover { color: #7b4932; text-decoration: underline; }
+        .theme-toggle { display:inline-flex; align-items:center; justify-content:center; margin:10px 0 0; min-height:36px; padding:6px 12px; border:1px solid #d9b3a2; border-radius:999px; background:#fff8f0; color:#5d3628; font:inherit; font-size:.78rem; font-weight:700; cursor:pointer; }
+        .theme-toggle:hover { background:#6b4a3a; color:#fff; }
+        html[data-theme="dark"] body { background:#121218!important; color:#eeeaf2!important; }
+        html[data-theme="dark"] .container { background:#1b1921!important; box-shadow:0 0 30px rgba(0,0,0,.35)!important; }
+        html[data-theme="dark"] header, html[data-theme="dark"] .post-body { color:#eeeaf2!important; }
+        html[data-theme="dark"] header h1 { color:#f5dfbd!important; }
+        html[data-theme="dark"] .post-meta, html[data-theme="dark"] .reading-time, html[data-theme="dark"] .reading-time span { color:#d4b28f!important; }
+        html[data-theme="dark"] .post-body p { color:#e8e1ea!important; }
+        html[data-theme="dark"] .post-body a { color:#e4a197!important; }
+        html[data-theme="dark"] .reviewer-credit { color:#b9adbe!important; border-top-color:#403747!important; }
+        html[data-theme="dark"] .comments-panel { background:#24212c!important; border-color:#4b4050!important; color:#eeeaf2!important; }
+        html[data-theme="dark"] .comments-title, html[data-theme="dark"] .comment-head { color:#f1d7b5!important; }
+        html[data-theme="dark"] .comment-form input, html[data-theme="dark"] .comment-form textarea { background:#18171e!important; color:#f4eff8!important; border-color:#51445b!important; }
+        html[data-theme="dark"] .comment-item { border-top-color:#403747!important; }
+        html[data-theme="dark"] .comment-item p { color:#d3cbd6!important; }
+        html[data-theme="dark"] .comments-empty, html[data-theme="dark"] .newest-reviews-hint { color:#aaa0b2!important; }
+        html[data-theme="dark"] .comment-toggle { color:#e4a197!important; }
+        html[data-theme="dark"] .newest-reviews-panel { border-top-color:#403747!important; }
+        html[data-theme="dark"] .newest-reviews-heading { color:#f1d7b5!important; }
+        html[data-theme="dark"] .newest-review-card { color:#eeeaf2!important; }
+        html[data-theme="dark"] .newest-review-card img, html[data-theme="dark"] .newest-review-placeholder { background:#282431!important; border-color:#51445b!important; }
+        html[data-theme="dark"] .newest-review-card strong { color:#eeeaf2!important; }
+        html[data-theme="dark"] .back-link { background:#282431!important; color:#f0c6a9!important; border-color:#80648e!important; }
+        html[data-theme="dark"] .theme-toggle { background:#2d2636; color:#f5dfbd; border-color:#80648e; }
+        @media(max-width:600px) { .theme-toggle { font-size:.7rem; min-height:33px; } }
 
         /* Mobile browser + Telegram in-app browser typography */
         @media (max-width: 600px) {
@@ -527,6 +552,7 @@
         <header>
             <h1>အစ္ဆရိယရကန် စကားပြေ ၁</h1>
             <div class="post-meta">📅 2026-02-08 • ✍️ Thet Paing Writes</div>
+            <button type="button" class="theme-toggle" data-theme-toggle aria-pressed="false">🌙 Dark mode</button>
 
         </header>
 
@@ -596,6 +622,7 @@
         <script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-auth-compat.js"></script>
         <script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore-compat.js"></script>
         <script src="/Review/assets/firebase-comments.js"></script>
+        <script src="/Review/assets/theme.js"></script>
         <script src="/Review/assets/reading-stats.js"></script>
     <script>
         // Performance: one passive RAF scroll handler
