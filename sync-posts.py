@@ -321,7 +321,7 @@ def generate_post_html(post):
 <html lang="my">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title>{meta_title}</title>
     <meta name="description" content="{meta_description}">
     <link rel="canonical" href="{page_url}">
@@ -852,6 +852,7 @@ def generate_post_html(post):
         html[data-theme="dark"] .back-link {{ background:#282431!important; color:#f0c6a9!important; border-color:#80648e!important; }}
         html[data-theme="dark"] .theme-toggle {{ background:#2d2636; color:#f5dfbd; border-color:#80648e; }}
         @media(max-width:600px) {{ .theme-toggle {{ font-size:.7rem; min-height:33px; }} }}
+        .post-content {{ touch-action:pan-y; }}
 </style>
 </head>
 <body>
@@ -999,6 +1000,33 @@ def generate_post_html(post):
         updateBtn();
     </script>
 
+        <script>
+        // Reader font size: persistent two-finger pinch on the post body.
+        (function() {{
+            var body = document.querySelector('.post-body');
+            var content = document.querySelector('.post-content');
+            if (!body || !content) return;
+            var KEY = 'wow-reader-font-scale';
+            var scale = 1;
+            try {{ scale = Math.max(.8, Math.min(1.8, Number(localStorage.getItem(KEY)) || 1)); }} catch (_) {{}}
+            function clamp(v) {{ return Math.max(.8, Math.min(1.8, v)); }}
+            function apply(next) {{
+                scale = clamp(next);
+                body.querySelectorAll('.post-content, .post-content *').forEach(function(el) {{
+                    if (!el.hasAttribute('data-reader-base-font')) el.setAttribute('data-reader-base-font', getComputedStyle(el).fontSize);
+                    var base = parseFloat(el.getAttribute('data-reader-base-font')) || 16;
+                    el.style.fontSize = (base * scale) + 'px';
+                }});
+                try {{ localStorage.setItem(KEY, String(scale)); }} catch (_) {{}}
+            }}
+            var startDistance = 0, startScale = scale;
+            function distance(a, b) {{ return Math.hypot(a.clientX - b.clientX, a.clientY - b.clientY); }}
+            content.addEventListener('touchstart', function(e) {{ if (e.touches.length === 2) {{ startDistance = distance(e.touches[0], e.touches[1]); startScale = scale; }} }}, {{ passive:true }});
+            content.addEventListener('touchmove', function(e) {{ if (e.touches.length === 2 && startDistance > 0) {{ e.preventDefault(); apply(startScale * distance(e.touches[0], e.touches[1]) / startDistance); }} }}, {{ passive:false }});
+            content.addEventListener('touchend', function(e) {{ if (e.touches.length < 2) startDistance = 0; }}, {{ passive:true }});
+            apply(scale);
+        }})();
+        </script>
         <script>
         // Newest reviews carousel: horizontal swipe/drag, excluding the current post.
         (function() {{
