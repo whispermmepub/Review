@@ -489,6 +489,17 @@
         .comment-head { font-size: .84rem; }
         .comment-item p { margin-top: 4px; font-size: .88rem; line-height: 1.55; }
         @media (max-width: 600px) { .comments-panel { max-width: none; margin: 20px 4px 12px; padding: 12px; } .comments-title { font-size: .92rem; } }
+        /* Newest reviews carousel: horizontal swipe/drag, no long vertical list. */
+        .newest-reviews-panel { max-width: 720px; margin: 22px auto 12px; padding: 13px 0 10px; border-top: 1px solid #e8dfd4; }
+        .newest-reviews-heading { display: flex; align-items: center; justify-content: space-between; gap: 10px; padding: 0 20px 9px; color: #4c4038; font-size: 1rem; font-weight: 800; }
+        .newest-reviews-hint { color: #887b70; font-size: .72rem; font-weight: 400; white-space: nowrap; }
+        .newest-reviews-track { display: flex; gap: 10px; overflow-x: auto; overscroll-behavior-x: contain; scroll-snap-type: x proximity; scrollbar-width: thin; scrollbar-color: #c8ad96 transparent; padding: 2px 20px 10px; -webkit-overflow-scrolling: touch; cursor: grab; }
+        .newest-reviews-track:active { cursor: grabbing; }
+        .newest-review-card { flex: 0 0 138px; scroll-snap-align: start; color: #40372f; text-decoration: none; }
+        .newest-review-card img, .newest-review-placeholder { display: block; width: 138px; height: 170px; object-fit: contain; background: #faf7f3; border: 1px solid #e2d8cf; border-radius: 4px; box-shadow: 0 3px 8px rgba(74,55,35,.10); }
+        .newest-review-card strong { display: -webkit-box; margin-top: 6px; color: #40372f; font-size: .74rem; line-height: 1.35; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; }
+        .newest-review-card:hover img { border-color: #b87333; transform: translateY(-2px); }
+        @media (max-width: 600px) { .newest-reviews-panel { margin: 18px 4px 10px; } .newest-reviews-heading { padding-left: 12px; padding-right: 12px; font-size: .88rem; } .newest-reviews-track { padding-left: 12px; padding-right: 12px; } .newest-review-card { flex-basis: 112px; } .newest-review-card img, .newest-review-placeholder { width: 112px; height: 140px; } .newest-review-card strong { font-size: .66rem; } }
 
         /* Mobile browser + Telegram in-app browser typography */
         @media (max-width: 600px) {
@@ -585,6 +596,10 @@
                 <div id="commentsList" aria-live="polite"><p class="comments-empty">Comment များကို ရယူနေပါသည်…</p></div>
             </section>
 
+            <section class="newest-reviews-panel" aria-labelledby="newestReviewsTitle">
+                <div class="newest-reviews-heading"><span id="newestReviewsTitle">✨ အသစ်တင်ထားသော Reviewများ</span><span class="newest-reviews-hint">ဘေးသို့ ဆွဲကြည့်ရန် →</span></div>
+                <div class="newest-reviews-track" id="newestReviewsTrack" aria-live="polite"><span class="newest-review-placeholder">ရယူနေပါသည်…</span></div>
+            </section>
             <a href="/Review/" class="back-link">← ပင်မစာမျက်နှာသို့</a>
 
             <div class="love-section">
@@ -682,6 +697,25 @@
 
         updateBtn();
     </script>
+
+        <script>
+        // Newest reviews carousel: horizontal swipe/drag, excluding the current post.
+        (function() {
+            var track = document.getElementById('newestReviewsTrack');
+            if (!track) return;
+            fetch('/Review/assets/posts.json').then(function(r) { return r.json(); }).then(function(posts) {
+                var newest = (Array.isArray(posts) ? posts : []).filter(function(p) { return String(p.id) !== String(pid); }).sort(function(a,b) { return String(b.date || '').localeCompare(String(a.date || '')); }).slice(0, 8);
+                track.replaceChildren();
+                newest.forEach(function(p) {
+                    var a = document.createElement('a'); a.className = 'newest-review-card'; a.href = '/Review/' + String(p.link || '').replace(/^\/+/, ''); a.title = p.title || '';
+                    if (p.image) { var img = document.createElement('img'); img.src = p.image; img.alt = p.title || 'Review'; img.loading = 'lazy'; img.decoding = 'async'; a.appendChild(img); }
+                    else { var ph = document.createElement('span'); ph.className = 'newest-review-placeholder'; ph.textContent = '📖'; a.appendChild(ph); }
+                    var title = document.createElement('strong'); title.textContent = p.title || 'စာအုပ်အညွှန်း'; a.appendChild(title); track.appendChild(a);
+                });
+                if (!newest.length) track.innerHTML = '<span class="newest-review-placeholder">မကြာမီ ပြသပါမယ်။</span>';
+            }).catch(function() { track.innerHTML = '<span class="newest-review-placeholder">ရယူ၍မရပါ။</span>'; });
+        })();
+        </script>
 
 </body>
 </html>
