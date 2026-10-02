@@ -209,6 +209,27 @@
         .stats-sync-actions button:disabled{opacity:.65;cursor:wait}
         .stats-sync-actions button[hidden]{display:none!important}
         @media(max-width:600px){.stats-sync-area{align-items:stretch;flex-direction:column;gap:6px}.stats-sync-status{text-align:center;font-size:.65rem}.stats-sync-actions{justify-content:center}.stats-sync-actions button{min-height:28px;font-size:.64rem}}
+
+        /* Shared 3D bookshelf treatment for popular, most-read, and newest shelves. */
+        .popular-sections{display:grid;grid-template-columns:minmax(0,1fr);gap:24px;margin:0 auto 28px;max-width:1600px}
+        .popular-section{position:relative;min-width:0;padding:14px 12px 20px;background:#f8f6f2;border:0;border-radius:12px;box-shadow:0 7px 18px rgba(74,55,35,.08)}
+        .popular-title{margin:0 8px 14px;color:#40372f;font-size:1.02rem;text-align:left}
+        .popular-section>div{position:relative;display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:12px;align-items:end;padding:0 8px 14px}
+        .popular-section>div::after{content:"";position:absolute;z-index:0;left:3px;right:3px;bottom:0;height:11px;border-radius:2px;background:linear-gradient(#d6d0c7,#aaa39a);box-shadow:0 7px 9px rgba(55,45,35,.25)}
+        .popular-card{position:relative;z-index:1;display:flex;flex-direction:column;align-items:center;justify-content:flex-end;gap:5px;min-width:0;height:220px;padding:0 3px 14px;border:0;color:#40372f;overflow:visible}
+        .popular-card:hover{background:transparent;transform:translateY(-4px)}
+        .popular-card img,.popular-placeholder{width:100%;height:178px;object-fit:contain;border:0;border-radius:2px;background:transparent;filter:drop-shadow(4px 5px 2px rgba(50,40,30,.22));transition:transform .18s ease,filter .18s ease}
+        .popular-card:nth-child(2) img,.popular-card:nth-child(2) .popular-placeholder{transform:rotate(-1.5deg)}
+        .popular-card:nth-child(3) img,.popular-card:nth-child(3) .popular-placeholder{transform:rotate(1deg)}
+        .popular-card:nth-child(4) img,.popular-card:nth-child(4) .popular-placeholder{transform:rotate(-1deg)}
+        .popular-card:nth-child(5) img,.popular-card:nth-child(5) .popular-placeholder{transform:rotate(1.5deg)}
+        .popular-card:hover img,.popular-card:hover .popular-placeholder{transform:translateY(-5px) rotate(0deg);filter:drop-shadow(7px 8px 3px rgba(50,40,30,.28))}
+        .popular-rank{position:absolute;z-index:2;top:2px;left:2px;width:22px;height:22px;padding-top:2px;border-radius:50%;background:#b87333;color:#fff;font-size:.72rem;text-align:center;box-shadow:0 2px 5px rgba(50,40,30,.22)}
+        .popular-info{display:block;width:100%;min-width:0;text-align:center;overflow:hidden}
+        .popular-info strong{display:-webkit-box;color:#40372f;font-size:.72rem;line-height:1.3;white-space:normal;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
+        .popular-info small{display:none}
+        .popular-empty{color:#887b70;padding:20px 0;text-align:center}
+        @media(max-width:600px){.popular-sections{gap:16px;margin-bottom:20px}.popular-section{padding:10px 6px 14px;border-radius:10px}.popular-title{margin:0 5px 10px;font-size:.82rem}.popular-section>div{grid-template-columns:repeat(3,minmax(0,1fr));gap:7px;padding:0 4px 11px}.popular-section>div::after{height:9px;left:1px;right:1px;box-shadow:0 5px 7px rgba(55,45,35,.22)}.popular-card{height:176px;padding:0 2px 11px;gap:3px}.popular-card img,.popular-placeholder{height:135px;filter:drop-shadow(3px 3px 2px rgba(50,40,30,.20))}.popular-rank{width:19px;height:19px;font-size:.62rem}.popular-info strong{font-size:.62rem;line-height:1.25}}
     </style>
 </head>
 <body>
