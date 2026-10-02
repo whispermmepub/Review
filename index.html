@@ -428,6 +428,22 @@
         html[data-theme="dark"] .site-brand-hero{background:linear-gradient(135deg,#24212d,#191823);border-color:#51445b;box-shadow:0 8px 22px rgba(0,0,0,.3)}
         html[data-theme="dark"] .site-brand-hero h1{color:#f5dfbd}html[data-theme="dark"] .site-brand-hero p{color:#d4b28f}
         @media(max-width:600px){.site-brand-hero{width:calc(100% - 16px);margin-bottom:12px;padding:15px 10px 13px;border-radius:11px}.site-brand-hero h1{font-size:1.08rem}.site-brand-hero p{font-size:.76rem;margin-top:5px}}
+        /* Clean cover finish: simple, proportional cards with no 3D tricks. */
+        .post-card,.container[data-view="grid"] .post-card{height:auto!important;min-height:0!important;display:flex!important;flex-direction:column!important;background:#fffdfb!important;border:1px solid #e2d8cf!important;border-radius:6px!important;box-shadow:0 2px 8px rgba(74,55,35,.07)!important;padding:6px!important;transform:none!important;overflow:visible!important;perspective:none!important}
+        .card-cover,.container[data-view="grid"] .card-cover{height:auto!important;aspect-ratio:2/3!important;padding:0!important;display:block!important;overflow:hidden!important;background:#faf8f5!important;border:1px solid #e7ded5!important;border-radius:3px!important}
+        .card-cover::before,.card-cover::after{display:none!important;content:none!important}
+        .card-cover .card-img,.card-cover .card-img-placeholder{width:100%!important;height:100%!important;aspect-ratio:auto!important;object-fit:contain!important;object-position:center!important;background:#faf8f5!important;border:0!important;border-radius:2px!important;filter:none!important;transform:none!important;transition:none!important}
+        .post-card:nth-child(3n+2) .card-cover .card-img,.post-card:nth-child(3n+2) .card-cover .card-img-placeholder,.post-card:nth-child(3n) .card-cover .card-img,.post-card:nth-child(3n) .card-cover .card-img-placeholder{transform:none!important}
+        .post-card:hover,.post-card:hover .card-cover .card-img{transform:none!important;filter:none!important}
+        .card-content{min-height:42px!important;height:auto!important;padding:8px 2px 1px!important;background:transparent!important;text-align:center!important}
+        .card-title{text-align:center!important;font-weight:700!important}
+        .popular-card{height:auto!important;min-height:0!important;padding:0!important;display:flex!important;align-items:stretch!important;gap:7px!important;transform:none!important;background:transparent!important;perspective:none!important}
+        .popular-card::before,.popular-card::after{display:none!important;content:none!important}
+        .popular-card img,.popular-card .popular-placeholder{width:100%!important;height:auto!important;aspect-ratio:2/3!important;object-fit:contain!important;background:#faf8f5!important;border:1px solid #e7ded5!important;border-radius:3px!important;filter:none!important;transform:none!important;transition:none!important}
+        .popular-card:nth-child(2) img,.popular-card:nth-child(2) .popular-placeholder,.popular-card:nth-child(3) img,.popular-card:nth-child(3) .popular-placeholder{transform:none!important}
+        .popular-card:hover,.popular-card:hover img,.popular-card:hover .popular-placeholder{transform:none!important;filter:none!important}
+        .popular-info{background:transparent!important;padding:2px 1px!important}
+        @media(max-width:600px){.post-card,.container[data-view="grid"] .post-card{padding:4px!important;border-radius:5px!important}.card-content{min-height:38px!important;padding-top:6px!important}.popular-card{gap:4px!important}}
 </style>
 </head>
 <body>

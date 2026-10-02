@@ -858,6 +858,14 @@ def generate_post_html(post):
         .newest-review-card:nth-child(2) img, .newest-review-card:nth-child(2) .newest-review-placeholder {{ transform:perspective(900px) rotateY(4deg) rotateZ(.7deg); }}
         .newest-review-card:hover img, .newest-review-card:hover .newest-review-placeholder {{ transform:perspective(900px) translateY(-5px) rotateY(0deg) rotateZ(0deg); filter:drop-shadow(10px 11px 5px rgba(50,40,30,.33)); }}
         @media (max-width: 600px) {{ .newest-review-card img, .newest-review-placeholder {{ width:106px; height:159px; }} .newest-review-card::before {{ bottom:23px; }} }}
+        /* Clean cover finish: simple newest-review cards without 3D mockup effects. */
+        .newest-review-card {{ position:relative; padding-bottom:0; perspective:none; transform:none; }}
+        .newest-review-card::before, .newest-review-card::after {{ display:none; content:none; }}
+        .newest-review-card img, .newest-review-placeholder {{ width:132px; height:198px; max-width:100%; aspect-ratio:2/3; object-fit:contain; object-position:center; background:#faf8f5; border:1px solid #e7ded5; border-radius:3px; box-shadow:none; filter:none; transform:none; transition:none; }}
+        .newest-review-card:nth-child(2) img, .newest-review-card:nth-child(2) .newest-review-placeholder {{ transform:none; }}
+        .newest-review-card:hover img, .newest-review-card:hover .newest-review-placeholder {{ transform:none; filter:none; }}
+        .newest-review-card strong {{ background:transparent; padding:4px 1px 0; }}
+        @media (max-width: 600px) {{ .newest-review-card img, .newest-review-placeholder {{ width:106px; height:159px; }} }}
         /* Comment previews: keep long reader comments compact until expanded. */
         .comment-text {{ margin-bottom: 4px; }}
         .comment-collapsed .comment-text {{ display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; max-height: 3.2em; overflow: hidden; }}
