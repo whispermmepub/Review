@@ -733,7 +733,7 @@ def generate_post_html(post):
         }}
 
         .post-announcement-banner {{
-            width: min(480px, calc(100% - 64px));
+            width:50%; max-width:240px;
             margin: 20px auto 14px;
             padding: 4px;
             border: 1px solid #d8c4b2;
@@ -743,9 +743,9 @@ def generate_post_html(post):
             overflow: hidden;
         }}
         .post-announcement-banner a {{ display:block; line-height:0; border-radius:9px; overflow:hidden; }}
-        .post-announcement-banner img {{ display:block; width:100%; height:auto; max-height:105px; object-fit:cover; object-position:center; border-radius:9px; }}
+        .post-announcement-banner img {{ display:block; width:100%; height:auto; max-height:52px; object-fit:cover; object-position:center; border-radius:9px; }}
         html[data-theme="dark"] .post-announcement-banner {{ background:#30271c; border-color:#8e6b2c; box-shadow:0 5px 14px rgba(0,0,0,.28); }}
-        @media (max-width: 600px) {{ .post-announcement-banner {{ width:calc(100% - 44px); margin:14px auto 10px; padding:3px; border-radius:10px; }} .post-announcement-banner a, .post-announcement-banner img {{ border-radius:7px; }} .post-announcement-banner img {{ max-height:82px; }} }}
+        @media (max-width: 600px) {{ .post-announcement-banner {{ width:50%; margin:14px auto 10px; padding:3px; border-radius:10px; }} .post-announcement-banner a, .post-announcement-banner img {{ border-radius:7px; }} .post-announcement-banner img {{ max-height:41px; }} }}
 
         .comments-panel {{
             margin: 30px auto 18px;
