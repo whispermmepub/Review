@@ -317,7 +317,7 @@ def generate_post_html(post):
     meta_description = html_lib.escape(build_preview_description(re.sub(r'<[^>]+>', '', post.get("excerpt", ""))))
     preview_image_html = html_lib.escape(preview_image, quote=True)
 
-    html = f'''<!DOCTYPE html>
+    html = rf'''<!DOCTYPE html>
 <html lang="my">
 <head>
     <meta charset="UTF-8">
