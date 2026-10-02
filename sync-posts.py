@@ -310,7 +310,7 @@ def generate_post_html(post):
     """Generate a static HTML file for a blog post."""
     image_html = ''
     if post['image']:
-        image_html = f'\n        <img src="{post["image"]}" alt="{post["title"]}" class="post-image">'
+        image_html = f'\n        <img src="{post["image"]}" alt="{post["title"]}" class="post-image" loading="eager" decoding="async" fetchpriority="high">'
     preview_image = post['image'] or 'https://blogger.googleusercontent.com/img/a/AVvXsEiz-kPEUW-4PhZ-CEATRgvFzmaJfZ6mL3BQ8kXuRmav6CborPuAv7wTt4FaWY9pLZoluFx6_BqZMdtmsbnNswQleuyADOrI0l4t5hEGhzlFO4Vn9zvL20KrYPiyoGA8IBS52gKKsXx_TD5AtEj9Nmr7mWLLNgIdB1SkFZiWxOz_XMGiov2BBDi9tm9zhIA=rw'
     page_url = f'https://whispermmepub.github.io/Review/{post["link"]}'
     meta_title = html_lib.escape(f'{post["title"]} - 𝐖𝐡𝐢𝐬𝐩𝐞𝐫 𝐎𝐟 𝐖𝐨𝐫𝐝𝐬 - 𝐦𝐦 𝐄𝐩𝐮𝐛')
@@ -761,6 +761,33 @@ def generate_post_html(post):
         .comments-empty {{ color: #999; }}
         @media (max-width: 520px) {{ .comments-panel {{ margin-left: 8px; margin-right: 8px; }} .comment-head {{ display: block; }} }}
 
+        /* Clean compact reading layout: centered cover, fast start, calm paper surface. */
+        html, body {{ background: #f3f0eb; color: #332d29; }}
+        body {{ line-height: 1.8; padding: 0; }}
+        .reading-progress {{ background: linear-gradient(90deg,#d9a441,#b87333); }}
+        .container {{ max-width: 900px; margin: 0 auto; overflow: hidden; background: #fffdfa; box-shadow: 0 0 30px rgba(74,55,35,.08); }}
+        header {{ margin: 0; padding: 28px 20px 12px; background: transparent; border: 0; border-radius: 0; box-shadow: none; backdrop-filter: none; -webkit-backdrop-filter: none; }}
+        header::before, header::after {{ display: none; }}
+        header h1 {{ color: #302a26; font-size: clamp(1.35rem, 4vw, 2rem); text-shadow: none; margin-bottom: 8px; }}
+        .post-meta {{ color: #a34a42; text-shadow: none; font-size: .95rem; }}
+        .reading-time {{ margin: 0 auto 6px; color: #887b70; font-size: .82rem; text-align: center; }}
+        .reading-time span {{ color: #a34a42; animation: none; }}
+        .post-image {{ display: block; width: min(82vw, 360px); max-width: 360px; max-height: 470px; height: auto; object-fit: contain; margin: 4px auto 30px; border: 0; border-radius: 2px; background: #fff; box-shadow: 8px 9px 0 rgba(120,102,82,.08), 0 12px 25px rgba(70,50,30,.14); filter: none; }}
+        .post-content img {{ width: min(100%, 760px); max-height: none; border: 0; border-radius: 8px; box-shadow: 0 7px 18px rgba(70,50,30,.12); }}
+        .post-body {{ padding: 6px 22px 34px; color: #332d29; }}
+        .post-body p {{ margin-bottom: 1.25em; font-size: clamp(1.08rem, 2.6vw, 1.25rem); line-height: 1.9; letter-spacing: .01em; color: #332d29; }}
+        .post-body a {{ color: #b04b43; text-decoration-color: rgba(176,75,67,.35); }}
+        .reviewer-credit {{ color: #887b70; border-top-color: #e8dfd4; }}
+        .comments-panel {{ color: #332d29; background: #f8f4ef; border-color: #e8dfd4; }}
+        .comments-title {{ color: #4c4038; }}
+        .comment-form input, .comment-form textarea {{ background: #fff; color: #332d29; border-color: #dfd4c8; }}
+        .comment-item {{ border-top-color: #e8dfd4; }}
+        .comment-head {{ color: #4c4038; }}
+        .comment-item p {{ color: #544a43; }}
+        .comments-empty {{ color: #887b70; }}
+        .back-link {{ background: #fff; color: #a34a42; border-color: #d9b3a2; }}
+        .back-link:hover {{ background: #a34a42; color: #fff; }}
+        @media (max-width: 600px) {{ header {{ padding: 22px 16px 8px; }} .post-image {{ width: min(78vw, 330px); max-height: 430px; margin-bottom: 24px; }} .post-body {{ padding: 4px 18px 28px; }} .post-body p {{ font-size: 1.06rem !important; line-height: 1.86 !important; }} }}
 </style>
 </head>
 <body>
