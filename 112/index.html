@@ -410,6 +410,21 @@
             50% { opacity: 0.3; }
         }
 
+        .post-announcement-banner {
+            width: min(760px, calc(100% - 32px));
+            margin: 20px auto 14px;
+            padding: 4px;
+            border: 1px solid #d8c4b2;
+            border-radius: 12px;
+            background: #fffaf4;
+            box-shadow: 0 4px 12px rgba(74,55,35,.10);
+            overflow: hidden;
+        }
+        .post-announcement-banner a { display:block; line-height:0; border-radius:9px; overflow:hidden; }
+        .post-announcement-banner img { display:block; width:100%; height:auto; max-height:180px; object-fit:cover; object-position:center; border-radius:9px; }
+        html[data-theme="dark"] .post-announcement-banner { background:#30271c; border-color:#8e6b2c; box-shadow:0 5px 14px rgba(0,0,0,.28); }
+        @media (max-width: 600px) { .post-announcement-banner { width:calc(100% - 16px); margin:14px auto 10px; padding:3px; border-radius:10px; } .post-announcement-banner a, .post-announcement-banner img { border-radius:7px; } .post-announcement-banner img { max-height:150px; } }
+
         .comments-panel {
             margin: 30px auto 18px;
             padding: 22px 18px;
@@ -612,6 +627,10 @@
 
             <div class="reviewer-credit">
                 <p>Review By Thet Paing Writes</p>
+            </div>
+
+            <div class="post-announcement-banner" aria-label="ကြော်ငြာနှင့် Announcement">
+                <a href="https://t.me/wowreaderlab/17" target="_blank" rel="noopener noreferrer"><img src="https://raw.githubusercontent.com/whispermmepub/ads_photos/main/IMG_1790946813006.jpg" alt="Announcement banner" loading="eager" fetchpriority="high" decoding="async"></a>
             </div>
 
             <section class="comments-panel" id="commentsPanel" data-post-id="112" aria-labelledby="commentsTitle">
