@@ -600,6 +600,53 @@
         html[data-theme="dark"] .post-controls { color:#b9adbe; }
         html[data-theme="dark"] .copy-status { color:#e4a197; }
         @media(max-width:600px) { .post-controls { margin-left:20px; margin-right:20px; font-size:.7rem; } .font-picker { max-width:130px; } }
+        /* Final book-detail polish: cover hero + focused reading column. */
+        html,body { background:#f4f0ea; color:#302a26; }
+        body { padding:18px 12px 32px; line-height:1.65; }
+        .container { display:grid; grid-template-columns:minmax(250px,330px) minmax(0,1fr); grid-template-areas:"cover info" "cover time" "cover controls" "body body" "footer footer"; column-gap:42px; row-gap:0; width:min(100%,1040px); max-width:1040px; margin:0 auto; padding:34px 42px 44px; background:#fffdfa; border:1px solid #e7ded5; border-radius:22px; box-shadow:0 14px 42px rgba(72,52,37,.10); overflow:hidden; }
+        .post-image { grid-area:cover; align-self:start; width:100%; max-width:none; max-height:none; height:auto; margin:4px 0 0; border:1px solid #e5dbd0; border-radius:9px; background:#f8f3ee; box-shadow:0 10px 24px rgba(72,52,37,.13); filter:none; }
+        header { grid-area:info; align-self:end; margin:0; padding:6px 0 12px; text-align:left; color:#302a26; background:transparent; border:0; border-radius:0; box-shadow:none; backdrop-filter:none; -webkit-backdrop-filter:none; }
+        header::before,header::after { display:none; }
+        header h1 { margin:0 0 12px; color:#302a26; font-size:clamp(1.45rem,3.2vw,2.2rem); line-height:1.4; text-shadow:none; letter-spacing:.01em; }
+        header h1::before { content:"စာအုပ်အညွှန်း"; display:block; margin-bottom:8px; color:#a56a4d; font-size:.72rem; font-weight:700; letter-spacing:.08em; }
+        .post-meta { color:#8b6f60; font-size:.92rem; line-height:1.7; text-shadow:none; }
+        .header-controls { display:flex; align-items:center; flex-wrap:wrap; gap:8px; margin-top:18px; }
+        .header-controls .theme-toggle { margin:0; min-height:34px; padding:6px 11px; border:1px solid #d9b9a6; border-radius:999px; background:#fbf3ed; color:#87543a; font:inherit; font-size:.73rem; font-weight:700; cursor:pointer; }
+        .font-picker { min-height:34px; max-width:165px; padding:6px 9px; border:1px solid #d9b9a6; border-radius:8px; background:#fff; color:#5d3628; font:inherit; font-size:.75rem; cursor:pointer; }
+        .reading-time { grid-area:time; align-self:start; margin:0; padding:12px 0 10px; border-top:1px solid #eee4db; color:#8b776b; font-size:.82rem; text-align:left; }
+        .reading-time span { color:#a34a42; font-weight:700; animation:none; }
+        .post-controls { grid-area:controls; display:flex; align-items:center; flex-wrap:wrap; gap:8px; margin:0 0 20px; padding:0 0 16px; border-bottom:1px solid #eee4db; color:#8b776b; font-size:.78rem; }
+        .copy-link { min-width:34px; min-height:32px; border:1px solid #d9b9a6; border-radius:8px; background:#fbf3ed; color:#87543a; cursor:pointer; }
+        .reader-view-count { padding:5px 9px; border-radius:999px; background:#f7eee7; color:#8b5c45; }
+        .post-body { grid-area:body; width:min(100%,760px); margin:16px auto 0; padding:12px 0 0; color:#332d29; border-top:1px solid #eee4db; }
+        .post-body p { margin:0 0 1.25em; color:#332d29; font-size:clamp(1.06rem,1.7vw,1.22rem); line-height:2; letter-spacing:.01em; }
+        .post-body p:first-child { margin-top:8px; }
+        .post-body a { color:#a34a42; text-decoration-color:rgba(163,74,66,.32); }
+        .post-content img { width:min(100%,760px); margin:24px auto; border:1px solid #e5dbd0; border-radius:9px; box-shadow:0 8px 18px rgba(72,52,37,.10); }
+        .reviewer-credit { margin:30px 0 0; padding-top:16px; border-top:1px solid #eee4db; color:#8b776b; text-align:right; font-size:.85rem; }
+        .post-announcement-banner { width:min(100%,240px); margin:26px auto 18px; padding:3px; border:1px solid #e6d8cb; border-radius:9px; background:#fff; box-shadow:none; }
+        .post-announcement-banner img { max-height:52px; border-radius:6px; }
+        .comments-panel { width:min(100%,700px); margin:22px auto 16px; padding:20px; border:1px solid #e7dbd0; border-radius:14px; background:#faf6f1; color:#332d29; }
+        .comments-title { margin-bottom:14px; color:#4c4038; font-size:1.08rem; }
+        .comment-form { gap:8px; margin-bottom:16px; }
+        .comment-form input,.comment-form textarea { padding:10px 11px; border:1px solid #dfd1c5; border-radius:9px; background:#fff; color:#332d29; font:inherit; line-height:1.55; }
+        .comment-submit { border-radius:9px; padding:9px 15px; background:#a34a42; color:#fff; font:inherit; font-weight:700; cursor:pointer; }
+        .comment-item { border-top-color:#eadfd5; } .comment-head { color:#5b493d; } .comment-item p { color:#6d5d53; }
+        .newest-reviews-panel { width:min(100%,760px); margin:24px auto 12px; padding:16px 0 8px; border-top:1px solid #eee4db; }
+        .newest-reviews-heading { padding:0 0 10px; color:#4c4038; font-size:1rem; }
+        .newest-reviews-track { padding:2px 0 10px; scrollbar-color:#c8ad96 transparent; }
+        .newest-review-card { flex-basis:118px; }
+        .newest-review-card img,.newest-review-placeholder { width:118px; height:154px; border:1px solid #e2d8cf; border-radius:5px; background:#faf7f3; box-shadow:none; filter:none; transform:none; }
+        .newest-review-card:hover img { transform:none; border-color:#b87333; }
+        .container>footer { grid-area:footer; }
+        .back-link { grid-column:1/-1; justify-self:center; margin:26px auto 0; padding:9px 15px; border:1px solid #d9b9a6; border-radius:9px; background:#fbf3ed; color:#87543a; text-decoration:none; font-weight:700; }
+        html[data-theme="dark"] body { background:#141319; color:#eee8e1; }
+        html[data-theme="dark"] .container { background:#211f25; border-color:#3a343b; box-shadow:0 14px 42px rgba(0,0,0,.28); }
+        html[data-theme="dark"] header,html[data-theme="dark"] .post-body { color:#eee8e1; } html[data-theme="dark"] header h1,html[data-theme="dark"] .post-body p { color:#eee8e1; } html[data-theme="dark"] .post-meta,html[data-theme="dark"] .reading-time { color:#c2afa4; } html[data-theme="dark"] header h1::before { color:#e4a67d; }
+        html[data-theme="dark"] .post-image,html[data-theme="dark"] .post-content img { border-color:#4a4148; background:#2a2730; } html[data-theme="dark"] .post-body,html[data-theme="dark"] .reading-time,html[data-theme="dark"] .post-controls,html[data-theme="dark"] .reviewer-credit,html[data-theme="dark"] .newest-reviews-panel { border-color:#3b353d; }
+        html[data-theme="dark"] .comments-panel { background:#29262e; border-color:#4a4148; color:#eee8e1; } html[data-theme="dark"] .comment-form input,html[data-theme="dark"] .comment-form textarea { background:#1b1a20; color:#eee8e1; border-color:#4a4148; } html[data-theme="dark"] .comment-head,html[data-theme="dark"] .comments-title,html[data-theme="dark"] .newest-reviews-heading { color:#f1d7b5; } html[data-theme="dark"] .comment-item p { color:#cfc4c0; }
+        html[data-theme="dark"] .header-controls .theme-toggle,html[data-theme="dark"] .font-picker,html[data-theme="dark"] .copy-link,html[data-theme="dark"] .back-link { background:#302a32; color:#f1d7b5; border-color:#6b5360; } html[data-theme="dark"] .reader-view-count { background:#3a2c2a; color:#f0c6a9; }
+        @media (max-width:700px) { body { padding:8px 6px 20px; } .container { display:block; width:100%; padding:22px 17px 30px; border-radius:16px; } .post-image { width:min(78vw,300px); margin:0 auto 24px; } header { padding:0 0 8px; text-align:left; } header h1 { font-size:1.35rem; } .header-controls { margin-top:13px; } .reading-time { margin-top:4px; padding-top:10px; } .post-controls { margin-bottom:14px; } .post-body { margin-top:10px; padding-top:12px; } .post-body p { font-size:1.04rem; line-height:1.9; } .comments-panel { padding:14px; } .newest-reviews-panel { margin-top:18px; } .newest-review-card,.newest-review-card img,.newest-review-placeholder { width:104px; } .newest-review-card img,.newest-review-placeholder { height:136px; } .back-link { margin-top:22px; } }
 
         /* Mobile browser + Telegram in-app browser typography */
         @media (max-width: 600px) {
