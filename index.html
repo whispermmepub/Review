@@ -492,16 +492,16 @@
         .account-avatar{display:inline-flex!important;align-items:center!important;justify-content:center!important;width:42px!important;height:42px!important;padding:0!important;border:2px solid var(--accent)!important;border-radius:50%!important;background:var(--accent-soft)!important;color:var(--accent)!important;font:700 1rem/1 sans-serif!important;cursor:pointer!important;overflow:hidden!important;box-shadow:0 3px 10px rgba(74,55,35,.12)!important}
         .account-avatar img{display:block!important;width:100%!important;height:100%!important;object-fit:cover!important;border-radius:50%!important}
         .account-avatar-fallback{display:inline-flex!important;align-items:center!important;justify-content:center!important;width:100%!important;height:100%!important}
-        .account-label{color:var(--muted)!important;font-size:.72rem!important;white-space:nowrap!important}.account-signout{padding:4px 8px!important;border:1px solid var(--line)!important;border-radius:999px!important;background:transparent!important;color:var(--muted)!important;font:inherit!important;font-size:.66rem!important;cursor:pointer!important}
-        html[data-theme="dark"] .account-avatar{background:var(--accent-soft)!important;color:var(--accent)!important;box-shadow:0 3px 12px rgba(0,0,0,.25)!important} html[data-theme="dark"] .account-signout{border-color:var(--line)!important;color:var(--muted)!important}
-        @media(max-width:600px){.site-brand-hero{align-items:flex-start!important;gap:10px!important;padding-right:2px!important}.brand-copy{flex:1 1 auto!important}.brand-account{margin-top:1px!important;gap:5px!important}.account-avatar{width:36px!important;height:36px!important}.account-label{display:none!important}.account-signout{font-size:.58rem!important;padding:4px 6px!important}}
+        .account-label{color:var(--muted)!important;font-size:.72rem!important;white-space:nowrap!important}
+        html[data-theme="dark"] .account-avatar{background:var(--accent-soft)!important;color:var(--accent)!important;box-shadow:0 3px 12px rgba(0,0,0,.25)!important}
+        @media(max-width:600px){.site-brand-hero{align-items:flex-start!important;gap:10px!important;padding-right:2px!important}.brand-copy{flex:1 1 auto!important}.brand-account{margin-top:1px!important;gap:5px!important}.account-avatar{width:36px!important;height:36px!important}.account-label{display:none!important}}
 </style>
 </head>
 <body>
 <section class="site-brand-hero" aria-label="Whisper Of Words မိတ်ဆက်">
   <div class="brand-copy"><h1>𝐖𝐡𝐢𝐬𝐩𝐞𝐫 𝐎𝐟 𝐖𝐨𝐫𝐝𝐬 - 𝐦𝐦 𝐄𝐩𝐮𝐛</h1>
   <p>📚 စာအုပ်အညွှန်းများစုစည်းမှု</p></div>
-  <div class="brand-account" aria-label="Google account login"><button type="button" id="stats-sync-signin" class="account-avatar" aria-label="Google အကောင့်ဖြင့် ဝင်ရန်" title="Google အကောင့်ဖြင့် ဝင်ရန်"><span class="account-avatar-fallback" aria-hidden="true">G</span></button><span id="stats-account-label" class="account-label">Google login</span><button type="button" id="stats-sync-signout" class="account-signout" hidden>ထွက်ရန်</button></div>
+  <div class="brand-account" aria-label="Google account login"><button type="button" id="stats-sync-signin" class="account-avatar" aria-label="Google အကောင့်ဖြင့် ဝင်ရန်" title="Google အကောင့်ဖြင့် ဝင်ရန်"><span class="account-avatar-fallback" aria-hidden="true">G</span></button><span id="stats-account-label" class="account-label">Google login</span></div>
 </section>
 <div id="accountPanel" class="account-panel" hidden aria-hidden="true">
   <div class="account-panel-backdrop" data-account-close></div>

@@ -152,12 +152,10 @@
   }
   function setAccountControls(user) {
     var signInButton = document.getElementById('stats-sync-signin');
-    var signOutButton = document.getElementById('stats-sync-signout');
     var label = document.getElementById('stats-account-label');
-    if (!signInButton || !signOutButton) return;
+    if (!signInButton) return;
     var connected = !!(user && !user.isAnonymous);
     signInButton.hidden = false;
-    signOutButton.hidden = !connected;
     signInButton.disabled = false;
     signInButton.replaceChildren();
     var providerPhoto = '';
@@ -358,16 +356,11 @@
   function closeAccountPanel() { var panel=document.getElementById('accountPanel'); if (panel) { panel.hidden=true; panel.setAttribute('aria-hidden','true'); } }
   function bindAccountControls() {
     var signInButton = document.getElementById('stats-sync-signin');
-    var signOutButton = document.getElementById('stats-sync-signout');
     if (signInButton) signInButton.addEventListener('click', function () {
       if (signedInUser) { openAccountPanel(); return; }
       signInButton.disabled = true;
       status('Google အကောင့်နှင့် ချိတ်ဆက်နေပါသည်…');
       signIn().catch(function () {}).then(function () { signInButton.disabled = false; });
-    });
-    if (signOutButton) signOutButton.addEventListener('click', function () {
-      signOutButton.disabled = true;
-      signOut().catch(function () { status('အကောင့်မှ ထွက်ရာတွင် အမှားဖြစ်ပါသည်။', true); }).then(function () { signOutButton.disabled = false; });
     });
     document.querySelectorAll('[data-account-close]').forEach(function (button) { button.addEventListener('click', closeAccountPanel); });
     var panelSignout = document.getElementById('accountPanelSignout');
