@@ -695,11 +695,72 @@
             .back-link { font-size: 0.85rem; padding: 8px 14px; }
             .reviewer-credit { font-size: 0.78rem; }
         }
-    </style>
+
+        /* Editorial reader redesign v1 */
+        :root { --reader-ink:#302822; --reader-muted:#806d60; --reader-paper:#fffdf8; --reader-line:#e8ddd2; --reader-accent:#a85f43; --reader-accent-dark:#7d4333; --reader-soft:#f5e8dc; }
+        html,body { background:#eee8df; color:var(--reader-ink); }
+        body { padding:18px 12px 34px; font-family:"Walone",sans-serif; line-height:1.7; }
+        .container { width:min(100%,900px); max-width:900px; margin:0 auto; padding:0 34px 42px; background:var(--reader-paper); border:1px solid #e3d6c9; border-radius:24px; box-shadow:0 18px 50px rgba(76,54,37,.12); overflow:hidden; }
+        .reader-topbar { display:flex; align-items:center; gap:12px; min-height:68px; padding:8px 0 12px; border-bottom:1px solid var(--reader-line); }
+        .reader-back { display:inline-flex; align-items:center; justify-content:center; width:38px; height:38px; border:1px solid #decfc2; border-radius:50%; color:var(--reader-accent-dark); background:#fffaf4; font-size:1.35rem; text-decoration:none; transition:transform .18s ease,background .18s ease; }
+        .reader-back:hover { transform:translateX(-2px); background:var(--reader-soft); }
+        .reader-brand { display:flex; flex-direction:column; min-width:0; color:var(--reader-ink); text-decoration:none; font-size:1rem; font-weight:900; line-height:1.15; letter-spacing:.01em; }
+        .reader-brand span { margin-top:3px; color:var(--reader-muted); font-size:.67rem; font-weight:500; letter-spacing:.08em; }
+        .reader-menu { margin-left:auto; color:var(--reader-muted); font-size:1.25rem; letter-spacing:.12em; }
+        .post-image { display:block; width:100%; max-width:800px; max-height:min(68vh,680px); margin:22px auto 28px; object-fit:contain; border:1px solid #e2d4c8; border-radius:20px; background:#f7f0e9; box-shadow:0 14px 32px rgba(68,48,34,.16); filter:none; }
+        header { display:block; margin:0; padding:0 0 12px; text-align:left; color:var(--reader-ink); background:transparent; border:0; border-radius:0; box-shadow:none; }
+        header::before,header::after { display:none; }
+        header h1 { max-width:760px; margin:0 0 12px; color:var(--reader-ink); font-size:clamp(1.55rem,3.6vw,2.35rem); line-height:1.42; letter-spacing:.005em; text-shadow:none; }
+        header h1::before { content:"စာအုပ်အညွှန်း"; display:block; width:max-content; max-width:100%; margin:0 0 10px; padding:5px 11px; border-radius:999px; background:var(--reader-accent); color:#fffaf4; font-size:.72rem; line-height:1.2; font-weight:700; letter-spacing:.03em; }
+        .post-meta { color:var(--reader-muted); font-size:.86rem; line-height:1.7; text-shadow:none; }
+        .header-controls { display:flex; align-items:center; flex-wrap:wrap; gap:8px; margin-top:16px; }
+        .header-controls .theme-toggle,.font-picker-button,.header-controls .copy-link { min-height:36px; height:36px; padding:7px 11px; border:1px solid #decfc2; border-radius:999px; background:#fffaf4; color:var(--reader-accent-dark); font:inherit; font-size:.73rem; font-weight:700; cursor:pointer; }
+        .font-picker-button { width:42px; padding:5px 4px; font-size:.96rem; }
+        .header-controls .copy-link { width:38px; padding:5px 6px; }
+        .reading-time { margin:0; padding:13px 0 10px; border-top:1px solid var(--reader-line); color:var(--reader-muted); font-size:.8rem; text-align:left; }
+        .reading-time span { color:var(--reader-accent); font-weight:800; animation:none; }
+        .post-controls { display:flex; align-items:center; flex-wrap:wrap; gap:8px; margin:0 0 22px; padding:0 0 16px; border-bottom:1px solid var(--reader-line); color:var(--reader-muted); font-size:.76rem; }
+        .reader-view-count { padding:5px 10px; border-radius:999px; background:var(--reader-soft); color:var(--reader-accent-dark); }
+        .post-body { width:min(100%,760px); margin:0 auto; padding:8px 0 0; color:var(--reader-ink); border-top:0; }
+        .post-body p { margin:0 0 1.35em; color:var(--reader-ink); font-size:clamp(1.05rem,1.6vw,1.2rem); line-height:2.05; letter-spacing:.012em; }
+        .post-body p:first-child { margin-top:4px; }
+        .post-body a { color:var(--reader-accent-dark); text-decoration-color:rgba(168,95,67,.35); }
+        .post-content strong { color:#7d4333; font-weight:800; }
+        .post-content img { width:min(100%,760px); margin:26px auto; border:1px solid #e2d4c8; border-radius:16px; box-shadow:0 10px 24px rgba(68,48,34,.11); }
+        .reviewer-credit { margin:32px 0 0; padding-top:16px; border-top:1px solid var(--reader-line); color:var(--reader-muted); text-align:left; font-size:.82rem; }
+        .post-announcement-banner { width:min(100%,300px); margin:26px auto 18px; padding:4px; border:1px solid #e2d4c8; border-radius:14px; background:#fffaf4; box-shadow:none; }
+        .post-announcement-banner img { max-height:70px; border-radius:10px; }
+        .comments-panel { width:100%; max-width:760px; margin:30px auto 18px; padding:20px 18px; border:1px solid #e2d6cb; border-radius:18px; background:#fbf5ee; color:var(--reader-ink); }
+        .comments-title { margin-bottom:14px; color:var(--reader-ink); font-size:1.08rem; line-height:1.4; }
+        .comment-form input,.comment-form textarea { border:1px solid #dfd0c3; border-radius:12px; background:#fffdf9; color:var(--reader-ink); font:inherit; line-height:1.55; }
+        .comment-submit { border-radius:999px; padding:9px 16px; background:var(--reader-accent); color:#fff; font:inherit; font-weight:700; cursor:pointer; }
+        .comment-item { border-top-color:#eadfd5; } .comment-head { color:#5b493d; } .comment-item p { color:#6d5d53; }
+        .newest-reviews-panel { width:100%; max-width:760px; margin:28px auto 12px; padding:18px 0 8px; border-top:1px solid var(--reader-line); }
+        .newest-reviews-heading { color:var(--reader-ink); font-size:1rem; }
+        .back-link { display:flex; align-items:center; justify-content:center; width:min(100%,760px); min-height:48px; margin:30px auto 0; padding:10px 16px; border:0; border-radius:999px; background:var(--reader-accent); color:#fffaf4; text-decoration:none; font-weight:800; box-shadow:0 7px 16px rgba(168,95,67,.2); }
+        .back-link:hover { background:var(--reader-accent-dark); color:#fff; }
+        .container>footer { padding-top:28px; color:#9c8d81; font-size:.78rem; text-align:center; }
+        html[data-theme="dark"] body { background:#171519; color:#eee8e1; }
+        html[data-theme="dark"] .container { background:#242126; border-color:#3c343b; box-shadow:0 18px 50px rgba(0,0,0,.28); }
+        html[data-theme="dark"] .reader-topbar { border-color:#443a43; }
+        html[data-theme="dark"] .reader-back,html[data-theme="dark"] .header-controls .theme-toggle,html[data-theme="dark"] .font-picker-button,html[data-theme="dark"] .header-controls .copy-link { background:#302a32; border-color:#655462; color:#f1d7b5; }
+        html[data-theme="dark"] .reader-brand,html[data-theme="dark"] header h1,html[data-theme="dark"] .post-body p,html[data-theme="dark"] .comments-title { color:#eee8e1; }
+        html[data-theme="dark"] .reader-brand span,html[data-theme="dark"] .reader-menu,html[data-theme="dark"] .post-meta,html[data-theme="dark"] .reading-time,html[data-theme="dark"] .reviewer-credit { color:#c2afa4; }
+        html[data-theme="dark"] .post-image,html[data-theme="dark"] .post-content img { border-color:#4a4148; background:#2a2730; }
+        html[data-theme="dark"] .reading-time,html[data-theme="dark"] .post-controls,html[data-theme="dark"] .reviewer-credit,html[data-theme="dark"] .newest-reviews-panel { border-color:#443a43; }
+        html[data-theme="dark"] .comments-panel { background:#2b272d; border-color:#4a4148; }
+        html[data-theme="dark"] .comment-form input,html[data-theme="dark"] .comment-form textarea { background:#1c1a20; color:#eee8e1; border-color:#4a4148; }
+        @media(max-width:700px) { body { padding:7px 6px 22px; } .container { width:100%; padding:0 17px 30px; border-radius:18px; } .reader-topbar { min-height:60px; } .reader-brand { font-size:.88rem; } .post-image { width:100%; max-height:52vh; margin:16px auto 22px; border-radius:16px; } header h1 { font-size:1.38rem; line-height:1.48; } .post-meta { font-size:.78rem; } .header-controls { margin-top:13px; gap:6px; } .header-controls .theme-toggle,.font-picker-button,.header-controls .copy-link { min-height:33px; height:33px; font-size:.68rem; } .reading-time { padding-top:11px; } .post-controls { margin-bottom:15px; padding-bottom:13px; } .post-body p { font-size:1.03rem; line-height:1.92; } .comments-panel { margin-top:24px; padding:16px 13px; border-radius:15px; } .comments-title { font-size:.98rem; } .back-link { min-height:45px; margin-top:24px; } }
+</style>
 </head>
 <body>
     <div class="reading-progress" id="readingProgress"></div>
     <div class="container">
+        <nav class="reader-topbar" aria-label="စာဖတ်သူ navigation">
+            <a class="reader-back" href="/Review/" aria-label="ပင်မစာမျက်နှာသို့ ပြန်ရန်">←</a>
+            <a class="reader-brand" href="/Review/">Whisper Of Words<span>mm Epub · Book Review</span></a>
+            <span class="reader-menu" aria-hidden="true">•••</span>
+        </nav>
 
         <img src="https://blogger.googleusercontent.com/img/a/AVvXsEhObhX4uu9LGr8AJIoiYn_aQPZjxZ_kjOOAhW4uFWyPY6Qs1DTy03O-isGHR09A14boV97gnL0yY7CmnOiZsx70RFrLP9Q4W_SuyzBZk2zsPI03sjuAQFmVtnOoumS7FcQj1a4z7iRTIesOqT1FmRtkaocAydOlugHtyW591icbubPT5Au6yj_8UZv8PiJ7" alt="Pride and Prejudice - နဖူးစာ ရွာလည်" class="post-image" loading="eager" decoding="async" fetchpriority="high">
         <header>
