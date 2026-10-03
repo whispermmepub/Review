@@ -4,6 +4,7 @@
   var KEY = 'wowReviewReadingStatsV1';
   var DEVICE_KEY = 'wowReviewStatsDeviceV1';
   var PROFILE_KEY = 'wowGoogleProfileV1';
+  var ACCOUNT_PREVIEW_KEY = 'wowGoogleAccountPreviewV1';
   var config = {
     apiKey: 'AIzaSyBX28BIHkrQzF7QmAEsoh8OPdEIaFILYRA',
     authDomain: 'github-comment-9f76d.firebaseapp.com',
@@ -55,6 +56,24 @@
       var saved = raw ? JSON.parse(raw) : null;
       return saved && saved.uid === user.uid ? String(saved.photoURL || '') : '';
     } catch (_) { return ''; }
+  }
+  function loadAccountPreview() {
+    try {
+      var raw = localStorage.getItem(ACCOUNT_PREVIEW_KEY);
+      var value = raw ? JSON.parse(raw) : null;
+      return value && typeof value === 'object' ? value : null;
+    } catch (_) { return null; }
+  }
+  function saveAccountPreview(user) {
+    if (!user || user.isAnonymous) return;
+    try {
+      localStorage.setItem(ACCOUNT_PREVIEW_KEY, JSON.stringify({
+        uid: user.uid,
+        displayName: user.displayName || 'Google account',
+        email: user.email || '',
+        photoURL: user.photoURL || getStoredProfilePhoto(user) || ''
+      }));
+    } catch (_) {}
   }
   function dateKey(date) {
     var d = date || new Date();
@@ -245,6 +264,7 @@
     syncTimer = setTimeout(function () { syncTimer = null; syncCloud(); }, immediate ? 0 : 12000);
   }
   function signIn() {
+    if (!auth && firebase && typeof initFirebase === 'function') initFirebase();
     if (!auth || !firebase || !firebase.auth.GoogleAuthProvider) {
       status('အကောင့်ဝင်စနစ်ကို ယခုအချိန်တွင် မစတင်နိုင်ပါ။', true);
       return Promise.reject(new Error('Firebase Auth is unavailable'));
@@ -360,6 +380,24 @@
     if (panelSignout) panelSignout.addEventListener('click', function () { panelSignout.disabled = true; signOut().catch(function () { status('အကောင့်မှ ထွက်ရာတွင် အမှားဖြစ်ပါသည်။', true); }).then(function () { panelSignout.disabled = false; closeAccountPanel(); }); });
   }
 
+  function applyCachedAccountPreview() {
+    var cached = loadAccountPreview();
+    var signInButton = document.getElementById('stats-sync-signin');
+    var label = document.getElementById('stats-account-label');
+    if (!cached || !signInButton) return;
+    if (label) label.textContent = cached.displayName || 'Google account';
+    signInButton.setAttribute('aria-label', (cached.displayName || 'Google account') + ' — Google account');
+    signInButton.title = cached.displayName || 'Google account';
+    if (cached.photoURL) {
+      var image = document.createElement('img');
+      image.src = cached.photoURL;
+      image.alt = cached.displayName || 'Google profile';
+      image.referrerPolicy = 'no-referrer';
+      image.addEventListener('error', function () { image.remove(); }, { once: true });
+      signInButton.replaceChildren(image);
+    }
+  }
+
   window.WOWReadingStats = {
     get: getStats,
     flush: function () { flushReadingTime(); },
@@ -370,7 +408,9 @@
   };
 
   bindAccountControls();
-  if (firebase) {
+  applyCachedAccountPreview();
+  function initFirebase() {
+    if (!firebase) return;
     try {
       if (!firebase.apps.length) firebase.initializeApp(config);
       auth = firebase.auth();
@@ -379,6 +419,7 @@
         authUser = user || null;
         var accountUser = user && !user.isAnonymous ? user : null;
         signedInUser = accountUser;
+        if (accountUser) saveAccountPreview(accountUser);
         if (accountUser) {
           if (lastAccountUid !== accountUser.uid) {
             lastAccountUid = accountUser.uid;
@@ -407,6 +448,8 @@
       }, function () { setAccountControls(null); });
     } catch (_) { auth = null; db = null; }
   }
+  if (window.requestIdleCallback) window.requestIdleCallback(initFirebase, { timeout: 1200 });
+  else window.setTimeout(initFirebase, 0);
 
   if (!pageId) return;
 

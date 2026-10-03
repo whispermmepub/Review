@@ -6,6 +6,32 @@
   var posts = [];
   var view = 'grid';
   var searchTimer = null;
+  var POSTS_CACHE_KEY = 'wow-review-posts-cache-v1';
+
+  function loadPostsData() {
+    if (window.WOWPostsData && window.WOWPostsData.promise) return window.WOWPostsData.promise;
+    var promise = fetch('assets/posts.json', { cache: 'force-cache' }).then(function (response) {
+      if (!response.ok) throw new Error('Review list request failed');
+      return response.json();
+    }).then(function (data) {
+      var normalized = Array.isArray(data) ? data : [];
+      try { window.sessionStorage.setItem(POSTS_CACHE_KEY, JSON.stringify(normalized)); } catch (_) {}
+      return normalized;
+    });
+    window.WOWPostsData = { promise: promise };
+    return promise;
+  }
+
+  function cachedPostsData() {
+    try {
+      var raw = window.sessionStorage.getItem(POSTS_CACHE_KEY);
+      if (raw) {
+        var data = JSON.parse(raw);
+        return Array.isArray(data) ? data : null;
+      }
+    } catch (_) {}
+    return null;
+  }
 
   function byId(id) { return document.getElementById(id); }
   function make(tag, className, text) {
@@ -139,10 +165,12 @@
   async function load() {
     var container = byId('posts-container');
     try {
-      var response = await fetch('assets/posts.json');
-      if (!response.ok) throw new Error('Review list request failed');
-      var data = await response.json();
-      posts = Array.isArray(data) ? data : [];
+      var cached = cachedPostsData();
+      if (cached) {
+        posts = cached;
+        render();
+      }
+      posts = await loadPostsData();
       render();
     } catch (_) {
       container.replaceChildren(make('div', 'loading', 'ပို့စ်များကို ဖတ်၍မရပါ။ Blog မှာ ဖတ်ပါ။'));
@@ -158,4 +186,5 @@
   }
 
   window.WOWCatalogViews = { init: init, setView: setView };
+  window.WOWPostsData = window.WOWPostsData || { promise: null, load: loadPostsData };
 }());

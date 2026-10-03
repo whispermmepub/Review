@@ -15,7 +15,7 @@
   }
   function card(post, metric, rank) {
     var value = metric === 'views' ? ((stats[post.id] || {}).views || 0) + ' views' : metric === 'comments' ? (commentCounts[post.id] || 0) + ' comments' : Math.floor(((stats[post.id] || {}).seconds || 0) / 60) + ' min';
-    var image = post.image ? '<img src="' + esc(post.image) + '" alt="' + esc(post.title) + '" loading="lazy">' : '<div class="popular-placeholder">📖</div>';
+    var image = post.image ? '<img src="' + esc(post.image) + '" alt="' + esc(post.title) + '" loading="lazy" decoding="async">' : '<div class="popular-placeholder">📖</div>';
     var champion = metric === 'seconds' && rank === 1 ? '<span class="popular-champion-badge" aria-label="အများဆုံးဖတ်ထားသော Review နံပါတ် ၁"><span class="champion-trophy" aria-hidden="true">🏆</span><span>#1</span></span>' : metric === 'comments' && rank === 1 ? '<span class="popular-champion-badge comment-champion-badge" aria-label="Comment အများဆုံး Review နံပါတ် ၁"><span class="champion-trophy" aria-hidden="true">🏆</span><span>#1</span></span>' : '';
     var championClass = champion ? ' popular-champion-card' : '';
     return '<a class="popular-card' + championClass + '" href="' + esc(post.link) + '">' + champion + '<span class="popular-rank">' + rank + '</span>' + image + '<span class="popular-info"><strong>' + esc(post.title) + '</strong><small>' + esc(post.author) + ' · ' + value + '</small></span></a>';
@@ -61,23 +61,41 @@
     });
     Promise.all(jobs).then(done);
   }
-  function start(posts) {
-    var newest = posts.slice().sort(function (a, b) { return String(b.date || '').localeCompare(String(a.date || '')); });
-    render('newest-reviews', newest, 'views');
-    if (!window.firebase) { render('popular-reviews', posts, 'views'); render('most-read-reviews', posts, 'seconds'); renderMostCommented(posts); return; }
+  function defer(fn) {
+    if (window.requestIdleCallback) window.requestIdleCallback(fn, { timeout: 1800 });
+    else window.setTimeout(fn, 250);
+  }
+  function loadFirebaseStats(posts) {
+    if (!window.firebase) return;
     try {
       if (!firebase.apps.length) firebase.initializeApp(config);
       firebase.firestore().collection('reviewStats').get().then(function (snap) {
         snap.forEach(function (doc) { stats[doc.id] = doc.data() || {}; });
         render('popular-reviews', posts.slice().sort(function (a, b) { return ((stats[b.id] || {}).views || 0) - ((stats[a.id] || {}).views || 0); }), 'views');
         render('most-read-reviews', posts.slice().sort(function (a, b) { return ((stats[b.id] || {}).seconds || 0) - ((stats[a.id] || {}).seconds || 0); }), 'seconds');
-        var auth = firebase.auth();
-        var load = function () { loadCommentCounts(posts, function () { renderMostCommented(posts); }); };
-        if (auth.currentUser) load(); else auth.signInAnonymously().then(load).catch(load);
-      }).catch(function () { render('popular-reviews', posts, 'views'); render('most-read-reviews', posts, 'seconds'); renderMostCommented(posts); });
-    } catch (_) { render('popular-reviews', posts, 'views'); render('most-read-reviews', posts, 'seconds'); renderMostCommented(posts); }
+        // Comment counts are non-critical; fetch them after the first paint.
+        defer(function () {
+          var auth = firebase.auth();
+          var load = function () { loadCommentCounts(posts, function () { renderMostCommented(posts); }); };
+          if (auth.currentUser) load(); else auth.signInAnonymously().then(load).catch(load);
+        });
+      }).catch(function () {});
+    } catch (_) {}
   }
-  fetch('assets/posts.json').then(function (r) { return r.json(); }).then(start).catch(function () {
+  function start(posts) {
+    var newest = posts.slice().sort(function (a, b) { return String(b.date || '').localeCompare(String(a.date || '')); });
+    // Paint useful content immediately; Firebase will reorder it later.
+    render('popular-reviews', posts, 'views');
+    render('most-read-reviews', newest, 'seconds');
+    render('newest-reviews', newest, 'views');
+    defer(function () { loadFirebaseStats(posts); });
+  }
+  function loadPosts() {
+    if (window.WOWPostsData && typeof window.WOWPostsData.load === 'function') return window.WOWPostsData.load();
+    if (window.WOWPostsData && window.WOWPostsData.promise) return window.WOWPostsData.promise;
+    return fetch('assets/posts.json', { cache: 'force-cache' }).then(function (r) { return r.json(); });
+  }
+  loadPosts().then(start).catch(function () {
     ['popular-reviews', 'most-read-reviews', 'most-commented-reviews', 'newest-reviews'].forEach(function (id) { var el = document.getElementById(id); if (el) el.innerHTML = '<p class="popular-empty">ဖတ်၍မရပါ။</p>'; });
   });
 }());
