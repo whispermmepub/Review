@@ -969,6 +969,17 @@ def generate_post_html(post):
         html[data-theme="dark"] .comments-panel {{ background:#29262e; border-color:#4a4148; color:#eee8e1; }} html[data-theme="dark"] .comment-form input,html[data-theme="dark"] .comment-form textarea {{ background:#1b1a20; color:#eee8e1; border-color:#4a4148; }} html[data-theme="dark"] .comment-head,html[data-theme="dark"] .comments-title,html[data-theme="dark"] .newest-reviews-heading {{ color:#f1d7b5; }} html[data-theme="dark"] .comment-item p {{ color:#cfc4c0; }}
         html[data-theme="dark"] .header-controls .theme-toggle,html[data-theme="dark"] .font-picker,html[data-theme="dark"] .copy-link,html[data-theme="dark"] .back-link {{ background:#302a32; color:#f1d7b5; border-color:#6b5360; }} html[data-theme="dark"] .reader-view-count {{ background:#3a2c2a; color:#f0c6a9; }}
         @media (max-width:700px) {{ body {{ padding:8px 6px 20px; }} .container {{ display:block; width:100%; padding:22px 17px 30px; border-radius:16px; }} .post-image {{ width:min(78vw,300px); margin:0 auto 24px; }} header {{ padding:0 0 8px; text-align:left; }} header h1 {{ font-size:1.35rem; }} .header-controls {{ margin-top:13px; }} .reading-time {{ margin-top:4px; padding-top:10px; }} .post-controls {{ margin-bottom:14px; }} .post-body {{ margin-top:10px; padding-top:12px; }} .post-body p {{ font-size:1.04rem; line-height:1.9; }} .comments-panel {{ padding:14px; }} .newest-reviews-panel {{ margin-top:18px; }} .newest-review-card,.newest-review-card img,.newest-review-placeholder {{ width:104px; }} .newest-review-card img,.newest-review-placeholder {{ height:136px; }} .back-link {{ margin-top:22px; }} }}
+        /* Comment list guardrail: many reviews scroll inside the panel, not the whole page. */
+        .comments-panel #commentsList {{ max-height:360px; overflow-y:auto; overscroll-behavior:contain; padding:0 8px 0 0; scrollbar-width:thin; scrollbar-color:#c9a991 transparent; }}
+        .comments-panel #commentsList::-webkit-scrollbar {{ width:7px; }}
+        .comments-panel #commentsList::-webkit-scrollbar-track {{ background:transparent; }}
+        .comments-panel #commentsList::-webkit-scrollbar-thumb {{ border-radius:999px; background:#c9a991; }}
+        .comments-panel .comment-item {{ padding:9px 2px; }}
+        .comments-panel .comment-item p {{ margin-bottom:0; }}
+        .comments-panel .comment-collapsed .comment-text {{ -webkit-line-clamp:2; max-height:3.1em; }}
+        @media (max-width:700px) {{ .comments-panel #commentsList {{ max-height:300px; padding-right:5px; }} }}
+        html[data-theme="dark"] .comments-panel #commentsList {{ scrollbar-color:#806777 transparent; }}
+        html[data-theme="dark"] .comments-panel #commentsList::-webkit-scrollbar-thumb {{ background:#806777; }}
 </style>
 </head>
 <body>
