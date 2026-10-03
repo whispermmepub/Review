@@ -15,10 +15,8 @@
   }
   function card(post, metric, rank) {
     var value = metric === 'views' ? ((stats[post.id] || {}).views || 0) + ' views' : metric === 'comments' ? (commentCounts[post.id] || 0) + ' comments' : Math.floor(((stats[post.id] || {}).seconds || 0) / 60) + ' min';
-    var image = post.image ? '<img src="' + esc(post.image) + '" alt="' + esc(post.title) + '" loading="lazy" decoding="async">' : '<div class="popular-placeholder">📖</div>';
-    var champion = metric === 'seconds' && rank === 1 ? '<span class="popular-champion-badge" aria-label="အများဆုံးဖတ်ထားသော Review နံပါတ် ၁"><span class="champion-trophy" aria-hidden="true">🏆</span><span>#1</span></span>' : metric === 'comments' && rank === 1 ? '<span class="popular-champion-badge comment-champion-badge" aria-label="Comment အများဆုံး Review နံပါတ် ၁"><span class="champion-trophy" aria-hidden="true">🏆</span><span>#1</span></span>' : '';
-    var championClass = champion ? ' popular-champion-card' : '';
-    return '<a class="popular-card' + championClass + '" href="' + esc(post.link) + '">' + champion + '<span class="popular-rank">' + rank + '</span>' + image + '<span class="popular-info"><strong>' + esc(post.title) + '</strong><small>' + esc(post.author) + ' · ' + value + '</small></span></a>';
+    var image = post.image ? '<img class="card-img" src="' + esc(post.image) + '" alt="' + esc(post.title) + '" loading="lazy" decoding="async">' : '<span class="card-img-placeholder">📖</span>';
+    return '<a class="popular-card" href="' + esc(post.link) + '" aria-label="' + esc(post.title) + '"><span class="card-cover"><span class="card-category">#' + rank + '</span>' + image + '</span><span class="card-content"><span class="card-meta"><span class="card-date">📅 ' + esc(post.date || 'Review') + '</span><span class="card-author">' + esc(post.author || '') + '</span></span><strong class="card-title"><span class="card-title-link">' + esc(post.title) + '</span></strong><span class="card-excerpt">' + esc((post.author || 'Review') + ' · ' + value) + '</span><span class="card-actions"><span class="card-read-more">ဖတ်ရန် →</span></span></span></a>';
   }
   function setupCarousel(el) {
     if (!el || el.dataset.carouselReady === 'true') return;
