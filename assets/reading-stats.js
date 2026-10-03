@@ -4,6 +4,7 @@
   var KEY = 'wowReviewReadingStatsV1';
   var DEVICE_KEY = 'wowReviewStatsDeviceV1';
   var PROFILE_KEY = 'wowGoogleProfileV1';
+  var CLOUD_CACHE_KEY = 'wowReviewCloudCacheV1';
   var config = {
     apiKey: 'AIzaSyBX28BIHkrQzF7QmAEsoh8OPdEIaFILYRA',
     authDomain: 'github-comment-9f76d.firebaseapp.com',
@@ -140,6 +141,18 @@
   function notifyStatsChanged() {
     try { window.dispatchEvent(new CustomEvent('wow:reading-stats-updated')); } catch (_) {}
   }
+  function readCloudCache(uid) {
+    if (!uid) return null;
+    try {
+      var raw = localStorage.getItem(CLOUD_CACHE_KEY + ':' + uid);
+      var parsed = raw ? JSON.parse(raw) : null;
+      return parsed && typeof parsed === 'object' && parsed.sources ? parsed.sources : null;
+    } catch (_) { return null; }
+  }
+  function writeCloudCache(uid, sources) {
+    if (!uid || !sources) return;
+    try { localStorage.setItem(CLOUD_CACHE_KEY + ':' + uid, JSON.stringify({ savedAt: Date.now(), sources: sources })); } catch (_) {}
+  }
   function getStats() {
     var local = load();
     if (!signedInUser || !cloudSources) return local;
@@ -207,6 +220,12 @@
       var sources = {};
       snapshot.forEach(function (doc) { sources[doc.id] = normalize(doc.data()); });
       var local = mergeSameDevice(load(), sources[deviceId] || emptyStats());
+      sources[deviceId] = local;
+      if (signedInUser && signedInUser.uid === user.uid) {
+        cloudSources = sources;
+        writeCloudCache(user.uid, sources);
+        notifyStatsChanged();
+      }
       save(local, false);
       var payload = {
         schema: 1,
@@ -219,6 +238,7 @@
         if (signedInUser && signedInUser.uid === user.uid) {
           sources[deviceId] = local;
           cloudSources = sources;
+          writeCloudCache(user.uid, sources);
           status('စာရင်းကို Google အကောင့်တွင် အရန်သိမ်းပြီးပါပြီ။ Browser ဒေတာရှင်းသွားလည်း ထိုအကောင့်ဖြင့် ပြန်ဝင်လျှင် ပြန်ရယူနိုင်ပါသည်။');
           notifyStatsChanged();
         }
@@ -277,7 +297,7 @@
           try { localStorage.setItem(PROFILE_KEY, JSON.stringify({ uid: result.user.uid, photoURL: resultPhoto })); } catch (_) {}
         }
         signedInUser = result.user.isAnonymous ? null : result.user;
-        if (signedInUser) { lastAccountUid = signedInUser.uid; syncCloud(); }
+        if (signedInUser) { lastAccountUid = signedInUser.uid; cloudSources = readCloudCache(signedInUser.uid); notifyStatsChanged(); syncCloud(); }
       }
       return result;
     }).catch(function (error) {
@@ -382,7 +402,8 @@
         if (accountUser) {
           if (lastAccountUid !== accountUser.uid) {
             lastAccountUid = accountUser.uid;
-            cloudSources = null;
+            cloudSources = readCloudCache(accountUser.uid);
+            notifyStatsChanged();
             syncCloud();
           }
         } else {
