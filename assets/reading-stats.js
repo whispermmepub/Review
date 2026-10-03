@@ -3,6 +3,7 @@
 
   var KEY = 'wowReviewReadingStatsV1';
   var DEVICE_KEY = 'wowReviewStatsDeviceV1';
+  var PROFILE_KEY = 'wowGoogleProfileV1';
   var config = {
     apiKey: 'AIzaSyBX28BIHkrQzF7QmAEsoh8OPdEIaFILYRA',
     authDomain: 'github-comment-9f76d.firebaseapp.com',
@@ -46,6 +47,14 @@
     try { localStorage.setItem(KEY, JSON.stringify(safe)); } catch (_) {}
     if (schedule !== false) scheduleCloudSync(false);
     return safe;
+  }
+  function getStoredProfilePhoto(user) {
+    if (!user) return '';
+    try {
+      var raw = localStorage.getItem(PROFILE_KEY);
+      var saved = raw ? JSON.parse(raw) : null;
+      return saved && saved.uid === user.uid ? String(saved.photoURL || '') : '';
+    } catch (_) { return ''; }
   }
   function dateKey(date) {
     var d = date || new Date();
@@ -160,7 +169,7 @@
         }
       }
     }
-    var photoUrl = connected && (user.photoURL || providerPhoto);
+    var photoUrl = connected && (user.photoURL || providerPhoto || getStoredProfilePhoto(user));
     function showAvatarFallback() {
       signInButton.replaceChildren();
       var fallback = document.createElement('span');
@@ -183,6 +192,8 @@
     signInButton.setAttribute('aria-label', connected ? accountName + ' — Google account' : 'Google အကောင့်ဖြင့် ဝင်ရန်');
     signInButton.title = connected ? accountName : 'Google အကောင့်ဖြင့် ဝင်ရန်';
     if (label) label.textContent = accountName;
+    var panelEmail = document.getElementById('accountPanelEmail');
+    if (panelEmail) panelEmail.textContent = connected ? (user.email || 'Google account ဖြင့် ချိတ်ဆက်ထားသည်') : 'Google account ဖြင့် ဝင်ရောက်ရန်';
     if (connected) status('Google အကောင့်နှင့် ချိတ်ဆက်ထားပြီး မှတ်တမ်းကို အွန်လိုင်းတွင် အရန်သိမ်းနေပါသည်။');
     else status('လောလောဆယ် ဤ browser ထဲတွင်သာ သိမ်းထားပါသည်။ Google အကောင့်နှင့် ချိတ်လျှင် browser ဒေတာရှင်းပြီးနောက် ပြန်ရယူနိုင်ပါသည်။');
   }
@@ -262,6 +273,11 @@
       throw error;
     }).then(function (result) {
       if (result && result.user) {
+        var additional = result.additionalUserInfo && result.additionalUserInfo.profile;
+        var resultPhoto = additional && (additional.picture || additional.photoURL);
+        if (resultPhoto) {
+          try { localStorage.setItem(PROFILE_KEY, JSON.stringify({ uid: result.user.uid, photoURL: resultPhoto })); } catch (_) {}
+        }
         signedInUser = result.user.isAnonymous ? null : result.user;
         if (signedInUser) { lastAccountUid = signedInUser.uid; syncCloud(); }
       }
@@ -279,13 +295,72 @@
     if (!auth) return Promise.resolve();
     return auth.signOut().then(function () {
       signedInUser = null; lastAccountUid = null; cloudSources = null;
+      closeAccountPanel();
       setAccountControls(null); notifyStatsChanged();
     });
   }
+  function renderPanelAvatar(user) {
+    var holder = document.getElementById('accountPanelAvatar');
+    if (!holder) return;
+    holder.replaceChildren();
+    var providerPhoto = '';
+    if (user && Array.isArray(user.providerData)) {
+      for (var i = 0; i < user.providerData.length; i += 1) {
+        if (user.providerData[i] && user.providerData[i].photoURL) { providerPhoto = user.providerData[i].photoURL; break; }
+      }
+    }
+    var photo = user && (user.photoURL || providerPhoto || getStoredProfilePhoto(user));
+    if (photo) {
+      var image = document.createElement('img');
+      image.src = photo;
+      image.alt = user.displayName || 'Google profile';
+      image.referrerPolicy = 'no-referrer';
+      holder.appendChild(image);
+    } else holder.textContent = 'G';
+  }
+  function activityItem(link, title, detail) {
+    var item = document.createElement(link ? 'a' : 'div');
+    item.className = 'account-activity-item';
+    if (link) item.href = link;
+    var strong = document.createElement('strong'); strong.textContent = title; item.appendChild(strong);
+    if (detail) { var span = document.createElement('span'); span.textContent = detail; item.appendChild(span); }
+    return item;
+  }
+  function setActivityMessage(id, text) {
+    var list = document.getElementById(id); if (!list) return;
+    list.replaceChildren(); var message = document.createElement('p'); message.className = 'account-muted'; message.textContent = text; list.appendChild(message);
+  }
+  function loadAccountActivity() {
+    var readList = document.getElementById('accountReadReviews');
+    var commentList = document.getElementById('accountComments');
+    if (!readList || !commentList || !signedInUser) return;
+    fetch('assets/posts.json').then(function (response) { return response.json(); }).then(function (posts) {
+      var byId = {}; (Array.isArray(posts) ? posts : []).forEach(function (post) { byId[String(post.id)] = post; });
+      var reviews = getStats().reviews || {};
+      var ids = Object.keys(reviews).sort(function (a,b) { return (reviews[b].lastOpened || 0) - (reviews[a].lastOpened || 0); });
+      readList.replaceChildren();
+      if (!ids.length) setActivityMessage('accountReadReviews', 'ဖတ်ထားသော Review မရှိသေးပါ။');
+      else ids.slice(0,40).forEach(function (id) { var post = byId[id] || {}; var target = post.link ? '/Review/' + String(post.link).replace(/^\/+/, '') : ''; readList.appendChild(activityItem(target, post.title || ('Review #' + id), 'ဖတ်ချိန် ' + Math.floor((reviews[id].seconds || 0) / 60) + ' min')); });
+    }).catch(function () { setActivityMessage('accountReadReviews', 'ဖတ်ထားသော Review စာရင်းကို ရယူ၍မရပါ။'); });
+    if (!db || !db.collectionGroup) { setActivityMessage('accountComments', 'Comment စာရင်းကို ယခုမရနိုင်သေးပါ။'); return; }
+    db.collectionGroup('comments').where('uid', '==', signedInUser.uid).get().then(function (snapshot) {
+      var rows = []; snapshot.forEach(function (doc) { var data = doc.data() || {}; rows.push({ data: data, postId: doc.ref.parent.parent ? doc.ref.parent.parent.id : '' }); });
+      rows.sort(function (a,b) { var at=a.data.createdAt && a.data.createdAt.toMillis ? a.data.createdAt.toMillis() : 0; var bt=b.data.createdAt && b.data.createdAt.toMillis ? b.data.createdAt.toMillis() : 0; return bt-at; });
+      return fetch('assets/posts.json').then(function (response) { return response.json(); }).then(function (posts) { var byId={}; (Array.isArray(posts)?posts:[]).forEach(function(post){byId[String(post.id)]=post;}); commentList.replaceChildren(); if (!rows.length) { setActivityMessage('accountComments','ရေးထားသော Comment မရှိသေးပါ။'); return; } rows.slice(0,40).forEach(function(row){ var post=byId[row.postId]||{}; var target=post.link?'/Review/'+String(post.link).replace(/^\/+/, ''):''; var text=String(row.data.text||'').replace(/\s+/g,' ').trim(); commentList.appendChild(activityItem(target,post.title||('Review #'+row.postId),text.length>90?text.slice(0,90)+'…':text)); }); });
+    }).catch(function () { setActivityMessage('accountComments', 'ရေးထားသော Comment စာရင်းကို ရယူ၍မရပါ။'); });
+  }
+  function openAccountPanel() {
+    if (!signedInUser) return;
+    var panel = document.getElementById('accountPanel'); if (!panel) return;
+    var title = document.getElementById('accountPanelTitle'); if (title) title.textContent = signedInUser.displayName || 'Google account';
+    renderPanelAvatar(signedInUser); panel.hidden = false; panel.setAttribute('aria-hidden','false'); loadAccountActivity();
+  }
+  function closeAccountPanel() { var panel=document.getElementById('accountPanel'); if (panel) { panel.hidden=true; panel.setAttribute('aria-hidden','true'); } }
   function bindAccountControls() {
     var signInButton = document.getElementById('stats-sync-signin');
     var signOutButton = document.getElementById('stats-sync-signout');
     if (signInButton) signInButton.addEventListener('click', function () {
+      if (signedInUser) { openAccountPanel(); return; }
       signInButton.disabled = true;
       status('Google အကောင့်နှင့် ချိတ်ဆက်နေပါသည်…');
       signIn().catch(function () {}).then(function () { signInButton.disabled = false; });
@@ -294,6 +369,9 @@
       signOutButton.disabled = true;
       signOut().catch(function () { status('အကောင့်မှ ထွက်ရာတွင် အမှားဖြစ်ပါသည်။', true); }).then(function () { signOutButton.disabled = false; });
     });
+    document.querySelectorAll('[data-account-close]').forEach(function (button) { button.addEventListener('click', closeAccountPanel); });
+    var panelSignout = document.getElementById('accountPanelSignout');
+    if (panelSignout) panelSignout.addEventListener('click', function () { panelSignout.disabled = true; signOut().catch(function () { status('အကောင့်မှ ထွက်ရာတွင် အမှားဖြစ်ပါသည်။', true); }).then(function () { panelSignout.disabled = false; closeAccountPanel(); }); });
   }
 
   window.WOWReadingStats = {
