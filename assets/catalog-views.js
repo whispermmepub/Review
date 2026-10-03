@@ -108,9 +108,9 @@
       container.appendChild(make('div', 'no-results', '🔍 ရှာဖွေချက်နှင့် ကိုက်ညီသည့် Review မတွေ့ပါ။'));
       return;
     }
-    var fragment = document.createDocumentFragment();
-    items.forEach(function (post) { fragment.appendChild(makeCard(post)); });
-    container.appendChild(fragment);
+    var rows = [make('div', 'catalog-row'), make('div', 'catalog-row')];
+    items.forEach(function (post, index) { rows[index % 2].appendChild(makeCard(post)); });
+    rows.forEach(function (row) { container.appendChild(row); });
     container.classList.toggle('is-expanded', showAll);
     var showAllButton = byId('show-all-reviews');
     if (showAllButton) {
