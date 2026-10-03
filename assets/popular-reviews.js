@@ -73,12 +73,6 @@
         snap.forEach(function (doc) { stats[doc.id] = doc.data() || {}; });
         render('popular-reviews', posts.slice().sort(function (a, b) { return ((stats[b.id] || {}).views || 0) - ((stats[a.id] || {}).views || 0); }), 'views');
         render('most-read-reviews', posts.slice().sort(function (a, b) { return ((stats[b.id] || {}).seconds || 0) - ((stats[a.id] || {}).seconds || 0); }), 'seconds');
-        // Comment counts are non-critical; fetch them after the first paint.
-        defer(function () {
-          var auth = firebase.auth();
-          var load = function () { loadCommentCounts(posts, function () { renderMostCommented(posts); }); };
-          if (auth.currentUser) load(); else auth.signInAnonymously().then(load).catch(load);
-        });
       }).catch(function () {});
     } catch (_) {}
   }
@@ -87,7 +81,6 @@
     // Paint useful content immediately; Firebase will reorder it later.
     render('popular-reviews', posts, 'views');
     render('most-read-reviews', newest, 'seconds');
-    render('newest-reviews', newest, 'views');
     defer(function () { loadFirebaseStats(posts); });
   }
   function loadPosts() {
@@ -96,6 +89,6 @@
     return fetch('assets/posts.json', { cache: 'force-cache' }).then(function (r) { return r.json(); });
   }
   loadPosts().then(start).catch(function () {
-    ['popular-reviews', 'most-read-reviews', 'most-commented-reviews', 'newest-reviews'].forEach(function (id) { var el = document.getElementById(id); if (el) el.innerHTML = '<p class="popular-empty">ဖတ်၍မရပါ။</p>'; });
+    ['popular-reviews', 'most-read-reviews'].forEach(function (id) { var el = document.getElementById(id); if (el) el.innerHTML = '<p class="popular-empty">ဖတ်၍မရပါ။</p>'; });
   });
 }());
