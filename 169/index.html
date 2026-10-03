@@ -648,12 +648,6 @@
         html[data-theme="dark"] .header-controls .theme-toggle,html[data-theme="dark"] .font-picker,html[data-theme="dark"] .copy-link,html[data-theme="dark"] .back-link { background:#302a32; color:#f1d7b5; border-color:#6b5360; } html[data-theme="dark"] .reader-view-count { background:#3a2c2a; color:#f0c6a9; }
         @media (max-width:700px) { body { padding:8px 6px 20px; } .container { display:block; width:100%; padding:22px 17px 30px; border-radius:16px; } .post-image { width:min(78vw,300px); margin:0 auto 24px; } header { padding:0 0 8px; text-align:left; } header h1 { font-size:1.35rem; } .header-controls { margin-top:13px; } .reading-time { margin-top:4px; padding-top:10px; } .post-controls { margin-bottom:14px; } .post-body { margin-top:10px; padding-top:12px; } .post-body p { font-size:1.04rem; line-height:1.9; } .comments-panel { padding:14px; } .newest-reviews-panel { margin-top:18px; } .newest-review-card,.newest-review-card img,.newest-review-placeholder { width:104px; } .newest-review-card img,.newest-review-placeholder { height:136px; } .back-link { margin-top:22px; } }
         /* Comment list guardrail: many reviews scroll inside the panel, not the whole page. */
-        .comment-identity-choice { display:flex; align-items:center; flex-wrap:wrap; gap:8px 14px; margin:0 0 2px; padding:8px 10px; border:1px solid #eadfd5; border-radius:9px; color:#6d5d53; font:inherit; font-size:.78rem; }
-        .comment-identity-choice legend { padding:0 4px; color:#8b5c45; font-size:.74rem; font-weight:700; }
-        .comment-identity-choice label { display:inline-flex; align-items:center; gap:4px; cursor:pointer; }
-        .comment-identity-choice input { accent-color:#a34a42; }
-        html[data-theme="dark"] .comment-identity-choice { border-color:#4a4148; color:#cfc4c0; } html[data-theme="dark"] .comment-identity-choice legend { color:#f0c6a9; }
-        @media(max-width:600px) { .comment-identity-choice { align-items:flex-start; flex-direction:column; gap:5px; } }
         .comments-panel #commentsList { max-height:360px; overflow-y:auto; overscroll-behavior:contain; padding:0 8px 0 0; scrollbar-width:thin; scrollbar-color:#c9a991 transparent; }
         .comments-panel #commentsList::-webkit-scrollbar { width:7px; }
         .comments-panel #commentsList::-webkit-scrollbar-track { background:transparent; }
@@ -762,7 +756,6 @@
             <section class="comments-panel" id="commentsPanel" data-post-id="169" aria-labelledby="commentsTitle">
                 <h2 class="comments-title" id="commentsTitle">💬 စာဖတ်သူများ၏ Comment / Review</h2>
                 <form class="comment-form" id="commentForm">
-                    <fieldset class="comment-identity-choice"><legend>Comment ရေးမည့်ပုံစံ</legend><label><input type="radio" name="commentIdentity" value="account" checked> Google account နဲ့ရေးမယ်</label><label><input type="radio" name="commentIdentity" value="anonymous"> Anonymous နဲ့ရေးမယ်</label></fieldset>
                     <input id="commentName" maxlength="40" required placeholder="သင့်အမည် သို့မဟုတ် အမည်ပြောင်">
                     <textarea id="commentText" maxlength="1000" required placeholder="ဒီစာအုပ်အပေါ် သင့်အမြင်ကို ရေးပါ…"></textarea>
                     <div class="rating-picker" aria-label="ကြယ် rating">
