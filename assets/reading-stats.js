@@ -144,11 +144,29 @@
   function setAccountControls(user) {
     var signInButton = document.getElementById('stats-sync-signin');
     var signOutButton = document.getElementById('stats-sync-signout');
+    var label = document.getElementById('stats-account-label');
     if (!signInButton || !signOutButton) return;
     var connected = !!(user && !user.isAnonymous);
-    signInButton.hidden = connected;
+    signInButton.hidden = false;
     signOutButton.hidden = !connected;
     signInButton.disabled = false;
+    signInButton.replaceChildren();
+    if (connected && user.photoURL) {
+      var image = document.createElement('img');
+      image.src = user.photoURL;
+      image.alt = user.displayName || 'Google profile';
+      signInButton.appendChild(image);
+    } else {
+      var fallback = document.createElement('span');
+      fallback.className = 'account-avatar-fallback';
+      fallback.setAttribute('aria-hidden', 'true');
+      fallback.textContent = 'G';
+      signInButton.appendChild(fallback);
+    }
+    var accountName = connected ? (user.displayName || 'Google account') : 'Google login';
+    signInButton.setAttribute('aria-label', connected ? accountName + ' — Google account' : 'Google အကောင့်ဖြင့် ဝင်ရန်');
+    signInButton.title = connected ? accountName : 'Google အကောင့်ဖြင့် ဝင်ရန်';
+    if (label) label.textContent = accountName;
     if (connected) status('Google အကောင့်နှင့် ချိတ်ဆက်ထားပြီး မှတ်တမ်းကို အွန်လိုင်းတွင် အရန်သိမ်းနေပါသည်။');
     else status('လောလောဆယ် ဤ browser ထဲတွင်သာ သိမ်းထားပါသည်။ Google အကောင့်နှင့် ချိတ်လျှင် browser ဒေတာရှင်းပြီးနောက် ပြန်ရယူနိုင်ပါသည်။');
   }
