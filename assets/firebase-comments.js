@@ -69,7 +69,9 @@
       var head = document.createElement('div');
       head.className = 'comment-head';
       var author = document.createElement('strong');
-      author.textContent = row.data.displayName || 'စာဖတ်သူ';
+      var savedName = row.data.displayName || row.data.name || '';
+      if (savedName === 'Anonymous' && row.data.name) savedName = row.data.name;
+      author.textContent = savedName || 'စာဖတ်သူ';
       var stars = document.createElement('span');
       stars.className = 'comment-stars';
       stars.textContent = '★'.repeat(Math.max(0, Math.min(5, Number(row.data.rating) || 0)));
@@ -130,8 +132,8 @@
     submit.disabled = true;
     setStatus('ပို့နေပါသည်…');
     db.collection('posts').doc(String(postId)).collection('comments').add({
-      uid: '', authorMode: 'anonymous',
-      displayName: 'Anonymous', text: text, rating: rating,
+      uid: user.uid, authorMode: 'named',
+      displayName: name, name: name, text: text, rating: rating,
       status: 'approved', createdAt: firebase.firestore.FieldValue.serverTimestamp()
     }).then(function () {
       form.reset(); selectedRating = 0; drawStars(0);
