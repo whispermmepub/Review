@@ -673,6 +673,16 @@
         .post-body { margin:16px auto 0; }
         html[data-theme="dark"] .reading-time,html[data-theme="dark"] .post-controls { border-color:#3b353d; }
         @media(max-width:700px) { .container { width:100%; padding:24px 17px 32px; } .post-image { width:min(72vw,300px); margin-bottom:23px; } header h1 { font-size:1.3rem; } .post-meta { font-size:.82rem; } .header-controls { gap:7px; } .reading-time { padding-top:11px; } .post-controls { margin-bottom:14px; } }
+        /* Compact reader toolbar: theme, Aa font picker, and copy link stay together. */
+        .header-controls { justify-content:center; align-items:center; gap:8px; margin-top:14px; }
+        .header-controls .theme-toggle,.font-picker-button,.header-controls .copy-link { min-height:34px; height:34px; padding:6px 10px; border:1px solid #d9b9a6; border-radius:9px; background:#fbf3ed; color:#87543a; font:inherit; font-size:.74rem; font-weight:700; cursor:pointer; }
+        .font-picker-button { width:42px; padding:5px 4px; font-size:.96rem; letter-spacing:-.04em; }
+        .header-controls .copy-link { width:38px; padding:5px 6px; font-size:.9rem; }
+        .header-controls .font-picker { position:absolute; width:1px; height:1px; padding:0; margin:-1px; opacity:0; overflow:hidden; clip:rect(0,0,0,0); white-space:nowrap; border:0; }
+        .copy-status { min-width:0; color:#a34a42; font-size:.7rem; }
+        .post-controls { justify-content:center; margin:0 auto 18px; padding:0 0 14px; border-bottom:1px solid #eee4db; }
+        html[data-theme="dark"] .header-controls .theme-toggle,html[data-theme="dark"] .font-picker-button,html[data-theme="dark"] .header-controls .copy-link { background:#302a32; color:#f1d7b5; border-color:#6b5360; }
+        @media(max-width:600px) { .header-controls { gap:6px; } .header-controls .theme-toggle,.font-picker-button,.header-controls .copy-link { min-height:32px; height:32px; } .header-controls .theme-toggle { padding:5px 8px; font-size:.68rem; } .font-picker-button { width:40px; } .header-controls .copy-link { width:36px; } }
 
         /* Mobile browser + Telegram in-app browser typography */
         @media (max-width: 600px) {
@@ -695,13 +705,12 @@
         <header>
             <h1>ပဉ္စလက်ကကြိုး - သစ်စိုး</h1>
             <div class="post-meta">📅 2026-09-01 • ✍️ Whisper Of Words</div>
-            <div class="header-controls"><button type="button" class="theme-toggle" data-theme-toggle aria-pressed="false">🌙 Dark mode</button><label for="fontPicker" class="sr-only">ဖွန့်ရွေးရန်</label><select id="fontPicker" class="font-picker" aria-label="ဖွန့်ရွေးရန်"><option value="WOW-Walone">Walone</option><option value="WOW-Yadanabon">Yadanabon</option><option value="WOW-YoeYar">YoeYar</option><option value="WOW-Pyidaungsu">Pyidaungsu</option><option value="WOW-YoeShin">Yoe Shin</option><option value="WOW-MyanmarSansPro">Myanmar Sans Pro</option><option value="WOW-MyanmarSagar">Myanmar Sagar</option><option value="WOW-MyanmarBlack">Myanmar Black</option><option value="WOW-BurmeseHandwriting">Burmese Handwriting</option><option value="WOW-MyanmarLatpan">Myanmar Latpan</option><option value="WOW-Burma01">Burma 01</option><option value="WOW-Burma02">Burma 02</option><option value="WOW-PuPuBold">Pu Pu Bold</option></select></div>
+            <div class="header-controls"><button type="button" class="theme-toggle" data-theme-toggle aria-pressed="false">🌙 Dark mode</button><label for="fontPicker" class="sr-only">ဖွန့်ရွေးရန်</label><button type="button" id="fontPickerButton" class="font-picker-button" aria-label="ဖွန့်ရွေးရန်" title="ဖွန့်ရွေးရန်">Aa</button><select id="fontPicker" class="font-picker" aria-label="ဖွန့်ရွေးရန်"><option value="WOW-Walone">Walone</option><option value="WOW-Yadanabon">Yadanabon</option><option value="WOW-YoeYar">YoeYar</option><option value="WOW-Pyidaungsu">Pyidaungsu</option><option value="WOW-YoeShin">Yoe Shin</option><option value="WOW-MyanmarSansPro">Myanmar Sans Pro</option><option value="WOW-MyanmarSagar">Myanmar Sagar</option><option value="WOW-MyanmarBlack">Myanmar Black</option><option value="WOW-BurmeseHandwriting">Burmese Handwriting</option><option value="WOW-MyanmarLatpan">Myanmar Latpan</option><option value="WOW-Burma01">Burma 01</option><option value="WOW-Burma02">Burma 02</option><option value="WOW-PuPuBold">Pu Pu Bold</option></select><button type="button" id="copyLink" class="copy-link" aria-label="Post link ကော်ပီယူရန်" title="Post link ကော်ပီယူရန်">🔗</button><span id="copyStatus" class="copy-status" role="status" aria-live="polite"></span></div>
 
         </header>
 
         <div class="reading-time" id="readingTime">📖 <span id="readTime"></span> ဖတ်ရန်အချိန်</div>
-        <div class="post-controls" aria-label="ဖတ်ရှုရန် ရွေးချယ်စရာများ">
-            <button type="button" id="copyLink" class="copy-link" aria-label="Post link ကော်ပီယူရန်" title="Post link ကော်ပီယူရန်">🔗</button><span id="copyStatus" class="copy-status" role="status" aria-live="polite"></span>
+        <div class="post-controls" aria-label="ဖတ်ရှုသူအရေအတွက်">
             <span class="reader-view-count" title="ဒီ post ကို ဖတ်ရှုသူအရေအတွက်">👁️ <span id="readerViewCount" aria-busy="true">…</span></span>
         </div>
 
@@ -866,7 +875,9 @@
                 if (picker) picker.value = name;
                 try { localStorage.setItem(FONT_KEY, name); } catch (_) {}
             }
+            var pickerButton = document.getElementById('fontPickerButton');
             if (picker) { picker.addEventListener('change', function() { applyFont(picker.value); }); applyFont(chosen); }
+            if (pickerButton && picker) { pickerButton.addEventListener('click', function() { if (picker.showPicker) picker.showPicker(); else { picker.focus(); picker.click(); } }); }
             if (copy) copy.addEventListener('click', function() {
                 var url = window.location.href.split('#')[0];
                 function done() { if (copyStatus) { copyStatus.textContent = 'ကော်ပီယူပြီးပါပြီ'; setTimeout(function() { copyStatus.textContent = ''; }, 1800); } }
