@@ -673,33 +673,10 @@
         .post-body { margin:16px auto 0; }
         html[data-theme="dark"] .reading-time,html[data-theme="dark"] .post-controls { border-color:#3b353d; }
         @media(max-width:700px) { .container { width:100%; padding:24px 17px 32px; } .post-image { width:min(72vw,300px); margin-bottom:23px; } header h1 { font-size:1.3rem; } .post-meta { font-size:.82rem; } .header-controls { gap:7px; } .reading-time { padding-top:11px; } .post-controls { margin-bottom:14px; } }
-        /* Compact reader toolbar: theme, Aa font picker, and copy link stay together. */
-        .header-controls { justify-content:center; align-items:center; gap:8px; margin-top:14px; }
-        .header-controls .theme-toggle,.font-picker-button,.header-controls .copy-link { min-height:34px; height:34px; padding:6px 10px; border:1px solid #d9b9a6; border-radius:9px; background:#fbf3ed; color:#87543a; font:inherit; font-size:.74rem; font-weight:700; cursor:pointer; }
-        .font-picker-button { width:42px; padding:5px 4px; font-size:.96rem; letter-spacing:-.04em; }
-        .header-controls .copy-link { width:38px; padding:5px 6px; font-size:.9rem; }
-        .header-controls .font-picker { position:absolute; width:1px; height:1px; padding:0; margin:-1px; opacity:0; overflow:hidden; clip:rect(0,0,0,0); white-space:nowrap; border:0; }
-        .copy-status { min-width:0; color:#a34a42; font-size:.7rem; }
-        .post-controls { justify-content:center; margin:0 auto 18px; padding:0 0 14px; border-bottom:1px solid #eee4db; }
-        html[data-theme="dark"] .header-controls .theme-toggle,html[data-theme="dark"] .font-picker-button,html[data-theme="dark"] .header-controls .copy-link { background:#302a32; color:#f1d7b5; border-color:#6b5360; }
-        @media(max-width:600px) { .header-controls { gap:6px; } .header-controls .theme-toggle,.font-picker-button,.header-controls .copy-link { min-height:32px; height:32px; } .header-controls .theme-toggle { padding:5px 8px; font-size:.68rem; } .font-picker-button { width:40px; } .header-controls .copy-link { width:36px; } }
-
-        /* Mobile browser + Telegram in-app browser typography */
-        @media (max-width: 600px) {
-            body { font-size: 14px; }
-            header { margin: 12px 10px 10px; padding: 26px 14px 22px; }
-            header h1 { font-size: 1.25rem !important; line-height: 1.35; }
-            .post-meta { font-size: 0.80rem !important; }
-            .post-body { padding: 22px 10px; }
-            .post-body p { font-size: 1.00rem !important; line-height: 1.78 !important; }
-            .back-link { font-size: 0.85rem; padding: 8px 14px; }
-            .reviewer-credit { font-size: 0.78rem; }
-        }
-
         /* Editorial reader redesign v1 */
         :root { --reader-ink:#302822; --reader-muted:#806d60; --reader-paper:#fffdf8; --reader-line:#e8ddd2; --reader-accent:#a85f43; --reader-accent-dark:#7d4333; --reader-soft:#f5e8dc; }
         html,body { background:#eee8df; color:var(--reader-ink); }
-        body { padding:18px 12px 34px; font-family:"Walone",sans-serif; line-height:1.7; }
+        body { padding:18px 12px 34px; font-family: "Walone", sans-serif; line-height:1.7; }
         .container { width:min(100%,900px); max-width:900px; margin:0 auto; padding:0 34px 42px; background:var(--reader-paper); border:1px solid #e3d6c9; border-radius:24px; box-shadow:0 18px 50px rgba(76,54,37,.12); overflow:hidden; }
         .reader-topbar { display:flex; align-items:center; gap:12px; min-height:68px; padding:8px 0 12px; border-bottom:1px solid var(--reader-line); }
         .reader-back { display:inline-flex; align-items:center; justify-content:center; width:38px; height:38px; border:1px solid #decfc2; border-radius:50%; color:var(--reader-accent-dark); background:#fffaf4; font-size:1.35rem; text-decoration:none; transition:transform .18s ease,background .18s ease; }
@@ -751,7 +728,29 @@
         html[data-theme="dark"] .comments-panel { background:#2b272d; border-color:#4a4148; }
         html[data-theme="dark"] .comment-form input,html[data-theme="dark"] .comment-form textarea { background:#1c1a20; color:#eee8e1; border-color:#4a4148; }
         @media(max-width:700px) { body { padding:7px 6px 22px; } .container { width:100%; padding:0 17px 30px; border-radius:18px; } .reader-topbar { min-height:60px; } .reader-brand { font-size:.88rem; } .post-image { width:100%; max-height:52vh; margin:16px auto 22px; border-radius:16px; } header h1 { font-size:1.38rem; line-height:1.48; } .post-meta { font-size:.78rem; } .header-controls { margin-top:13px; gap:6px; } .header-controls .theme-toggle,.font-picker-button,.header-controls .copy-link { min-height:33px; height:33px; font-size:.68rem; } .reading-time { padding-top:11px; } .post-controls { margin-bottom:15px; padding-bottom:13px; } .post-body p { font-size:1.03rem; line-height:1.92; } .comments-panel { margin-top:24px; padding:16px 13px; border-radius:15px; } .comments-title { font-size:.98rem; } .back-link { min-height:45px; margin-top:24px; } }
-</style>
+        /* Compact reader toolbar: theme, Aa font picker, and copy link stay together. */
+        .header-controls { justify-content:center; align-items:center; gap:8px; margin-top:14px; }
+        .header-controls .theme-toggle,.font-picker-button,.header-controls .copy-link { min-height:34px; height:34px; padding:6px 10px; border:1px solid #d9b9a6; border-radius:9px; background:#fbf3ed; color:#87543a; font:inherit; font-size:.74rem; font-weight:700; cursor:pointer; }
+        .font-picker-button { width:42px; padding:5px 4px; font-size:.96rem; letter-spacing:-.04em; }
+        .header-controls .copy-link { width:38px; padding:5px 6px; font-size:.9rem; }
+        .header-controls .font-picker { position:absolute; width:1px; height:1px; padding:0; margin:-1px; opacity:0; overflow:hidden; clip:rect(0,0,0,0); white-space:nowrap; border:0; }
+        .copy-status { min-width:0; color:#a34a42; font-size:.7rem; }
+        .post-controls { justify-content:center; margin:0 auto 18px; padding:0 0 14px; border-bottom:1px solid #eee4db; }
+        html[data-theme="dark"] .header-controls .theme-toggle,html[data-theme="dark"] .font-picker-button,html[data-theme="dark"] .header-controls .copy-link { background:#302a32; color:#f1d7b5; border-color:#6b5360; }
+        @media(max-width:600px) { .header-controls { gap:6px; } .header-controls .theme-toggle,.font-picker-button,.header-controls .copy-link { min-height:32px; height:32px; } .header-controls .theme-toggle { padding:5px 8px; font-size:.68rem; } .font-picker-button { width:40px; } .header-controls .copy-link { width:36px; } }
+
+        /* Mobile browser + Telegram in-app browser typography */
+        @media (max-width: 600px) {
+            body { font-size: 14px; }
+            header { margin: 12px 10px 10px; padding: 26px 14px 22px; }
+            header h1 { font-size: 1.25rem !important; line-height: 1.35; }
+            .post-meta { font-size: 0.80rem !important; }
+            .post-body { padding: 22px 10px; }
+            .post-body p { font-size: 1.00rem !important; line-height: 1.78 !important; }
+            .back-link { font-size: 0.85rem; padding: 8px 14px; }
+            .reviewer-credit { font-size: 0.78rem; }
+        }
+    </style>
 </head>
 <body>
     <div class="reading-progress" id="readingProgress"></div>
