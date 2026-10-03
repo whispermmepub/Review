@@ -21,6 +21,7 @@
   var ratingInput = document.getElementById('commentRating');
   var status = document.getElementById('commentStatus');
   var submit = document.getElementById('commentSubmit');
+  var identityInputs = document.querySelectorAll('input[name=commentIdentity]');
   var selectedRating = 0;
 
   try { firebase.initializeApp(config); } catch (e) {
@@ -117,20 +118,36 @@
       });
   }, function () { setStatus('Comment များကို ရယူ၍မရပါ။', true); });
 
+  function selectedIdentity() {
+    var selected = document.querySelector('input[name=commentIdentity]:checked');
+    return selected ? selected.value : 'account';
+  }
+  function currentCommentUser(identity) {
+    var user = auth.currentUser;
+    if (identity === 'account' && (!user || user.isAnonymous)) return null;
+    return user;
+  }
+  identityInputs.forEach(function (input) { input.addEventListener('change', function () {
+    if (input.value === 'account' && input.checked && (!auth.currentUser || auth.currentUser.isAnonymous)) setStatus('Google account နဲ့ရေးရန် အပေါ်က account avatar ကိုနှိပ်ပြီး အရင်ဝင်ပါ။');
+    else if (input.value === 'anonymous' && input.checked) setStatus('ဒီ Comment ကို Anonymous အဖြစ် သိမ်းပါမယ်။');
+  }); });
   form.addEventListener('submit', function (event) {
     event.preventDefault();
-    var user = auth.currentUser;
+    var identity = selectedIdentity();
+    var user = currentCommentUser(identity);
     var name = nameInput.value.trim();
     var text = textInput.value.trim();
     var rating = Number(ratingInput.value);
-    if (!user) return setStatus('ခဏစောင့်ပြီး ပြန်ကြိုးစားပါ။', true);
+    if (identity === 'account' && !user) return setStatus('Google account နဲ့ရေးရန် account login ဝင်ထားပါ။', true);
+    if (!user) return setStatus('Comment စနစ်ကို ချိတ်ဆက်နေပါသည်။ ခဏစောင့်ပါ။', true);
     if (name.length < 1 || name.length > 40) return setStatus('အမည်ကို ၁ မှ ၄၀ စာလုံးအတွင်း ထည့်ပါ။', true);
     if (text.length < 2 || text.length > 1000) return setStatus('Comment ကို ၂ မှ ၁၀၀၀ စာလုံးအတွင်း ထည့်ပါ။', true);
     if (rating < 1 || rating > 5) return setStatus('ကြယ် rating ရွေးပါ။', true);
     submit.disabled = true;
     setStatus('ပို့နေပါသည်…');
     db.collection('posts').doc(String(postId)).collection('comments').add({
-      uid: user.uid, displayName: name, text: text, rating: rating,
+      uid: identity === 'account' ? user.uid : '', authorMode: identity,
+      displayName: identity === 'account' ? name : 'Anonymous', text: text, rating: rating,
       status: 'approved', createdAt: firebase.firestore.FieldValue.serverTimestamp()
     }).then(function () {
       form.reset(); selectedRating = 0; drawStars(0);
