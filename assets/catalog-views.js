@@ -6,6 +6,7 @@
   var posts = [];
   var view = 'grid';
   var searchTimer = null;
+  var showAll = false;
   var POSTS_CACHE_KEY = 'wow-review-posts-cache-v1';
 
   function loadPostsData() {
@@ -108,13 +109,15 @@
       return;
     }
     var fragment = document.createDocumentFragment();
-    items.forEach(function (post, index) {
-      fragment.appendChild(makeCard(post));
-      if ((index + 1) % 6 === 0 && index < items.length - 1) {
-        fragment.appendChild(make('div', 'book-group-divider'));
-      }
-    });
+    items.forEach(function (post) { fragment.appendChild(makeCard(post)); });
     container.appendChild(fragment);
+    container.classList.toggle('is-expanded', showAll);
+    var showAllButton = byId('show-all-reviews');
+    if (showAllButton) {
+      showAllButton.hidden = items.length <= 6;
+      showAllButton.textContent = showAll ? 'အကျဉ်းချုပ်ပြရန် ↑' : 'အားလုံးကြည့်ရန် →';
+      showAllButton.setAttribute('aria-expanded', String(showAll));
+    }
   }
 
   function render() {
@@ -159,6 +162,12 @@
       byId('search-input').value = '';
       render();
       byId('search-input').focus();
+    });
+    var showAllButton = byId('show-all-reviews');
+    if (showAllButton) showAllButton.addEventListener('click', function () {
+      showAll = !showAll;
+      render();
+      if (showAll) byId('posts-container').scrollIntoView({ behavior: 'smooth', block: 'start' });
     });
   }
 
