@@ -330,8 +330,7 @@
   }
   function loadAccountActivity() {
     var readList = document.getElementById('accountReadReviews');
-    var commentList = document.getElementById('accountComments');
-    if (!readList || !commentList || !signedInUser) return;
+    if (!readList || !signedInUser) return;
     fetch('assets/posts.json').then(function (response) { return response.json(); }).then(function (posts) {
       var byId = {}; (Array.isArray(posts) ? posts : []).forEach(function (post) { byId[String(post.id)] = post; });
       var reviews = getStats().reviews || {};
@@ -340,27 +339,6 @@
       if (!ids.length) setActivityMessage('accountReadReviews', 'ဖတ်ထားသော Review မရှိသေးပါ။');
       else ids.slice(0,40).forEach(function (id) { var post = byId[id] || {}; var target = post.link ? '/Review/' + String(post.link).replace(/^\/+/, '') : ''; readList.appendChild(activityItem(target, post.title || ('Review #' + id), 'ဖတ်ချိန် ' + Math.floor((reviews[id].seconds || 0) / 60) + ' min')); });
     }).catch(function () { setActivityMessage('accountReadReviews', 'ဖတ်ထားသော Review စာရင်းကို ရယူ၍မရပါ။'); });
-    function renderCommentRows(rows, posts) {
-      var byId = {}; (Array.isArray(posts) ? posts : []).forEach(function (post) { byId[String(post.id)] = post; });
-      rows.sort(function (a,b) { var at=a.data.createdAt && a.data.createdAt.toMillis ? a.data.createdAt.toMillis() : 0; var bt=b.data.createdAt && b.data.createdAt.toMillis ? b.data.createdAt.toMillis() : 0; return bt-at; });
-      commentList.replaceChildren();
-      if (!rows.length) { setActivityMessage('accountComments','ရေးထားသော Comment မရှိသေးပါ။'); return; }
-      rows.slice(0,40).forEach(function (row) { var post=byId[row.postId]||{}; var target=post.link?'/Review/'+String(post.link).replace(/^\/+/, ''):''; var text=String(row.data.text||'').replace(/\s+/g,' ').trim(); commentList.appendChild(activityItem(target,post.title||('Review #'+row.postId),text.length>90?text.slice(0,90)+'…':text)); });
-    }
-    function loadCommentsByPosts(posts) {
-      var rows = []; var queue = Array.isArray(posts) ? posts.slice() : [];
-      function next() {
-        if (!queue.length) return Promise.resolve(renderCommentRows(rows, posts));
-        var post = queue.shift();
-        return db.collection('posts').doc(String(post.id)).collection('comments').where('uid', '==', signedInUser.uid).get().then(function (snapshot) { snapshot.forEach(function (doc) { rows.push({ data: doc.data() || {}, postId: String(post.id) }); }); }).catch(function () {}).then(next);
-      }
-      return next();
-    }
-    fetch('assets/posts.json').then(function (response) { return response.json(); }).then(function (posts) {
-      if (!db) throw new Error('db unavailable');
-      if (db.collectionGroup) return db.collectionGroup('comments').where('uid', '==', signedInUser.uid).get().then(function (snapshot) { var rows=[]; snapshot.forEach(function(doc){ var data=doc.data()||{}; rows.push({data:data,postId:doc.ref.parent.parent?doc.ref.parent.parent.id:''}); }); renderCommentRows(rows,posts); }).catch(function () { return loadCommentsByPosts(posts); });
-      return loadCommentsByPosts(posts);
-    }).catch(function () { setActivityMessage('accountComments','Comment စာရင်းကို ရယူ၍မရပါ။'); });
   }
   function openAccountPanel() {
     if (!signedInUser) return;
