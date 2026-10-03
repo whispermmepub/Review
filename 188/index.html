@@ -750,7 +750,26 @@
             .back-link { font-size: 0.85rem; padding: 8px 14px; }
             .reviewer-credit { font-size: 0.78rem; }
         }
-    </style>
+
+        /* Catalog-style newest review cards. */
+        .newest-reviews-track { display:flex; gap:9px; overflow-x:auto; padding:2px 0 10px; scroll-snap-type:x mandatory; scrollbar-width:thin; scrollbar-color:#c8ad96 transparent; }
+        .newest-review-card { flex:0 0 122px; width:122px; display:block; padding:0; color:#332d29; text-decoration:none; scroll-snap-align:start; scroll-snap-stop:always; }
+        .newest-review-cover { position:relative; display:block; width:122px; height:164px; overflow:hidden; border:1px solid #d7c5b3; border-radius:3px; background:#f5efe8; box-shadow:3px 4px 0 #d4c3af; }
+        .newest-review-cover img,.newest-review-cover .newest-review-placeholder { display:block; width:100%; height:100%; object-fit:cover; border:0; border-radius:0; background:#dfd5c8; }
+        .newest-review-content { display:block; padding:7px 2px 2px; }
+        .newest-review-meta { display:block; overflow:hidden; white-space:nowrap; text-overflow:ellipsis; color:#806b62; font-size:.64rem; line-height:1.3; }
+        .newest-review-card strong { display:block; height:2.8em; margin-top:4px; overflow:hidden; color:#332d29; font-size:.76rem; line-height:1.4; }
+        .newest-review-author { display:block; margin-top:3px; overflow:hidden; white-space:nowrap; text-overflow:ellipsis; color:#8d7467; font-size:.66rem; }
+        .newest-review-read { display:block; margin-top:5px; color:#a34a42; font-size:.68rem; font-weight:700; }
+        html[data-theme="dark"] .newest-review-card { color:#eee8e1; }
+        html[data-theme="dark"] .newest-review-cover { border-color:#76554d; background:#2b272d; box-shadow:3px 4px 0 #45363c; }
+        html[data-theme="dark"] .newest-review-cover img,html[data-theme="dark"] .newest-review-cover .newest-review-placeholder { background:#302a35; }
+        html[data-theme="dark"] .newest-review-meta { color:#d7c4b7; }
+        html[data-theme="dark"] .newest-review-card strong { color:#f1d7b5; }
+        html[data-theme="dark"] .newest-review-author { color:#d7c4b7; }
+        html[data-theme="dark"] .newest-review-read { color:#e4a197; }
+        @media(max-width:600px) { .newest-review-card,.newest-review-cover { width:116px; } .newest-review-cover { height:156px; } }
+</style>
 </head>
 <body>
     <div class="reading-progress" id="readingProgress"></div>
@@ -999,9 +1018,16 @@
                 track.replaceChildren();
                 newest.forEach(function(p) {
                     var a = document.createElement('a'); a.className = 'newest-review-card'; a.href = '/Review/' + String(p.link || '').replace(/^\/+/, ''); a.title = p.title || '';
-                    if (p.image) { var img = document.createElement('img'); img.src = p.image; img.alt = p.title || 'Review'; img.loading = 'lazy'; img.decoding = 'async'; a.appendChild(img); }
-                    else { var ph = document.createElement('span'); ph.className = 'newest-review-placeholder'; ph.textContent = '📖'; a.appendChild(ph); }
-                    var title = document.createElement('strong'); title.textContent = p.title || 'စာအုပ်အညွှန်း'; a.appendChild(title); track.appendChild(a);
+                    var cover = document.createElement('span'); cover.className = 'newest-review-cover';
+                    if (p.image) { var img = document.createElement('img'); img.src = p.image; img.alt = p.title || 'Review'; img.loading = 'lazy'; img.decoding = 'async'; cover.appendChild(img); }
+                    else { var ph = document.createElement('span'); ph.className = 'newest-review-placeholder'; ph.textContent = '📖'; cover.appendChild(ph); }
+                    a.appendChild(cover);
+                    var content = document.createElement('span'); content.className = 'newest-review-content';
+                    var meta = document.createElement('span'); meta.className = 'newest-review-meta'; meta.textContent = '📅 ' + (p.date || 'Review'); content.appendChild(meta);
+                    var title = document.createElement('strong'); title.textContent = p.title || 'စာအုပ်အညွှန်း'; content.appendChild(title);
+                    var author = document.createElement('span'); author.className = 'newest-review-author'; author.textContent = p.author || ''; content.appendChild(author);
+                    var read = document.createElement('span'); read.className = 'newest-review-read'; read.textContent = 'ဖတ်ရန် →'; content.appendChild(read);
+                    a.appendChild(content); track.appendChild(a);
                 });
                 if (!newest.length) track.innerHTML = '<span class="newest-review-placeholder">မကြာမီ ပြသပါမယ်။</span>';
             }).catch(function() { track.innerHTML = '<span class="newest-review-placeholder">ရယူ၍မရပါ။</span>'; });
