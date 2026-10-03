@@ -326,6 +326,15 @@
           cloudSources = null;
         }
         setAccountControls(accountUser);
+        if (accountUser && typeof accountUser.reload === 'function') {
+          accountUser.reload().then(function () {
+            var freshUser = auth && auth.currentUser && !auth.currentUser.isAnonymous ? auth.currentUser : null;
+            if (freshUser && freshUser.uid === accountUser.uid) {
+              signedInUser = freshUser;
+              setAccountControls(freshUser);
+            }
+          }).catch(function () {});
+        }
         notifyStatsChanged();
         if (user && pageId && db && !viewCounted) {
           viewCounted = true;
