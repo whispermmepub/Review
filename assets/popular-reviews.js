@@ -50,6 +50,13 @@
     el.innerHTML = posts.slice(0, 5).map(function (p, i) { return card(p, metric, i + 1); }).join('') || '<p class="popular-empty">မကြာမီ ပြသပါမယ်။</p>';
     if (id === 'popular-reviews' || id === 'most-read-reviews') setupCarousel(el);
   }
+  function renderFeatured(posts) {
+    var el = document.getElementById('featured-review-card');
+    if (!el || !posts.length) return;
+    var post = posts[0];
+    var image = post.image ? '<img src="' + esc(post.image) + '" alt="' + esc(post.title) + '" loading="eager" decoding="async">' : '<div class="featured-cover-placeholder">📖</div>';
+    el.innerHTML = image + '<div class="featured-review-copy"><span class="featured-badge">Featured Review</span><h3>' + esc(post.title) + '</h3><p>' + esc(post.excerpt || post.author || '') + '</p><a class="read-featured" href="' + esc(post.link) + '">ဖတ်ရှုရန် →</a></div>';
+  }
   function renderMostCommented(posts) {
     render('most-commented-reviews', posts.slice().sort(function (a, b) { return (commentCounts[b.id] || 0) - (commentCounts[a.id] || 0); }), 'comments');
   }
@@ -85,6 +92,7 @@
   function start(posts) {
     var newest = posts.slice().sort(function (a, b) { return String(b.date || '').localeCompare(String(a.date || '')); });
     // Paint useful content immediately; Firebase will reorder it later.
+    renderFeatured(posts);
     render('popular-reviews', posts, 'views');
     render('most-read-reviews', newest, 'seconds');
     render('newest-reviews', newest, 'views');
