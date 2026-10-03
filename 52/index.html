@@ -658,6 +658,21 @@
         @media (max-width:700px) { .comments-panel #commentsList { max-height:300px; padding-right:5px; } }
         html[data-theme="dark"] .comments-panel #commentsList { scrollbar-color:#806777 transparent; }
         html[data-theme="dark"] .comments-panel #commentsList::-webkit-scrollbar-thumb { background:#806777; }
+        /* Reader flow finish: cover first, then a calm centered metadata stack. */
+        .container { display:block; width:min(100%,820px); max-width:820px; padding:32px 40px 44px; }
+        .post-image { display:block; width:min(68vw,330px); max-width:330px; max-height:500px; margin:0 auto 26px; border-radius:9px; }
+        header { display:block; margin:0; padding:0 0 12px; text-align:center; }
+        header h1 { margin:0 auto 10px; max-width:700px; text-align:center; font-size:clamp(1.35rem,3.6vw,2rem); line-height:1.45; }
+        header h1::before { margin-bottom:6px; }
+        .post-meta { text-align:center; font-size:.9rem; }
+        .header-controls { justify-content:center; margin-top:15px; }
+        .reading-time { margin:0; padding:13px 0 10px; text-align:center; border-top:1px solid #eee4db; }
+        .post-controls { justify-content:center; margin:0 auto 18px; padding:0 0 15px; border-bottom:1px solid #eee4db; }
+        .post-controls .copy-link { min-width:36px; }
+        .reader-view-count { min-height:30px; display:inline-flex; align-items:center; justify-content:center; }
+        .post-body { margin:16px auto 0; }
+        html[data-theme="dark"] .reading-time,html[data-theme="dark"] .post-controls { border-color:#3b353d; }
+        @media(max-width:700px) { .container { width:100%; padding:24px 17px 32px; } .post-image { width:min(72vw,300px); margin-bottom:23px; } header h1 { font-size:1.3rem; } .post-meta { font-size:.82rem; } .header-controls { gap:7px; } .reading-time { padding-top:11px; } .post-controls { margin-bottom:14px; } }
 
         /* Mobile browser + Telegram in-app browser typography */
         @media (max-width: 600px) {
@@ -687,7 +702,7 @@
         <div class="reading-time" id="readingTime">📖 <span id="readTime"></span> ဖတ်ရန်အချိန်</div>
         <div class="post-controls" aria-label="ဖတ်ရှုရန် ရွေးချယ်စရာများ">
             <button type="button" id="copyLink" class="copy-link" aria-label="Post link ကော်ပီယူရန်" title="Post link ကော်ပီယူရန်">🔗</button><span id="copyStatus" class="copy-status" role="status" aria-live="polite"></span>
-            <span class="reader-view-count" title="ဒီ post ကို ဖတ်ရှုသူအရေအတွက်">👁️ <span id="readerViewCount">…</span></span>
+            <span class="reader-view-count" title="ဒီ post ကို ဖတ်ရှုသူအရေအတွက်">👁️ <span id="readerViewCount" aria-busy="true">…</span></span>
         </div>
 
         <div class="post-body">
@@ -861,9 +876,13 @@
             });
             var count = document.getElementById('readerViewCount');
             if (count && window.firebase) { try {
-                if (!firebase.apps.length) firebase.initializeApp({ apiKey:'AIzaSyBX28BIHkrQzF7QmAEsoh8OPdEIaFILYRA', authDomain:'github-comment-9f76d.firebaseapp.com', projectId:'github-comment-9f76d', storageBucket:'github-comment-9f76d.firebasestorage.app', messagingSenderId:'423917068098', appId:'1:423917068098:web:bfb899f06ae1375741b2db' });
-                firebase.firestore().collection('reviewStats').doc(String(pid)).onSnapshot(function(doc) { count.textContent = String((doc.exists && doc.data().views) || 0); }, function() { count.textContent = '0'; });
-            } catch (_) { count.textContent = '0'; } }
+                if (!firebase.apps.length) firebase.initializeApp({ apiKey:'AIzaSyBX28BIHkrQzF7QmAEsoh8oP8qM7x', authDomain:'github-comment-9f76d.firebaseapp.com', projectId:'github-comment-9f76d', storageBucket:'github-comment-9f76d.firebasestorage.app', messagingSenderId:'423917068098', appId:'1:423917068098:web:bfb899f06ae1375741b2db' });
+                firebase.firestore().collection('reviewStats').doc(String(pid)).onSnapshot(function(doc) {
+                    if (doc.metadata && doc.metadata.fromCache) return;
+                    count.textContent = String((doc.exists && doc.data().views) || 0);
+                    count.removeAttribute('aria-busy');
+                }, function() { count.textContent = '—'; count.removeAttribute('aria-busy'); });
+            } catch (_) { count.textContent = '—'; count.removeAttribute('aria-busy'); } }
         })();
         </script>
 
