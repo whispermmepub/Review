@@ -20,9 +20,35 @@
     var championClass = champion ? ' popular-champion-card' : '';
     return '<a class="popular-card' + championClass + '" href="' + esc(post.link) + '">' + champion + '<span class="popular-rank">' + rank + '</span>' + image + '<span class="popular-info"><strong>' + esc(post.title) + '</strong><small>' + esc(post.author) + ' · ' + value + '</small></span></a>';
   }
+  function setupCarousel(el) {
+    if (!el || el.dataset.carouselReady === 'true') return;
+    el.dataset.carouselReady = 'true';
+    el.classList.add('popular-carousel');
+    el.setAttribute('role', 'region');
+    el.setAttribute('aria-label', 'ဘေးသို့ ဆွဲကြည့်ရန် Reviewများ');
+    var timer = null;
+    var resumeTimer = null;
+    function cards() { return el.querySelectorAll('.popular-card'); }
+    function advance() {
+      var items = cards(); if (items.length < 2) return;
+      var first = items[0];
+      var step = first.getBoundingClientRect().width + 10;
+      var end = el.scrollLeft + el.clientWidth >= el.scrollWidth - 8;
+      el.scrollTo({ left: end ? 0 : el.scrollLeft + step, behavior: 'smooth' });
+    }
+    function start() { if (window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches) return; if (!timer) timer = window.setInterval(advance, 4200); }
+    function stop() { if (timer) { window.clearInterval(timer); timer = null; } }
+    function pauseThenResume() { stop(); if (resumeTimer) window.clearTimeout(resumeTimer); resumeTimer = window.setTimeout(start, 5200); }
+    el.addEventListener('mouseenter', stop); el.addEventListener('mouseleave', start);
+    el.addEventListener('focusin', stop); el.addEventListener('focusout', start);
+    el.addEventListener('touchstart', pauseThenResume, { passive: true });
+    el.addEventListener('pointerdown', pauseThenResume, { passive: true });
+    start();
+  }
   function render(id, posts, metric) {
     var el = document.getElementById(id); if (!el) return;
     el.innerHTML = posts.slice(0, 5).map(function (p, i) { return card(p, metric, i + 1); }).join('') || '<p class="popular-empty">မကြာမီ ပြသပါမယ်။</p>';
+    if (id === 'popular-reviews' || id === 'most-read-reviews') setupCarousel(el);
   }
   function renderMostCommented(posts) {
     render('most-commented-reviews', posts.slice().sort(function (a, b) { return (commentCounts[b.id] || 0) - (commentCounts[a.id] || 0); }), 'comments');
