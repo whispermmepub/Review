@@ -739,18 +739,6 @@
         html[data-theme="dark"] .header-controls .theme-toggle,html[data-theme="dark"] .font-picker-button,html[data-theme="dark"] .header-controls .copy-link { background:#302a32; color:#f1d7b5; border-color:#6b5360; }
         @media(max-width:600px) { .header-controls { gap:6px; } .header-controls .theme-toggle,.font-picker-button,.header-controls .copy-link { min-height:32px; height:32px; } .header-controls .theme-toggle { padding:5px 8px; font-size:.68rem; } .font-picker-button { width:40px; } .header-controls .copy-link { width:36px; } }
 
-        /* Mobile browser + Telegram in-app browser typography */
-        @media (max-width: 600px) {
-            body { font-size: 14px; }
-            header { margin: 12px 10px 10px; padding: 26px 14px 22px; }
-            header h1 { font-size: 1.25rem !important; line-height: 1.35; }
-            .post-meta { font-size: 0.80rem !important; }
-            .post-body { padding: 22px 10px; }
-            .post-body p { font-size: 1.00rem !important; line-height: 1.78 !important; }
-            .back-link { font-size: 0.85rem; padding: 8px 14px; }
-            .reviewer-credit { font-size: 0.78rem; }
-        }
-
         /* Catalog-style newest review cards. */
         .newest-reviews-track { display:flex; gap:9px; overflow-x:auto; padding:2px 0 10px; scroll-snap-type:x mandatory; scrollbar-width:thin; scrollbar-color:#c8ad96 transparent; }
         .newest-review-card { flex:0 0 122px; width:122px; display:block; padding:0; color:#332d29; text-decoration:none; scroll-snap-align:start; scroll-snap-stop:always; }
@@ -769,7 +757,19 @@
         html[data-theme="dark"] .newest-review-author { color:#d7c4b7; }
         html[data-theme="dark"] .newest-review-read { color:#e4a197; }
         @media(max-width:600px) { .newest-review-card,.newest-review-cover { width:116px; } .newest-review-cover { height:156px; } }
-</style>
+
+        /* Mobile browser + Telegram in-app browser typography */
+        @media (max-width: 600px) {
+            body { font-size: 14px; }
+            header { margin: 12px 10px 10px; padding: 26px 14px 22px; }
+            header h1 { font-size: 1.25rem !important; line-height: 1.35; }
+            .post-meta { font-size: 0.80rem !important; }
+            .post-body { padding: 22px 10px; }
+            .post-body p { font-size: 1.00rem !important; line-height: 1.78 !important; }
+            .back-link { font-size: 0.85rem; padding: 8px 14px; }
+            .reviewer-credit { font-size: 0.78rem; }
+        }
+    </style>
 </head>
 <body>
     <div class="reading-progress" id="readingProgress"></div>
