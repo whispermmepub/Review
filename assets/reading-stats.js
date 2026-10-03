@@ -151,17 +151,33 @@
     signOutButton.hidden = !connected;
     signInButton.disabled = false;
     signInButton.replaceChildren();
-    if (connected && user.photoURL) {
-      var image = document.createElement('img');
-      image.src = user.photoURL;
-      image.alt = user.displayName || 'Google profile';
-      signInButton.appendChild(image);
-    } else {
+    var providerPhoto = '';
+    if (connected && Array.isArray(user.providerData)) {
+      for (var providerIndex = 0; providerIndex < user.providerData.length; providerIndex += 1) {
+        if (user.providerData[providerIndex] && user.providerData[providerIndex].photoURL) {
+          providerPhoto = user.providerData[providerIndex].photoURL;
+          break;
+        }
+      }
+    }
+    var photoUrl = connected && (user.photoURL || providerPhoto);
+    function showAvatarFallback() {
+      signInButton.replaceChildren();
       var fallback = document.createElement('span');
       fallback.className = 'account-avatar-fallback';
       fallback.setAttribute('aria-hidden', 'true');
       fallback.textContent = 'G';
       signInButton.appendChild(fallback);
+    }
+    if (photoUrl) {
+      var image = document.createElement('img');
+      image.src = photoUrl;
+      image.alt = user.displayName || 'Google profile';
+      image.referrerPolicy = 'no-referrer';
+      image.addEventListener('error', showAvatarFallback, { once: true });
+      signInButton.appendChild(image);
+    } else {
+      showAvatarFallback();
     }
     var accountName = connected ? (user.displayName || 'Google account') : 'Google login';
     signInButton.setAttribute('aria-label', connected ? accountName + ' — Google account' : 'Google အကောင့်ဖြင့် ဝင်ရန်');
