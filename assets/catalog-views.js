@@ -11,7 +11,8 @@
 
   function loadPostsData() {
     if (window.WOWPostsData && window.WOWPostsData.promise) return window.WOWPostsData.promise;
-    var promise = fetch('assets/posts.json', { cache: 'force-cache' }).then(function (response) {
+    var freshUrl = 'assets/posts.json?v=' + Date.now();
+    var promise = fetch(freshUrl, { cache: 'no-store' }).then(function (response) {
       if (!response.ok) throw new Error('Review list request failed');
       return response.json();
     }).then(function (data) {
