@@ -100,17 +100,8 @@ def get_slug_from_title(title):
     return slug
 
 def build_new_post_link(numeric_id, date_str, title):
-    """Build a stable nested URL for a newly discovered post."""
-    try:
-        year, month = str(date_str)[:7].split('-')
-        if not (year.isdigit() and month.isdigit()):
-            raise ValueError
-        year, month = year.zfill(4), month.zfill(2)
-    except (ValueError, AttributeError):
-        now = datetime.now()
-        year, month = now.strftime('%Y'), now.strftime('%m')
-    slug = get_slug_from_title(title) or 'post'
-    return f"{year}/{month}/{slug}-{numeric_id}/index.html"
+    """Build the short numeric URL used by the existing review pages."""
+    return f"{numeric_id}/index.html"
 
 def extract_image(description):
     """Extract the first image URL from the post description."""
