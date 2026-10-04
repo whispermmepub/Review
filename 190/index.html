@@ -1031,7 +1031,7 @@
         (function() {
             var track = document.getElementById('newestReviewsTrack');
             if (!track) return;
-            fetch('/Review/assets/posts.json').then(function(r) { return r.json(); }).then(function(posts) {
+            fetch('/Review/assets/posts.json?v=' + Date.now(), { cache: 'no-store' }).then(function(r) { return r.json(); }).then(function(posts) {
                 var newest = (Array.isArray(posts) ? posts : []).filter(function(p) { return String(p.id) !== String(pid); }).sort(function(a,b) { return String(b.date || '').localeCompare(String(a.date || '')); }).slice(0, 8);
                 track.replaceChildren();
                 newest.forEach(function(p) {
