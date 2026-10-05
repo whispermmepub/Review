@@ -20,7 +20,7 @@
     <meta property="og:image:alt" content="လူရွေးပွဲ - သင့်လူ">
     <meta property="og:locale" content="my_MM">
     <meta name="twitter:card" content="summary_large_image">
-    <link rel="manifest" href="/Review/manifest.json">
+    <link rel="manifest" href="../manifest.json">
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="theme-color" content="#17142d">
     <meta name="google-site-verification" content="mss3y_pAIUpxusAJrt61me9Uy3G1PqsSe_WH_JP4SMA">
@@ -775,8 +775,8 @@
     <div class="reading-progress" id="readingProgress"></div>
     <div class="container">
         <nav class="reader-topbar" aria-label="စာဖတ်သူ navigation">
-            <a class="reader-back" href="/Review/" aria-label="ပင်မစာမျက်နှာသို့ ပြန်ရန်">←</a>
-            <a class="reader-brand" href="/Review/">Whisper Of Words<span>mm Epub · Book Review</span></a>
+            <a class="reader-back" href="../" aria-label="ပင်မစာမျက်နှာသို့ ပြန်ရန်">←</a>
+            <a class="reader-brand" href="../">Whisper Of Words<span>mm Epub · Book Review</span></a>
             <span class="reader-menu" aria-hidden="true">•••</span>
         </nav>
 
@@ -839,7 +839,7 @@
                 <div class="newest-reviews-heading"><span id="newestReviewsTitle">✨ အသစ်တင်ထားသော Reviewများ</span><span class="newest-reviews-hint">ဘေးသို့ ဆွဲကြည့်ရန် →</span></div>
                 <div class="newest-reviews-track" id="newestReviewsTrack" aria-live="polite"><span class="newest-review-placeholder">ရယူနေပါသည်…</span></div>
             </section>
-            <a href="/Review/" class="back-link">← ပင်မစာမျက်နှာသို့</a>
+            <a href="../" class="back-link">← ပင်မစာမျက်နှာသို့</a>
 
             <div class="love-section">
                 <a href="https://t.me/+x-0-C906GVoxM2Vl" target="_blank" class="telegram-btn">
@@ -859,9 +859,9 @@
         <script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-app-compat.js"></script>
         <script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-auth-compat.js"></script>
         <script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore-compat.js"></script>
-        <script src="/Review/assets/firebase-comments.js"></script>
-        <script src="/Review/assets/theme.js"></script>
-        <script src="/Review/assets/reading-stats.js"></script>
+        <script src="../assets/firebase-comments.js"></script>
+        <script src="../assets/theme.js"></script>
+        <script src="../assets/reading-stats.js"></script>
     <script>
         // Performance: one passive RAF scroll handler
         var backToTopBtn = document.getElementById('backToTop');
@@ -1007,11 +1007,11 @@
         (function() {
             var track = document.getElementById('newestReviewsTrack');
             if (!track) return;
-            fetch('/Review/assets/posts.json?v=' + Date.now(), { cache: 'no-store' }).then(function(r) { return r.json(); }).then(function(posts) {
+            fetch('../assets/posts.json?v=' + Date.now(), { cache: 'no-store' }).then(function(r) { return r.json(); }).then(function(posts) {
                 var newest = (Array.isArray(posts) ? posts : []).filter(function(p) { return String(p.id) !== String(pid); }).sort(function(a,b) { return String(b.date || '').localeCompare(String(a.date || '')); }).slice(0, 8);
                 track.replaceChildren();
                 newest.forEach(function(p) {
-                    var a = document.createElement('a'); a.className = 'newest-review-card'; a.href = '/Review/' + String(p.link || '').replace(/^\/+/, ''); a.title = p.title || '';
+                    var a = document.createElement('a'); a.className = 'newest-review-card'; a.href = '../' + String(p.link || '').replace(/^\/+/, ''); a.title = p.title || '';
                     var cover = document.createElement('span'); cover.className = 'newest-review-cover';
                     if (p.image) { var img = document.createElement('img'); img.src = p.image; img.alt = p.title || 'Review'; img.loading = 'lazy'; img.decoding = 'async'; cover.appendChild(img); }
                     else { var ph = document.createElement('span'); ph.className = 'newest-review-placeholder'; ph.textContent = '📖'; cover.appendChild(ph); }
