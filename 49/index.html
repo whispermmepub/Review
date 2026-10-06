@@ -32,16 +32,13 @@
     <meta itemprop="image" content="https://blogger.googleusercontent.com/img/a/AVvXsEiQowWj_7sSarHV-nsQw_GSk-fwGk0tMO-ZN312KdvUj7v6oOZS8TNJzcdCrKoem5vQgAw8_BR3v3o8wQ_b1dB-2lZbH7uMA3CeKC7uw-B0bpEwk0gRcKDJeT-goxMMwxSbzPTjZrDmb5iHDorkI2YfyGGvtgBmwBxu138oIzIdUNpAf1ihMpDV5_38v1c">
     <link rel="image_src" href="https://blogger.googleusercontent.com/img/a/AVvXsEiQowWj_7sSarHV-nsQw_GSk-fwGk0tMO-ZN312KdvUj7v6oOZS8TNJzcdCrKoem5vQgAw8_BR3v3o8wQ_b1dB-2lZbH7uMA3CeKC7uw-B0bpEwk0gRcKDJeT-goxMMwxSbzPTjZrDmb5iHDorkI2YfyGGvtgBmwBxu138oIzIdUNpAf1ihMpDV5_38v1c">
     <style>
-        @font-face {
-            font-family: 'Walone';
-            src: url('../assets/Walone-Regular.ttf') format('truetype');
-            font-display: swap;
-        }
+        @font-face { font-family: "Walone"; src: url("https://raw.githubusercontent.com/whispermmepub/myanmar-yoe-shin-fonts/main/fonts/Walone-Regular.ttf") format("truetype"); font-weight: 400; font-style: normal; font-display: swap; }
+        @font-face { font-family: "Walone"; src: url("https://raw.githubusercontent.com/whispermmepub/myanmar-yoe-shin-fonts/main/fonts/Walone-Bold.ttf") format("truetype"); font-weight: 700; font-style: normal; font-display: swap; }
 
         * { margin: 0; padding: 0; box-sizing: border-box; }
 
         body {
-            font-family: 'Walone', sans-serif;
+            font-family: "Walone", sans-serif;
             background: linear-gradient(135deg, #141228 0%, #1a1530 100%);
             color: #d0d0d0;
             line-height: 2;
@@ -305,7 +302,7 @@
             text-decoration: none;
             font-size: 0.9rem;
             font-weight: 600;
-            font-family: 'Walone', sans-serif;
+            font-family: "Walone", sans-serif;
             transition: all 0.25s ease;
         }
         .telegram-btn:hover {
@@ -346,7 +343,7 @@
             border-radius: 30px;
             cursor: pointer;
             transition: all 0.3s;
-            font-family: 'Walone', sans-serif;
+            font-family: "Walone", sans-serif;
         }
         .love-btn:hover, .love-btn.liked {
             background: #e74c3c;
@@ -679,7 +676,7 @@
         /* Editorial reader redesign v1 */
         :root { --reader-ink:#302822; --reader-muted:#806d60; --reader-paper:#fffdf8; --reader-line:#e8ddd2; --reader-accent:#a85f43; --reader-accent-dark:#7d4333; --reader-soft:#f5e8dc; }
         html,body { background:#eee8df; color:var(--reader-ink); }
-        body { padding:18px 12px 34px; font-family:"Walone",sans-serif; line-height:1.7; }
+        body { padding:18px 12px 34px; font-family: "Walone", sans-serif; line-height:1.7; }
         .container { width:min(100%,900px); max-width:900px; margin:0 auto; padding:0 34px 42px; background:var(--reader-paper); border:1px solid #e3d6c9; border-radius:24px; box-shadow:0 18px 50px rgba(76,54,37,.12); overflow:hidden; }
         .reader-topbar { display:flex; align-items:center; gap:12px; min-height:68px; padding:8px 0 12px; border-bottom:1px solid var(--reader-line); }
         .reader-back { display:inline-flex; align-items:center; justify-content:center; width:38px; height:38px; border:1px solid #decfc2; border-radius:50%; color:var(--reader-accent-dark); background:#fffaf4; font-size:1.35rem; text-decoration:none; transition:transform .18s ease,background .18s ease; }
@@ -764,7 +761,19 @@
         html[data-theme="dark"] .newest-review-author { color:#d7c4b7; }
         html[data-theme="dark"] .newest-review-read { color:#e4a197; }
         @media(max-width:600px) { .newest-review-card,.newest-review-cover { width:116px; } .newest-review-cover { height:156px; } }
-</style>
+
+        /* Mobile browser + Telegram in-app browser typography */
+        @media (max-width: 600px) {
+            body { font-size: 14px; }
+            header { margin: 12px 10px 10px; padding: 26px 14px 22px; }
+            header h1 { font-size: 1.25rem !important; line-height: 1.35; }
+            .post-meta { font-size: 0.80rem !important; }
+            .post-body { padding: 22px 10px; }
+            .post-body p { font-size: 1.00rem !important; line-height: 1.78 !important; }
+            .back-link { font-size: 0.85rem; padding: 8px 14px; }
+            .reviewer-credit { font-size: 0.78rem; }
+        }
+    </style>
 </head>
 <body>
     <div class="reading-progress" id="readingProgress"></div>
@@ -790,9 +799,16 @@
 
         <div class="post-body">
             <div class="post-content">
-            <p>လူရွေးပွဲ - သင့်လူ
+            <p>လူရွေးပွဲ - သင့်လူ</p>
+            <p>အာအိုယာမဆိုတဲ့ လူလတ်ပိုင်း မုဆိုးဖိုတစ်ယောက်ရဲ့ ငြိမ်သက်နေတဲ့ ဘဝထဲကို သားဖြစ်သူ ရှီဂေးရဲ့ စကားတစ်ခွန်းက လှိုင်းတံပိုးတွေ ရိုက်ခတ်စေခဲ့တယ်။ "အဖေ... နောက်မိန်းမ တစ်ယောက်လောက် ထပ်မယူတော့ဘူးလား" တဲ့။ ဒီမေးခွန်းကနေစလို့ 'လူရွေးပွဲ' ဆိုတဲ့ ထူးဆန်းလှတဲ့ စီမံကိန်းကြီး ပေါ်ပေါက်လာခဲ့တာပါ။</p>
+            <p>စာရေးဆရာ ရူး မူရာကာမိ (Ryu Murakami) ဟာ စာဖတ်သူကို အေးအေးဆေးဆေးနဲ့ သာယာတဲ့ လမ်းကလေးအတိုင်း ခေါ်ဆောင်သွားရာကနေ ရုတ်တရက်ဆိုသလို မှောင်မည်းပြီး အသက်ရှူကျပ်စရာ ကောင်းတဲ့ အမှောင်တိုက်ထဲ တွန်းပို့လိုက်ဖို့ ဝန်မလေးသူမျိုးပါ။ ဆရာ 'သင့်လူ' ရဲ့ ပိုင်နိုင်လှတဲ့ ဘာသာပြန်လက်ရာကြောင့်လည်း ဂျပန်လူမှုအဖွဲ့အစည်းရဲ့ အထီးကျန်မှုနဲ့ စိတ္တဇဆန်တဲ့ အငွေ့အသက်တွေကို စာမျက်နှာတိုင်းမှာ အတိုင်းသား ခံစားရမှာပါ။</p>
+            <p>ဇာတ်လမ်းရဲ့ အချိုးအကွေ့ကတော့ အာအိုယာမရဲ့ သူငယ်ချင်း ယိုရှီကာဝါရဲ့ အကြံဉာဏ်ကနေ စပါတယ်။ ရုပ်ရှင်ရိုက်ကူးဖို့ မင်းသမီးရွေးချယ်သလိုမျိုး 'လူရွေးပွဲ' လုပ်ပြီး အာအိုယာမအတွက် ကြင်ရာဖက် ရှာဖွေဖို့ပေါ့။ ဒီပွဲမှာ ပေါ်လာတဲ့ ယာမာဆာကီ အဆာမီ (Asami) ဆိုတဲ့ မိန်းကလေးဟာ အာအိုယာမအတွက်တော့ နတ်မိမယ်တစ်ပါးလိုပါပဲ။ ဘဲလေးအကမယ်ဟောင်းလေးရဲ့ နုနယ်ပြီး အေးစက်စက် အလှတရား၊ သူမရဲ့ လျှို့ဝှက်ဆန်းပြားတဲ့ အတိတ်တွေက အာအိုယာမကိုတင် မဟုတ်ဘဲ စာဖတ်သူကိုပါ ညှို့ငင်ဖမ်းစားသွားပါလိမ့်မယ်။</p>
+            <p>ဒါပေမဲ့ သတိထားပါ။ ဒီဝတ္ထုဟာ သာမန်အချစ်ဇာတ်လမ်း မဟုတ်သလို ကြည်နူးစရာ ဇာတ်သိမ်းမျိုးကိုလည်း ကမ်းလှမ်းထားတာ မဟုတ်ပါဘူး။ အလှတရားရဲ့ နောက်ကွယ်မှာ ပုန်းကွယ်နေတဲ့ နာကျင်မှုတွေ၊ ငယ်ဘဝက ရရှိခဲ့တဲ့ စိတ်ဒဏ်ရာတွေက လူတစ်ယောက်ကို ဘယ်လောက်ထိ ရက်စက်သွားစေနိုင်သလဲဆိုတာကို ရူး မူရာကာမိက သွေးအေးအေးနဲ့ ရေးပြသွားပါတယ်။</p>
+            <p>"လိမ်လည်လှည့်ဖြားခြင်းအတွက် ခွင့်လွှတ်ဖို့အကြောင်း လုံးဝမရှိ" ဆိုတဲ့ စကားစုက ဇာတ်လမ်းတစ်လျှောက်လုံးကို လွှမ်းမိုးထားတဲ့ သတိပေးချက်တစ်ခုလိုပါပဲ။ အချစ်နဲ့ သစ္စာတရားအကြောင်း ပြောနေရင်းကနေ စနစ်ကျလှတဲ့ နှိပ်စက်ညှဉ်းပန်းမှုတွေ၊ ရင်တထိတ်ထိတ်နဲ့ ဖတ်ရမယ့် အခန်းတွေဆီ ရောက်သွားတဲ့အခါမှာတော့ သင်ဟာ ဒီစာအုပ်ကို လက်က ချနိုင်မှာ မဟုတ်တော့ပါဘူး။</p>
+            <p>စိတ္တဇ ရင်သိမ့်တုန် (Psycho Thriller) အမျိုးအစားကိုမှ အဆင့်အတန်းရှိရှိ ခံစားချင်သူတွေအတွက်တော့ ဒီစာအုပ်ဟာ မဖတ်ဘဲ မကျော်သင့်တဲ့ လက်ရာတစ်ခုပါ။ အလှတရားနဲ့ ရက်စက်မှု ဘယ်လို ဒွန်တွဲနေသလဲဆိုတာကို ကိုယ်တိုင်ပဲ စာမျက်နှာတွေကြားထဲမှာ ရှာဖွေကြည့်လှည့်ပါ။ ဇာတ်သိမ်းပိုင်းရဲ့ တုန်လှုပ်စရာ မြင်ကွင်းတွေက သင့်ကို အကြာကြီး ငိုင်သွားစေပါလိမ့်မယ်။</p>
+            <p>#RyuMurakami #Audition #လူရွေးပွဲ #သင့်လူ #ရူးမူရာကာမိ Whisper Of Words - Mm Epub</p>
+            <p>epub,kfx for Myanmar ebooks reader</p>
 
-အာအိုယာမဆိုတဲ့ လူလတ်ပိုင်း မုဆိုးဖိုတစ်ယောက်ရဲ့ ငြိမ်သက်နေတဲ့ ဘဝထဲကို သားဖြစ်သူ ရှီဂေးရဲ့ စကားတစ်ခွန်းက လှိုင်းတံပိုးတွေ ရိုက်ခတ်စေခဲ့တယ်။ "အဖေ... နောက်မိန်းမ တစ်ယောက်လောက် ထပ်မယူတ...</p>
             </div>
 
             <div class="reviewer-credit">
@@ -1050,5 +1066,6 @@
             }).catch(function() { track.innerHTML = '<span class="newest-review-placeholder">ရယူ၍မရပါ။</span>'; });
         })();
         </script>
+
 </body>
 </html>

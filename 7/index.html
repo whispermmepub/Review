@@ -32,16 +32,13 @@
     <meta itemprop="image" content="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEgIBwSZYaJtQ_qBlUgS_uoYrG51D6S-zdp6K50zQlsUiJaMRH4vyRDXguVjSZp0uEGaMoienXlgSY4_mvkwpYtKCQbuwRrjvzr6NlFOGKI49FOzMjoTqg0NZr9u6X44H8y4smw9im_Z5BDozdprLnrnI52B-GrtixGtLSCXm-b5PUFpy8Z80qwQg0O5IFI/w320-h319/IMG_7860.jpeg">
     <link rel="image_src" href="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEgIBwSZYaJtQ_qBlUgS_uoYrG51D6S-zdp6K50zQlsUiJaMRH4vyRDXguVjSZp0uEGaMoienXlgSY4_mvkwpYtKCQbuwRrjvzr6NlFOGKI49FOzMjoTqg0NZr9u6X44H8y4smw9im_Z5BDozdprLnrnI52B-GrtixGtLSCXm-b5PUFpy8Z80qwQg0O5IFI/w320-h319/IMG_7860.jpeg">
     <style>
-        @font-face {
-            font-family: 'Walone';
-            src: url('../assets/Walone-Regular.ttf') format('truetype');
-            font-display: swap;
-        }
+        @font-face { font-family: "Walone"; src: url("https://raw.githubusercontent.com/whispermmepub/myanmar-yoe-shin-fonts/main/fonts/Walone-Regular.ttf") format("truetype"); font-weight: 400; font-style: normal; font-display: swap; }
+        @font-face { font-family: "Walone"; src: url("https://raw.githubusercontent.com/whispermmepub/myanmar-yoe-shin-fonts/main/fonts/Walone-Bold.ttf") format("truetype"); font-weight: 700; font-style: normal; font-display: swap; }
 
         * { margin: 0; padding: 0; box-sizing: border-box; }
 
         body {
-            font-family: 'Walone', sans-serif;
+            font-family: "Walone", sans-serif;
             background: linear-gradient(135deg, #141228 0%, #1a1530 100%);
             color: #d0d0d0;
             line-height: 2;
@@ -305,7 +302,7 @@
             text-decoration: none;
             font-size: 0.9rem;
             font-weight: 600;
-            font-family: 'Walone', sans-serif;
+            font-family: "Walone", sans-serif;
             transition: all 0.25s ease;
         }
         .telegram-btn:hover {
@@ -346,7 +343,7 @@
             border-radius: 30px;
             cursor: pointer;
             transition: all 0.3s;
-            font-family: 'Walone', sans-serif;
+            font-family: "Walone", sans-serif;
         }
         .love-btn:hover, .love-btn.liked {
             background: #e74c3c;
@@ -679,7 +676,7 @@
         /* Editorial reader redesign v1 */
         :root { --reader-ink:#302822; --reader-muted:#806d60; --reader-paper:#fffdf8; --reader-line:#e8ddd2; --reader-accent:#a85f43; --reader-accent-dark:#7d4333; --reader-soft:#f5e8dc; }
         html,body { background:#eee8df; color:var(--reader-ink); }
-        body { padding:18px 12px 34px; font-family:"Walone",sans-serif; line-height:1.7; }
+        body { padding:18px 12px 34px; font-family: "Walone", sans-serif; line-height:1.7; }
         .container { width:min(100%,900px); max-width:900px; margin:0 auto; padding:0 34px 42px; background:var(--reader-paper); border:1px solid #e3d6c9; border-radius:24px; box-shadow:0 18px 50px rgba(76,54,37,.12); overflow:hidden; }
         .reader-topbar { display:flex; align-items:center; gap:12px; min-height:68px; padding:8px 0 12px; border-bottom:1px solid var(--reader-line); }
         .reader-back { display:inline-flex; align-items:center; justify-content:center; width:38px; height:38px; border:1px solid #decfc2; border-radius:50%; color:var(--reader-accent-dark); background:#fffaf4; font-size:1.35rem; text-decoration:none; transition:transform .18s ease,background .18s ease; }
@@ -764,7 +761,19 @@
         html[data-theme="dark"] .newest-review-author { color:#d7c4b7; }
         html[data-theme="dark"] .newest-review-read { color:#e4a197; }
         @media(max-width:600px) { .newest-review-card,.newest-review-cover { width:116px; } .newest-review-cover { height:156px; } }
-</style>
+
+        /* Mobile browser + Telegram in-app browser typography */
+        @media (max-width: 600px) {
+            body { font-size: 14px; }
+            header { margin: 12px 10px 10px; padding: 26px 14px 22px; }
+            header h1 { font-size: 1.25rem !important; line-height: 1.35; }
+            .post-meta { font-size: 0.80rem !important; }
+            .post-body { padding: 22px 10px; }
+            .post-body p { font-size: 1.00rem !important; line-height: 1.78 !important; }
+            .back-link { font-size: 0.85rem; padding: 8px 14px; }
+            .reviewer-credit { font-size: 0.78rem; }
+        }
+    </style>
 </head>
 <body>
     <div class="reading-progress" id="readingProgress"></div>
@@ -1054,5 +1063,6 @@
             }).catch(function() { track.innerHTML = '<span class="newest-review-placeholder">ရယူ၍မရပါ။</span>'; });
         })();
         </script>
+
 </body>
 </html>

@@ -32,16 +32,13 @@
     <meta itemprop="image" content="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEi2bd0pMR-Q0obPwbDJhxaJ8FC9QYvS_If_P6iJpSidvkEkpjgj6wHsLvAshWbqnjUGH4oYBuUcAzJqgE56XHs8eJhOjkBdUHSHPLcRlHBhlz52fy-ndh9B1mcqfPNNJk57jPjgMjLbe7Tf1v3WJ5k0diUwyxp8PQFFz2rBs2KnH-JrZCBUI9Ds8XTxAk8/s16000/IMG_20260623_055642_095.png">
     <link rel="image_src" href="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEi2bd0pMR-Q0obPwbDJhxaJ8FC9QYvS_If_P6iJpSidvkEkpjgj6wHsLvAshWbqnjUGH4oYBuUcAzJqgE56XHs8eJhOjkBdUHSHPLcRlHBhlz52fy-ndh9B1mcqfPNNJk57jPjgMjLbe7Tf1v3WJ5k0diUwyxp8PQFFz2rBs2KnH-JrZCBUI9Ds8XTxAk8/s16000/IMG_20260623_055642_095.png">
     <style>
-        @font-face {
-            font-family: 'Walone';
-            src: url('../assets/Walone-Regular.ttf') format('truetype');
-            font-display: swap;
-        }
+        @font-face { font-family: "Walone"; src: url("https://raw.githubusercontent.com/whispermmepub/myanmar-yoe-shin-fonts/main/fonts/Walone-Regular.ttf") format("truetype"); font-weight: 400; font-style: normal; font-display: swap; }
+        @font-face { font-family: "Walone"; src: url("https://raw.githubusercontent.com/whispermmepub/myanmar-yoe-shin-fonts/main/fonts/Walone-Bold.ttf") format("truetype"); font-weight: 700; font-style: normal; font-display: swap; }
 
         * { margin: 0; padding: 0; box-sizing: border-box; }
 
         body {
-            font-family: 'Walone', sans-serif;
+            font-family: "Walone", sans-serif;
             background: linear-gradient(135deg, #141228 0%, #1a1530 100%);
             color: #d0d0d0;
             line-height: 2;
@@ -305,7 +302,7 @@
             text-decoration: none;
             font-size: 0.9rem;
             font-weight: 600;
-            font-family: 'Walone', sans-serif;
+            font-family: "Walone", sans-serif;
             transition: all 0.25s ease;
         }
         .telegram-btn:hover {
@@ -346,7 +343,7 @@
             border-radius: 30px;
             cursor: pointer;
             transition: all 0.3s;
-            font-family: 'Walone', sans-serif;
+            font-family: "Walone", sans-serif;
         }
         .love-btn:hover, .love-btn.liked {
             background: #e74c3c;
@@ -679,7 +676,7 @@
         /* Editorial reader redesign v1 */
         :root { --reader-ink:#302822; --reader-muted:#806d60; --reader-paper:#fffdf8; --reader-line:#e8ddd2; --reader-accent:#a85f43; --reader-accent-dark:#7d4333; --reader-soft:#f5e8dc; }
         html,body { background:#eee8df; color:var(--reader-ink); }
-        body { padding:18px 12px 34px; font-family:"Walone",sans-serif; line-height:1.7; }
+        body { padding:18px 12px 34px; font-family: "Walone", sans-serif; line-height:1.7; }
         .container { width:min(100%,900px); max-width:900px; margin:0 auto; padding:0 34px 42px; background:var(--reader-paper); border:1px solid #e3d6c9; border-radius:24px; box-shadow:0 18px 50px rgba(76,54,37,.12); overflow:hidden; }
         .reader-topbar { display:flex; align-items:center; gap:12px; min-height:68px; padding:8px 0 12px; border-bottom:1px solid var(--reader-line); }
         .reader-back { display:inline-flex; align-items:center; justify-content:center; width:38px; height:38px; border:1px solid #decfc2; border-radius:50%; color:var(--reader-accent-dark); background:#fffaf4; font-size:1.35rem; text-decoration:none; transition:transform .18s ease,background .18s ease; }
@@ -764,7 +761,19 @@
         html[data-theme="dark"] .newest-review-author { color:#d7c4b7; }
         html[data-theme="dark"] .newest-review-read { color:#e4a197; }
         @media(max-width:600px) { .newest-review-card,.newest-review-cover { width:116px; } .newest-review-cover { height:156px; } }
-</style>
+
+        /* Mobile browser + Telegram in-app browser typography */
+        @media (max-width: 600px) {
+            body { font-size: 14px; }
+            header { margin: 12px 10px 10px; padding: 26px 14px 22px; }
+            header h1 { font-size: 1.25rem !important; line-height: 1.35; }
+            .post-meta { font-size: 0.80rem !important; }
+            .post-body { padding: 22px 10px; }
+            .post-body p { font-size: 1.00rem !important; line-height: 1.78 !important; }
+            .back-link { font-size: 0.85rem; padding: 8px 14px; }
+            .reviewer-credit { font-size: 0.78rem; }
+        }
+    </style>
 </head>
 <body>
     <div class="reading-progress" id="readingProgress"></div>
@@ -790,7 +799,17 @@
 
         <div class="post-body">
             <div class="post-content">
-            <p><a href="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEi2bd0pMR-Q0obPwbDJhxaJ8FC9QYvS_If_P6iJpSidvkEkpjgj6wHsLvAshWbqnjUGH4oYBuUcAzJqgE56XHs8eJhOjkBdUHSHPLcRlHBhlz52fy-ndh9B1mcqfPNNJk57jP...</p>
+            <p><a href="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEi2bd0pMR-Q0obPwbDJhxaJ8FC9QYvS_If_P6iJpSidvkEkpjgj6wHsLvAshWbqnjUGH4oYBuUcAzJqgE56XHs8eJhOjkBdUHSHPLcRlHBhlz52fy-ndh9B1mcqfPNNJk57jPjgMjLbe7Tf1v3WJ5k0diUwyxp8PQFFz2rBs2KnH-JrZCBUI9Ds8XTxAk8/s1264/IMG_20260623_055642_095.png" target="_blank" rel="noopener"></a></p>
+            <p>တစ်ခါတလေ ကျယ်လောင်လွန်းတဲ့ လောကကြီးထဲမှာ ကိုယ့်ကိုယ်ကိုယ် ဘယ်သူမှန်းမသိတော့တဲ့ ခံစားချက်မျိုး ကြုံဖူးကြမှာပါ။ အဲဒီလို ‘အပြင်လူ’ ဆန်ဆန် ခံစားချက်မျိုးကို စာပေနဲ့ အနုပညာမှာ အလှပဆုံး ပုံဖော်ခဲ့သူကတော့ အလ်ဘတ်ကမူး (Albert Camus) ပါပဲ။</p>
+            <p>ခု မြင့်သန်း စုစည်းတင်ပြထားတဲ့ “အလ်ဘတ်ကမူး၏ အရေးအသားများ” ဆိုတဲ့ စာအုပ်ကို ဖတ်ကြည့်တော့မှ ကျွန်တော်တို့ အရင်က သိထားတဲ့ ကမူးထက် ပိုနက်နဲတဲ့၊ ပိုပြီး လူသားဆန်တဲ့ ကမူးကို ထပ်တွေ့ရတယ်။</p>
+            <p>ဒီစာအုပ်မှာ ကမူးရဲ့ ကျော်ကြားလှတဲ့ ‘သူစိမ်းတစ်ရံဆံ’ (The Stranger) နဲ့ ‘ပလိပ်’ (The Plague) တို့လို ဝတ္ထုရှည်တွေအပြင် သူ့ရဲ့ အတွေးအခေါ်တွေ စတင်ရာ အစောပိုင်း အက်ဆေးတွေနဲ့ တိုတိုထွာထွာ မှတ်စုတွေကိုပါ မြင်တွေ့ရတာက တကယ့်ကို ထူးခြားပါတယ်။</p>
+            <p>အထူးသဖြင့် ‘သူစိမ်းတစ်ရံဆံ’ ဆိုတဲ့ အသုံးအနှုန်းကို ဘာသာပြန်သူက ဘာကြောင့် ‘စည်းအပြင်ကလူ’ ဒါမှမဟုတ် ‘အပြင်လူ’ လို့ မသုံးဘဲ ရွေးချယ်ခဲ့သလဲဆိုတဲ့ အချက်ဟာ စဉ်းစားစရာပါ။ ဇာတ်ကောင်ဟာ လူ့အဖွဲ့အစည်းရဲ့ အပြင်ဘက်ကို ရောက်နေသူမဟုတ်ဘဲ အဖွဲ့အစည်းအတွင်းမှာရှိနေလျက်နဲ့ သီးခြားဖြစ်နေသူဆိုတဲ့ အဓိပ္ပာယ်ကို ဖော်ပြချင်တာလို့ ဆိုပါတယ်။</p>
+            <p>စာအုပ်ထဲမှာပါတဲ့ ‘ဧည့်သည်’ (The Guest) ဆိုတဲ့ ဝတ္ထုတိုလေးဆိုရင်လည်း အလ်ဂျီးရီးယားရဲ့ ကန္တာရဆန်တဲ့ ပတ်ဝန်းကျင်မှာ ပြင်သစ်သွေးပါတဲ့ ပုလိပ်နဲ့ ဒေသခံအာရပ်တို့ကြားက လူသားဆန်မှုနဲ့ တာဝန်ဝတ္တရားကြားက ပဋိပက္ခကို ခပ်ပါးပါးလေး ချပြသွားတာ။ ကမူးက ကိုလိုနီစနစ်နဲ့ ပတ်သက်ရင်လည်း သူ့ရဲ့ ကိုယ်ပိုင်အမြင်တွေ ရှိခဲ့တယ်ဆိုတာ ‘The Renegade’ လို အရေးအသားတွေမှာ တွေ့နိုင်ပါတယ်။</p>
+            <p>ကျွန်တော် သဘောအကျဆုံးကတော့ ကမူးရဲ့ ‘လွှဲဟန်’ (Paradox) တွေအကြောင်းပါ။ တစ်ခါတလေမှာ အစွန်းရောက်နေတဲ့ အထီးကျန်မှုတွေထဲကနေမှ ကြီးမားတဲ့ ပျော်ရွှင်မှုမျိုး ရတတ်တယ်ဆိုတဲ့ ‘နက်ရှိုင်းသော ခံစားချက်များအတွင်း၌ သေဆုံးခြင်း’ (Death in the Soul) က ကမူးရဲ့ အတွေးအခေါ်ကို ပိုပြီး နားလည်စေတယ်။ သူက ဘာသာရေးအရ ဝိညာဉ်အကြောင်း ပြောနေတာမဟုတ်ဘဲ လူသားတစ်ယောက်ရဲ့ အတွင်းက လှုပ်ရှားမှုတွေကိုပဲ အာရုံစိုက်ခဲ့တာပါ။</p>
+            <p>ဒီစာအုပ်ကို ဖတ်နေရင်းနဲ့ ကမူးဟာ စာရေးဆရာတစ်ယောက်ထက်ပိုတဲ့၊ ဘဝကို ‘ဟုတ်တယ်’ နဲ့ ‘မဟုတ်ဘူး’ ကြားမှာ ဘယ်လိုရှင်သန်ရမလဲဆိုတာကို အဖြေရှာနေတဲ့ လူတစ်ယောက်အဖြစ် မြင်လာရပါလိမ့်မယ်။ စာမျက်နှာတွေကို တစ်ရွက်ချင်း လှန်သွားတဲ့အခါ ကမူးရဲ့ မှတ်စုစာအုပ်တွေထဲက အတွေးစတွေကနေ သူ့ရဲ့ အမေးအဖြေတွေအထိ စုံစုံလင်လင် ပါဝင်နေတာမို့ ကမူးရဲ့ ကမ္ဘာထဲကို တစ်ဆုံးအထိ လိုက်သွားချင်သူတွေ လက်မလွှတ်သင့်တဲ့ စုစည်းမှုတစ်ခုလို့ ဆိုချင်ပါတယ်။ စာအုပ်ကို အဆုံးထိ ဖတ်ပြီးသွားတဲ့အခါမှာတော့ ကိုယ့်ရဲ့ တည်ရှိမှုအပေါ်မှာ အမြင်သစ်တစ်ခု ရသွားနိုင်တာ အသေအချာပါပဲ။</p>
+            <p>#whisperofwords #မြင့်သန်း #အလ်ဘတ်ကမူး၏အရေးအသားများ #AlbertCamus #SelectedWorksofAlbertCamus #mmepub #@ThebookR</p>
+            <p>epub,kfx for Myanmar ebooks reader</p>
+
             </div>
 
             <div class="reviewer-credit">
@@ -1048,5 +1067,6 @@
             }).catch(function() { track.innerHTML = '<span class="newest-review-placeholder">ရယူ၍မရပါ။</span>'; });
         })();
         </script>
+
 </body>
 </html>
