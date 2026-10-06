@@ -769,7 +769,14 @@
             .back-link { font-size: 0.85rem; padding: 8px 14px; }
             .reviewer-credit { font-size: 0.78rem; }
         }
-    </style>
+
+        .auto-scroll-tools { display:flex; align-items:center; justify-content:center; gap:8px; flex-wrap:wrap; margin:10px auto 18px; }
+        .auto-scroll-tools button,.auto-scroll-tools select { min-height:34px; height:34px; padding:6px 10px; border:1px solid #d9b9a6; border-radius:9px; background:#fbf3ed; color:#87543a; font:inherit; font-size:.74rem; font-weight:700; cursor:pointer; }
+        .auto-scroll-tools button[aria-pressed="true"] { background:#a85f43; color:#fffaf4; border-color:#a85f43; }
+        html[data-theme="dark"] .auto-scroll-tools button,html[data-theme="dark"] .auto-scroll-tools select { background:#302a32; color:#f1d7b5; border-color:#6b5360; }
+        html[data-theme="dark"] .auto-scroll-tools button[aria-pressed="true"] { background:#a85f43; color:#fffaf4; border-color:#a85f43; }
+        @media(max-width:600px) { .auto-scroll-tools button,.auto-scroll-tools select { min-height:32px; height:32px; font-size:.68rem; } }
+</style>
 </head>
 <body>
     <div class="reading-progress" id="readingProgress"></div>
@@ -787,6 +794,12 @@
             <div class="header-controls"><button type="button" class="theme-toggle" data-theme-toggle aria-pressed="false">🌙 Dark mode</button><label for="fontPicker" class="sr-only">ဖွန့်ရွေးရန်</label><button type="button" id="fontPickerButton" class="font-picker-button" aria-label="ဖွန့်ရွေးရန်" title="ဖွန့်ရွေးရန်">Aa</button><select id="fontPicker" class="font-picker" aria-label="ဖွန့်ရွေးရန်"><option value="WOW-Walone">Walone</option><option value="WOW-Yadanabon">Yadanabon</option><option value="WOW-YoeYar">YoeYar</option><option value="WOW-Pyidaungsu">Pyidaungsu</option><option value="WOW-YoeShin">Yoe Shin</option><option value="WOW-MyanmarSansPro">Myanmar Sans Pro</option><option value="WOW-MyanmarSagar">Myanmar Sagar</option><option value="WOW-MyanmarBlack">Myanmar Black</option><option value="WOW-BurmeseHandwriting">Burmese Handwriting</option><option value="WOW-MyanmarLatpan">Myanmar Latpan</option><option value="WOW-Burma01">Burma 01</option><option value="WOW-Burma02">Burma 02</option><option value="WOW-PuPuBold">Pu Pu Bold</option></select><button type="button" id="copyLink" class="copy-link" aria-label="Post link ကော်ပီယူရန်" title="Post link ကော်ပီယူရန်">🔗</button><span id="copyStatus" class="copy-status" role="status" aria-live="polite"></span></div>
 
         </header>
+        <div class="auto-scroll-tools" aria-label="Auto-scroll controls">
+            <button type="button" id="autoScrollButton" aria-pressed="false" aria-label="Auto scroll စတင်/ရပ်ရန်">▶ Auto</button>
+            <label for="autoScrollSpeed" class="sr-only">Auto-scroll speed</label>
+            <select id="autoScrollSpeed" aria-label="Auto-scroll speed"><option value="10">ဖြည်း</option><option value="18" selected>ပုံမှန်</option><option value="28">နည်းနည်းမြန်</option><option value="40">မြန်</option></select>
+        </div>
+
 
         <div class="reading-time" id="readingTime">📖 <span id="readTime"></span> ဖတ်ရန်အချိန်</div>
         <div class="post-controls" aria-label="ဖတ်ရှုသူအရေအတွက်">
@@ -1039,5 +1052,23 @@
         })();
         </script>
 
+
+<script>
+(function(){
+  var button=document.getElementById('autoScrollButton'), picker=document.getElementById('autoScrollSpeed');
+  if(!button) return;
+  var running=false, frame=0, last=0, speed=18, key='wow-reader-auto-scroll-speed';
+  try { speed=Number(localStorage.getItem(key))||18; } catch(e) {}
+  if(picker){ picker.value=String(speed); if(picker.value!==String(speed)) {speed=18; picker.value='18';} picker.addEventListener('change',function(){speed=Number(picker.value)||18; try{localStorage.setItem(key,String(speed));}catch(e){}}); }
+  function update(){button.textContent=running?'⏸ ရပ်မယ်':'▶ Auto';button.setAttribute('aria-pressed',running?'true':'false');}
+  function stop(){running=false;last=0;if(frame)cancelAnimationFrame(frame);frame=0;update();}
+  function tick(now){if(!running)return;if(!last)last=now;var remain=document.documentElement.scrollHeight-window.innerHeight-(window.pageYOffset||0);if(remain<=1){stop();return;}window.scrollBy(0,Math.min(remain,speed*(now-last)/1000));last=now;frame=requestAnimationFrame(tick);}
+  function toggle(){if(running)stop();else{running=true;last=0;update();frame=requestAnimationFrame(tick);}}
+  button.addEventListener('click',function(e){e.stopPropagation();toggle();});
+  var content=document.querySelector('.post-content'),x=0,y=0,t=0;
+  if(content){content.addEventListener('pointerdown',function(e){x=e.clientX;y=e.clientY;t=Date.now();},{passive:true});content.addEventListener('pointerup',function(e){if(Date.now()-t<350&&Math.hypot(e.clientX-x,e.clientY-y)<12)toggle();},{passive:true});}
+  document.addEventListener('visibilitychange',function(){if(document.hidden)stop();});update();
+}());
+</script>
 </body>
 </html>

@@ -32,13 +32,16 @@
     <meta itemprop="image" content="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEi6n5kCIQFXVx8qtLgLax85vejhmJxkutDehYigsQ-lKOYBuBrPhjO-R8vghx-zdRTGyqgYk5J0XcAgY5_TIbBEmCm0I0YFsmhhaY6Zg-Nd1T7iX68OzipMUfZbwEucMas8hnCDx7dBFzyBNBS_518bMnsJWxK9YD2SR5qBp-MHysHJsGifL38SH0qOdYg/s16000/1000001235.jpg">
     <link rel="image_src" href="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEi6n5kCIQFXVx8qtLgLax85vejhmJxkutDehYigsQ-lKOYBuBrPhjO-R8vghx-zdRTGyqgYk5J0XcAgY5_TIbBEmCm0I0YFsmhhaY6Zg-Nd1T7iX68OzipMUfZbwEucMas8hnCDx7dBFzyBNBS_518bMnsJWxK9YD2SR5qBp-MHysHJsGifL38SH0qOdYg/s16000/1000001235.jpg">
     <style>
-        @font-face { font-family: "Walone"; src: url("https://raw.githubusercontent.com/whispermmepub/myanmar-yoe-shin-fonts/main/fonts/Walone-Regular.ttf") format("truetype"); font-weight: 400; font-style: normal; font-display: swap; }
-        @font-face { font-family: "Walone"; src: url("https://raw.githubusercontent.com/whispermmepub/myanmar-yoe-shin-fonts/main/fonts/Walone-Bold.ttf") format("truetype"); font-weight: 700; font-style: normal; font-display: swap; }
+        @font-face {
+            font-family: 'Walone';
+            src: url('../assets/Walone-Regular.ttf') format('truetype');
+            font-display: swap;
+        }
 
         * { margin: 0; padding: 0; box-sizing: border-box; }
 
         body {
-            font-family: "Walone", sans-serif;
+            font-family: 'Walone', sans-serif;
             background: linear-gradient(135deg, #141228 0%, #1a1530 100%);
             color: #d0d0d0;
             line-height: 2;
@@ -302,7 +305,7 @@
             text-decoration: none;
             font-size: 0.9rem;
             font-weight: 600;
-            font-family: "Walone", sans-serif;
+            font-family: 'Walone', sans-serif;
             transition: all 0.25s ease;
         }
         .telegram-btn:hover {
@@ -343,7 +346,7 @@
             border-radius: 30px;
             cursor: pointer;
             transition: all 0.3s;
-            font-family: "Walone", sans-serif;
+            font-family: 'Walone', sans-serif;
         }
         .love-btn:hover, .love-btn.liked {
             background: #e74c3c;
@@ -676,7 +679,7 @@
         /* Editorial reader redesign v1 */
         :root { --reader-ink:#302822; --reader-muted:#806d60; --reader-paper:#fffdf8; --reader-line:#e8ddd2; --reader-accent:#a85f43; --reader-accent-dark:#7d4333; --reader-soft:#f5e8dc; }
         html,body { background:#eee8df; color:var(--reader-ink); }
-        body { padding:18px 12px 34px; font-family: "Walone", sans-serif; line-height:1.7; }
+        body { padding:18px 12px 34px; font-family:"Walone",sans-serif; line-height:1.7; }
         .container { width:min(100%,900px); max-width:900px; margin:0 auto; padding:0 34px 42px; background:var(--reader-paper); border:1px solid #e3d6c9; border-radius:24px; box-shadow:0 18px 50px rgba(76,54,37,.12); overflow:hidden; }
         .reader-topbar { display:flex; align-items:center; gap:12px; min-height:68px; padding:8px 0 12px; border-bottom:1px solid var(--reader-line); }
         .reader-back { display:inline-flex; align-items:center; justify-content:center; width:38px; height:38px; border:1px solid #decfc2; border-radius:50%; color:var(--reader-accent-dark); background:#fffaf4; font-size:1.35rem; text-decoration:none; transition:transform .18s ease,background .18s ease; }
@@ -730,14 +733,18 @@
         @media(max-width:700px) { body { padding:7px 6px 22px; } .container { width:100%; padding:0 17px 30px; border-radius:18px; } .reader-topbar { min-height:60px; } .reader-brand { font-size:.88rem; } .post-image { width:100%; max-height:52vh; margin:16px auto 22px; border-radius:16px; } header h1 { font-size:1.38rem; line-height:1.48; } .post-meta { font-size:.78rem; } .header-controls { margin-top:13px; gap:6px; } .header-controls .theme-toggle,.font-picker-button,.header-controls .copy-link { min-height:33px; height:33px; font-size:.68rem; } .reading-time { padding-top:11px; } .post-controls { margin-bottom:15px; padding-bottom:13px; } .post-body p { font-size:1.03rem; line-height:1.92; } .comments-panel { margin-top:24px; padding:16px 13px; border-radius:15px; } .comments-title { font-size:.98rem; } .back-link { min-height:45px; margin-top:24px; } }
         /* Compact reader toolbar: theme, Aa font picker, and copy link stay together. */
         .header-controls { justify-content:center; align-items:center; gap:8px; margin-top:14px; }
-        .header-controls .theme-toggle,.font-picker-button,.header-controls .copy-link { min-height:34px; height:34px; padding:6px 10px; border:1px solid #d9b9a6; border-radius:9px; background:#fbf3ed; color:#87543a; font:inherit; font-size:.74rem; font-weight:700; cursor:pointer; }
+        .header-controls .theme-toggle,.font-picker-button,.header-controls .copy-link,.auto-scroll-button,.auto-scroll-speed { min-height:34px; height:34px; padding:6px 10px; border:1px solid #d9b9a6; border-radius:9px; background:#fbf3ed; color:#87543a; font:inherit; font-size:.74rem; font-weight:700; cursor:pointer; }
         .font-picker-button { width:42px; padding:5px 4px; font-size:.96rem; letter-spacing:-.04em; }
         .header-controls .copy-link { width:38px; padding:5px 6px; font-size:.9rem; }
+        .auto-scroll-button { min-width:78px; }
+        .auto-scroll-button[aria-pressed="true"] { background:var(--reader-accent); color:#fffaf4; border-color:var(--reader-accent); }
+        .auto-scroll-speed { min-width:86px; padding:5px 8px; }
         .header-controls .font-picker { position:absolute; width:1px; height:1px; padding:0; margin:-1px; opacity:0; overflow:hidden; clip:rect(0,0,0,0); white-space:nowrap; border:0; }
         .copy-status { min-width:0; color:#a34a42; font-size:.7rem; }
         .post-controls { justify-content:center; margin:0 auto 18px; padding:0 0 14px; border-bottom:1px solid #eee4db; }
-        html[data-theme="dark"] .header-controls .theme-toggle,html[data-theme="dark"] .font-picker-button,html[data-theme="dark"] .header-controls .copy-link { background:#302a32; color:#f1d7b5; border-color:#6b5360; }
-        @media(max-width:600px) { .header-controls { gap:6px; } .header-controls .theme-toggle,.font-picker-button,.header-controls .copy-link { min-height:32px; height:32px; } .header-controls .theme-toggle { padding:5px 8px; font-size:.68rem; } .font-picker-button { width:40px; } .header-controls .copy-link { width:36px; } }
+        html[data-theme="dark"] .header-controls .theme-toggle,html[data-theme="dark"] .font-picker-button,html[data-theme="dark"] .header-controls .copy-link,html[data-theme="dark"] .auto-scroll-button,html[data-theme="dark"] .auto-scroll-speed { background:#302a32; color:#f1d7b5; border-color:#6b5360; }
+        html[data-theme="dark"] .auto-scroll-button[aria-pressed="true"] { background:#a85f43; color:#fffaf4; border-color:#a85f43; }
+        @media(max-width:600px) { .header-controls { gap:6px; } .header-controls .theme-toggle,.font-picker-button,.header-controls .copy-link,.auto-scroll-button,.auto-scroll-speed { min-height:32px; height:32px; } .header-controls .theme-toggle { padding:5px 8px; font-size:.68rem; } .font-picker-button { width:40px; } .header-controls .copy-link { width:36px; } .auto-scroll-button { min-width:72px; padding-left:7px; padding-right:7px; } .auto-scroll-speed { min-width:78px; padding-left:5px; padding-right:5px; } }
 
         /* Catalog-style newest review cards. */
         .newest-reviews-track { display:flex; gap:9px; overflow-x:auto; padding:2px 0 10px; scroll-snap-type:x mandatory; scrollbar-width:thin; scrollbar-color:#c8ad96 transparent; }
@@ -757,19 +764,7 @@
         html[data-theme="dark"] .newest-review-author { color:#d7c4b7; }
         html[data-theme="dark"] .newest-review-read { color:#e4a197; }
         @media(max-width:600px) { .newest-review-card,.newest-review-cover { width:116px; } .newest-review-cover { height:156px; } }
-
-        /* Mobile browser + Telegram in-app browser typography */
-        @media (max-width: 600px) {
-            body { font-size: 14px; }
-            header { margin: 12px 10px 10px; padding: 26px 14px 22px; }
-            header h1 { font-size: 1.25rem !important; line-height: 1.35; }
-            .post-meta { font-size: 0.80rem !important; }
-            .post-body { padding: 22px 10px; }
-            .post-body p { font-size: 1.00rem !important; line-height: 1.78 !important; }
-            .back-link { font-size: 0.85rem; padding: 8px 14px; }
-            .reviewer-credit { font-size: 0.78rem; }
-        }
-    </style>
+</style>
 </head>
 <body>
     <div class="reading-progress" id="readingProgress"></div>
@@ -784,7 +779,7 @@
         <header>
             <h1>မာနနဲ့ အာဃာတ - တင့်တယ်</h1>
             <div class="post-meta">📅 2026-04-24 • ✍️ Whisper Of Words</div>
-            <div class="header-controls"><button type="button" class="theme-toggle" data-theme-toggle aria-pressed="false">🌙 Dark mode</button><label for="fontPicker" class="sr-only">ဖွန့်ရွေးရန်</label><button type="button" id="fontPickerButton" class="font-picker-button" aria-label="ဖွန့်ရွေးရန်" title="ဖွန့်ရွေးရန်">Aa</button><select id="fontPicker" class="font-picker" aria-label="ဖွန့်ရွေးရန်"><option value="WOW-Walone">Walone</option><option value="WOW-Yadanabon">Yadanabon</option><option value="WOW-YoeYar">YoeYar</option><option value="WOW-Pyidaungsu">Pyidaungsu</option><option value="WOW-YoeShin">Yoe Shin</option><option value="WOW-MyanmarSansPro">Myanmar Sans Pro</option><option value="WOW-MyanmarSagar">Myanmar Sagar</option><option value="WOW-MyanmarBlack">Myanmar Black</option><option value="WOW-BurmeseHandwriting">Burmese Handwriting</option><option value="WOW-MyanmarLatpan">Myanmar Latpan</option><option value="WOW-Burma01">Burma 01</option><option value="WOW-Burma02">Burma 02</option><option value="WOW-PuPuBold">Pu Pu Bold</option></select><button type="button" id="copyLink" class="copy-link" aria-label="Post link ကော်ပီယူရန်" title="Post link ကော်ပီယူရန်">🔗</button><span id="copyStatus" class="copy-status" role="status" aria-live="polite"></span></div>
+            <div class="header-controls"><button type="button" class="theme-toggle" data-theme-toggle aria-pressed="false">🌙 Dark mode</button><label for="fontPicker" class="sr-only">ဖွန့်ရွေးရန်</label><button type="button" id="fontPickerButton" class="font-picker-button" aria-label="ဖွန့်ရွေးရန်" title="ဖွန့်ရွေးရန်">Aa</button><select id="fontPicker" class="font-picker" aria-label="ဖွန့်ရွေးရန်"><option value="WOW-Walone">Walone</option><option value="WOW-Yadanabon">Yadanabon</option><option value="WOW-YoeYar">YoeYar</option><option value="WOW-Pyidaungsu">Pyidaungsu</option><option value="WOW-YoeShin">Yoe Shin</option><option value="WOW-MyanmarSansPro">Myanmar Sans Pro</option><option value="WOW-MyanmarSagar">Myanmar Sagar</option><option value="WOW-MyanmarBlack">Myanmar Black</option><option value="WOW-BurmeseHandwriting">Burmese Handwriting</option><option value="WOW-MyanmarLatpan">Myanmar Latpan</option><option value="WOW-Burma01">Burma 01</option><option value="WOW-Burma02">Burma 02</option><option value="WOW-PuPuBold">Pu Pu Bold</option></select><button type="button" id="autoScrollButton" class="auto-scroll-button" aria-pressed="false" aria-label="Auto scroll စတင်/ရပ်ရန်" title="စာပေါ်တစ်ချက်ထိရင်လည်း ရပ်/ပြန်စနိုင်သည်">▶ Auto</button><label for="autoScrollSpeed" class="sr-only">Auto-scroll speed</label><select id="autoScrollSpeed" class="auto-scroll-speed" aria-label="Auto-scroll speed" title="Auto-scroll speed"><option value="10">ဖြည်း</option><option value="18" selected>ပုံမှန်</option><option value="28">နည်းနည်းမြန်</option><option value="40">မြန်</option></select><button type="button" id="copyLink" class="copy-link" aria-label="Post link ကော်ပီယူရန်" title="Post link ကော်ပီယူရန်">🔗</button><span id="copyStatus" class="copy-status" role="status" aria-live="polite"></span></div>
 
         </header>
 
@@ -795,18 +790,7 @@
 
         <div class="post-body">
             <div class="post-content">
-            <p><a href="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEi6n5kCIQFXVx8qtLgLax85vejhmJxkutDehYigsQ-lKOYBuBrPhjO-R8vghx-zdRTGyqgYk5J0XcAgY5_TIbBEmCm0I0YFsmhhaY6Zg-Nd1T7iX68OzipMUfZbwEucMas8hnCDx7dBFzyBNBS_518bMnsJWxK9YD2SR5qBp-MHysHJsGifL38SH0qOdYg/s1280/1000001235.jpg" target="_blank" rel="noopener"></a></p>
-            <p>ဂျိန်းအော်စတင်ရဲ့ လက်ရာမွန်ကို တင့်တယ်ရဲ့ ဘာသာပြန် - မာနနဲ့ အာဃာတ</p>
-            <p>"ပိုက်ဆံချမ်းသာတဲ့ လူပျိုတစ်ယောက်ဟာ ဇနီးတစ်ယောက်တော့ အလိုရှိနေမှာပဲ" ဆိုတဲ့ စကားက ကမ္ဘာဦးကတည်းက မှန်ကန်နေတဲ့ စကားတစ်ခွန်းလို့ ဆိုရပါလိမ့်မယ်။ ဒီစကားနဲ့ပဲ စာရေးဆရာမကြီး ဂျိန်းအော်စတင်က သူ့ရဲ့ အကောင်းဆုံးလက်ရာဖြစ်တဲ့ Pride and Prejudice (မာနနှင့် အာဃာတ) ဝတ္ထုကြီးကို စတင်ခဲ့တာပါ။ ဆရာတင့်တယ်ရဲ့ မြန်မာမှုပြု ဘာသာပြန်ချက်ကတော့ ဒီဝတ္ထုကို မူရင်းရသအတိုင်း ပေါ်လွင်အောင် အကောင်းဆုံး ပုံဖော်ပေးထားပါတယ်။</p>
-            <p>ဇာတ်လမ်းကတော့ သမီးပျိုငါးယောက်ရှိတဲ့ ဘင်းနက်မိသားစုအကြောင်းပါ။ ခေတ်စနစ်အရ သားယောက်ျားလေးမရှိရင် အိမ်နဲ့ခြံကို အမျိုးဝေးတဲ့ မစ္စတာကောလင်းက ဆက်ခံရမှာဖြစ်လို့ သမီးတွေကို အခြေအနေကောင်းတဲ့ လူငယ်တွေနဲ့ အိမ်ထောင်ချပေးချင်နေတဲ့ မိခင်ဖြစ်သူ မစ္စက်ဘင်းနက်ရဲ့ ပျာယာခတ်မှုတွေက ဇာတ်လမ်းရဲ့ အသက်ပါပဲ။ နယ်သာဖီး အိမ်ကြီးကို ပိုက်ဆံရှိတဲ့ လူပျိုဟိန်း မစ္စတာဘင်ဂလေ ရောက်လာချိန်မှာတော့ တစ်ရွာလုံးက အပျိုတွေတင်မက မိဘတွေပါ လှုပ်လှုပ်ရှားရှား ဖြစ်ကုန်ကြတာပေါ့။</p>
-            <p>ဒါပေမဲ့ ဇာတ်လမ်းရဲ့ တကယ့်ဗဟိုချက်ကတော့ ဘင်ဂလေနဲ့ပါလာတဲ့ သူ့သူငယ်ချင်း မစ္စတာဒါစီပါပဲ။ ဒါစီက ရုပ်ချောတယ်၊ ချမ်းသာတယ်၊ ဒါပေမဲ့ သူ့ရဲ့ မောက်မာလွန်းတဲ့ အမူအရာက လူတိုင်းကို စိတ်ပျက်စေပါတယ်။ အထူးသဖြင့် ဇာတ်လိုက်မ အယ်လီဇဘက်ကို "တွဲကလောက်အောင် မချောပါဘူး" လို့ လူပုံအလယ်မှာ စော်ကားလိုက်မိတဲ့အခါ ဒါစီအပေါ်မှာ အယ်လီဇဘက်ရဲ့ အမုန်းတရားတွေ စတင်ခဲ့တော့တာပါပဲ။</p>
-            <p>ဝတ္ထုရဲ့ ဆွဲဆောင်မှုက ဇာတ်ကောင်တွေရဲ့ လူကဲခတ်ပုံနဲ့ စကားလုံး အခြေအတင် ပြောဆိုခန်းတွေမှာ ရှိပါတယ်။ အယ်လီဇဘက်က ဉာဏ်ကောင်းပြီး ဖျတ်လတ်ပေမဲ့ သူ့ကိုယ်သူ လူကဲခတ်တော်တယ်လို့ အထင်ကြီးလွန်းတာကြောင့် ဒါစီအပေါ်မှာ အမြင်စောင်း (Prejudice) နေမိတယ်။ ဒါစီကလည်း သူ့ရဲ့ ဆွေဂုဏ်မျိုးဂုဏ်ကို အခြေခံတဲ့ မာန (Pride) ကြောင့် အယ်လီဇဘက်အပေါ် ထားတဲ့ သူ့ရဲ့မေတ္တာကို ဖော်ပြဖို့ ခက်ခဲနေခဲ့တယ်။</p>
-            <p>ဇာတ်လမ်းအလယ်မှာ ပေါ်လာတဲ့ မစ္စတာဝစ်ခမ်းရဲ့ ဟန်ဆောင်ကောင်းမှုတွေ၊ မစ္စတာကောလင်းရဲ့ အူကြောင်ကြောင်နိုင်တဲ့ စရိုက်တွေက ဇာတ်လမ်းကို ပိုပြီး သက်ဝင်စေပါတယ်။ ဒါစီက တကယ်ပဲ လူယုတ်မာလား၊ ဒါမှမဟုတ် အယ်လီဇဘက်ရဲ့ အထင်အမြင်တွေပဲ မှားနေတာလားဆိုတာက စာဖတ်သူကို စာမျက်နှာအဆုံးထိ ဆွဲခေါ်သွားပါလိမ့်မယ်။</p>
-            <p>အထူးသဖြင့် လစ်ဒီယာရဲ့ ခိုးရာလိုက်ပြေးမှုနဲ့ အဲဒီပြဿနာကို ဒါစီက ကွယ်ရာကနေ ဘယ်လိုဖြေရှင်းပေးခဲ့တယ်ဆိုတဲ့ အချက်တွေက ဇာတ်ကောင်တစ်ယောက်ရဲ့ အတွင်းစိတ်ကို အံ့ဩစရာကောင်းအောင် မြင်တွေ့ရမှာပါ။</p>
-            <p>၁၈ ရာစု အင်္ဂလန်ကျေးလက်က လူမှုရေးအလွှာအတန်းအစားတွေ၊ ငွေကြေးနဲ့ အိမ်ထောင်ရေး ဆက်နွှယ်မှုတွေကို သရော်စာဆန်ဆန်နဲ့ ပညာသားပါပါ ရေးဖွဲ့ထားတဲ့ ဒီဝတ္ထုကို ဖတ်ကြည့်ရင်တော့ လူတွေရဲ့ မာနနဲ့ အမုန်းတရားတွေကြားက အမှန်တရားကို ရှာဖွေရတဲ့ အရသာကို အပြည့်အဝ ရရှိပါလိမ့်မယ်။ ဆရာတင့်တယ်ရဲ့ ဘာသာပြန်ဟန်ကလည်း ခေတ်အဆက်ဆက် ဖတ်လို့မရိုးနိုင်တဲ့ စာပေလက်ရာတစ်ခုအဖြစ် တည်ရှိနေဆဲပါ။ မဖတ်ရသေးရင်တော့ သေချာပေါက် ဖတ်ကြည့်သင့်တဲ့ ဝတ္ထုကောင်းတစ်ပုဒ်ဖြစ်ကြောင်း ညွှန်းဆိုပါရစေ။</p>
-            <p><a href="https://drive.google.com/drive/folders/1nb_oBXqgOnE0IVp2RZyJbqQ1vWFaWwuQ" target="_blank" rel="noopener">Download Epub Kfx </a></p>
-            <p>epub,kfx for Myanmar ebooks reader</p>
-
+            <p><a href="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEi6n5kCIQFXVx8qtLgLax85vejhmJxkutDehYigsQ-lKOYBuBrPhjO-R8vghx-zdRTGyqgYk5J0XcAgY5_TIbBEmCm0I0YFsmhhaY6Zg-Nd1T7iX68OzipMUfZbwEucMas8hn...</p>
             </div>
 
             <div class="reviewer-credit">
@@ -946,6 +930,41 @@
             var copy = document.getElementById('copyLink');
             var copyStatus = document.getElementById('copyStatus');
             var body = document.querySelector('.post-body');
+            var autoButton = document.getElementById('autoScrollButton');
+            var speedPicker = document.getElementById('autoScrollSpeed');
+            var autoRunning = false;
+            var autoFrame = 0;
+            var autoLastTime = 0;
+            var autoSpeed = 18;
+            var AUTO_SPEED_KEY = 'wow-reader-auto-scroll-speed';
+            try { autoSpeed = Number(localStorage.getItem(AUTO_SPEED_KEY)) || 18; } catch (_) {}
+            if (speedPicker) { speedPicker.value = String(autoSpeed); if (speedPicker.value !== String(autoSpeed)) { autoSpeed = 18; speedPicker.value = '18'; } }
+            function updateAutoButton() { if (autoButton) { autoButton.textContent = autoRunning ? '⏸ ရပ်မယ်' : '▶ Auto'; autoButton.setAttribute('aria-pressed', autoRunning ? 'true' : 'false'); } }
+            function stopAutoScroll() { autoRunning = false; autoLastTime = 0; if (autoFrame) cancelAnimationFrame(autoFrame); autoFrame = 0; updateAutoButton(); }
+            function autoScrollFrame(now) {
+                if (!autoRunning) return;
+                if (!autoLastTime) autoLastTime = now;
+                var remaining = document.documentElement.scrollHeight - window.innerHeight - (window.pageYOffset || 0);
+                if (remaining <= 1) { stopAutoScroll(); return; }
+                var distance = Math.min(remaining, autoSpeed * (now - autoLastTime) / 1000);
+                window.scrollBy(0, distance);
+                autoLastTime = now;
+                autoFrame = requestAnimationFrame(autoScrollFrame);
+            }
+            function toggleAutoScroll() {
+                if (autoRunning) stopAutoScroll();
+                else { autoRunning = true; autoLastTime = 0; updateAutoButton(); autoFrame = requestAnimationFrame(autoScrollFrame); }
+            }
+            if (autoButton) autoButton.addEventListener('click', function(e) { e.stopPropagation(); toggleAutoScroll(); });
+            if (speedPicker) speedPicker.addEventListener('change', function() { autoSpeed = Number(speedPicker.value) || 18; try { localStorage.setItem(AUTO_SPEED_KEY, String(autoSpeed)); } catch (_) {} });
+            var tapX = 0, tapY = 0, tapAt = 0;
+            var readableContent = document.querySelector('.post-content');
+            if (readableContent) {
+                readableContent.addEventListener('pointerdown', function(e) { tapX = e.clientX; tapY = e.clientY; tapAt = Date.now(); }, { passive:true });
+                readableContent.addEventListener('pointerup', function(e) { if (Date.now() - tapAt < 350 && Math.hypot(e.clientX - tapX, e.clientY - tapY) < 12) toggleAutoScroll(); }, { passive:true });
+            }
+            document.addEventListener('visibilitychange', function() { if (document.hidden) stopAutoScroll(); });
+            updateAutoButton();
             var FONT_KEY = 'wow-reader-font-family';
             var fonts = ['WOW-Walone','WOW-Yadanabon','WOW-YoeYar','WOW-Pyidaungsu','WOW-YoeShin','WOW-MyanmarSansPro','WOW-MyanmarSagar','WOW-MyanmarBlack','WOW-BurmeseHandwriting','WOW-MyanmarLatpan','WOW-Burma01','WOW-Burma02','WOW-PuPuBold'];
             var chosen = 'WOW-Walone';
@@ -1029,6 +1048,5 @@
             }).catch(function() { track.innerHTML = '<span class="newest-review-placeholder">ရယူ၍မရပါ။</span>'; });
         })();
         </script>
-
 </body>
 </html>

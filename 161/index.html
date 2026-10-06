@@ -32,13 +32,16 @@
     <meta itemprop="image" content="https://lh3.googleusercontent.com/d/1QE0GpNbMoR1Aeo-HttBKaS--Z5m-40TT">
     <link rel="image_src" href="https://lh3.googleusercontent.com/d/1QE0GpNbMoR1Aeo-HttBKaS--Z5m-40TT">
     <style>
-        @font-face { font-family: "Walone"; src: url("https://raw.githubusercontent.com/whispermmepub/myanmar-yoe-shin-fonts/main/fonts/Walone-Regular.ttf") format("truetype"); font-weight: 400; font-style: normal; font-display: swap; }
-        @font-face { font-family: "Walone"; src: url("https://raw.githubusercontent.com/whispermmepub/myanmar-yoe-shin-fonts/main/fonts/Walone-Bold.ttf") format("truetype"); font-weight: 700; font-style: normal; font-display: swap; }
+        @font-face {
+            font-family: 'Walone';
+            src: url('../assets/Walone-Regular.ttf') format('truetype');
+            font-display: swap;
+        }
 
         * { margin: 0; padding: 0; box-sizing: border-box; }
 
         body {
-            font-family: "Walone", sans-serif;
+            font-family: 'Walone', sans-serif;
             background: linear-gradient(135deg, #141228 0%, #1a1530 100%);
             color: #d0d0d0;
             line-height: 2;
@@ -302,7 +305,7 @@
             text-decoration: none;
             font-size: 0.9rem;
             font-weight: 600;
-            font-family: "Walone", sans-serif;
+            font-family: 'Walone', sans-serif;
             transition: all 0.25s ease;
         }
         .telegram-btn:hover {
@@ -343,7 +346,7 @@
             border-radius: 30px;
             cursor: pointer;
             transition: all 0.3s;
-            font-family: "Walone", sans-serif;
+            font-family: 'Walone', sans-serif;
         }
         .love-btn:hover, .love-btn.liked {
             background: #e74c3c;
@@ -676,7 +679,7 @@
         /* Editorial reader redesign v1 */
         :root { --reader-ink:#302822; --reader-muted:#806d60; --reader-paper:#fffdf8; --reader-line:#e8ddd2; --reader-accent:#a85f43; --reader-accent-dark:#7d4333; --reader-soft:#f5e8dc; }
         html,body { background:#eee8df; color:var(--reader-ink); }
-        body { padding:18px 12px 34px; font-family: "Walone", sans-serif; line-height:1.7; }
+        body { padding:18px 12px 34px; font-family:"Walone",sans-serif; line-height:1.7; }
         .container { width:min(100%,900px); max-width:900px; margin:0 auto; padding:0 34px 42px; background:var(--reader-paper); border:1px solid #e3d6c9; border-radius:24px; box-shadow:0 18px 50px rgba(76,54,37,.12); overflow:hidden; }
         .reader-topbar { display:flex; align-items:center; gap:12px; min-height:68px; padding:8px 0 12px; border-bottom:1px solid var(--reader-line); }
         .reader-back { display:inline-flex; align-items:center; justify-content:center; width:38px; height:38px; border:1px solid #decfc2; border-radius:50%; color:var(--reader-accent-dark); background:#fffaf4; font-size:1.35rem; text-decoration:none; transition:transform .18s ease,background .18s ease; }
@@ -730,14 +733,18 @@
         @media(max-width:700px) { body { padding:7px 6px 22px; } .container { width:100%; padding:0 17px 30px; border-radius:18px; } .reader-topbar { min-height:60px; } .reader-brand { font-size:.88rem; } .post-image { width:100%; max-height:52vh; margin:16px auto 22px; border-radius:16px; } header h1 { font-size:1.38rem; line-height:1.48; } .post-meta { font-size:.78rem; } .header-controls { margin-top:13px; gap:6px; } .header-controls .theme-toggle,.font-picker-button,.header-controls .copy-link { min-height:33px; height:33px; font-size:.68rem; } .reading-time { padding-top:11px; } .post-controls { margin-bottom:15px; padding-bottom:13px; } .post-body p { font-size:1.03rem; line-height:1.92; } .comments-panel { margin-top:24px; padding:16px 13px; border-radius:15px; } .comments-title { font-size:.98rem; } .back-link { min-height:45px; margin-top:24px; } }
         /* Compact reader toolbar: theme, Aa font picker, and copy link stay together. */
         .header-controls { justify-content:center; align-items:center; gap:8px; margin-top:14px; }
-        .header-controls .theme-toggle,.font-picker-button,.header-controls .copy-link { min-height:34px; height:34px; padding:6px 10px; border:1px solid #d9b9a6; border-radius:9px; background:#fbf3ed; color:#87543a; font:inherit; font-size:.74rem; font-weight:700; cursor:pointer; }
+        .header-controls .theme-toggle,.font-picker-button,.header-controls .copy-link,.auto-scroll-button,.auto-scroll-speed { min-height:34px; height:34px; padding:6px 10px; border:1px solid #d9b9a6; border-radius:9px; background:#fbf3ed; color:#87543a; font:inherit; font-size:.74rem; font-weight:700; cursor:pointer; }
         .font-picker-button { width:42px; padding:5px 4px; font-size:.96rem; letter-spacing:-.04em; }
         .header-controls .copy-link { width:38px; padding:5px 6px; font-size:.9rem; }
+        .auto-scroll-button { min-width:78px; }
+        .auto-scroll-button[aria-pressed="true"] { background:var(--reader-accent); color:#fffaf4; border-color:var(--reader-accent); }
+        .auto-scroll-speed { min-width:86px; padding:5px 8px; }
         .header-controls .font-picker { position:absolute; width:1px; height:1px; padding:0; margin:-1px; opacity:0; overflow:hidden; clip:rect(0,0,0,0); white-space:nowrap; border:0; }
         .copy-status { min-width:0; color:#a34a42; font-size:.7rem; }
         .post-controls { justify-content:center; margin:0 auto 18px; padding:0 0 14px; border-bottom:1px solid #eee4db; }
-        html[data-theme="dark"] .header-controls .theme-toggle,html[data-theme="dark"] .font-picker-button,html[data-theme="dark"] .header-controls .copy-link { background:#302a32; color:#f1d7b5; border-color:#6b5360; }
-        @media(max-width:600px) { .header-controls { gap:6px; } .header-controls .theme-toggle,.font-picker-button,.header-controls .copy-link { min-height:32px; height:32px; } .header-controls .theme-toggle { padding:5px 8px; font-size:.68rem; } .font-picker-button { width:40px; } .header-controls .copy-link { width:36px; } }
+        html[data-theme="dark"] .header-controls .theme-toggle,html[data-theme="dark"] .font-picker-button,html[data-theme="dark"] .header-controls .copy-link,html[data-theme="dark"] .auto-scroll-button,html[data-theme="dark"] .auto-scroll-speed { background:#302a32; color:#f1d7b5; border-color:#6b5360; }
+        html[data-theme="dark"] .auto-scroll-button[aria-pressed="true"] { background:#a85f43; color:#fffaf4; border-color:#a85f43; }
+        @media(max-width:600px) { .header-controls { gap:6px; } .header-controls .theme-toggle,.font-picker-button,.header-controls .copy-link,.auto-scroll-button,.auto-scroll-speed { min-height:32px; height:32px; } .header-controls .theme-toggle { padding:5px 8px; font-size:.68rem; } .font-picker-button { width:40px; } .header-controls .copy-link { width:36px; } .auto-scroll-button { min-width:72px; padding-left:7px; padding-right:7px; } .auto-scroll-speed { min-width:78px; padding-left:5px; padding-right:5px; } }
 
         /* Catalog-style newest review cards. */
         .newest-reviews-track { display:flex; gap:9px; overflow-x:auto; padding:2px 0 10px; scroll-snap-type:x mandatory; scrollbar-width:thin; scrollbar-color:#c8ad96 transparent; }
@@ -757,19 +764,7 @@
         html[data-theme="dark"] .newest-review-author { color:#d7c4b7; }
         html[data-theme="dark"] .newest-review-read { color:#e4a197; }
         @media(max-width:600px) { .newest-review-card,.newest-review-cover { width:116px; } .newest-review-cover { height:156px; } }
-
-        /* Mobile browser + Telegram in-app browser typography */
-        @media (max-width: 600px) {
-            body { font-size: 14px; }
-            header { margin: 12px 10px 10px; padding: 26px 14px 22px; }
-            header h1 { font-size: 1.25rem !important; line-height: 1.35; }
-            .post-meta { font-size: 0.80rem !important; }
-            .post-body { padding: 22px 10px; }
-            .post-body p { font-size: 1.00rem !important; line-height: 1.78 !important; }
-            .back-link { font-size: 0.85rem; padding: 8px 14px; }
-            .reviewer-credit { font-size: 0.78rem; }
-        }
-    </style>
+</style>
 </head>
 <body>
     <div class="reading-progress" id="readingProgress"></div>
@@ -784,7 +779,7 @@
         <header>
             <h1>﻿စာရေးသူ၏ အမှာ</h1>
             <div class="post-meta">📅 2026-08-20 • ✍️ Whisper Of Words</div>
-            <div class="header-controls"><button type="button" class="theme-toggle" data-theme-toggle aria-pressed="false">🌙 Dark mode</button><label for="fontPicker" class="sr-only">ဖွန့်ရွေးရန်</label><button type="button" id="fontPickerButton" class="font-picker-button" aria-label="ဖွန့်ရွေးရန်" title="ဖွန့်ရွေးရန်">Aa</button><select id="fontPicker" class="font-picker" aria-label="ဖွန့်ရွေးရန်"><option value="WOW-Walone">Walone</option><option value="WOW-Yadanabon">Yadanabon</option><option value="WOW-YoeYar">YoeYar</option><option value="WOW-Pyidaungsu">Pyidaungsu</option><option value="WOW-YoeShin">Yoe Shin</option><option value="WOW-MyanmarSansPro">Myanmar Sans Pro</option><option value="WOW-MyanmarSagar">Myanmar Sagar</option><option value="WOW-MyanmarBlack">Myanmar Black</option><option value="WOW-BurmeseHandwriting">Burmese Handwriting</option><option value="WOW-MyanmarLatpan">Myanmar Latpan</option><option value="WOW-Burma01">Burma 01</option><option value="WOW-Burma02">Burma 02</option><option value="WOW-PuPuBold">Pu Pu Bold</option></select><button type="button" id="copyLink" class="copy-link" aria-label="Post link ကော်ပီယူရန်" title="Post link ကော်ပီယူရန်">🔗</button><span id="copyStatus" class="copy-status" role="status" aria-live="polite"></span></div>
+            <div class="header-controls"><button type="button" class="theme-toggle" data-theme-toggle aria-pressed="false">🌙 Dark mode</button><label for="fontPicker" class="sr-only">ဖွန့်ရွေးရန်</label><button type="button" id="fontPickerButton" class="font-picker-button" aria-label="ဖွန့်ရွေးရန်" title="ဖွန့်ရွေးရန်">Aa</button><select id="fontPicker" class="font-picker" aria-label="ဖွန့်ရွေးရန်"><option value="WOW-Walone">Walone</option><option value="WOW-Yadanabon">Yadanabon</option><option value="WOW-YoeYar">YoeYar</option><option value="WOW-Pyidaungsu">Pyidaungsu</option><option value="WOW-YoeShin">Yoe Shin</option><option value="WOW-MyanmarSansPro">Myanmar Sans Pro</option><option value="WOW-MyanmarSagar">Myanmar Sagar</option><option value="WOW-MyanmarBlack">Myanmar Black</option><option value="WOW-BurmeseHandwriting">Burmese Handwriting</option><option value="WOW-MyanmarLatpan">Myanmar Latpan</option><option value="WOW-Burma01">Burma 01</option><option value="WOW-Burma02">Burma 02</option><option value="WOW-PuPuBold">Pu Pu Bold</option></select><button type="button" id="autoScrollButton" class="auto-scroll-button" aria-pressed="false" aria-label="Auto scroll စတင်/ရပ်ရန်" title="စာပေါ်တစ်ချက်ထိရင်လည်း ရပ်/ပြန်စနိုင်သည်">▶ Auto</button><label for="autoScrollSpeed" class="sr-only">Auto-scroll speed</label><select id="autoScrollSpeed" class="auto-scroll-speed" aria-label="Auto-scroll speed" title="Auto-scroll speed"><option value="10">ဖြည်း</option><option value="18" selected>ပုံမှန်</option><option value="28">နည်းနည်းမြန်</option><option value="40">မြန်</option></select><button type="button" id="copyLink" class="copy-link" aria-label="Post link ကော်ပီယူရန်" title="Post link ကော်ပီယူရန်">🔗</button><span id="copyStatus" class="copy-status" role="status" aria-live="polite"></span></div>
 
         </header>
 
@@ -795,19 +790,10 @@
 
         <div class="post-body">
             <div class="post-content">
-            <p>﻿စာရေးသူ၏ အမှာ</p>
-            <p>ဤ ‘မူးယစ်ဝေသော နွေဦးညများ’ သည် နှစ်ပေါင်း နှစ်ဆယ်ကျော် အစိတ်ခန့် အတွင်းက ဘာသာပြန်ခဲ့သော ဝတ္ထုတိုများကို စုပေါင်းထားခြင်း ဖြစ်ပေသည် (၁၉၃၀-၆၂)။ အစောဆုံး ‘နေရစ်တော့ သက်လှယ်ရယ်’ ဝတ္ထုကလေးမှာ ကျောင်းသားဘဝက ရေးထားသော ဝတ္ထုဖြစ်၍ တက္ကသိုလ်ကျောင်းတိုက် နှစ်ပတ်လည် မဂ္ဂဇင်း၌ ဖော်ပြပါရှိသည်။</p>
-            <p>ဘာသာပြန်ရာ၌ သုံးမျိုးပါသည်။ ပထမ၊ မူးယစ်ဝေသော နွေဦးညများမှ ဆားချက်မြေ အထိ။ ယင်းတို့မှာ မူရင်းမှ တိုက်ရိုက် ဘာသာပြန်ထားသော ဝတ္ထုများ ဖြစ်သည်။ တရုတ်နှင့် ရုရှားဝတ္ထုများ ဖြစ်၍ တရုတ်စာပေနှင့် ရုရှားစာပေ၏ လှပသိမ်မွေ့မှုများ၊ အမျိုးသား အတွေးအခေါ်များ၊ အမျိုးသားစရိုက်များ ပါသည်။ တရုတ်လူမျိုး၊ ရုရှားလူမျိုးတို့၏ မြို့နေနှင့် တောကျေးလက်ဘဝတို့ကို သရုပ်ဖော်ထားသော ဝတ္ထုများ ဖြစ်ကြသည်။</p>
-            <p>တော်လှန်ရေးမတိုင်မီ မြေရှင်ခေတ်၊ ဓနရှင်ခေတ် တရုတ်ပြည်၊ ရုရှားပြည်များ၏ ဘဝများ၊ အထူးသဖြင့် ဆင်းရဲသားများ၏ညဘဝကို ဖွဲ့နွဲ့ထားသော နာမည်ကျော် ဝတ္ထုများမှ ရွေးချယ် ဘာသာပြန်ထားခြင်း ဖြစ်သည်။ တရုတ်စာရေးဆရာ လူရွှန်းမှာ တရုတ်ပြည် စာပေသစ်၏ မီးရှူးတန်ဆောင်ဟု တညီတညွတ်တည်း လေးမြတ်ခြင်း ခံရသူဖြစ်သည်။ ယူတာဖူးမှာလည်း တော်လှန်ရေးသမား လူငယ်စာရေးဆရာ ဖြစ်သည်။ ၁၉၄၉ ပြည်သူ့တရုတ်သမ္မတ နိုင်ငံတော် မတည်ထောင်မီ ကွယ်လွန်သွားကြသော်လည်း သူတို့သည် တရုတ်ပြည် တော်လှန်ရေး၏ ကြယ်ပွင့်နီများ ဖြစ်ကြပေသည်။ ဂေါ်ကီမှာ ယနေ့ ဆိုဗီယက် ဆိုရှယ်လစ် ပြည်ထောင်စု သမ္မတနိုင်ငံ၏ ယဉ်ကျေးမှုလမ်းညွှန် သဘောတရား ဖြစ်သော ‘ဆိုရှယ်လစ် သရုပ်ဖော်စာပေ’ ဝါဒလမ်းစဉ်ချပေခဲ့သူ ကမ္ဘာကျော် စာရေးဆရာကြီး ဖြစ်သည်။ သူတို့၏ ဝတ္ထုများသည် တရုတ်နှင့် ရုရှား တော်လှန်ရေးစာပေကို ကိုယ်စားပြုကြပေသည်။</p>
-            <p>ဒုတိယ၊ တယောရှင်မှ သမုဒယအထိ ဝတ္ထုများမှာ မူရင်းကို မြန်မာ့ပတ်ဝန်းကျင်ဖြင့် ပြောင်းရုံ ပြောင်းလဲ၍ ဆီလျော်အောင် ဘာသာပြန်ထားသော စာများဖြစ်သည်။ မြန်မာ့ပတ်ဝန်းကျင် ဆိုရာ၌ မြန်မာ လူအမည်၊ ဒေသအမည်နှင့် တချို့ မြန်မာ့ယဉ်ကျေးမှု အမူအရာများ ပြောင်းထားရုံမျှသာ ဖြစ်၍ မူရင်းစာပေ၏ အနှစ်သာရအတိုင်း ထားသည်။ ဒေသနှင့်လူမျိုး ခြားသော်လည်း နှလုံးခုန်ပုံခြင်းမှာ အတူတူ။ နှလုံးသားရေးရာ စိတ်လှုပ်ရှားမှု ဝေဒနာများ ရှိကြသည်သာ ဖြစ်သည်။ ယင်းသို့ နီးစပ်သော ဝတ္ထုများကို ရွေးချယ်ကာ မြန်မာ့ပတ်ဝန်းကျင်ဖြင့် ထုံမွှမ်းလိုက်ခြင်းသာ ဖြစ်သည်။ ယင်းဒုတိယ အမျိုးအစား၌ ရုရှားစာရေးဆရာ ချက်ကော့၏ ဝတ္ထု အများဆုံးပါသည်။ ချက်ကော့ ဝတ္ထုတိုအရေးအသား၌ ကမ္ဘာကျော်သူ ဖြစ်သည်။ လူ့ဘဝ၏ သဘာဝကို သရုပ်ဖော်ရာ၌ သိမ်မွေ့သည်။ နုသည်။ လှသည်။ နက်ရှိူင်းသည်။</p>
-            <p>တတိယ၊ တရေးရေးမှ ညတညအထိ ဝတ္ထုများမှာ မူရင်းဝတ္ထုကို မှီငြမ်းပြု၍ စာရေးသူ၏ စိတ်ကူးဖြင့် မွှေရောထားသော ဝတ္ထုများ ဖြစ်သည်။ တချို့မှာ မူရင်းဝတ္ထု၏ အနှစ်သာရအတိုင်း မဟုတ်တော့ပြီ။ မကြိုက်သည်များကို ပယ်ပြီး မိမိအကြိုက်ဖြင့် မွမ်းမံထားသည်။ တချို့ကား မူရင်းပါစာပေ၏ ရသအတိုင်း ထိန်းသိမ်းထားခဲ့သည်။</p>
-            <p>အမှန်အားဖြင့် စာရေးသူသည် ဘာသာပြန် ဝါသနာပါလှသူ မဟုတ်ပေ။ သို့သော် နိုင်ငံခြားဝတ္ထုများကို ဖတ်ပြီး မြန်မာစာဖတ်ပရိသတ်နှင့် မိတ်ဆက်ပေးချင်သည်။ သူသည် ဥရောပ ဝတ္ထုအတတ်ပညာကို နှစ်သက်သဖြင့် ယင်းအတတ်ပညာမျိုးဖြင့်လည်း ရေးချင်သည်။ မြန်မာ စာဖတ်ပရိသတ်သည် ယင်းသို့သော ဥရောပဝတ္ထုရေးနည်း အတတ်ပညာဖြင့် ရင်းနှီးအကျွမ်းဝင်ပြီး၊ ယဉ်ပါးပြီး ရှိနေစေချင်သည်။ သို့မှသာ မိမိရေးသော ဝတ္ထုများကိုလည်း မြန်မာစာဖတ်ပရိသတ်က ရင်းနှီးခင်မင်စွာ ကြင်နာစွာ ခံစားမည် ဖြစ်ပေသည်။</p>
-            <p>သူ ကျောင်းသားဘဝက ‘တရေးရေး’ ဟူသော ဝတ္ထု၌ ပါသော ‘ကောင်းကင်သည် ပြာ၏။ သူမသည် ကားကို ဖိတ်ခေါ်၏’ ဟူသော စကားအသုံးအနှုန်းနှင့် ပတ်သက်၍ အမျိုးသမီးတဦးက ခရစ်ယန် ဆန်သည်ဟု ဝေဖန်လိုက်ကြောင်း ကိုတက်တိုးမှ တဆင့် ကြားရဖူးသည်။ သူသည် ငယ်စဉ်က ယုဒသန်၏ သမ္မာကျမ်းစာများကို ဖတ်ကာ နှစ်သက်ခဲ့သည်။ နိုင်ငံခြားစာပေမှ တင်စားမှုများကို တူညီသော မြန်မာတင်စားမှုဖြင့် ရေးသည်ထက် သူ၏ တင်စားမှုအတိုင်း ရေးခြင်းကို နှစ်သက်တတ်သည်။ တခါက အင်္ဂလိပ်စာလုံးမှ ယူကာ ‘ပင်မရေစီး’ ဟူ၍ သုံးနှုန်းသည်ကို အပြစ်တင်ခံရဖူးသည်။ တချို့က သူ၏ အရေးအသားကို ‘မြန်မာမပီသ’ ဟု ဆိုကြသည်။ ယနေ့တွင် ပင်မရေစီးကို သုံးနှုန်းနေကြလေပြီ။</p>
-            <p>ပင်ရင်း နိုင်ငံခြား အသုံးအနှုန်းများကို အသံအတိုင်း အသံလှယ်၍ ဖော်ပြသည်ထက် မြန်မာစာလုံးဖြင့် ( မြန်မာမပီသဟု ဆိုကြစေ) ဖော်ပြသည်ကို သူ နှစ်သက်မိသည်။ ကွန်မြူနစ်ဝါဒဟု ခေါ် သည်ထက် ဘုံဝါဒဟု မြန်မာလို ဖော်ပြခြင်းကို ပို၍ နှစ်သက်သည်။ အမျိုးသားလွတ်လပ်ရေး ရနံ့ပါသည်ဟု ယူဆသည်။</p>
-            <p>ယခုစာအုပ်ပါ ဝတ္ထုများမှာ ဘာသာပြန်ကောင်းများ ဟု မယူဆစေလိုပါ။ သူ့ကိုယ်သူ ဘာသာပြန်ကောင်း ဟုလည်း မထင်ပါ။ တိမ်းငေါ်ချက်ကလေးများ ပါလျှင်လည်း သူ့ကို ခွင့်လွှတ်စေလိုပါသည်။</p>
-            <p>သူသည် မြင်နေကျ ပိတောက်ပင်အလှထက် ထင်းရှူးပင်အလှနှင့် မိုးမခပင်အလှကိုလည်း မိမိခံစားရသလို ခံစားစေချင်၍ ဖွဲ့နွှဲလိုက်ခြင်းသာ ဖြစ်သည်။ ဆန်းသစ် လတ်ဆတ်သော… အလှကလေးများသည် လူကို နုပျိုစေပေသည်တကား။</p>
-            <p>epub,kfx for Myanmar ebooks reader</p>
-
+            <p>﻿စာရေးသူ၏ အမှာ
+ 
+(က)
+ဤ ‘မူးယစ်ဝေသော နွေဦးညများ’ သည် နှစ်ပေါင်း နှစ်ဆယ်ကျော် အစိတ်ခန့် အတွင်းက ဘာသာပြန်ခဲ့သော ဝတ္ထုတိုများကို စုပေါင်းထားခြင်း ဖြစ်ပေသည် (၁၉၃၀-၆၂)။ အစောဆုံး ‘နေရစ်တော့ သက်လှယ်ရယ်’ ဝတ္ထု...</p>
             </div>
 
             <div class="reviewer-credit">
@@ -947,6 +933,41 @@
             var copy = document.getElementById('copyLink');
             var copyStatus = document.getElementById('copyStatus');
             var body = document.querySelector('.post-body');
+            var autoButton = document.getElementById('autoScrollButton');
+            var speedPicker = document.getElementById('autoScrollSpeed');
+            var autoRunning = false;
+            var autoFrame = 0;
+            var autoLastTime = 0;
+            var autoSpeed = 18;
+            var AUTO_SPEED_KEY = 'wow-reader-auto-scroll-speed';
+            try { autoSpeed = Number(localStorage.getItem(AUTO_SPEED_KEY)) || 18; } catch (_) {}
+            if (speedPicker) { speedPicker.value = String(autoSpeed); if (speedPicker.value !== String(autoSpeed)) { autoSpeed = 18; speedPicker.value = '18'; } }
+            function updateAutoButton() { if (autoButton) { autoButton.textContent = autoRunning ? '⏸ ရပ်မယ်' : '▶ Auto'; autoButton.setAttribute('aria-pressed', autoRunning ? 'true' : 'false'); } }
+            function stopAutoScroll() { autoRunning = false; autoLastTime = 0; if (autoFrame) cancelAnimationFrame(autoFrame); autoFrame = 0; updateAutoButton(); }
+            function autoScrollFrame(now) {
+                if (!autoRunning) return;
+                if (!autoLastTime) autoLastTime = now;
+                var remaining = document.documentElement.scrollHeight - window.innerHeight - (window.pageYOffset || 0);
+                if (remaining <= 1) { stopAutoScroll(); return; }
+                var distance = Math.min(remaining, autoSpeed * (now - autoLastTime) / 1000);
+                window.scrollBy(0, distance);
+                autoLastTime = now;
+                autoFrame = requestAnimationFrame(autoScrollFrame);
+            }
+            function toggleAutoScroll() {
+                if (autoRunning) stopAutoScroll();
+                else { autoRunning = true; autoLastTime = 0; updateAutoButton(); autoFrame = requestAnimationFrame(autoScrollFrame); }
+            }
+            if (autoButton) autoButton.addEventListener('click', function(e) { e.stopPropagation(); toggleAutoScroll(); });
+            if (speedPicker) speedPicker.addEventListener('change', function() { autoSpeed = Number(speedPicker.value) || 18; try { localStorage.setItem(AUTO_SPEED_KEY, String(autoSpeed)); } catch (_) {} });
+            var tapX = 0, tapY = 0, tapAt = 0;
+            var readableContent = document.querySelector('.post-content');
+            if (readableContent) {
+                readableContent.addEventListener('pointerdown', function(e) { tapX = e.clientX; tapY = e.clientY; tapAt = Date.now(); }, { passive:true });
+                readableContent.addEventListener('pointerup', function(e) { if (Date.now() - tapAt < 350 && Math.hypot(e.clientX - tapX, e.clientY - tapY) < 12) toggleAutoScroll(); }, { passive:true });
+            }
+            document.addEventListener('visibilitychange', function() { if (document.hidden) stopAutoScroll(); });
+            updateAutoButton();
             var FONT_KEY = 'wow-reader-font-family';
             var fonts = ['WOW-Walone','WOW-Yadanabon','WOW-YoeYar','WOW-Pyidaungsu','WOW-YoeShin','WOW-MyanmarSansPro','WOW-MyanmarSagar','WOW-MyanmarBlack','WOW-BurmeseHandwriting','WOW-MyanmarLatpan','WOW-Burma01','WOW-Burma02','WOW-PuPuBold'];
             var chosen = 'WOW-Walone';
@@ -1030,6 +1051,5 @@
             }).catch(function() { track.innerHTML = '<span class="newest-review-placeholder">ရယူ၍မရပါ။</span>'; });
         })();
         </script>
-
 </body>
 </html>

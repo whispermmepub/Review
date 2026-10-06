@@ -1043,14 +1043,18 @@ def generate_post_html(post):
         @media(max-width:700px) {{ body {{ padding:7px 6px 22px; }} .container {{ width:100%; padding:0 17px 30px; border-radius:18px; }} .reader-topbar {{ min-height:60px; }} .reader-brand {{ font-size:.88rem; }} .post-image {{ width:100%; max-height:52vh; margin:16px auto 22px; border-radius:16px; }} header h1 {{ font-size:1.38rem; line-height:1.48; }} .post-meta {{ font-size:.78rem; }} .header-controls {{ margin-top:13px; gap:6px; }} .header-controls .theme-toggle,.font-picker-button,.header-controls .copy-link {{ min-height:33px; height:33px; font-size:.68rem; }} .reading-time {{ padding-top:11px; }} .post-controls {{ margin-bottom:15px; padding-bottom:13px; }} .post-body p {{ font-size:1.03rem; line-height:1.92; }} .comments-panel {{ margin-top:24px; padding:16px 13px; border-radius:15px; }} .comments-title {{ font-size:.98rem; }} .back-link {{ min-height:45px; margin-top:24px; }} }}
         /* Compact reader toolbar: theme, Aa font picker, and copy link stay together. */
         .header-controls {{ justify-content:center; align-items:center; gap:8px; margin-top:14px; }}
-        .header-controls .theme-toggle,.font-picker-button,.header-controls .copy-link {{ min-height:34px; height:34px; padding:6px 10px; border:1px solid #d9b9a6; border-radius:9px; background:#fbf3ed; color:#87543a; font:inherit; font-size:.74rem; font-weight:700; cursor:pointer; }}
+        .header-controls .theme-toggle,.font-picker-button,.header-controls .copy-link,.auto-scroll-button,.auto-scroll-speed {{ min-height:34px; height:34px; padding:6px 10px; border:1px solid #d9b9a6; border-radius:9px; background:#fbf3ed; color:#87543a; font:inherit; font-size:.74rem; font-weight:700; cursor:pointer; }}
         .font-picker-button {{ width:42px; padding:5px 4px; font-size:.96rem; letter-spacing:-.04em; }}
         .header-controls .copy-link {{ width:38px; padding:5px 6px; font-size:.9rem; }}
+        .auto-scroll-button {{ min-width:78px; }}
+        .auto-scroll-button[aria-pressed="true"] {{ background:var(--reader-accent); color:#fffaf4; border-color:var(--reader-accent); }}
+        .auto-scroll-speed {{ min-width:86px; padding:5px 8px; }}
         .header-controls .font-picker {{ position:absolute; width:1px; height:1px; padding:0; margin:-1px; opacity:0; overflow:hidden; clip:rect(0,0,0,0); white-space:nowrap; border:0; }}
         .copy-status {{ min-width:0; color:#a34a42; font-size:.7rem; }}
         .post-controls {{ justify-content:center; margin:0 auto 18px; padding:0 0 14px; border-bottom:1px solid #eee4db; }}
-        html[data-theme="dark"] .header-controls .theme-toggle,html[data-theme="dark"] .font-picker-button,html[data-theme="dark"] .header-controls .copy-link {{ background:#302a32; color:#f1d7b5; border-color:#6b5360; }}
-        @media(max-width:600px) {{ .header-controls {{ gap:6px; }} .header-controls .theme-toggle,.font-picker-button,.header-controls .copy-link {{ min-height:32px; height:32px; }} .header-controls .theme-toggle {{ padding:5px 8px; font-size:.68rem; }} .font-picker-button {{ width:40px; }} .header-controls .copy-link {{ width:36px; }} }}
+        html[data-theme="dark"] .header-controls .theme-toggle,html[data-theme="dark"] .font-picker-button,html[data-theme="dark"] .header-controls .copy-link,html[data-theme="dark"] .auto-scroll-button,html[data-theme="dark"] .auto-scroll-speed {{ background:#302a32; color:#f1d7b5; border-color:#6b5360; }}
+        html[data-theme="dark"] .auto-scroll-button[aria-pressed="true"] {{ background:#a85f43; color:#fffaf4; border-color:#a85f43; }}
+        @media(max-width:600px) {{ .header-controls {{ gap:6px; }} .header-controls .theme-toggle,.font-picker-button,.header-controls .copy-link,.auto-scroll-button,.auto-scroll-speed {{ min-height:32px; height:32px; }} .header-controls .theme-toggle {{ padding:5px 8px; font-size:.68rem; }} .font-picker-button {{ width:40px; }} .header-controls .copy-link {{ width:36px; }} .auto-scroll-button {{ min-width:72px; padding-left:7px; padding-right:7px; }} .auto-scroll-speed {{ min-width:78px; padding-left:5px; padding-right:5px; }} }}
 
         /* Catalog-style newest review cards. */
         .newest-reviews-track {{ display:flex; gap:9px; overflow-x:auto; padding:2px 0 10px; scroll-snap-type:x mandatory; scrollbar-width:thin; scrollbar-color:#c8ad96 transparent; }}
@@ -1084,7 +1088,7 @@ def generate_post_html(post):
         <header>
             <h1>{post["title"]}</h1>
             <div class="post-meta">📅 {post["date"]} • ✍️ {post["author"]}</div>
-            <div class="header-controls"><button type="button" class="theme-toggle" data-theme-toggle aria-pressed="false">🌙 Dark mode</button><label for="fontPicker" class="sr-only">ဖွန့်ရွေးရန်</label><button type="button" id="fontPickerButton" class="font-picker-button" aria-label="ဖွန့်ရွေးရန်" title="ဖွန့်ရွေးရန်">Aa</button><select id="fontPicker" class="font-picker" aria-label="ဖွန့်ရွေးရန်"><option value="WOW-Walone">Walone</option><option value="WOW-Yadanabon">Yadanabon</option><option value="WOW-YoeYar">YoeYar</option><option value="WOW-Pyidaungsu">Pyidaungsu</option><option value="WOW-YoeShin">Yoe Shin</option><option value="WOW-MyanmarSansPro">Myanmar Sans Pro</option><option value="WOW-MyanmarSagar">Myanmar Sagar</option><option value="WOW-MyanmarBlack">Myanmar Black</option><option value="WOW-BurmeseHandwriting">Burmese Handwriting</option><option value="WOW-MyanmarLatpan">Myanmar Latpan</option><option value="WOW-Burma01">Burma 01</option><option value="WOW-Burma02">Burma 02</option><option value="WOW-PuPuBold">Pu Pu Bold</option></select><button type="button" id="copyLink" class="copy-link" aria-label="Post link ကော်ပီယူရန်" title="Post link ကော်ပီယူရန်">🔗</button><span id="copyStatus" class="copy-status" role="status" aria-live="polite"></span></div>
+            <div class="header-controls"><button type="button" class="theme-toggle" data-theme-toggle aria-pressed="false">🌙 Dark mode</button><label for="fontPicker" class="sr-only">ဖွန့်ရွေးရန်</label><button type="button" id="fontPickerButton" class="font-picker-button" aria-label="ဖွန့်ရွေးရန်" title="ဖွန့်ရွေးရန်">Aa</button><select id="fontPicker" class="font-picker" aria-label="ဖွန့်ရွေးရန်"><option value="WOW-Walone">Walone</option><option value="WOW-Yadanabon">Yadanabon</option><option value="WOW-YoeYar">YoeYar</option><option value="WOW-Pyidaungsu">Pyidaungsu</option><option value="WOW-YoeShin">Yoe Shin</option><option value="WOW-MyanmarSansPro">Myanmar Sans Pro</option><option value="WOW-MyanmarSagar">Myanmar Sagar</option><option value="WOW-MyanmarBlack">Myanmar Black</option><option value="WOW-BurmeseHandwriting">Burmese Handwriting</option><option value="WOW-MyanmarLatpan">Myanmar Latpan</option><option value="WOW-Burma01">Burma 01</option><option value="WOW-Burma02">Burma 02</option><option value="WOW-PuPuBold">Pu Pu Bold</option></select><button type="button" id="autoScrollButton" class="auto-scroll-button" aria-pressed="false" aria-label="Auto scroll စတင်/ရပ်ရန်" title="စာပေါ်တစ်ချက်ထိရင်လည်း ရပ်/ပြန်စနိုင်သည်">▶ Auto</button><label for="autoScrollSpeed" class="sr-only">Auto-scroll speed</label><select id="autoScrollSpeed" class="auto-scroll-speed" aria-label="Auto-scroll speed" title="Auto-scroll speed"><option value="10">ဖြည်း</option><option value="18" selected>ပုံမှန်</option><option value="28">နည်းနည်းမြန်</option><option value="40">မြန်</option></select><button type="button" id="copyLink" class="copy-link" aria-label="Post link ကော်ပီယူရန်" title="Post link ကော်ပီယူရန်">🔗</button><span id="copyStatus" class="copy-status" role="status" aria-live="polite"></span></div>
 
         </header>
 
@@ -1235,6 +1239,41 @@ def generate_post_html(post):
             var copy = document.getElementById('copyLink');
             var copyStatus = document.getElementById('copyStatus');
             var body = document.querySelector('.post-body');
+            var autoButton = document.getElementById('autoScrollButton');
+            var speedPicker = document.getElementById('autoScrollSpeed');
+            var autoRunning = false;
+            var autoFrame = 0;
+            var autoLastTime = 0;
+            var autoSpeed = 18;
+            var AUTO_SPEED_KEY = 'wow-reader-auto-scroll-speed';
+            try {{ autoSpeed = Number(localStorage.getItem(AUTO_SPEED_KEY)) || 18; }} catch (_) {{}}
+            if (speedPicker) {{ speedPicker.value = String(autoSpeed); if (speedPicker.value !== String(autoSpeed)) {{ autoSpeed = 18; speedPicker.value = '18'; }} }}
+            function updateAutoButton() {{ if (autoButton) {{ autoButton.textContent = autoRunning ? '⏸ ရပ်မယ်' : '▶ Auto'; autoButton.setAttribute('aria-pressed', autoRunning ? 'true' : 'false'); }} }}
+            function stopAutoScroll() {{ autoRunning = false; autoLastTime = 0; if (autoFrame) cancelAnimationFrame(autoFrame); autoFrame = 0; updateAutoButton(); }}
+            function autoScrollFrame(now) {{
+                if (!autoRunning) return;
+                if (!autoLastTime) autoLastTime = now;
+                var remaining = document.documentElement.scrollHeight - window.innerHeight - (window.pageYOffset || 0);
+                if (remaining <= 1) {{ stopAutoScroll(); return; }}
+                var distance = Math.min(remaining, autoSpeed * (now - autoLastTime) / 1000);
+                window.scrollBy(0, distance);
+                autoLastTime = now;
+                autoFrame = requestAnimationFrame(autoScrollFrame);
+            }}
+            function toggleAutoScroll() {{
+                if (autoRunning) stopAutoScroll();
+                else {{ autoRunning = true; autoLastTime = 0; updateAutoButton(); autoFrame = requestAnimationFrame(autoScrollFrame); }}
+            }}
+            if (autoButton) autoButton.addEventListener('click', function(e) {{ e.stopPropagation(); toggleAutoScroll(); }});
+            if (speedPicker) speedPicker.addEventListener('change', function() {{ autoSpeed = Number(speedPicker.value) || 18; try {{ localStorage.setItem(AUTO_SPEED_KEY, String(autoSpeed)); }} catch (_) {{}} }});
+            var tapX = 0, tapY = 0, tapAt = 0;
+            var readableContent = document.querySelector('.post-content');
+            if (readableContent) {{
+                readableContent.addEventListener('pointerdown', function(e) {{ tapX = e.clientX; tapY = e.clientY; tapAt = Date.now(); }}, {{ passive:true }});
+                readableContent.addEventListener('pointerup', function(e) {{ if (Date.now() - tapAt < 350 && Math.hypot(e.clientX - tapX, e.clientY - tapY) < 12) toggleAutoScroll(); }}, {{ passive:true }});
+            }}
+            document.addEventListener('visibilitychange', function() {{ if (document.hidden) stopAutoScroll(); }});
+            updateAutoButton();
             var FONT_KEY = 'wow-reader-font-family';
             var fonts = ['WOW-Walone','WOW-Yadanabon','WOW-YoeYar','WOW-Pyidaungsu','WOW-YoeShin','WOW-MyanmarSansPro','WOW-MyanmarSagar','WOW-MyanmarBlack','WOW-BurmeseHandwriting','WOW-MyanmarLatpan','WOW-Burma01','WOW-Burma02','WOW-PuPuBold'];
             var chosen = 'WOW-Walone';

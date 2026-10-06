@@ -32,13 +32,16 @@
     <meta itemprop="image" content="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEiSS2pLwaMxhHb43C94Ak-88n9PNraCXu4QFprHx2dTIX2ehBvousVIo1kxeJDrqPgxzFREpzQG9YniNkVLR-COB78kpOn0XLR2JPIOf8nYXhhDo-wZ0gxKxdBPN-8jctj2iGQDx06m7cfJZke1-eT2PuY3zKf9WDYpUQp5MnSYc-kkcHNo-XUtiF7-WTI/s1600/effe2440-9bd7-11f1-9999-d18f2c8a5669.png">
     <link rel="image_src" href="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEiSS2pLwaMxhHb43C94Ak-88n9PNraCXu4QFprHx2dTIX2ehBvousVIo1kxeJDrqPgxzFREpzQG9YniNkVLR-COB78kpOn0XLR2JPIOf8nYXhhDo-wZ0gxKxdBPN-8jctj2iGQDx06m7cfJZke1-eT2PuY3zKf9WDYpUQp5MnSYc-kkcHNo-XUtiF7-WTI/s1600/effe2440-9bd7-11f1-9999-d18f2c8a5669.png">
     <style>
-        @font-face { font-family: "Walone"; src: url("https://raw.githubusercontent.com/whispermmepub/myanmar-yoe-shin-fonts/main/fonts/Walone-Regular.ttf") format("truetype"); font-weight: 400; font-style: normal; font-display: swap; }
-        @font-face { font-family: "Walone"; src: url("https://raw.githubusercontent.com/whispermmepub/myanmar-yoe-shin-fonts/main/fonts/Walone-Bold.ttf") format("truetype"); font-weight: 700; font-style: normal; font-display: swap; }
+        @font-face {
+            font-family: 'Walone';
+            src: url('../assets/Walone-Regular.ttf') format('truetype');
+            font-display: swap;
+        }
 
         * { margin: 0; padding: 0; box-sizing: border-box; }
 
         body {
-            font-family: "Walone", sans-serif;
+            font-family: 'Walone', sans-serif;
             background: linear-gradient(135deg, #141228 0%, #1a1530 100%);
             color: #d0d0d0;
             line-height: 2;
@@ -302,7 +305,7 @@
             text-decoration: none;
             font-size: 0.9rem;
             font-weight: 600;
-            font-family: "Walone", sans-serif;
+            font-family: 'Walone', sans-serif;
             transition: all 0.25s ease;
         }
         .telegram-btn:hover {
@@ -343,7 +346,7 @@
             border-radius: 30px;
             cursor: pointer;
             transition: all 0.3s;
-            font-family: "Walone", sans-serif;
+            font-family: 'Walone', sans-serif;
         }
         .love-btn:hover, .love-btn.liked {
             background: #e74c3c;
@@ -676,7 +679,7 @@
         /* Editorial reader redesign v1 */
         :root { --reader-ink:#302822; --reader-muted:#806d60; --reader-paper:#fffdf8; --reader-line:#e8ddd2; --reader-accent:#a85f43; --reader-accent-dark:#7d4333; --reader-soft:#f5e8dc; }
         html,body { background:#eee8df; color:var(--reader-ink); }
-        body { padding:18px 12px 34px; font-family: "Walone", sans-serif; line-height:1.7; }
+        body { padding:18px 12px 34px; font-family:"Walone",sans-serif; line-height:1.7; }
         .container { width:min(100%,900px); max-width:900px; margin:0 auto; padding:0 34px 42px; background:var(--reader-paper); border:1px solid #e3d6c9; border-radius:24px; box-shadow:0 18px 50px rgba(76,54,37,.12); overflow:hidden; }
         .reader-topbar { display:flex; align-items:center; gap:12px; min-height:68px; padding:8px 0 12px; border-bottom:1px solid var(--reader-line); }
         .reader-back { display:inline-flex; align-items:center; justify-content:center; width:38px; height:38px; border:1px solid #decfc2; border-radius:50%; color:var(--reader-accent-dark); background:#fffaf4; font-size:1.35rem; text-decoration:none; transition:transform .18s ease,background .18s ease; }
@@ -730,14 +733,18 @@
         @media(max-width:700px) { body { padding:7px 6px 22px; } .container { width:100%; padding:0 17px 30px; border-radius:18px; } .reader-topbar { min-height:60px; } .reader-brand { font-size:.88rem; } .post-image { width:100%; max-height:52vh; margin:16px auto 22px; border-radius:16px; } header h1 { font-size:1.38rem; line-height:1.48; } .post-meta { font-size:.78rem; } .header-controls { margin-top:13px; gap:6px; } .header-controls .theme-toggle,.font-picker-button,.header-controls .copy-link { min-height:33px; height:33px; font-size:.68rem; } .reading-time { padding-top:11px; } .post-controls { margin-bottom:15px; padding-bottom:13px; } .post-body p { font-size:1.03rem; line-height:1.92; } .comments-panel { margin-top:24px; padding:16px 13px; border-radius:15px; } .comments-title { font-size:.98rem; } .back-link { min-height:45px; margin-top:24px; } }
         /* Compact reader toolbar: theme, Aa font picker, and copy link stay together. */
         .header-controls { justify-content:center; align-items:center; gap:8px; margin-top:14px; }
-        .header-controls .theme-toggle,.font-picker-button,.header-controls .copy-link { min-height:34px; height:34px; padding:6px 10px; border:1px solid #d9b9a6; border-radius:9px; background:#fbf3ed; color:#87543a; font:inherit; font-size:.74rem; font-weight:700; cursor:pointer; }
+        .header-controls .theme-toggle,.font-picker-button,.header-controls .copy-link,.auto-scroll-button,.auto-scroll-speed { min-height:34px; height:34px; padding:6px 10px; border:1px solid #d9b9a6; border-radius:9px; background:#fbf3ed; color:#87543a; font:inherit; font-size:.74rem; font-weight:700; cursor:pointer; }
         .font-picker-button { width:42px; padding:5px 4px; font-size:.96rem; letter-spacing:-.04em; }
         .header-controls .copy-link { width:38px; padding:5px 6px; font-size:.9rem; }
+        .auto-scroll-button { min-width:78px; }
+        .auto-scroll-button[aria-pressed="true"] { background:var(--reader-accent); color:#fffaf4; border-color:var(--reader-accent); }
+        .auto-scroll-speed { min-width:86px; padding:5px 8px; }
         .header-controls .font-picker { position:absolute; width:1px; height:1px; padding:0; margin:-1px; opacity:0; overflow:hidden; clip:rect(0,0,0,0); white-space:nowrap; border:0; }
         .copy-status { min-width:0; color:#a34a42; font-size:.7rem; }
         .post-controls { justify-content:center; margin:0 auto 18px; padding:0 0 14px; border-bottom:1px solid #eee4db; }
-        html[data-theme="dark"] .header-controls .theme-toggle,html[data-theme="dark"] .font-picker-button,html[data-theme="dark"] .header-controls .copy-link { background:#302a32; color:#f1d7b5; border-color:#6b5360; }
-        @media(max-width:600px) { .header-controls { gap:6px; } .header-controls .theme-toggle,.font-picker-button,.header-controls .copy-link { min-height:32px; height:32px; } .header-controls .theme-toggle { padding:5px 8px; font-size:.68rem; } .font-picker-button { width:40px; } .header-controls .copy-link { width:36px; } }
+        html[data-theme="dark"] .header-controls .theme-toggle,html[data-theme="dark"] .font-picker-button,html[data-theme="dark"] .header-controls .copy-link,html[data-theme="dark"] .auto-scroll-button,html[data-theme="dark"] .auto-scroll-speed { background:#302a32; color:#f1d7b5; border-color:#6b5360; }
+        html[data-theme="dark"] .auto-scroll-button[aria-pressed="true"] { background:#a85f43; color:#fffaf4; border-color:#a85f43; }
+        @media(max-width:600px) { .header-controls { gap:6px; } .header-controls .theme-toggle,.font-picker-button,.header-controls .copy-link,.auto-scroll-button,.auto-scroll-speed { min-height:32px; height:32px; } .header-controls .theme-toggle { padding:5px 8px; font-size:.68rem; } .font-picker-button { width:40px; } .header-controls .copy-link { width:36px; } .auto-scroll-button { min-width:72px; padding-left:7px; padding-right:7px; } .auto-scroll-speed { min-width:78px; padding-left:5px; padding-right:5px; } }
 
         /* Catalog-style newest review cards. */
         .newest-reviews-track { display:flex; gap:9px; overflow-x:auto; padding:2px 0 10px; scroll-snap-type:x mandatory; scrollbar-width:thin; scrollbar-color:#c8ad96 transparent; }
@@ -757,19 +764,7 @@
         html[data-theme="dark"] .newest-review-author { color:#d7c4b7; }
         html[data-theme="dark"] .newest-review-read { color:#e4a197; }
         @media(max-width:600px) { .newest-review-card,.newest-review-cover { width:116px; } .newest-review-cover { height:156px; } }
-
-        /* Mobile browser + Telegram in-app browser typography */
-        @media (max-width: 600px) {
-            body { font-size: 14px; }
-            header { margin: 12px 10px 10px; padding: 26px 14px 22px; }
-            header h1 { font-size: 1.25rem !important; line-height: 1.35; }
-            .post-meta { font-size: 0.80rem !important; }
-            .post-body { padding: 22px 10px; }
-            .post-body p { font-size: 1.00rem !important; line-height: 1.78 !important; }
-            .back-link { font-size: 0.85rem; padding: 8px 14px; }
-            .reviewer-credit { font-size: 0.78rem; }
-        }
-    </style>
+</style>
 </head>
 <body>
     <div class="reading-progress" id="readingProgress"></div>
@@ -784,7 +779,7 @@
         <header>
             <h1>မူးယစ်ဝေသော နွေဦးညများ - ဒဂုန်တာရာ</h1>
             <div class="post-meta">📅 2026-08-19 • ✍️ Whisper Of Words</div>
-            <div class="header-controls"><button type="button" class="theme-toggle" data-theme-toggle aria-pressed="false">🌙 Dark mode</button><label for="fontPicker" class="sr-only">ဖွန့်ရွေးရန်</label><button type="button" id="fontPickerButton" class="font-picker-button" aria-label="ဖွန့်ရွေးရန်" title="ဖွန့်ရွေးရန်">Aa</button><select id="fontPicker" class="font-picker" aria-label="ဖွန့်ရွေးရန်"><option value="WOW-Walone">Walone</option><option value="WOW-Yadanabon">Yadanabon</option><option value="WOW-YoeYar">YoeYar</option><option value="WOW-Pyidaungsu">Pyidaungsu</option><option value="WOW-YoeShin">Yoe Shin</option><option value="WOW-MyanmarSansPro">Myanmar Sans Pro</option><option value="WOW-MyanmarSagar">Myanmar Sagar</option><option value="WOW-MyanmarBlack">Myanmar Black</option><option value="WOW-BurmeseHandwriting">Burmese Handwriting</option><option value="WOW-MyanmarLatpan">Myanmar Latpan</option><option value="WOW-Burma01">Burma 01</option><option value="WOW-Burma02">Burma 02</option><option value="WOW-PuPuBold">Pu Pu Bold</option></select><button type="button" id="copyLink" class="copy-link" aria-label="Post link ကော်ပီယူရန်" title="Post link ကော်ပီယူရန်">🔗</button><span id="copyStatus" class="copy-status" role="status" aria-live="polite"></span></div>
+            <div class="header-controls"><button type="button" class="theme-toggle" data-theme-toggle aria-pressed="false">🌙 Dark mode</button><label for="fontPicker" class="sr-only">ဖွန့်ရွေးရန်</label><button type="button" id="fontPickerButton" class="font-picker-button" aria-label="ဖွန့်ရွေးရန်" title="ဖွန့်ရွေးရန်">Aa</button><select id="fontPicker" class="font-picker" aria-label="ဖွန့်ရွေးရန်"><option value="WOW-Walone">Walone</option><option value="WOW-Yadanabon">Yadanabon</option><option value="WOW-YoeYar">YoeYar</option><option value="WOW-Pyidaungsu">Pyidaungsu</option><option value="WOW-YoeShin">Yoe Shin</option><option value="WOW-MyanmarSansPro">Myanmar Sans Pro</option><option value="WOW-MyanmarSagar">Myanmar Sagar</option><option value="WOW-MyanmarBlack">Myanmar Black</option><option value="WOW-BurmeseHandwriting">Burmese Handwriting</option><option value="WOW-MyanmarLatpan">Myanmar Latpan</option><option value="WOW-Burma01">Burma 01</option><option value="WOW-Burma02">Burma 02</option><option value="WOW-PuPuBold">Pu Pu Bold</option></select><button type="button" id="autoScrollButton" class="auto-scroll-button" aria-pressed="false" aria-label="Auto scroll စတင်/ရပ်ရန်" title="စာပေါ်တစ်ချက်ထိရင်လည်း ရပ်/ပြန်စနိုင်သည်">▶ Auto</button><label for="autoScrollSpeed" class="sr-only">Auto-scroll speed</label><select id="autoScrollSpeed" class="auto-scroll-speed" aria-label="Auto-scroll speed" title="Auto-scroll speed"><option value="10">ဖြည်း</option><option value="18" selected>ပုံမှန်</option><option value="28">နည်းနည်းမြန်</option><option value="40">မြန်</option></select><button type="button" id="copyLink" class="copy-link" aria-label="Post link ကော်ပီယူရန်" title="Post link ကော်ပီယူရန်">🔗</button><span id="copyStatus" class="copy-status" role="status" aria-live="polite"></span></div>
 
         </header>
 
@@ -795,22 +790,9 @@
 
         <div class="post-body">
             <div class="post-content">
-            <p>မူးယစ်ဝေသော နွေဦးညများ — ဒဂုန်တာရာ</p>
-            <p>ဒီစာအုပ်ကို ဖတ်ပြီးချိန်မှာ ဇာတ်လမ်းတွေထက် အရင်ဆုံး ပြန်သတိရတာက ရာသီဥတုတွေပါ။ မိုးစက်သံ၊ ညအမှောင်၊ လရောင်၊ လယ်ကွင်းနံ့၊ ပင်လယ်လေ။ ဒဂုန်တာရာက လူတွေကို မိတ်ဆက်မပေးခင် သူတို့နေထိုင်ရာ ကမ္ဘာရဲ့ အပူအအေးကို အရင်ခံစားခိုင်းတတ်တယ်။ ဒါကြောင့် စာမျက်နှာပေါ်က ဇာတ်ကောင်တွေဟာ ဟိုးတစ်ခေတ်က လူတွေဖြစ်နေပေမယ့် ကိုယ်နဲ့ သိပ်ဝေးမနေဘူး။</p>
-            <p>စာအုပ်အမည်နဲ့ တူတဲ့ ပထမဆုံးဝတ္ထုက မြို့ပြနွေဦးညတစ်ညဆီ ခေါ်သွားတယ်။ နွေဦးဆိုတိုင်း ပန်းနံ့နဲ့ လေပြေချည်းရှိတာ မဟုတ်ဘူး။ မိုးရေစိုနေတဲ့လမ်း၊ အလင်းရောင်မှိန်မှိန်၊ ငွေကြေးကျပ်တည်းမှုနဲ့ မနက်ဖြန်ကို ဘယ်လိုရင်ဆိုင်ရမယ်မှန်း မသေချာသူတွေလည်း ရှိတယ်။ လှပတဲ့ရာသီဥတုနောက်မှာ လူတစ်ယောက်ရဲ့ အထီးကျန်မှုကို အသာကလေး တွဲထည့်ထားတဲ့အတွက် ခေါင်းစဉ်ပုဒ်ပြီးတာနဲ့ စာအုပ်ရဲ့အသံကို ကောင်းကောင်းကြားရပြီ။</p>
-            <p>ဝတ္ထုတို ၂၈ ပုဒ်ပါဝင်ပြီး မူရင်းစာရေးဆရာတွေက နိုင်ငံခြား၊ ခေတ်ခြား၊ ရေးဟန်ခြားသူတွေ ဖြစ်ကြတယ်။ ဒါပေမယ့် တစ်အုပ်တည်းမှာ အစိတ်စိတ်အမြွှာမြွှာ ဖြစ်မနေဘူး။ ဒဂုန်တာရာရဲ့ ရွေးချယ်မှုနဲ့ မြန်မာစကားပြန်ဆိုပုံက ဝတ္ထုတစ်ပုဒ်ပြီးတစ်ပုဒ်ကို မမြင်ရတဲ့ချည်တစ်မျှင်နဲ့ ဆက်ပေးထားသလို ရှိတယ်။</p>
-            <p>အဲဒီချည်မျှင်က လူ့စိတ်ပဲ။ ဆင်းရဲခြင်းကြောင့် ပြောင်းလဲသွားတဲ့စိတ်၊ ဂုဏ်နဲ့ငွေကို မက်မောတဲ့စိတ်၊ ချစ်လို့ပိုင်ဆိုင်ချင်တဲ့စိတ်၊ နာကျင်လို့ လက်စားချေချင်တဲ့စိတ်၊ အနုပညာတစ်ခုအတွက် ဘဝကို အလောင်းအစားလုပ်ရဲတဲ့စိတ်။ ဝတ္ထုတိုတွေမှာ ခေတ်နဲ့နေရာ မတူကြပေမယ့် လူ့အလိုဆန္ဒကတော့ အခုခေတ်လူတွေနဲ့ မစိမ်းလှဘူး။</p>
-            <p>“မွေးရပ်မြေ” မှာ အတိတ်ကမှတ်ဉာဏ်နဲ့ လက်ရှိဘဝကြားက အကွာအဝေးကို တွေ့ရတယ်။ “ကျေးတောသား” နဲ့ “ဆားချက်မြေ” တို့မှာ ဘဝကြမ်းကြမ်းကို လက်နှစ်ဖက်နဲ့ ဆုပ်ကိုင်ထားရတဲ့ လူတွေရှိတယ်။ “ကဗျာဆရာ”၊ “တယောရှင်” နဲ့ “အနုပညာ” တို့ကတော့ အနုပညာဆိုတာ နူးညံ့လှပမှုသက်သက်မဟုတ်ဘဲ လူတစ်ယောက်ရဲ့ မာန၊ အငတ်ဘေးနဲ့ အထီးကျန်ခြင်းတွေပါ တွဲပါလာတတ်ကြောင်း သိမ်သိမ်မွေ့မွေ့ ပြောသွားတယ်။</p>
-            <p>အချစ်အကြောင်း ရေးထားတဲ့ဝတ္ထုတွေကလည်း တစ်ပုံစံတည်း မဟုတ်ဘူး။ “မေတ္တာဘွဲ့”၊ “ကိုနန္ဒ”၊ “ခင်မေမြိုင်”၊ “သမုဒယ” နဲ့ “ချစ်ချစ်” တို့မှာ အချစ်ရဲ့ မျက်နှာအမျိုးမျိုးကို တွေ့ရမယ်။ စိတ်ထဲရှိသမျှ ပြောလိုက်ရုံနဲ့ ဘဝဟာ အဆင်ပြေသွားတာမျိုးမဟုတ်။ အချိန်လွဲခြင်း၊ လူမှုအဆင့်အတန်း၊ အိမ်ထောင်ရေး၊ ကိုယ့်စိတ်ကိုယ် မသိခြင်းတို့က ချစ်သူနှစ်ယောက်ကြား ဝင်ထိုင်နေတတ်ကြတယ်။ ဒဂုန်တာရာက အချစ်ကို အလွန်အကျွံလှပအောင် မခြယ်ဘူး။ အချစ်ကြောင့် လူတွေ ရိုးသားလာပုံကိုလည်း ရေးသလို၊ ကိုယ့်ကိုယ်ကို လှည့်စားတတ်လာပုံကိုလည်း ချန်မထားဘူး။</p>
-            <p>တစ်ဖက်မှာ “ဘုရင့်ဝတ်ရုံတော်”၊ “လက်စားချေသူ” နဲ့ “ညတစ်ည” လို ဝတ္ထုတွေက မျက်နှာတည်တည်နဲ့ ရယ်စရာပြောတတ်ကြတယ်။ အာဏာ၊ မာနနဲ့ လူ့အထင်အမြင်တို့ကို ဇာတ်လမ်းသေးသေးလေးထဲ ထည့်ပြီး အဆုံးနားရောက်မှ အဓိပ္ပာယ်တစ်မျိုး ပြောင်းသွားစေတယ်။ အချို့အပုဒ်တွေက ဝမ်းနည်းစရာပြီးလျှင် ပျော်စရာတစ်ပုဒ် ဝင်လာတတ်လို့ စာအုပ်ရဲ့အရှိန်က တစ်သံတည်း ငြီးငွေ့မနေဘူး။</p>
-            <p>“ပင်လယ်ဗွေ” နဲ့ “ယမုန်နာ” တို့လို ဝတ္ထုတွေမှာတော့ လူမဟုတ်တဲ့ သတ္တဝါတွေရဲ့ ရှင်သန်လိုစိတ်ကို နီးနီးကပ်ကပ် မြင်ရတယ်။ သဘာဝတရားက ကြင်နာတယ်လို့ ထင်ရတဲ့အခါရှိသလို ရက်စက်လွန်းတယ်လို့ ခံစားရတဲ့အခါလည်းရှိတယ်။ အဲဒီအပုဒ်တွေကို ဖတ်ရင်း ဇာတ်ကောင်တစ်ကောင်ရဲ့ လှုပ်ရှားမှုသေးသေးလေးကိုတောင် လွတ်မသွားအောင် လိုက်ဖတ်မိတယ်။</p>
-            <p>ဒဂုန်တာရာရဲ့ ဘာသာပြန်ဟန်မှာ အထူးသဖြင့် သဘောကျစရာက မူရင်းနိုင်ငံနဲ့ စာဖတ်သူကြား အကွာအဝေးကို မြန်မာစကားနဲ့ နီးကပ်အောင် လုပ်ပေးထားခြင်းပါ။ စကားပြန်ထားမှန်း ထင်ရှားနေတဲ့ တောင့်တင်းမှုမျိုး နည်းတယ်။ ဇာတ်ကောင်အမည်၊ အခေါ်အဝေါ်နဲ့ ဝါကျသွားဝါကျလာတွေမှာ မြန်မာ့လေသံ ဝင်လာပေမယ့် မူရင်းဇာတ်လမ်းရဲ့ အမူအရာ မပျောက်ဘူး။ တချို့နေရာတွေဆို ရွာလမ်းကလေးတစ်လမ်းပေါ်၊ လက်ဖက်ရည်ဆိုင်ဟောင်းတစ်ဆိုင်ထဲ ရောက်နေသလိုတောင် ထင်ရတယ်။</p>
-            <p>ယနေ့အသုံးအနှုန်းနဲ့ မတူတော့တဲ့ စကားလုံးအချို့နဲ့ စာကြောင်းရှည်ရှည်တွေကြောင့် အစပိုင်းမှာ အရှိန်ယူရနိုင်တယ်။ သဘာဝဖွဲ့တွေကို မြန်မြန်ကျော်ဖတ်တတ်သူဆိုရင်လည်း အနည်းငယ်နှေးတယ်လို့ ထင်နိုင်တယ်။ ဒါပေမယ့် ဖြည်းဖြည်းဖတ်ကြည့်တဲ့အခါ အဲဒီဖွဲ့နွဲ့မှုတွေက အပိုမဟုတ်ဘဲ နောက်မှာပေါ်လာမယ့် လူ့စိတ်အပြောင်းအလဲအတွက် အရောင်တင်ပေးထားတာကို တွေ့ရတယ်။</p>
-            <p>ဝတ္ထုတိုဆိုတာ အချိန်တိုတိုအတွင်း အဆုံးဖတ်နိုင်တဲ့ ဇာတ်လမ်းလို့ပဲ ထင်ထားသူတစ်ယောက်အတွက် ဒီစာအုပ်က အရသာသစ်တစ်မျိုး ပေးတယ်။ အချို့အပုဒ်က ဖတ်ပြီးပြီးချင်း သဘောကျစေတယ်။ အချို့အပုဒ်ကတော့ စာအုပ်ပိတ်ထားပြီး အချိန်နည်းနည်းကြာမှ ပြန်ပေါ်လာတတ်တယ်။ လူတစ်ယောက်ရဲ့ အပြောအဆိုလေးတစ်ခွန်း၊ မျက်နှာအမူအရာတစ်ချက်၊ မလုပ်ဖြစ်ခဲ့တဲ့ ဆုံးဖြတ်ချက်တစ်ခုက စိတ်ထဲမှာ တိတ်တိတ်ကလေး ကျန်နေတတ်တာမျိုးပါ။</p>
-            <p>တစ်ညတည်းနဲ့ အပြီးဖတ်ဖို့ထက် တစ်ညတစ်ပုဒ်၊ နှစ်ပုဒ်လောက်ဖတ်ရင် ပိုအရသာရှိမယ့် စာအုပ်မျိုးဖြစ်တယ်။ ဒါပေမယ့် ခေါင်းစဉ်ပုဒ်ပြီးလို့ “မွေးရပ်မြေ” ဆီ ရောက်သွားပြီဆိုရင်တော့ လက်က အလွယ်တကူ စာအုပ်မချနိုင်တော့ဘူး။ အကြောင်းအရာချင်း မတူတဲ့ နောက်တစ်ပုဒ်မှာ ဘယ်လိုလူတစ်ယောက်နဲ့ ထပ်တွေ့ရမလဲဆိုတဲ့ သိချင်စိတ်က ဆက်ခေါ်သွားတယ်။</p>
-            <p>Whisper Of Words Mmepub</p>
-            <p>epub,kfx for Myanmar ebooks reader</p>
+            <p>မူးယစ်ဝေသော နွေဦးညများ — ဒဂုန်တာရာ
 
+ဒီစာအုပ်ကို ဖတ်ပြီးချိန်မှာ ဇာတ်လမ်းတွေထက် အရင်ဆုံး ပြန်သတိရတာက ရာသီဥတုတွေပါ။ မိုးစက်သံ၊ ညအမှောင်၊ လရောင်၊ လယ်ကွင်းနံ့၊ ပင်လယ်လေ။ ဒဂုန်တာရာက လူတွေကို မိတ်ဆက်မပေးခင်...</p>
             </div>
 
             <div class="reviewer-credit">
@@ -950,6 +932,41 @@
             var copy = document.getElementById('copyLink');
             var copyStatus = document.getElementById('copyStatus');
             var body = document.querySelector('.post-body');
+            var autoButton = document.getElementById('autoScrollButton');
+            var speedPicker = document.getElementById('autoScrollSpeed');
+            var autoRunning = false;
+            var autoFrame = 0;
+            var autoLastTime = 0;
+            var autoSpeed = 18;
+            var AUTO_SPEED_KEY = 'wow-reader-auto-scroll-speed';
+            try { autoSpeed = Number(localStorage.getItem(AUTO_SPEED_KEY)) || 18; } catch (_) {}
+            if (speedPicker) { speedPicker.value = String(autoSpeed); if (speedPicker.value !== String(autoSpeed)) { autoSpeed = 18; speedPicker.value = '18'; } }
+            function updateAutoButton() { if (autoButton) { autoButton.textContent = autoRunning ? '⏸ ရပ်မယ်' : '▶ Auto'; autoButton.setAttribute('aria-pressed', autoRunning ? 'true' : 'false'); } }
+            function stopAutoScroll() { autoRunning = false; autoLastTime = 0; if (autoFrame) cancelAnimationFrame(autoFrame); autoFrame = 0; updateAutoButton(); }
+            function autoScrollFrame(now) {
+                if (!autoRunning) return;
+                if (!autoLastTime) autoLastTime = now;
+                var remaining = document.documentElement.scrollHeight - window.innerHeight - (window.pageYOffset || 0);
+                if (remaining <= 1) { stopAutoScroll(); return; }
+                var distance = Math.min(remaining, autoSpeed * (now - autoLastTime) / 1000);
+                window.scrollBy(0, distance);
+                autoLastTime = now;
+                autoFrame = requestAnimationFrame(autoScrollFrame);
+            }
+            function toggleAutoScroll() {
+                if (autoRunning) stopAutoScroll();
+                else { autoRunning = true; autoLastTime = 0; updateAutoButton(); autoFrame = requestAnimationFrame(autoScrollFrame); }
+            }
+            if (autoButton) autoButton.addEventListener('click', function(e) { e.stopPropagation(); toggleAutoScroll(); });
+            if (speedPicker) speedPicker.addEventListener('change', function() { autoSpeed = Number(speedPicker.value) || 18; try { localStorage.setItem(AUTO_SPEED_KEY, String(autoSpeed)); } catch (_) {} });
+            var tapX = 0, tapY = 0, tapAt = 0;
+            var readableContent = document.querySelector('.post-content');
+            if (readableContent) {
+                readableContent.addEventListener('pointerdown', function(e) { tapX = e.clientX; tapY = e.clientY; tapAt = Date.now(); }, { passive:true });
+                readableContent.addEventListener('pointerup', function(e) { if (Date.now() - tapAt < 350 && Math.hypot(e.clientX - tapX, e.clientY - tapY) < 12) toggleAutoScroll(); }, { passive:true });
+            }
+            document.addEventListener('visibilitychange', function() { if (document.hidden) stopAutoScroll(); });
+            updateAutoButton();
             var FONT_KEY = 'wow-reader-font-family';
             var fonts = ['WOW-Walone','WOW-Yadanabon','WOW-YoeYar','WOW-Pyidaungsu','WOW-YoeShin','WOW-MyanmarSansPro','WOW-MyanmarSagar','WOW-MyanmarBlack','WOW-BurmeseHandwriting','WOW-MyanmarLatpan','WOW-Burma01','WOW-Burma02','WOW-PuPuBold'];
             var chosen = 'WOW-Walone';
@@ -1033,6 +1050,5 @@
             }).catch(function() { track.innerHTML = '<span class="newest-review-placeholder">ရယူ၍မရပါ။</span>'; });
         })();
         </script>
-
 </body>
 </html>

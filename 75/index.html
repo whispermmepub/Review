@@ -388,6 +388,13 @@
         html[data-theme="dark"] .comments-panel { background:#2b272d; border-color:#4a4148; }
         html[data-theme="dark"] .comment-form input,html[data-theme="dark"] .comment-form textarea { background:#1c1a20; color:#eee8e1; border-color:#4a4148; }
         @media(max-width:700px) { body { padding:7px 6px 22px; } .container { width:100%; padding:0 17px 30px; border-radius:18px; } .reader-topbar { min-height:60px; } .reader-brand { font-size:.88rem; } .post-image { width:100%; max-height:52vh; margin:16px auto 22px; border-radius:16px; } header h1 { font-size:1.38rem; line-height:1.48; } .post-meta { font-size:.78rem; } .header-controls { margin-top:13px; gap:6px; } .header-controls .theme-toggle,.font-picker-button,.header-controls .copy-link { min-height:33px; height:33px; font-size:.68rem; } .reading-time { padding-top:11px; } .post-controls { margin-bottom:15px; padding-bottom:13px; } .post-body p { font-size:1.03rem; line-height:1.92; } .comments-panel { margin-top:24px; padding:16px 13px; border-radius:15px; } .comments-title { font-size:.98rem; } .back-link { min-height:45px; margin-top:24px; } }
+
+        .auto-scroll-tools { display:flex; align-items:center; justify-content:center; gap:8px; flex-wrap:wrap; margin:10px auto 18px; }
+        .auto-scroll-tools button,.auto-scroll-tools select { min-height:34px; height:34px; padding:6px 10px; border:1px solid #d9b9a6; border-radius:9px; background:#fbf3ed; color:#87543a; font:inherit; font-size:.74rem; font-weight:700; cursor:pointer; }
+        .auto-scroll-tools button[aria-pressed="true"] { background:#a85f43; color:#fffaf4; border-color:#a85f43; }
+        html[data-theme="dark"] .auto-scroll-tools button,html[data-theme="dark"] .auto-scroll-tools select { background:#302a32; color:#f1d7b5; border-color:#6b5360; }
+        html[data-theme="dark"] .auto-scroll-tools button[aria-pressed="true"] { background:#a85f43; color:#fffaf4; border-color:#a85f43; }
+        @media(max-width:600px) { .auto-scroll-tools button,.auto-scroll-tools select { min-height:32px; height:32px; font-size:.68rem; } }
 </style>
 
 <link rel="stylesheet" href="../assets/firebase-comments.css">
@@ -406,6 +413,12 @@
             <div class="post-meta">📅 2026-07-30 • ✍️ Whisper Of Words</div>
 
         </header>
+        <div class="auto-scroll-tools" aria-label="Auto-scroll controls">
+            <button type="button" id="autoScrollButton" aria-pressed="false" aria-label="Auto scroll စတင်/ရပ်ရန်">▶ Auto</button>
+            <label for="autoScrollSpeed" class="sr-only">Auto-scroll speed</label>
+            <select id="autoScrollSpeed" aria-label="Auto-scroll speed"><option value="10">ဖြည်း</option><option value="18" selected>ပုံမှန်</option><option value="28">နည်းနည်းမြန်</option><option value="40">မြန်</option></select>
+        </div>
+
 
         <div class="reading-time" id="readingTime">📖 <span id="readTime"></span> ဖတ်ရန်အချိန်</div>
 
@@ -512,5 +525,23 @@
 
 
 
+
+<script>
+(function(){
+  var button=document.getElementById('autoScrollButton'), picker=document.getElementById('autoScrollSpeed');
+  if(!button) return;
+  var running=false, frame=0, last=0, speed=18, key='wow-reader-auto-scroll-speed';
+  try { speed=Number(localStorage.getItem(key))||18; } catch(e) {}
+  if(picker){ picker.value=String(speed); if(picker.value!==String(speed)) {speed=18; picker.value='18';} picker.addEventListener('change',function(){speed=Number(picker.value)||18; try{localStorage.setItem(key,String(speed));}catch(e){}}); }
+  function update(){button.textContent=running?'⏸ ရပ်မယ်':'▶ Auto';button.setAttribute('aria-pressed',running?'true':'false');}
+  function stop(){running=false;last=0;if(frame)cancelAnimationFrame(frame);frame=0;update();}
+  function tick(now){if(!running)return;if(!last)last=now;var remain=document.documentElement.scrollHeight-window.innerHeight-(window.pageYOffset||0);if(remain<=1){stop();return;}window.scrollBy(0,Math.min(remain,speed*(now-last)/1000));last=now;frame=requestAnimationFrame(tick);}
+  function toggle(){if(running)stop();else{running=true;last=0;update();frame=requestAnimationFrame(tick);}}
+  button.addEventListener('click',function(e){e.stopPropagation();toggle();});
+  var content=document.querySelector('.post-content'),x=0,y=0,t=0;
+  if(content){content.addEventListener('pointerdown',function(e){x=e.clientX;y=e.clientY;t=Date.now();},{passive:true});content.addEventListener('pointerup',function(e){if(Date.now()-t<350&&Math.hypot(e.clientX-x,e.clientY-y)<12)toggle();},{passive:true});}
+  document.addEventListener('visibilitychange',function(){if(document.hidden)stop();});update();
+}());
+</script>
 </body>
 </html>
