@@ -416,7 +416,7 @@
         <div class="auto-scroll-tools" aria-label="Auto-scroll controls">
             <button type="button" id="autoScrollButton" aria-pressed="false" aria-label="Auto scroll စတင်/ရပ်ရန်">▶ Auto</button>
             <label for="autoScrollSpeed" class="sr-only">Auto-scroll speed</label>
-            <select id="autoScrollSpeed" aria-label="Auto-scroll speed"><option value="14">ဖြည်း</option><option value="18" selected>ပုံမှန်</option><option value="28">နည်းနည်းမြန်</option><option value="40">မြန်</option></select>
+            <select id="autoScrollSpeed" aria-label="Auto-scroll speed"><option value="16">ဖြည်း</option><option value="18" selected>ပုံမှန်</option><option value="28">နည်းနည်းမြန်</option><option value="40">မြန်</option></select>
         </div>
 
 
@@ -532,7 +532,7 @@
   if(!button) return;
   var running=false, frame=0, last=0, speed=18, key='wow-reader-auto-scroll-speed';
   try { speed=Number(localStorage.getItem(key))||18; } catch(e) {}
-  if(speed===10) speed=14;
+  if(speed===10 || speed===14) speed=16;
   if(picker){ picker.value=String(speed); if(picker.value!==String(speed)) {speed=18; picker.value='18';} picker.addEventListener('change',function(){speed=Number(picker.value)||18; try{localStorage.setItem(key,String(speed));}catch(e){}}); }
   function update(){button.textContent=running?'⏸ ရပ်မယ်':'▶ Auto';button.setAttribute('aria-pressed',running?'true':'false');}
   function stop(){running=false;last=0;if(frame)cancelAnimationFrame(frame);frame=0;update();}
