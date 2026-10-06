@@ -1067,7 +1067,7 @@
   button.addEventListener('click',function(e){e.stopPropagation();toggle();});
   var content=document.querySelector('.post-content'),x=0,y=0,t=0;
   if(content){content.addEventListener('pointerdown',function(e){x=e.clientX;y=e.clientY;t=Date.now();},{passive:true});content.addEventListener('pointerup',function(e){if(Date.now()-t<350&&Math.hypot(e.clientX-x,e.clientY-y)<12)toggle();},{passive:true});}
-  document.addEventListener('visibilitychange',function(){if(document.hidden)stop();});update();
+  document.addEventListener('visibilitychange',function(){if(document.hidden)stop();});running=true;update();frame=requestAnimationFrame(tick);
 }());
 </script>
 

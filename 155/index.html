@@ -991,7 +991,9 @@
                 readableContent.addEventListener('pointerup', function(e) { if (Date.now() - tapAt < 350 && Math.hypot(e.clientX - tapX, e.clientY - tapY) < 12) toggleAutoScroll(); }, { passive:true });
             }
             document.addEventListener('visibilitychange', function() { if (document.hidden) stopAutoScroll(); });
+            autoRunning = true;
             updateAutoButton();
+            autoFrame = requestAnimationFrame(autoScrollFrame);
             var FONT_KEY = 'wow-reader-font-family';
             var fonts = ['WOW-Walone','WOW-Yadanabon','WOW-YoeYar','WOW-Pyidaungsu','WOW-YoeShin','WOW-MyanmarSansPro','WOW-MyanmarSagar','WOW-MyanmarBlack','WOW-BurmeseHandwriting','WOW-MyanmarLatpan','WOW-Burma01','WOW-Burma02','WOW-PuPuBold'];
             var chosen = 'WOW-Walone';
